@@ -5,30 +5,30 @@ const io = require('socket.io')(http);
 const Game = require('./model/Game');
 
 let roomsCount = 1;
+let playersPerGame = 2;
 let games = [];
 
 io.on('connection', socket => {
 
     socket.on('init', m => {
-        let room = "game"+roomsCount;
-        games.push(new Game(room,socket));
-        socket.emit("init", { room : room});
+        let room = "game" + roomsCount;
+        games.push(new Game(room, playersPerGame, socket));
+        socket.emit("init", {room: room});
 
         roomsCount++;
     });
 
     socket.on('join', m => {
         let game = getGameByRoomName(m.room);
-        if(game){
-            game.addPlayer(socket, "joueur "+m.player)
-        }else{
+        if (game) {
+            game.addPlayer(socket, "joueur " + m.player)
+        } else {
             console.log("requested game does not exists")
         }
     });
 
 
-
-    socket.on("message", m =>{
+    socket.on("message", m => {
         console.log(m)
     })
 });

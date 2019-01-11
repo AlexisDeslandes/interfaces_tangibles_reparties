@@ -1,11 +1,12 @@
 module.exports = class Game {
 
 
-    constructor(room, tableId, tableSocket) {
+    constructor(room, nbPlayers, tableSocket) {
         this.players = [];
         this.gameStep = "init";
+        this.nbPlayers = nbPlayers;
         this.room = room;
-        this.tableSocket = tableId;
+        this.tableSocket = tableSocket;
         console.log("new game created : " + room)
     }
 
@@ -19,7 +20,7 @@ module.exports = class Game {
             console.log(name + " joined " + this.room);
             socket.emit("joined", {message : "congratulation, you joined", player : name});
 
-            if(this.players.length === 4){
+            if(this.players.length === this.nbPlayers){
                 console.log("everyone is here, we starting boys");
                 this.start();
             }

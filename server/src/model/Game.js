@@ -22,7 +22,7 @@ module.exports = class Game {
             socket.emit("joined", {message : "congratulation, you joined", player : name});
 
             if(this.players.length === this.nbPlayers){
-                console.log("everyone is here, we starting boys");
+                console.log("everyone is here, we starting party");
                 this.start();
             }
         }

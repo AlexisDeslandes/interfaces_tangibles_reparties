@@ -2,6 +2,8 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
+const os = require('os');
+
 const Game = require('./model/Game');
 
 let roomsCount = 1;
@@ -36,6 +38,19 @@ io.on('connection', socket => {
 
 http.listen(4444, () => {
     console.log('Listening on port 4444');
+});
+
+http.listen(8080, function () {
+    // Display available adresses
+    const ifaces = os.networkInterfaces();
+    console.log("Adresses disponibles :");
+    Object.keys(ifaces).forEach(function (dev) {
+        ifaces[dev].forEach(function (details) {
+            if (details.family === 'IPv4') {
+                console.log(('  http://' + details.address));
+            }
+        });
+    });
 });
 
 

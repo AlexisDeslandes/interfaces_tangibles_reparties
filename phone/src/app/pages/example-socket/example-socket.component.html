@@ -1,3 +1,32 @@
 <button (click)="salut()" >
   envoyer "salut" au server
 </button>
+
+<ul>
+  <li>
+    <button (click)="init()" >
+      commencer une partie
+    </button>
+  </li>
+  <li>
+    <button (click)="socketManager.addPlayer(1)" >
+      joueur 1 rejoint
+    </button>
+  </li>
+  <li>
+    <button (click)="socketManager.addPlayer(2)" >
+      joueur 2 rejoint
+    </button>
+  </li>
+  <li>
+    <button (click)="socketManager.addPlayer(3)" >
+      joueur 3 rejoint
+    </button>
+  </li>
+  <li>
+    <button (click)="socketManager.addPlayer(4)" >
+      joueur 4 rejoint
+    </button>
+  </li>
+</ul>
+

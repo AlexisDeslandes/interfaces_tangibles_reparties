@@ -8,7 +8,7 @@ import {SocketManagerService} from "../../services/socket-manager/socket-manager
 })
 export class ExampleSocketComponent implements OnInit {
 
-  constructor(private socketManager : SocketManagerService) { }
+  constructor(public socketManager : SocketManagerService) { }
 
   ngOnInit() {
   }
@@ -16,6 +16,10 @@ export class ExampleSocketComponent implements OnInit {
   salut(){
     console.log("sending salut");
     this.socketManager.salut();
+  }
+
+  init(){
+    this.socketManager.socket.emit("init",{})
   }
 
 }

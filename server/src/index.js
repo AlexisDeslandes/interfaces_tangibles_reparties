@@ -21,7 +21,7 @@ io.on('connection', socket => {
     socket.on('join', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.addPlayer(socket, "joueur " + m.player)
+            game.addPlayer(socket)
         } else {
             console.log("requested game does not exists")
         }

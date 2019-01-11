@@ -10,9 +10,10 @@ module.exports = class Game {
         console.log("new game created : " + room)
     }
 
-    addPlayer(socket, name) {
-        if(this.gameStep === "init" && !this.alreadyInGame(name)) {
+    addPlayer(socket) {
+        if(this.gameStep === "init" && !this.alreadyInGame(socket.id)) {
 
+            let name = "player "+(this.players.length+1);
             this.players.push({
                 socket: socket,
                 name: name
@@ -41,10 +42,10 @@ module.exports = class Game {
     }
 
 
-    alreadyInGame(name){
+    alreadyInGame(id){
         let found = false;
         this.players.forEach(p => {
-            if(p.name === name) {
+            if(p.socket.id === id) {
                 found = true;
             }
         });

@@ -8,6 +8,8 @@ import {SocketManagerService} from "../../services/socket-manager/socket-manager
 })
 export class WaitingForStartComponent implements OnInit {
 
+  inputRoom = "game1";
+
   constructor(public socketManager : SocketManagerService) { }
 
   ngOnInit() {

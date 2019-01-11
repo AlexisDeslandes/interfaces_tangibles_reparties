@@ -8,6 +8,7 @@ import { MainContainerComponent } from './pages/main-container/main-container.co
 import { WaitingForStartComponent } from './pages/waiting-for-start/waiting-for-start.component';
 import { StepDilemneComponent } from './pages/step-dilemne/step-dilemne.component';
 import { StartGameComponent } from './pages/start-game/start-game.component';
+import {FormsModule} from "@angular/forms";
 
 const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
 
@@ -22,7 +23,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
   ],
   imports: [
     BrowserModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

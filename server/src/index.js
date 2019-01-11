@@ -29,6 +29,15 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('next', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.nextStep();
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
 
     socket.on("message", m => {
         console.log(m)
@@ -36,12 +45,10 @@ io.on('connection', socket => {
 });
 
 
-http.listen(4444, () => {
-    console.log('Listening on port 4444');
-});
 
-http.listen(8080, function () {
+http.listen(4444, function () {
     // Display available adresses
+    console.log('Listening on port 4444');
     const ifaces = os.networkInterfaces();
     console.log("Adresses disponibles :");
     Object.keys(ifaces).forEach(function (dev) {

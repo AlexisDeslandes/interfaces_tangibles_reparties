@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SocketManagerService} from "../../services/socket-manager/socket-manager.service";
 
 @Component({
   selector: 'app-start-game',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartGameComponent implements OnInit {
 
-  constructor() { }
+  constructor(public socketManager : SocketManagerService) { }
 
   ngOnInit() {
+
   }
 
 }

@@ -9,7 +9,10 @@ export class SocketManagerService {
 
   gameroom = null;
 
-  state = {step: "waiting"};
+  state = {
+    step: "waiting",
+    data: {}
+  };
   stateSubject = new Subject();
 
   constructor(public socket: Socket) {
@@ -27,6 +30,7 @@ export class SocketManagerService {
 
     socket.on("start", (data) => {
       this.state.step = "start";
+      this.state.data = data;
       this.emitState();
 
     })

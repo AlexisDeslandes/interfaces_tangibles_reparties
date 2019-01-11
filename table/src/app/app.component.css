@@ -1,0 +1,21 @@
+div.main-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0; }
+  div.main-container div.section {
+    width: 100%;
+    position: absolute;
+    left: 0; }
+  div.main-container div.first-section {
+    top: 0;
+    height: 25%; }
+  div.main-container div.second-section {
+    top: 25%;
+    height: 50%; }
+  div.main-container div.third-section {
+    top: 75%;
+    height: 25%; }
+
+/*# sourceMappingURL=app.component.css.map */

@@ -5,7 +5,7 @@ const io = require('socket.io')(http);
 const Game = require('./model/Game');
 
 let roomsCount = 1;
-let playersPerGame = 2;
+let playersPerGame = 1;
 let games = [];
 
 io.on('connection', socket => {

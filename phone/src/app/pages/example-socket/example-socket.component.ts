@@ -14,7 +14,7 @@ export class ExampleSocketComponent implements OnInit {
   }
 
   salut(){
-    console.log("sending salut")
+    console.log("sending salut");
     this.socketManager.salut();
   }
 

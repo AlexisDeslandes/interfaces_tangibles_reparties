@@ -18,7 +18,7 @@ export class MainContainerComponent implements OnInit {
 
     this.stateSubscription = this.socketManager.stateSubject.subscribe(data => {
       this.state = data;
-      console.log("current state : ",data)
+      console.log('current state : ',data)
     })
   }
 

@@ -30,6 +30,7 @@ io.on('connection', socket => {
     });
 
     socket.on('next', m => {
+        console.log('received next')
         let game = getGameByRoomName(m.room);
         if (game) {
             game.nextStep();
@@ -38,9 +39,17 @@ io.on('connection', socket => {
         }
     });
 
-
     socket.on("message", m => {
         console.log(m)
+    })
+
+    socket.on("answer", m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.addAnswer(socket, m);
+        } else {
+            console.log("requested game does not exists")
+        }
     })
 });
 

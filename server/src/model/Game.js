@@ -10,19 +10,55 @@ module.exports = class Game {
 
         this.adventureSteps = [
             {
-                type : "dilemne",
-                desc : "Une dilemne se propose maintenant..."
+                type : "dilemme",
+                text : "Une dilemme se propose maintenant...",
+                choices : [
+                    {
+                        text : "Faire le choix 1 :o",
+                        result : "Très bon choix"
+                    },
+                    {
+                        text : "Faire le choix 2 ;)",
+                        result : "Bon choix"
+                    },
+                    {
+                        text : "Faire le choix 3 :>",
+                        result : "Choix bien mais pas top"
+                    },
+                ]
             },
             {
                 type : "minijeu",
-                desc : "Et hop c'est l'heure de faire un mini-jeu"
+                desc : "Et hop c'est l'heure de faire un mini-jeu",
+                result : "Bravo ct bien"
             },
             {
-                type : "dilemne",
-                desc : "Une nouveau dilemne apparait..."
+                type : "dilemme",
+                text : "Une dilemme se propose maintenant...",
+                choices : [
+                    {
+                        text : "Faire le choix 1 :o",
+                        result : "Très bon choix"
+                    },
+                    {
+                        text : "Faire le choix 2 ;)",
+                        result : "Bon choix"
+                    },
+                    {
+                        text : "Faire le choix 3 :>",
+                        result : "Choix bien mais pas top"
+                    },
+                ]
             },
         ];
+
         console.log("new game created : " + room)
+    }
+
+    addAnswer(socket, data){
+        //players who has ended ++
+        //traitement du résultat
+        //réponse au phone
     }
 
     addPlayer(socket) {

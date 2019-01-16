@@ -1,0 +1,19 @@
+page-ready {
+  ion-grid{
+    height: 100%;
+    display: flex;
+  }
+  ion-row{
+    flex:1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h2{
+    text-align: center;
+  }
+
+  p{
+    text-align: center;
+  }
+}

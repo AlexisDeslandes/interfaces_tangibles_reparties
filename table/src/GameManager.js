@@ -33,7 +33,7 @@ class GameManager {
         this.socket.on('init', data => {
             this.gameRoom = data.room;
             for(let i = 1; i < 5; i++){
-                $('#code-list').append('<li>http://localhost:8100?room='+this.gameRoom+'&player='+i+'</li>')
+                $('#code-list').append("<li><a href='http://localhost:8100?room="+this.gameRoom+"&player="+i+"'</a>Joueur "+i+"</li>")
             }
 
 

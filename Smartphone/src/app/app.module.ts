@@ -12,6 +12,9 @@ import {GamePageModule} from "../pages/game/game.module";
 import {GuidelinePageModule} from "../pages/guideline/guideline.module";
 import {MoveguidelinePageModule} from "../pages/moveguideline/moveguideline.module";
 import {LongPressModule} from "ionic-long-press";
+import { SocketManagerProvider } from '../providers/socket-manager/socket-manager';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import {LongPressModule} from "ionic-long-press";
     HomePage
   ],
   imports: [
+      SocketIoModule.forRoot(config),
     BrowserModule,
     ReadyPageModule,
     GamePageModule,
@@ -36,7 +40,8 @@ import {LongPressModule} from "ionic-long-press";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SocketManagerProvider
   ]
 })
 export class AppModule {}

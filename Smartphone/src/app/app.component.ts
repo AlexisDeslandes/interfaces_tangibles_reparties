@@ -4,11 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {MoveguidelinePage} from "../pages/moveguideline/moveguideline";
+import {HomePage} from "../pages/home/home";
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = MoveguidelinePage;
+  //rootPage:any = MoveguidelinePage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

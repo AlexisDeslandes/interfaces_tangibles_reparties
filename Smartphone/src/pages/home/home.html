@@ -1,11 +1,9 @@
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <h2>Epreuve de rapidité</h2>
+    <p>{{status ? status.message : 'Impossible de se connecter au serveur (faut ouvrir un lien donné par la table pour que ça marche)'}}</p>
+    <hr>
+ <h2>Epreuve de rapidité</h2>
       <p>Soyez le premier à arrivée sur la ligne d'arrivée.</p>
-    </ion-row>
-    <ion-row>
-      <button ion-button="" (click)="accessToGuideline()">Suite</button>
-    </ion-row>
-  </ion-grid>
+    <div text-center>
+      <button center ion-button (click)="accessToGuideline()">Suite</button>
+    </div>
 </ion-content>

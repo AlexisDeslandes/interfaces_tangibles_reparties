@@ -70,7 +70,7 @@ module.exports = class Game {
                 name: name
             });
             console.log(name + " joined " + this.room);
-            socket.emit("joined", {message : "congratulation, you joined", player : name});
+            socket.emit("joined", {message : "You are connected to the server !", player : name});
 
             if(this.players.length === this.nbPlayers){
                 console.log("everyone is here, we starting party");

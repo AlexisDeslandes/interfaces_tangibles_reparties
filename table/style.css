@@ -1,32 +1,59 @@
-div.main-container {
+div.main-container-board {
   height: 100%;
   width: 100%;
-  display: block;
+  display: none;
   margin-right: auto;
   margin-left: auto; }
-  div.main-container div.section {
+  div.main-container-board div.section {
     width: 100%;
     position: absolute;
     left: 0; }
-  div.main-container div.first-section {
+  div.main-container-board div.first-section {
     top: 0;
     height: 25%; }
-  div.main-container div.second-section {
+  div.main-container-board div.second-section {
     top: 25%;
     height: 49.5%; }
-  div.main-container div.third-section {
+  div.main-container-board div.third-section {
     top: 74.5%;
     height: 25%; }
-  div.main-container div.inner-section {
+  div.main-container-board div.inner-section {
     display: inline-block;
     height: 100%; }
-  div.main-container div.corner-section {
+  div.main-container-board div.corner-section {
     width: 24.5%; }
-  div.main-container div.long-edge {
+  div.main-container-board img.picto {
+    position: absolute; }
+  div.main-container-board div.long-edge {
     width: 49.5%;
     overflow-y: hidden;
     position: relative; }
-    div.main-container div.long-edge div.ration-zone {
+    div.main-container-board div.long-edge img.picto-p3 {
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      transform: rotate(180deg); }
+    div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #energy-p1 {
+      right: 10%; }
+    div.main-container-board div.long-edge #sun-p3, div.main-container-board div.long-edge #thermometer-p3, div.main-container-board div.long-edge #wind-p3 {
+      right: 5%; }
+    div.main-container-board div.long-edge #sun-p1, div.main-container-board div.long-edge #thermometer-p1, div.main-container-board div.long-edge #wind-p1 {
+      left: 5%; }
+    div.main-container-board div.long-edge #chicken-p3, div.main-container-board div.long-edge #water-p3, div.main-container-board div.long-edge #energy-p3 {
+      left: 10%; }
+    div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #sun-p1 {
+      top: 5%; }
+    div.main-container-board div.long-edge #chicken-p3, div.main-container-board div.long-edge #sun-p3 {
+      bottom: 5%; }
+    div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #thermometer-p1 {
+      top: 30%; }
+    div.main-container-board div.long-edge #water-p3, div.main-container-board div.long-edge #thermometer-p3 {
+      bottom: 30%; }
+    div.main-container-board div.long-edge #energy-p1, div.main-container-board div.long-edge #wind-p1 {
+      top: 55%; }
+    div.main-container-board div.long-edge #energy-p3, div.main-container-board div.long-edge #wind-p3 {
+      bottom: 55%; }
+    div.main-container-board div.long-edge div.ration-zone {
       height: 50%;
       width: 35%;
       opacity: 0.5;
@@ -39,17 +66,47 @@ div.main-container {
       -ms-transform: translateX(-50%);
       -moz-transform: translateX(-50%);
       transform: translateX(-50%); }
-    div.main-container div.long-edge div.ration-zone-p1 {
+    div.main-container-board div.long-edge div.ration-zone-p1 {
       background-color: #a22b28;
       top: 72%; }
-    div.main-container div.long-edge div.ration-zone-p3 {
+    div.main-container-board div.long-edge div.ration-zone-p3 {
       background-color: #007207;
       bottom: 72%; }
-  div.main-container div.short-edge {
+  div.main-container-board div.short-edge {
     width: 24.5%;
     position: relative;
     overflow: hidden; }
-    div.main-container div.short-edge div.ration-zone {
+    div.main-container-board div.short-edge img.picto-p2 {
+      -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      transform: rotate(90deg); }
+    div.main-container-board div.short-edge img.picto-p4 {
+      -webkit-transform: rotate(270deg);
+      -ms-transform: rotate(270deg);
+      -moz-transform: rotate(270deg);
+      transform: rotate(270deg); }
+    div.main-container-board div.short-edge #chicken-p2, div.main-container-board div.short-edge #water-p2, div.main-container-board div.short-edge #energy-p2 {
+      top: 10%; }
+    div.main-container-board div.short-edge #sun-p4, div.main-container-board div.short-edge #thermometer-p4, div.main-container-board div.short-edge #wind-p4 {
+      bottom: 10%; }
+    div.main-container-board div.short-edge #sun-p2, div.main-container-board div.short-edge #thermometer-p2, div.main-container-board div.short-edge #wind-p2 {
+      bottom: 15%; }
+    div.main-container-board div.short-edge #chicken-p4, div.main-container-board div.short-edge #water-p4, div.main-container-board div.short-edge #energy-p4 {
+      top: 15%; }
+    div.main-container-board div.short-edge #chicken-p2, div.main-container-board div.short-edge #sun-p2 {
+      right: 5%; }
+    div.main-container-board div.short-edge #chicken-p4, div.main-container-board div.short-edge #sun-p4 {
+      left: 5%; }
+    div.main-container-board div.short-edge #water-p2, div.main-container-board div.short-edge #thermometer-p2 {
+      right: 25%; }
+    div.main-container-board div.short-edge #water-p4, div.main-container-board div.short-edge #thermometer-p4 {
+      left: 25%; }
+    div.main-container-board div.short-edge #energy-p2, div.main-container-board div.short-edge #wind-p2 {
+      right: 45%; }
+    div.main-container-board div.short-edge #energy-p4, div.main-container-board div.short-edge #wind-p4 {
+      left: 45%; }
+    div.main-container-board div.short-edge div.ration-zone {
       height: 65%;
       width: 27%;
       opacity: 0.5;
@@ -57,7 +114,7 @@ div.main-container {
       margin-right: auto;
       margin-left: auto;
       position: absolute; }
-    div.main-container div.short-edge div.ration-zone-p2 {
+    div.main-container-board div.short-edge div.ration-zone-p2 {
       background-color: #393bb5;
       top: 50%;
       right: 85%;
@@ -65,7 +122,7 @@ div.main-container {
       -ms-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
       transform: translateY(-50%); }
-    div.main-container div.short-edge div.ration-zone-p4 {
+    div.main-container-board div.short-edge div.ration-zone-p4 {
       background-color: #b8b918;
       top: 50%;
       left: 86%;
@@ -73,7 +130,7 @@ div.main-container {
       -ms-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
       transform: translateY(-50%); }
-  div.main-container div.center-section {
+  div.main-container-board div.center-section {
     width: 49.5%;
     border: 1px solid black; }
 

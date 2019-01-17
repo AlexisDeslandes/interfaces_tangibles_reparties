@@ -11,10 +11,10 @@ $colorP4: #b8b918;
   transform: $property;
 }
 
-div.main-container {
+div.main-container-board {
   height: 100%;
   width: 100%;
-  display: block;
+  display: none;
   margin-right: auto;
   margin-left: auto;
 
@@ -48,10 +48,58 @@ div.main-container {
     width: 24.5%;
   }
 
+  img.picto {
+    position: absolute;
+  }
+
   div.long-edge {
     width: 49.5%;
     overflow-y: hidden;
     position: relative;
+
+    img.picto-p3 {
+      @include transform(rotate(180deg));
+    }
+
+    #chicken-p1, #water-p1, #energy-p1 {
+      right: 10%;
+    }
+
+    #sun-p3, #thermometer-p3, #wind-p3 {
+      right: 5%;
+    }
+
+    #sun-p1, #thermometer-p1, #wind-p1 {
+      left: 5%;
+    }
+
+    #chicken-p3, #water-p3, #energy-p3 {
+      left: 10%;
+    }
+
+    #chicken-p1, #sun-p1 {
+      top: 5%;
+    }
+
+    #chicken-p3, #sun-p3 {
+      bottom: 5%;
+    }
+
+    #water-p1, #thermometer-p1 {
+      top: 30%;
+    }
+
+    #water-p3, #thermometer-p3 {
+      bottom: 30%;
+    }
+
+    #energy-p1, #wind-p1 {
+      top: 55%;
+    }
+
+    #energy-p3, #wind-p3 {
+      bottom: 55%;
+    }
 
     div.ration-zone {
       height: 50%;
@@ -81,6 +129,54 @@ div.main-container {
     width: 24.5%;
     position: relative;
     overflow: hidden;
+
+    img.picto-p2 {
+      @include transform(rotate(90deg));
+    }
+
+    img.picto-p4 {
+      @include transform(rotate(270deg));
+    }
+
+    #chicken-p2, #water-p2, #energy-p2 {
+      top: 10%;
+    }
+
+    #sun-p4, #thermometer-p4, #wind-p4 {
+      bottom: 10%;
+    }
+
+    #sun-p2, #thermometer-p2, #wind-p2{
+      bottom: 15%;
+    }
+
+    #chicken-p4, #water-p4, #energy-p4 {
+      top: 15%;
+    }
+
+    #chicken-p2, #sun-p2 {
+      right: 5%;
+    }
+
+    #chicken-p4, #sun-p4 {
+      left: 5%;
+    }
+
+    #water-p2, #thermometer-p2 {
+      right: 25%;
+    }
+
+    #water-p4, #thermometer-p4 {
+      left: 25%;
+    }
+
+    #energy-p2, #wind-p2 {
+      right: 45%;
+    }
+
+    #energy-p4, #wind-p4 {
+      left: 45%;
+    }
 
     div.ration-zone {
       height: 65%;

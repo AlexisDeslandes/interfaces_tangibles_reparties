@@ -44,7 +44,11 @@ class GameManager {
     }
 
     showAndHideMap() {
-        this.widget._domElem.toggle()
+        //this.widget._domElem.toggle();
+        $("#fab").hide();
+        $("#start-btn").hide();
+        $("#header").hide();
+        $("#main-container-board").css("display","block");
     }
 
 

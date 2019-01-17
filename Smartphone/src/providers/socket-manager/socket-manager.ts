@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Socket} from "ngx-socket-io";
 import {Subject} from "rxjs";
+import {App, NavController} from "ionic-angular";
+import {DilemmePage} from "../../pages/dilemme/dilemme";
+import {GamePage} from "../../pages/game/game";
 
 /*
   Generated class for the SocketManagerProvider provider.
@@ -15,8 +18,9 @@ export class SocketManagerProvider {
     stateSubject = new Subject();
 
     room = null;
+    nav;
 
-    constructor(public socket: Socket) {
+    constructor(public socket: Socket,) {
 
         let url = new URL(document.URL);
         let room = url.searchParams.get("room");
@@ -34,6 +38,13 @@ export class SocketManagerProvider {
             this.state = data;
             this.emit()
         });
+
+        socket.on("start",(data) => {
+
+            console.log("RECEIVED START")
+            this.state = data;
+            this.emit();
+        })
     }
 
 

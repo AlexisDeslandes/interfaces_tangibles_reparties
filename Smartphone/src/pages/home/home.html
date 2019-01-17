@@ -1,5 +1,9 @@
 <ion-content padding>
-    <p>{{status ? status.message : 'Impossible de se connecter au serveur (faut ouvrir un lien donné par la table pour que ça marche)'}}</p>
+    <p>{{status !== "" ? status : 'Impossible de se connecter au serveur (faut ouvrir un lien donné par la table pour que ça marche)'}}</p>
+    <div *ngIf="readyToStart" text-center>
+        Appuie sur le bouton quand tu es prêt
+        <button ion-button (click)="go()">C'est parti !</button>
+    </div>
     <hr>
  <h2>Epreuve de rapidité</h2>
       <p>Soyez le premier à arrivée sur la ligne d'arrivée.</p>

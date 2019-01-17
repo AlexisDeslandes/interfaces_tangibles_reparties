@@ -70,7 +70,7 @@ module.exports = class Game {
                 name: name
             });
             console.log(name + " joined " + this.room);
-            socket.emit("joined", {message : "You are connected to the server !", player : name});
+            socket.emit("joined", {message : "You are connected to the server !", player : name, status:'connected'});
 
             if(this.players.length === this.nbPlayers){
                 console.log("everyone is here, we starting party");
@@ -87,16 +87,16 @@ module.exports = class Game {
 
         } else {
             this.currentStep++;
-            this.tableSocket.emit("start",this.adventureSteps[this.currentStep]);
-            this.sendToAllPlayers("start",this.adventureSteps[this.currentStep]);
+            this.tableSocket.emit("start",{status: 'start',step : this.adventureSteps[this.currentStep]});
+            this.sendToAllPlayers("start",{status: 'start',step :this.adventureSteps[this.currentStep]});
         }
     }
 
 
     start(){
         this.gameState = "start";
-        this.tableSocket.emit("start",this.adventureSteps[this.currentStep]);
-        this.sendToAllPlayers("start",this.adventureSteps[this.currentStep]);
+        this.tableSocket.emit("start",{status: 'start',step : this.adventureSteps[this.currentStep]});
+        this.sendToAllPlayers("start",{status: 'start',step :this.adventureSteps[this.currentStep]});
     }
 
 

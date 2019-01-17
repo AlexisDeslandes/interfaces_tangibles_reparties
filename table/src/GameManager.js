@@ -1,9 +1,12 @@
-
 import $ from 'jquery/dist/jquery.min';
+import io from 'socket.io-client/dist/socket.io';
 
 class GameManager {
 
-    constructor(widget){
+    constructor(widget) {
+
+        this.socket = io.connect('http://localhost:4444');
+
         this.widget = widget;
         this.widget.hide();
 
@@ -13,8 +16,6 @@ class GameManager {
         this.startDiv = $("#start-btn");
         this.mapBtn = $("#fab");
 
-        //this.connectDiv.hide();
-
         this.startDiv.click(function () {
             self.start();
         });
@@ -22,20 +23,32 @@ class GameManager {
         this.mapBtn.click(function () {
             self.showAndHideMap();
         });
+
+        this.gameRoom = null;
+
     }
 
-    start(){
-        this.startDiv.remove();
-        this.connectDiv.show();
+    start() {
+        this.socket.emit('init',{});
+        this.socket.on('init', data => {
+            this.gameRoom = data.room;
+            for(let i = 1; i < 5; i++){
+                $('#code-list').append('<li>http://localhost:8100?room='+this.gameRoom+'&player='+i+'</li>')
+            }
+
+
+            this.startDiv.remove();
+            this.connectDiv.show();
+        });
+
     }
 
-    showAndHideMap(){
-        this.widget._domElem.is(":visible") ? this.widget.hide() : this.widget.show();
+    showAndHideMap() {
+        this.widget._domElem.toggle()
     }
 
 
 }
-
 
 
 export default GameManager;

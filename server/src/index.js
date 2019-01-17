@@ -12,7 +12,9 @@ let games = [];
 
 io.on('connection', socket => {
 
+
     socket.on('init', m => {
+        console.log('init received')
         let room = "game" + roomsCount;
         games.push(new Game(room, playersPerGame, socket));
         socket.emit("init", {

@@ -5,6 +5,7 @@
 
 .start-game{
     margin:0 auto;
+    margin-top:100px;
     width:400px;
     text-align: center;
     padding: 20px 20px 10px;
@@ -26,7 +27,21 @@
     transition: 0.25s box-shadow;
 }
 
-.connection{
+.connect{
+    margin:0 auto;
+    width:600px;
+    text-align: center;
+    display: none;
+}
+
+.connect .title{
+    font-size:20px;
+    margin-bottom: 50px;
+}
+
+.connect .codes li{
+    list-style: none;
+    padding-top:15px;
 }
 
 #fab{

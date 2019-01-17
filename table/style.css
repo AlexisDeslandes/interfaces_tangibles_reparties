@@ -1,59 +1,124 @@
-.jumbotron{
-    padding:40px 0;
-}
-
-
-.start-game{
-    margin:0 auto;
-    margin-top:100px;
-    width:400px;
-    text-align: center;
-    padding: 20px 20px 10px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.16);
-}
-
-.start-game .title{
-    font-size:30px;
-}
-
-.start-game .desc{
-    font-size:20px;
-}
-
-
-.start-game:active, .start-game:hover{
-    cursor: pointer;
-    box-shadow: 0 2px 2px  rgba(0,0,0,0.28), 0 3px 1px -2px rgba(0,0,0,0.24), 0 1px 5px 0 rgba(0,0,0,0.16);
-    transition: 0.25s box-shadow;
-}
-
-.connect{
-    margin:0 auto;
-    width:600px;
-    text-align: center;
-    display: none;
-}
-
-.connect .title{
-    font-size:20px;
-    margin-bottom: 50px;
-}
-
-.connect .codes li{
-    list-style: none;
-    padding-top:15px;
-}
-
-#fab{
+div.main-container {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto; }
+  div.main-container div.section {
+    width: 100%;
     position: absolute;
-    top: 20px;
-    left: 20px;
-    width:300px;
-    height:70px;
-    background-color: #32db64;
-    text-align: center;
-    line-height: 70px;
-    border-radius:20px;
-    font-size:20px;
-    border:3px solid #222222;
-}
+    left: 0; }
+  div.main-container div.first-section {
+    top: 0;
+    height: 25%; }
+  div.main-container div.second-section {
+    top: 25%;
+    height: 49.5%; }
+  div.main-container div.third-section {
+    top: 74.5%;
+    height: 25%; }
+  div.main-container div.inner-section {
+    display: inline-block;
+    height: 100%; }
+  div.main-container div.corner-section {
+    width: 24.5%; }
+  div.main-container div.long-edge {
+    width: 49.5%;
+    overflow-y: hidden;
+    position: relative; }
+    div.main-container div.long-edge div.ration-zone {
+      height: 50%;
+      width: 35%;
+      opacity: 0.5;
+      border-radius: 300px;
+      margin-right: auto;
+      margin-left: auto;
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%); }
+    div.main-container div.long-edge div.ration-zone-p1 {
+      background-color: #a22b28;
+      top: 72%; }
+    div.main-container div.long-edge div.ration-zone-p3 {
+      background-color: #007207;
+      bottom: 72%; }
+  div.main-container div.short-edge {
+    width: 24.5%;
+    position: relative;
+    overflow: hidden; }
+    div.main-container div.short-edge div.ration-zone {
+      height: 65%;
+      width: 27%;
+      opacity: 0.5;
+      border-radius: 300px;
+      margin-right: auto;
+      margin-left: auto;
+      position: absolute; }
+    div.main-container div.short-edge div.ration-zone-p2 {
+      background-color: #393bb5;
+      top: 50%;
+      right: 85%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%); }
+    div.main-container div.short-edge div.ration-zone-p4 {
+      background-color: #b8b918;
+      top: 50%;
+      left: 86%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%); }
+  div.main-container div.center-section {
+    width: 49.5%;
+    border: 1px solid black; }
+
+.jumbotron {
+  padding: 40px 0; }
+
+.start-game {
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 400px;
+  text-align: center;
+  padding: 20px 20px 10px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.16); }
+  .start-game .title {
+    font-size: 30px; }
+  .start-game .desc {
+    font-size: 20px; }
+  .start-game:active, .start-game:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.28), 0 3px 1px -2px rgba(0, 0, 0, 0.24), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+    transition: 0.25s box-shadow; }
+
+.connect {
+  margin: 0 auto;
+  width: 600px;
+  text-align: center;
+  display: none; }
+  .connect .title {
+    font-size: 20px;
+    margin-bottom: 50px; }
+  .connect .codes li {
+    list-style: none;
+    padding-top: 15px; }
+
+#fab {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 300px;
+  height: 70px;
+  background-color: #32db64;
+  text-align: center;
+  line-height: 70px;
+  border-radius: 20px;
+  font-size: 20px;
+  border: 3px solid #222222; }
+
+/*# sourceMappingURL=style.css.map */

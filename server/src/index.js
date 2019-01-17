@@ -15,7 +15,9 @@ io.on('connection', socket => {
     socket.on('init', m => {
         let room = "game" + roomsCount;
         games.push(new Game(room, playersPerGame, socket));
-        socket.emit("init", {room: room});
+        socket.emit("init", {
+            room: room
+        });
 
         roomsCount++;
     });
@@ -49,6 +51,23 @@ io.on('connection', socket => {
             game.addAnswer(socket, m);
         } else {
             console.log("requested game does not exists")
+        }
+    })
+
+    socket.on("map", m => {
+        console.log("Map tag received: "+ m)
+        if (m === 1) {
+            socket.emit("map-changed", {
+                img: 'https://images.ecosia.org/QljWRzschFge6Sg5DthS2uAklcc=/0x390/smart/http%3A%2F%2Fwww.weathergraphics.com%2Fedu%2Fforecastcenter%2Ffc_2010-0304-b.jpg'
+            });
+        } else if (m === 2) {
+            socket.emit("map-changed", {
+                img: 'https://images.ecosia.org/dK2oLsumxV_nfXN9_lg9FiNp9tU=/0x390/smart/https%3A%2F%2Faccuweather.brightspotcdn.com%2Fee%2F8e%2Fa49e80424dd4bace863679bab5ee%2Feurope-8-14.jpg'
+            });
+        } else {
+            socket.emit("map-changed", {
+                img: 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api'
+            });
         }
     })
 });

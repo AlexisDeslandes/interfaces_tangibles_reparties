@@ -4,6 +4,8 @@ import {ReadyPage} from "../ready/ready";
 import {MoveguidelinePage} from "../moveguideline/moveguideline";
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 import {Subscription} from "rxjs";
+import {DilemmePage} from "../dilemme/dilemme";
+import {GamePage} from "../game/game";
 
 @Component({
   selector: 'page-home',
@@ -11,18 +13,40 @@ import {Subscription} from "rxjs";
 })
 export class HomePage {
 
-  status;
+
+  status = "";
   socketSubscription: Subscription;
+
+  readyToStart = false;
 
   constructor(public navCtrl: NavController, public socketManager : SocketManagerProvider) {
 
 
-      this.status = {message:"Connexion au serveur en cours..."};
+      this.status = "Connexion au serveur en cours...";
 
       this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {
-          this.status = data;
+          console.log(data)
+          if (data['status'] === 'connected') {
+              this.status = data['message']
+              this.readyToStart = true;
+          } else if (data['status'] === 'start'){
+              //
+          }
       })
 
+  }
+
+  go(){
+      let data = this.socketManager.state;
+      console.log('DATATAA',data)
+      switch(data['step'].type){
+          case 'dilemme':
+              this.navCtrl.push(DilemmePage,data);
+              break;
+          case 'minijeu':
+              this.navCtrl.push(GamePage, data);
+              break;
+      }
   }
 
   accessToGuideline(){

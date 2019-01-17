@@ -18,7 +18,7 @@ const resolvePaths = [
 const htmlWebpackPluginInstance = new HtmlWebpackPlugin({
   template: './index.ejs',
   filename: './index.html',
-  showErrors: true,
+  showErrors: false,
 });
 const copyWebpackPluginInstance = new CopyWebpackPlugin(
   [

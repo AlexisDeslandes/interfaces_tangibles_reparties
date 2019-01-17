@@ -54,6 +54,15 @@ class MapWidget extends TUIOWidget {
     this._domElem.css('top', `${y}px`);
   }
 
+
+  hide(){
+    this._domElem.hide();
+  }
+
+  show(){
+    this._domElem.show();
+  }
+
   /**
    * MapWidget's domElem.
    *

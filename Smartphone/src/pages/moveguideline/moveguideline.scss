@@ -1,0 +1,57 @@
+page-moveguideline {
+  ion-grid {
+    display: flex;
+    height: 100%;
+  }
+
+  ion-row {
+    display: flex;
+  }
+
+  .slider {
+    width: 50%;
+    height: 80%;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .slide {
+    position: absolute;
+    border-radius: 100%;
+    background-color: #707070;
+  }
+
+  ion-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nine-row {
+    flex: 9;
+    background: url("../assets/imgs/bike.svg") no-repeat;
+    background-size: 100%;
+  }
+
+  .nine-row-2 {
+    flex: 9;
+    background: url("../assets/imgs/bike2.svg") no-repeat;
+    background-size: 100%;
+  }
+
+  .two-row {
+    flex: 1;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .invisible {
+    display: none;
+  }
+
+  .visible {
+    display: block;
+  }
+}

@@ -1,0 +1,177 @@
+
+$colorP1: #a22b28;
+$colorP2: #393bb5;
+$colorP3: #007207;
+$colorP4: #b8b918;
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  -moz-transform: $property;
+  transform: $property;
+}
+
+div.main-container {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+
+  div.section {
+    width: 100%;
+    position: absolute;
+    left: 0;
+  }
+
+  div.first-section {
+    top: 0;
+    height: 25%;
+  }
+
+  div.second-section {
+    top: 25%;
+    height: 49.5%;
+  }
+
+  div.third-section {
+    top: 74.5%;
+    height: 25%;
+  }
+
+  div.inner-section {
+    display: inline-block;
+    height: 100%;
+  }
+
+  div.corner-section {
+    width: 24.5%;
+  }
+
+  div.long-edge {
+    width: 49.5%;
+    overflow-y: hidden;
+    position: relative;
+
+    div.ration-zone {
+      height: 50%;
+      width: 35%;
+      opacity: 0.5;
+      border-radius: 300px;
+      margin-right: auto;
+      margin-left: auto;
+      position: absolute;
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+
+    div.ration-zone-p1 {
+      background-color: $colorP1;
+      top: 72%;
+    }
+
+    div.ration-zone-p3 {
+      background-color: $colorP3;
+      bottom: 72%;
+    }
+
+  }
+
+  div.short-edge {
+    width: 24.5%;
+    position: relative;
+    overflow: hidden;
+
+    div.ration-zone {
+      height: 65%;
+      width: 27%;
+      opacity: 0.5;
+      border-radius: 300px;
+      margin-right: auto;
+      margin-left: auto;
+      position: absolute;
+    }
+
+    div.ration-zone-p2 {
+      background-color: $colorP2;
+      top: 50%;
+      right: 85%;
+      @include transform(translateY(-50%));
+    }
+
+    div.ration-zone-p4 {
+      background-color: $colorP4;
+      top: 50%;
+      left: 86%;
+      @include transform(translateY(-50%));
+    }
+
+  }
+
+  div.center-section {
+    width: 49.5%;
+    border: 1px solid black;
+  }
+
+}
+
+.jumbotron{
+  padding:40px 0;
+}
+
+
+.start-game{
+  margin:0 auto;
+  margin-top:100px;
+  width:400px;
+  text-align: center;
+  padding: 20px 20px 10px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.16);
+
+  .title{
+    font-size:30px;
+  }
+
+  .desc{
+    font-size:20px;
+  }
+
+  &:active, &:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 2px  rgba(0,0,0,0.28), 0 3px 1px -2px rgba(0,0,0,0.24), 0 1px 5px 0 rgba(0,0,0,0.16);
+    transition: 0.25s box-shadow;
+  }
+
+}
+
+.connect{
+  margin:0 auto;
+  width:600px;
+  text-align: center;
+  display: none;
+
+  .title{
+    font-size:20px;
+    margin-bottom: 50px;
+  }
+
+  .codes li {
+    list-style: none;
+    padding-top:15px;
+  }
+
+}
+
+#fab{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width:300px;
+  height:70px;
+  background-color: #32db64;
+  text-align: center;
+  line-height: 70px;
+  border-radius:20px;
+  font-size:20px;
+  border:3px solid #222222;
+}

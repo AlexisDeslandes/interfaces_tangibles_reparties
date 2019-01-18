@@ -1,3 +1,6 @@
+div {
+  box-sizing: content-box; }
+
 div.main-container-board {
   height: 100%;
   width: 100%;
@@ -24,6 +27,26 @@ div.main-container-board {
     width: 24.5%; }
   div.main-container-board img.picto {
     position: absolute; }
+  div.main-container-board div.level-outline-p1, div.main-container-board div.level-outline-p3 {
+    border: 1px solid black;
+    height: 20%;
+    width: 2%;
+    position: absolute;
+    z-index: 10; }
+  div.main-container-board div.level-outline-p1 {
+    right: 3%;
+    background-color: green; }
+  div.main-container-board div.level-p1 {
+    background-color: white;
+    width: 100%; }
+  div.main-container-board #chicken-outline-p1 {
+    top: 5%; }
+    div.main-container-board #chicken-outline-p1 #chicken-level-p1 {
+      height: 20%; }
+  div.main-container-board #water-outline-p1 {
+    top: 30%; }
+    div.main-container-board #water-outline-p1 #water-level-p1 {
+      height: 33%; }
   div.main-container-board div.long-edge {
     width: 49.5%;
     overflow-y: hidden;

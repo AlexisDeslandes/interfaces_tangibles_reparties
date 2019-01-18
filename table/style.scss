@@ -4,6 +4,10 @@ $colorP2: #393bb5;
 $colorP3: #007207;
 $colorP4: #b8b918;
 
+div {
+  box-sizing: content-box;
+}
+
 @mixin transform($property) {
   -webkit-transform: $property;
   -ms-transform: $property;
@@ -50,6 +54,38 @@ div.main-container-board {
 
   img.picto {
     position: absolute;
+  }
+
+  div.level-outline-p1, div.level-outline-p3 {
+    border: 1px solid black;
+    height: 20%;
+    width: 2%;
+    position: absolute;
+    z-index: 10;
+  }
+
+  div.level-outline-p1 {
+    right: 3%;
+    background-color: green;
+  }
+
+  div.level-p1 {
+    background-color: white;
+    width: 100%;
+  }
+
+  #chicken-outline-p1 {
+    top: 5%;
+    #chicken-level-p1 {
+      height: 20%;
+    }
+  }
+
+  #water-outline-p1 {
+    top: 30%;
+    #water-level-p1 {
+      height: 33%;
+    }
   }
 
   div.long-edge {

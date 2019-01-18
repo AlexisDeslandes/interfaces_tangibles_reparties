@@ -38,7 +38,6 @@ export class HomePage {
 
   go(){
       let data = this.socketManager.state;
-      console.log('DATATAA',data)
       switch(data['step'].type){
           case 'dilemme':
               this.navCtrl.push(DilemmePage,data);

@@ -15,11 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DilemmePage {
 
+  data;
+  hasAnswered = false;
+  choice;
+  result;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.data = navParams.get('step');
+    console.log('received',this.data)
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DilemmePage');
+  answer(){
+    this.hasAnswered = true;
+    this.result = this.data.choices[this.choice].result;
+  }
+
+  next(){
+
   }
 
 }

@@ -6,14 +6,38 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>dilemme</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Dilemme</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h2>Hop hop vous vous trouvez face a un dilemme !!</h2>
+
+    <div *ngIf="!hasAnswered">
+        <h4 text-center>{{data.text}} Quel choix décides-tu de faire ???</h4>
+
+        <ion-list radio-group [(ngModel)]="choice">
+            <ion-item *ngFor="let c of data['choices']; let i = index">
+                <ion-label>{{c.text}}</ion-label>
+                <ion-radio [value]="i"></ion-radio>
+            </ion-item>
+
+            <div text-center>
+                <button ion-button (click)="answer()">
+                    OK
+                </button>
+            </div>
+
+        </ion-list>
+    </div>
+
+    <div *ngIf="hasAnswered" text-center>
+        <h4>{{result}}</h4>
+        <button ion-button (click)="next()">
+            Epreuve suivante
+        </button>
+    </div>
 
 </ion-content>

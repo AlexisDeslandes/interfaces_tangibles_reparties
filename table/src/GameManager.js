@@ -36,6 +36,8 @@ class GameManager {
                 $('#code-list').append("<li><a href='http://localhost:8100?room="+this.gameRoom+"&player="+i+"'</a>Joueur "+i+"</li>")
             }
 
+            $('#tip').append("Pour rejoindre sinon : IP:8100/?room="+this.gameRoom+"&player=1");
+
 
             this.startDiv.remove();
             this.connectDiv.show();

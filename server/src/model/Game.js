@@ -11,19 +11,19 @@ module.exports = class Game {
         this.adventureSteps = [
             {
                 type : "dilemme",
-                text : "Une dilemme se propose maintenant...",
+                text : "Il est 19h et tu commences à avoir un petit creux...",
                 choices : [
                     {
-                        text : "Faire le choix 1 :o",
+                        text : "Sucer des cailloux",
                         result : "Très bon choix"
                     },
                     {
-                        text : "Faire le choix 2 ;)",
-                        result : "Bon choix"
+                        text : "Manger mon compagnon",
+                        result : "Régale toi fraté"
                     },
                     {
-                        text : "Faire le choix 3 :>",
-                        result : "Choix bien mais pas top"
+                        text : "Objectif Summer Body",
+                        result : "Tu le sais ;)"
                     },
                 ]
             },

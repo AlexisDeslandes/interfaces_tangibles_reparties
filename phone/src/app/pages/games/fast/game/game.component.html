@@ -1,0 +1,10 @@
+<div class="page">
+  <div class="half">
+    <h1>Epreuve de rapidité</h1>
+    <p>En attente des autres joueurs ...</p>
+  </div>
+  <div class="half">
+    <div class="bottom" *ngIf="playersCount>0">Il manque encore {{playersCount}} joueurs.</div>
+    <div class="bottom" *ngIf="playersCount === 0">Début de la partie dans : {{start}}</div>
+  </div>
+</div>

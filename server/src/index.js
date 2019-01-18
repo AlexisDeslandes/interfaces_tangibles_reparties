@@ -42,7 +42,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on("message", m => {
+    socket.on("message", m =>{
         console.log(m)
     })
 

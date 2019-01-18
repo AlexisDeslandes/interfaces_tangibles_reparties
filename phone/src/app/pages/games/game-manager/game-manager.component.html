@@ -1,0 +1,4 @@
+<app-game-launcher (messageEvent)="receiveMessage($event)" *ngIf="indexVisible===0"></app-game-launcher>
+<app-game (messageEvent)="receiveMessage($event)" *ngIf="indexVisible===1"></app-game>
+<app-tapping (messageEvent)="receiveMessage($event)" *ngIf="indexVisible ===2"></app-tapping>
+

@@ -8,9 +8,13 @@ page-moveguideline {
     display: flex;
   }
 
+  ion-grid {
+    background-color: #E3D0B8;
+  }
+
   .slider {
     width: 50%;
-    height: 80%;
+    height: 40%;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.5);
   }
@@ -29,14 +33,14 @@ page-moveguideline {
 
   .nine-row {
     flex: 9;
-    background: url("../assets/imgs/bike.svg") no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background: url("../assets/imgs/bike.svg") no-repeat center center;
   }
 
   .nine-row-2 {
     flex: 9;
-    background: url("../assets/imgs/bike2.svg") no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background: url("../assets/imgs/bike2.svg") no-repeat center center;
   }
 
   .two-row {

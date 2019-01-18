@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExampleSocketComponent } from './example-socket.component';
+import { TappingComponent } from './tapping.component';
 
-describe('ExampleSocketComponent', () => {
-  let component: ExampleSocketComponent;
-  let fixture: ComponentFixture<ExampleSocketComponent>;
+describe('TappingComponent', () => {
+  let component: TappingComponent;
+  let fixture: ComponentFixture<TappingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExampleSocketComponent ]
+      declarations: [ TappingComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExampleSocketComponent);
+    fixture = TestBed.createComponent(TappingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

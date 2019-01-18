@@ -4,16 +4,15 @@
       <ion-col col-6>
         <div id="slider" class="slider visible">
           <div id="slide" class="slide"></div>
+          <img *ngFor="let i of [0,1,2,3]" id="arrow{{i}}" style="width: 100%;" src="../assets/imgs/fleche.svg">
         </div>
       </ion-col>
       <ion-col col-6>
         <div id="slider2" class="slider invisible">
           <div id="slide2" class="slide"></div>
+          <img *ngFor="let i of [0,1,2,3]" id="arrow-{{i}}" style="width: 100%;" src="../assets/imgs/fleche.svg">
         </div>
       </ion-col>
-    </ion-row>
-    <ion-row class="one-row">
-      <p>Appliquez un mouvement de haut en bas pour faire avancer le vélo</p>
     </ion-row>
   </ion-grid>
 </ion-content>

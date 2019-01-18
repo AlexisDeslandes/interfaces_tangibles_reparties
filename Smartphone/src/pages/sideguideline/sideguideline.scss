@@ -1,0 +1,57 @@
+page-sideguideline {
+  ion-grid{
+    height: 100%;
+  }
+
+  .bike{
+    width: 50%;
+    height: 80%;
+  }
+
+  ion-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .one-flex{
+    flex:1
+  }
+
+  .two-flex{
+    flex: 2;
+  }
+
+  ion-col{
+    height: 100%;
+  }
+
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bike-wrapper{
+    border-radius: 30px;
+    border: 3px gray solid;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phone-img{
+
+  }
+
+  .arrow{
+    width: 100%;
+    @include transform(rotate(90deg));
+  }
+
+  .arrow-right{
+    @include transform(rotate(-90deg));
+  }
+}

@@ -21,18 +21,12 @@ export class DilemmePage {
     hasAnswered = false;
     choice = null;
     result;
-    socketSubscription: Subscription;
     isReady;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
         this.data = navParams.get('step');
         this.isReady = false;
 
-        this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {
-            if (data['status'] === 'start'){
-                console.log('EEEH MACARENA', data)
-            }
-        })
     }
 
     answer() {

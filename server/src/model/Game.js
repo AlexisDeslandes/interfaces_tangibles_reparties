@@ -53,7 +53,7 @@ module.exports = class Game {
 
     playerIsReady(socket) {
         let p = this.getPlayerById(socket.id);
-        if(p) console.log(p.name+' is ready');
+        if (p) console.log(p.name + ' is ready');
         this.readyCount++;
         if (this.readyCount === this.nbPlayers) {
             console.log('every player is ready');
@@ -87,10 +87,10 @@ module.exports = class Game {
 
     nextStep() {
         this.readyCount = 0;
-        if (this.currentStep >= this.adventureSteps.length) {
+        if (this.currentStep === this.adventureSteps.length) {
             console.log(this.room + " is over");
-            this.tableSocket.emit("gameover", {});
-            this.sendToAllPlayers("gameover", {});
+            this.tableSocket.emit("start", {status: 'gameover'});
+            this.sendToAllPlayers("start", {status:'gameover'});
 
         } else {
             this.gameState = "start";

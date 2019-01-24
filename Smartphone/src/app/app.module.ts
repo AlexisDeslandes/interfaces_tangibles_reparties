@@ -19,6 +19,7 @@ import {GamePage} from "../pages/game/game";
 import {Guideline2PageModule} from "../pages/guideline2/guideline2.module";
 import {SideguidelinePageModule} from "../pages/sideguideline/sideguideline.module";
 import {ReadyStepPage} from "../pages/ready-step/ready-step";
+import {GameoverPage} from "../pages/gameover/gameover";
 
 const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
 
@@ -27,7 +28,8 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         MyApp,
         HomePage,
         DilemmePage,
-        ReadyStepPage
+        ReadyStepPage,
+        GameoverPage
     ],
     imports: [
         SocketIoModule.forRoot(config),
@@ -48,7 +50,8 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         HomePage,
         DilemmePage,
         GamePage,
-        ReadyStepPage
+        ReadyStepPage,
+        GameoverPage
     ],
     providers: [
         StatusBar,

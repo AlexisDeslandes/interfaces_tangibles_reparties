@@ -96,21 +96,17 @@ io.on('connection', socket => {
         console.log("Ration tag received: "+ m.toString());
         if (m.id === 4) {
             socket.emit("ration-used", {
-                id: 'chicken-'+m.player
+                id: 'chicken-level-'+m.player
             });
-            console.log("EAt Chicken");
+            console.log("Eat Chicken");
 
         } else if (m.id === 5) {
             socket.emit("water-used", {
-                id: 'water-'+m.player
+                id: 'water-level-'+m.player
             });
             console.log("Drink Water");
 
-        } else if (m.id === 6) {
-            socket.emit("sun-used", {
-                id: 'sun-'+m.player
-            });
-            console.log("Avoid Sun");
+        } else {
 
         }
     })

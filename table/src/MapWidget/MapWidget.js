@@ -9,6 +9,7 @@ import io from 'socket.io-client/dist/socket.io';
 import TUIOWidget from 'tuiomanager/core/TUIOWidget';
  import { WINDOW_WIDTH, WINDOW_HEIGHT } from 'tuiomanager/core/constants';
  import { radToDeg } from 'tuiomanager/core/helpers';
+import Datamap from 'datamaps/dist/datamaps.world.min';
 
 /**
  * Main class to manage MapWidget.
@@ -53,14 +54,17 @@ class MapWidget extends TUIOWidget {
         // // this._domElem.css('top', `${y}px`);
         // this._domElem.css('background-color', '#f4f4f4');
 
-        elem.append($('<img>')
-            .attr('src', 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api')
-            .attr('id', 'map')
-            .css('width', `100%`)
-            .css('height', `100%`)
-            .css('position', 'absolute'));
-        this._domElem = elem;
+        // elem.append($('<img>')
+        //     .attr('src', 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api')
+        //     .attr('id', 'map')
+        //     .css('width', `100%`)
+        //     .css('height', `100%`)
+        //     .css('position', 'absolute'));
 
+        this._domElem = elem;
+        var map = new Datamap({
+            element: document.getElementById('map')
+        });
     }
 
 

@@ -2,6 +2,7 @@ import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
+import Datamap from 'datamaps/dist/datamaps.world.min';
 
 class GameManager {
 
@@ -75,21 +76,25 @@ class GameManager {
         $("#start-btn").hide();
         $("#header").hide();
         $("#main-container-board").css("display","block");
-        const mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
-            document.getElementById('app').parentElement.parentElement.offsetTop,
-            document.getElementById('app').offsetWidth,
-            document.getElementById('app').offsetHeight);
+        const mapWidget = new MapWidget(document.getElementById('map').offsetLeft,
+            document.getElementById('map').parentElement.parentElement.offsetTop,
+            document.getElementById('map').offsetWidth,
+            document.getElementById('map').offsetHeight);
 
         $('#app').append(mapWidget.domElem);
 
-        const rationWidgetP3 = new RationWidget('ration-p3', 'p3',
-            document.getElementById('ration-container-p3').offsetLeft,
-            document.getElementById('ration-container-p3').offsetTop,
-            document.getElementById('ration-container-p3').offsetWidth,
-            document.getElementById('ration-container-p3').offsetHeight);
 
-        $('#ration-container-p3').append(rationWidgetP3.domElem);
-    }
+
+
+
+    const rationWidgetP3 = new RationWidget('ration-p3', 'p3',
+    document.getElementById('ration-container-p3').offsetLeft,
+    document.getElementById('ration-container-p3').offsetTop,
+    document.getElementById('ration-container-p3').offsetWidth,
+    document.getElementById('ration-container-p3').offsetHeight);
+
+    $('#ration-container-p3').append(rationWidgetP3.domElem);
+}
 
 
 }

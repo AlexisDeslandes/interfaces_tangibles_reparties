@@ -15,10 +15,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-    <title>Table 👌😂</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="node_modules/datamaps/dist/datamaps.world.min.js"></script>    <title>Table 👌😂</title>
 </head>
 <body>
+<script>
 
+</script>
 <div class="header" id="header">
     <div class="jumbotron jumbotron-fluid text-center bg-danger text-white">
         <div class="container">
@@ -32,6 +36,7 @@
     <p class="title">Commencer une partie</p>
     <p class="desc">1 à 4 joueurs</p>
 </div>
+<div id="mapAfrica" style="position: relative; width: 500px; height: 300px;"></div>
 
 <div class="connect" id="connect">
     <div class="title">
@@ -85,8 +90,6 @@
             <div class="level-outline-p3-left" id="bike-outline-p3">
                 <div class="level-p3" id="bike-level-p3"></div>
             </div>
-            <div class="ration-zone ration-zone-p3"></div>
-            <img class="picto picto-p3" id="wind-p3" src="res/wind.svg" height="20%" />
             <div id="ration-container-p3" class="ration-zone ration-zone-p3"></div>
         </div>
         <div class="inner-section corner-section">
@@ -124,7 +127,8 @@
             <div class="ration-zone ration-zone-p2"></div>
         </div>
         <div class="inner-section center-section">
-            <div id="app" style="width: 100%; height: 100%;"></div>
+            <div id="map" style="width: 100%; height: 100%;">
+            </div>
         </div>
         <div class="inner-section short-edge">
             <img class="picto picto-p4" id="chicken-p4" src="res/chicken.svg" height="10%" />

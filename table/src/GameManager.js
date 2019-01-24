@@ -46,10 +46,7 @@ class GameManager {
     updateJauges(jauges) {
         for (let playerId in jauges) {
             for (let jaugeName in jauges[playerId]) {
-                if (playerId % 2 === 0)
-                    document.getElementById(jaugeName+"-level-p"+playerId).style.height = (jauges[playerId][jaugeName]*10)+"%";
-                else
-                    document.getElementById(jaugeName+"-level-p"+playerId).style.width = (jauges[playerId][jaugeName]*10)+"%";
+                document.getElementById(jaugeName+"-level-p"+playerId).style.height = (jauges[playerId][jaugeName]*10)+"%";
             }
         }
     }

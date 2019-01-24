@@ -19,12 +19,14 @@ export class DilemmePage {
 
     data;
     hasAnswered = false;
-    choice;
+    choice = null;
     result;
     socketSubscription: Subscription;
+    isReady;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
         this.data = navParams.get('step');
+        this.isReady = false;
 
         this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {
             if (data['status'] === 'start'){
@@ -36,6 +38,11 @@ export class DilemmePage {
     answer() {
         this.hasAnswered = true;
         this.result = this.data.choices[this.choice].result;
+    }
+
+    ready(){
+        this.isReady = true;
+        this.socketManager.sendReady();
     }
 
     next() {

@@ -86,6 +86,7 @@ module.exports = class Game {
     }
 
     nextStep() {
+        this.readyCount = 0;
         if (this.currentStep >= this.adventureSteps.length) {
             console.log(this.room + " is over");
             this.tableSocket.emit("gameover", {});

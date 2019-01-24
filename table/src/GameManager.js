@@ -115,7 +115,6 @@ class GameManager {
             document.getElementById('ration-container-p4').offsetHeight);
         $('#ration-container-p4').append(rationWidgetP4.domElem);
 
-        $('#ration-container-p3').append(rationWidgetP3.domElem);*/
     }
 
     adaptTable(nbPlayers) {

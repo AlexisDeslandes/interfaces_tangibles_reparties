@@ -1,5 +1,6 @@
-module.exports = class Game {
+const scenario = require('./scenario');
 
+module.exports = class Game {
     constructor(room, nbPlayers, tableSocket) {
         this.players = [];
         this.gameState = "init";
@@ -12,44 +13,7 @@ module.exports = class Game {
         this.temperature = 35;
         this.jauges = {};
 
-        this.adventureSteps = [
-            {
-                type: "dilemme",
-                text: "Il est 19h et tu commences à avoir un petit creux...",
-                choices: [
-                    {
-                        text: "Sucer des cailloux",
-                        result: "Très bon choix"
-                    },
-                    {
-                        text: "Manger mon compagnon",
-                        result: "Régale toi fraté"
-                    },
-                    {
-                        text: "Objectif Summer Body",
-                        result: "Tu le sais ;)"
-                    },
-                ]
-            },
-            {
-                type: "dilemme",
-                text: "Une dilemme se propose maintenant...",
-                choices: [
-                    {
-                        text: "Faire le choix 1 :o",
-                        result: "Très bon choix"
-                    },
-                    {
-                        text: "Faire le choix 2 ;)",
-                        result: "Bon choix"
-                    },
-                    {
-                        text: "Faire le choix 3 :>",
-                        result: "Choix bien mais pas top"
-                    },
-                ]
-            },
-        ];
+        this.adventureSteps = scenario;
 
         console.log("new game created : " + room)
     }

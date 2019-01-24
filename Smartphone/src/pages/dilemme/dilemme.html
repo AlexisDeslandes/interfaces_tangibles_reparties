@@ -6,16 +6,27 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>Dilemme</ion-title>
+    <ion-navbar hideBackButton>
+        <ion-title  ></ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <div *ngIf="!hasAnswered">
-        <h4 text-center>{{data.text}} Quel choix décides-tu de faire ???</h4>
+    <ion-slides pager *ngIf="showIntro" class="intro">
+        <ion-slide *ngFor="let t of data.intro; let i = index">
+            <h1 *ngIf="t.hasOwnProperty('title')">{{t.title}}</h1>
+            <p>{{t.text}}</p>
+
+            <button *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
+                Continuer
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </ion-slide>
+    </ion-slides>
+    <div *ngIf="!hasAnswered && showContent" class="content">
+        <p class="main-txt" text-center>{{data.text}}</p>
 
         <ion-list radio-group [(ngModel)]="choice">
             <ion-item *ngFor="let c of data['choices']; let i = index">
@@ -24,20 +35,28 @@
             </ion-item>
 
             <div text-center *ngIf="choice != null">
-                <button ion-button (click)="answer()">
-                    OK
+                <button ion-button round (click)="answer()" class="btn-ok">
+                    J'ai choisi
                 </button>
             </div>
 
         </ion-list>
     </div>
 
-    <div *ngIf="hasAnswered" text-center>
-        <h4>{{result}}</h4>
+    <div *ngIf="hasAnswered" text-center class="outro">
+        <ion-card padding class="cardd">
+            {{result}}
+            <ul>
+                <li *ngFor="let s of stats"> {{s.type}} {{s.value > 0 ? '+'+s.value : s.value}}</li>
+            </ul>
+        </ion-card>
         <button ion-button round *ngIf="!isReady" (click)="ready()">
             Prêt pour la suite ?
         </button>
-        <div text-center *ngIf="isReady">
+
+        <div text-center *ngIf="isReady" class="rdy">
+            <ion-item-divider></ion-item-divider>
+            <br>
             <p>En attente des autres joueurs</p>
             <ion-spinner name="crescent"></ion-spinner>
         </div>

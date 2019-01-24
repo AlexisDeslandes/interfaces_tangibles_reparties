@@ -22,12 +22,28 @@ export class DilemmePage {
     choice = null;
     result;
     isReady;
+    slideOptions = {effect: 'flip'};
+    showIntro = true;
+    showContent = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
         this.data = navParams.get('step');
+        if(!this.data.hasOwnProperty('intro')){
+            this.showIntro = false;
+            this.showContent = true;
+        } else {
+            this.showIntro = true;
+            this.showContent = false;
+        }
         this.isReady = false;
 
     }
+
+    endIntro(){
+        this.showIntro = false;
+        this.showContent = true;
+    }
+
 
     answer() {
         this.hasAnswered = true;

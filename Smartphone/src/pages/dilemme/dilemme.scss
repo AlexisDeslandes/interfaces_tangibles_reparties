@@ -1,3 +1,50 @@
-page-dilemme {
+.intro {
+  p {
+    line-height: 30px;
+    text-align: justify;
+  }
+
+  h1 {
+    line-height: 35px;
+  }
+
+  button {
+    margin-top: 15px;
+  }
+}
+
+.content {
+  .main-txt {
+    line-height: 25px;
+    font-size: 17px;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .btn-ok {
+    margin-top: 25px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #4e4e4e;
+  }
+}
+
+.outro {
+
+  .rdy {
+    padding: 20px 15px;
+    font-size: 21px;
+    font-weight: 400;
+
+    .cardd {
+      padding: 30px 10px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
 
 }

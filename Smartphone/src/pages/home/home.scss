@@ -18,6 +18,25 @@ page-home {
   }
 }
 
+.title1{
+  text-align: center;
+  margin-top:15vh;
+  margin-bottom:10vh;
+
+   .t1{
+     font-size:32px;
+     color:#488aff;
+     font-weight: 500;
+     line-height:38px;
+   }
+  .t2{
+    font-size:23px;
+    color: #4a4a4a;
+    font-weight: 300;
+  }
+
+}
+
 .code {
 
   text-align: center;
@@ -42,3 +61,4 @@ page-home {
   }
 
 }
+

@@ -13,16 +13,11 @@ class GameManager {
 
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
-        this.mapBtn = $("#fab");
         this.readyBtn = $("#ready-btn");
         this.nextBtn = $("#next-btn");
 
         this.startDiv.click(function () {
             self.start();
-        });
-
-        this.mapBtn.click(function () {
-            self.showAndHideMap();
         });
 
         this.readyBtn.click(function () {
@@ -34,6 +29,7 @@ class GameManager {
         });
 
         this.socket.on('start', data => {
+            self.showAndHideMap();
             console.log('NEW STEP STARTING');
             console.log(data);
             self.updateJauges(data.jauges);
@@ -79,9 +75,9 @@ class GameManager {
     }
 
     showAndHideMap() {
-        $("#fab").hide();
         $("#start-btn").hide();
         $("#header").hide();
+        $("#connect").hide();
         $("#main-container-board").css("display","block");
         const mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
             document.getElementById('app').parentElement.parentElement.offsetTop,

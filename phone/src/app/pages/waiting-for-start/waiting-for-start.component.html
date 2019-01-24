@@ -1,5 +1,0 @@
-<p>on est censé attendre que tout le monde rejoigne</p>
-
-Rejoindre une partie :
-<input type="text" [(ngModel)]="inputRoom" />
-<button (click)="socketManager.socket.emit('join',{player : 1, room : inputRoom})">GO</button><br>

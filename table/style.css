@@ -53,15 +53,15 @@ div.main-container-board {
   div.main-container-board #chicken-outline-p1, div.main-container-board #mood-outline-p1 {
     top: 5%; }
     div.main-container-board #chicken-outline-p1 #chicken-level-p1, div.main-container-board #chicken-outline-p1 #mood-level-p1, div.main-container-board #mood-outline-p1 #chicken-level-p1, div.main-container-board #mood-outline-p1 #mood-level-p1 {
-      height: 20%; }
+      height: 0; }
   div.main-container-board #water-outline-p1, div.main-container-board #thermometer-outline-p1 {
     top: 30%; }
     div.main-container-board #water-outline-p1 #water-level-p1, div.main-container-board #water-outline-p1 #thermometer-level-p1, div.main-container-board #thermometer-outline-p1 #water-level-p1, div.main-container-board #thermometer-outline-p1 #thermometer-level-p1 {
-      height: 33%; }
+      height: 0; }
   div.main-container-board #energy-outline-p1, div.main-container-board #bike-outline-p1 {
     top: 55%; }
     div.main-container-board #energy-outline-p1 #energy-level-p1, div.main-container-board #energy-outline-p1 #bike-level-p1, div.main-container-board #bike-outline-p1 #energy-level-p1, div.main-container-board #bike-outline-p1 #bike-level-p1 {
-      height: 0%; }
+      height: 0; }
   div.main-container-board div.level-outline-p2-right, div.main-container-board div.level-outline-p2-left {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -84,15 +84,15 @@ div.main-container-board {
   div.main-container-board #chicken-outline-p2, div.main-container-board #mood-outline-p2 {
     right: 7%; }
     div.main-container-board #chicken-outline-p2 #chicken-level-p2, div.main-container-board #chicken-outline-p2 #mood-level-p2, div.main-container-board #mood-outline-p2 #chicken-level-p2, div.main-container-board #mood-outline-p2 #mood-level-p2 {
-      height: 20%; }
+      height: 0; }
   div.main-container-board #water-outline-p2, div.main-container-board #thermometer-outline-p2 {
     right: 27%; }
     div.main-container-board #water-outline-p2 #water-level-p2, div.main-container-board #water-outline-p2 #thermometer-level-p2, div.main-container-board #thermometer-outline-p2 #water-level-p2, div.main-container-board #thermometer-outline-p2 #thermometer-level-p2 {
-      height: 33%; }
+      height: 0; }
   div.main-container-board #energy-outline-p2, div.main-container-board #bike-outline-p2 {
     right: 47%; }
     div.main-container-board #energy-outline-p2 #energy-level-p2, div.main-container-board #energy-outline-p2 #bike-level-p2, div.main-container-board #bike-outline-p2 #energy-level-p2, div.main-container-board #bike-outline-p2 #bike-level-p2 {
-      height: 0%; }
+      height: 0; }
   div.main-container-board div.level-outline-p3-right, div.main-container-board div.level-outline-p3-left {
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
@@ -115,15 +115,15 @@ div.main-container-board {
   div.main-container-board #chicken-outline-p3, div.main-container-board #mood-outline-p3 {
     bottom: 5%; }
     div.main-container-board #chicken-outline-p3 #chicken-level-p3, div.main-container-board #chicken-outline-p3 #mood-level-p3, div.main-container-board #mood-outline-p3 #chicken-level-p3, div.main-container-board #mood-outline-p3 #mood-level-p3 {
-      height: 20%; }
+      height: 0; }
   div.main-container-board #water-outline-p3, div.main-container-board #thermometer-outline-p3 {
     bottom: 30%; }
     div.main-container-board #water-outline-p3 #water-level-p3, div.main-container-board #water-outline-p3 #thermometer-level-p3, div.main-container-board #thermometer-outline-p3 #water-level-p3, div.main-container-board #thermometer-outline-p3 #thermometer-level-p3 {
-      height: 33%; }
+      height: 0; }
   div.main-container-board #energy-outline-p3, div.main-container-board #bike-outline-p3 {
     bottom: 55%; }
     div.main-container-board #energy-outline-p3 #energy-level-p3, div.main-container-board #energy-outline-p3 #bike-level-p3, div.main-container-board #bike-outline-p3 #energy-level-p3, div.main-container-board #bike-outline-p3 #bike-level-p3 {
-      height: 0%; }
+      height: 0; }
   div.main-container-board div.level-outline-p4-right, div.main-container-board div.level-outline-p4-left {
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
@@ -146,15 +146,15 @@ div.main-container-board {
   div.main-container-board #chicken-outline-p4, div.main-container-board #mood-outline-p4 {
     left: 7%; }
     div.main-container-board #chicken-outline-p4 #chicken-level-p4, div.main-container-board #chicken-outline-p4 #mood-level-p4, div.main-container-board #mood-outline-p4 #chicken-level-p4, div.main-container-board #mood-outline-p4 #mood-level-p4 {
-      height: 20%; }
+      height: 0; }
   div.main-container-board #water-outline-p4, div.main-container-board #thermometer-outline-p4 {
     left: 27%; }
     div.main-container-board #water-outline-p4 #water-level-p4, div.main-container-board #water-outline-p4 #thermometer-level-p4, div.main-container-board #thermometer-outline-p4 #water-level-p4, div.main-container-board #thermometer-outline-p4 #thermometer-level-p4 {
-      height: 33%; }
+      height: 0; }
   div.main-container-board #energy-outline-p4, div.main-container-board #bike-outline-p4 {
     left: 47%; }
     div.main-container-board #energy-outline-p4 #energy-level-p4, div.main-container-board #energy-outline-p4 #bike-level-p4, div.main-container-board #bike-outline-p4 #energy-level-p4, div.main-container-board #bike-outline-p4 #bike-level-p4 {
-      height: 0%; }
+      height: 0; }
   div.main-container-board div.long-edge {
     width: 49.5%;
     overflow-y: hidden;

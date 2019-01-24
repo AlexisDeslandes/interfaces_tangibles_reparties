@@ -36,12 +36,23 @@ class GameManager {
         this.socket.on('start', data => {
             console.log('NEW STEP STARTING');
             console.log(data);
+            self.updateJauges(data.jauges);
         });
 
         this.gameRoom = null;
 
     }
 
+    updateJauges(jauges) {
+        for (let playerId in jauges) {
+            for (let jaugeName in jauges[playerId]) {
+                if (playerId % 2 === 0)
+                    document.getElementById(jaugeName+"-level-p"+playerId).style.height = (jauges[playerId][jaugeName]*10)+"%";
+                else
+                    document.getElementById(jaugeName+"-level-p"+playerId).style.width = (jauges[playerId][jaugeName]*10)+"%";
+            }
+        }
+    }
 
     ready(){
         this.socket.emit('table-ready',{room:this.gameRoom})

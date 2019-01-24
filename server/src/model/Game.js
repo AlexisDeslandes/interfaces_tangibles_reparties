@@ -9,6 +9,9 @@ module.exports = class Game {
         this.currentStep = 0;
         this.readyCount = 0;
 
+        this.temperature = 35;
+        this.jauges = {};
+
         this.adventureSteps = [
             {
                 type: "dilemme",
@@ -75,6 +78,8 @@ module.exports = class Game {
     addPlayer(socket) {
         if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
 
+            this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 10, "water": 10, "energy": 10};
+
             let name = "player " + (this.players.length + 1);
             this.players.push({
                 socket: socket,
@@ -89,12 +94,12 @@ module.exports = class Game {
         this.readyCount = 0;
         if (this.currentStep === this.adventureSteps.length) {
             console.log(this.room + " is over");
-            this.tableSocket.emit("start", {status: 'gameover'});
+            this.tableSocket.emit("start", {status: 'gameover'}, this.jauges);
             this.sendToAllPlayers("start", {status:'gameover'});
 
         } else {
             this.gameState = "start";
-            this.tableSocket.emit("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
+            this.tableSocket.emit("start", {status: 'start', step: this.adventureSteps[this.currentStep], jauges: this.jauges});
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.currentStep++;
         }

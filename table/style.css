@@ -62,7 +62,7 @@ div.main-container-board {
     top: 55%; }
     div.main-container-board #energy-outline-p1 #energy-level-p1, div.main-container-board #energy-outline-p1 #bike-level-p1, div.main-container-board #bike-outline-p1 #energy-level-p1, div.main-container-board #bike-outline-p1 #bike-level-p1 {
       height: 0; }
-  div.main-container-board div.level-outline-p2-right, div.main-container-board div.level-outline-p2-left {
+  div.main-container-board div.level-outline-p3-right, div.main-container-board div.level-outline-p3-left {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
@@ -72,28 +72,28 @@ div.main-container-board {
     width: 4%;
     position: absolute;
     z-index: 10; }
-  div.main-container-board div.level-outline-p2-right {
+  div.main-container-board div.level-outline-p3-right {
     bottom: 3%;
     background-color: green; }
-  div.main-container-board div.level-outline-p2-left {
+  div.main-container-board div.level-outline-p3-left {
     top: 3%;
     background-color: green; }
-  div.main-container-board div.level-p2 {
+  div.main-container-board div.level-p3 {
     background-color: #fff;
     width: 100%; }
-  div.main-container-board #chicken-outline-p2, div.main-container-board #mood-outline-p2 {
+  div.main-container-board #chicken-outline-p3, div.main-container-board #mood-outline-p3 {
     right: 7%; }
-    div.main-container-board #chicken-outline-p2 #chicken-level-p2, div.main-container-board #chicken-outline-p2 #mood-level-p2, div.main-container-board #mood-outline-p2 #chicken-level-p2, div.main-container-board #mood-outline-p2 #mood-level-p2 {
+    div.main-container-board #chicken-outline-p3 #chicken-level-p3, div.main-container-board #chicken-outline-p3 #mood-level-p3, div.main-container-board #mood-outline-p3 #chicken-level-p3, div.main-container-board #mood-outline-p3 #mood-level-p3 {
       height: 0; }
-  div.main-container-board #water-outline-p2, div.main-container-board #thermometer-outline-p2 {
+  div.main-container-board #water-outline-p3, div.main-container-board #thermometer-outline-p3 {
     right: 27%; }
-    div.main-container-board #water-outline-p2 #water-level-p2, div.main-container-board #water-outline-p2 #thermometer-level-p2, div.main-container-board #thermometer-outline-p2 #water-level-p2, div.main-container-board #thermometer-outline-p2 #thermometer-level-p2 {
+    div.main-container-board #water-outline-p3 #water-level-p3, div.main-container-board #water-outline-p3 #thermometer-level-p3, div.main-container-board #thermometer-outline-p3 #water-level-p3, div.main-container-board #thermometer-outline-p3 #thermometer-level-p3 {
       height: 0; }
-  div.main-container-board #energy-outline-p2, div.main-container-board #bike-outline-p2 {
+  div.main-container-board #energy-outline-p3, div.main-container-board #bike-outline-p3 {
     right: 47%; }
-    div.main-container-board #energy-outline-p2 #energy-level-p2, div.main-container-board #energy-outline-p2 #bike-level-p2, div.main-container-board #bike-outline-p2 #energy-level-p2, div.main-container-board #bike-outline-p2 #bike-level-p2 {
+    div.main-container-board #energy-outline-p3 #energy-level-p3, div.main-container-board #energy-outline-p3 #bike-level-p3, div.main-container-board #bike-outline-p3 #energy-level-p3, div.main-container-board #bike-outline-p3 #bike-level-p3 {
       height: 0; }
-  div.main-container-board div.level-outline-p3-right, div.main-container-board div.level-outline-p3-left {
+  div.main-container-board div.level-outline-p2-right, div.main-container-board div.level-outline-p2-left {
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -103,26 +103,26 @@ div.main-container-board {
     width: 2%;
     position: absolute;
     z-index: 10; }
-  div.main-container-board div.level-outline-p3-right {
+  div.main-container-board div.level-outline-p2-right {
     right: 3%;
     background-color: green; }
-  div.main-container-board div.level-outline-p3-left {
+  div.main-container-board div.level-outline-p2-left {
     left: 3%;
     background-color: green; }
-  div.main-container-board div.level-p3 {
+  div.main-container-board div.level-p2 {
     background-color: #fff;
     width: 100%; }
-  div.main-container-board #chicken-outline-p3, div.main-container-board #mood-outline-p3 {
+  div.main-container-board #chicken-outline-p2, div.main-container-board #mood-outline-p2 {
     bottom: 5%; }
-    div.main-container-board #chicken-outline-p3 #chicken-level-p3, div.main-container-board #chicken-outline-p3 #mood-level-p3, div.main-container-board #mood-outline-p3 #chicken-level-p3, div.main-container-board #mood-outline-p3 #mood-level-p3 {
+    div.main-container-board #chicken-outline-p2 #chicken-level-p2, div.main-container-board #chicken-outline-p2 #mood-level-p2, div.main-container-board #mood-outline-p2 #chicken-level-p2, div.main-container-board #mood-outline-p2 #mood-level-p2 {
       height: 0; }
-  div.main-container-board #water-outline-p3, div.main-container-board #thermometer-outline-p3 {
+  div.main-container-board #water-outline-p2, div.main-container-board #thermometer-outline-p2 {
     bottom: 30%; }
-    div.main-container-board #water-outline-p3 #water-level-p3, div.main-container-board #water-outline-p3 #thermometer-level-p3, div.main-container-board #thermometer-outline-p3 #water-level-p3, div.main-container-board #thermometer-outline-p3 #thermometer-level-p3 {
+    div.main-container-board #water-outline-p2 #water-level-p2, div.main-container-board #water-outline-p2 #thermometer-level-p2, div.main-container-board #thermometer-outline-p2 #water-level-p2, div.main-container-board #thermometer-outline-p2 #thermometer-level-p2 {
       height: 0; }
-  div.main-container-board #energy-outline-p3, div.main-container-board #bike-outline-p3 {
+  div.main-container-board #energy-outline-p2, div.main-container-board #bike-outline-p2 {
     bottom: 55%; }
-    div.main-container-board #energy-outline-p3 #energy-level-p3, div.main-container-board #energy-outline-p3 #bike-level-p3, div.main-container-board #bike-outline-p3 #energy-level-p3, div.main-container-board #bike-outline-p3 #bike-level-p3 {
+    div.main-container-board #energy-outline-p2 #energy-level-p2, div.main-container-board #energy-outline-p2 #bike-level-p2, div.main-container-board #bike-outline-p2 #energy-level-p2, div.main-container-board #bike-outline-p2 #bike-level-p2 {
       height: 0; }
   div.main-container-board div.level-outline-p4-right, div.main-container-board div.level-outline-p4-left {
     -webkit-transform: rotate(270deg);
@@ -159,30 +159,30 @@ div.main-container-board {
     width: 49.5%;
     overflow-y: hidden;
     position: relative; }
-    div.main-container-board div.long-edge img.picto-p3 {
+    div.main-container-board div.long-edge img.picto-p2 {
       -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
       -moz-transform: rotate(180deg);
       transform: rotate(180deg); }
     div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #energy-p1 {
       right: 10%; }
-    div.main-container-board div.long-edge #mood-p3, div.main-container-board div.long-edge #thermometer-p3, div.main-container-board div.long-edge #bike-p3 {
+    div.main-container-board div.long-edge #mood-p2, div.main-container-board div.long-edge #thermometer-p2, div.main-container-board div.long-edge #bike-p2 {
       right: 10%; }
     div.main-container-board div.long-edge #mood-p1, div.main-container-board div.long-edge #thermometer-p1, div.main-container-board div.long-edge #bike-p1 {
       left: 10%; }
-    div.main-container-board div.long-edge #chicken-p3, div.main-container-board div.long-edge #water-p3, div.main-container-board div.long-edge #energy-p3 {
+    div.main-container-board div.long-edge #chicken-p2, div.main-container-board div.long-edge #water-p2, div.main-container-board div.long-edge #energy-p2 {
       left: 10%; }
     div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #mood-p1 {
       top: 5%; }
-    div.main-container-board div.long-edge #chicken-p3, div.main-container-board div.long-edge #mood-p3 {
+    div.main-container-board div.long-edge #chicken-p2, div.main-container-board div.long-edge #mood-p2 {
       bottom: 5%; }
     div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #thermometer-p1 {
       top: 30%; }
-    div.main-container-board div.long-edge #water-p3, div.main-container-board div.long-edge #thermometer-p3 {
+    div.main-container-board div.long-edge #water-p2, div.main-container-board div.long-edge #thermometer-p2 {
       bottom: 30%; }
     div.main-container-board div.long-edge #energy-p1, div.main-container-board div.long-edge #bike-p1 {
       top: 55%; }
-    div.main-container-board div.long-edge #energy-p3, div.main-container-board div.long-edge #bike-p3 {
+    div.main-container-board div.long-edge #energy-p2, div.main-container-board div.long-edge #bike-p2 {
       bottom: 55%; }
     div.main-container-board div.long-edge div.ration-zone {
       height: 50%;
@@ -200,14 +200,14 @@ div.main-container-board {
     div.main-container-board div.long-edge div.ration-zone-p1 {
       background-color: #a22b28;
       top: 72%; }
-    div.main-container-board div.long-edge div.ration-zone-p3 {
-      background-color: #007207;
+    div.main-container-board div.long-edge div.ration-zone-p2 {
+      background-color: #393bb5;
       bottom: 72%; }
   div.main-container-board div.short-edge {
     width: 24.5%;
     position: relative;
     overflow: hidden; }
-    div.main-container-board div.short-edge img.picto-p2 {
+    div.main-container-board div.short-edge img.picto-p3 {
       -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
@@ -217,23 +217,23 @@ div.main-container-board {
       -ms-transform: rotate(270deg);
       -moz-transform: rotate(270deg);
       transform: rotate(270deg); }
-    div.main-container-board div.short-edge #chicken-p2, div.main-container-board div.short-edge #water-p2, div.main-container-board div.short-edge #energy-p2 {
+    div.main-container-board div.short-edge #chicken-p3, div.main-container-board div.short-edge #water-p3, div.main-container-board div.short-edge #energy-p3 {
       bottom: 15%; }
     div.main-container-board div.short-edge #mood-p4, div.main-container-board div.short-edge #thermometer-p4, div.main-container-board div.short-edge #bike-p4 {
       bottom: 15%; }
-    div.main-container-board div.short-edge #mood-p2, div.main-container-board div.short-edge #thermometer-p2, div.main-container-board div.short-edge #bike-p2 {
+    div.main-container-board div.short-edge #mood-p3, div.main-container-board div.short-edge #thermometer-p3, div.main-container-board div.short-edge #bike-p3 {
       top: 15%; }
     div.main-container-board div.short-edge #chicken-p4, div.main-container-board div.short-edge #water-p4, div.main-container-board div.short-edge #energy-p4 {
       top: 15%; }
-    div.main-container-board div.short-edge #chicken-p2, div.main-container-board div.short-edge #mood-p2 {
+    div.main-container-board div.short-edge #chicken-p3, div.main-container-board div.short-edge #mood-p3 {
       right: 5%; }
     div.main-container-board div.short-edge #chicken-p4, div.main-container-board div.short-edge #mood-p4 {
       left: 5%; }
-    div.main-container-board div.short-edge #water-p2, div.main-container-board div.short-edge #thermometer-p2 {
+    div.main-container-board div.short-edge #water-p3, div.main-container-board div.short-edge #thermometer-p3 {
       right: 25%; }
     div.main-container-board div.short-edge #water-p4, div.main-container-board div.short-edge #thermometer-p4 {
       left: 25%; }
-    div.main-container-board div.short-edge #energy-p2, div.main-container-board div.short-edge #bike-p2 {
+    div.main-container-board div.short-edge #energy-p3, div.main-container-board div.short-edge #bike-p3 {
       right: 45%; }
     div.main-container-board div.short-edge #energy-p4, div.main-container-board div.short-edge #bike-p4 {
       left: 45%; }
@@ -245,8 +245,8 @@ div.main-container-board {
       margin-right: auto;
       margin-left: auto;
       position: absolute; }
-    div.main-container-board div.short-edge div.ration-zone-p2 {
-      background-color: #393bb5;
+    div.main-container-board div.short-edge div.ration-zone-p3 {
+      background-color: #007207;
       top: 50%;
       right: 85%;
       -webkit-transform: translateY(-50%);

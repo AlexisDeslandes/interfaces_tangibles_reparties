@@ -1,79 +1,130 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="236" height="568" viewBox="0 0 236 568">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="236" height="568" viewBox="0 0 236 568">
   <defs>
-    <style>
-      .cls-1, .cls-3, .cls-4, .cls-7 {
-        fill: #707070;
-      }
-
-      .cls-1, .cls-3 {
-        stroke: #000;
-      }
-
-      .cls-1 {
-        stroke-width: 6px;
-      }
-
-      .cls-2 {
-        stroke: #707070;
-        stroke-width: 3px;
-      }
-
-      .cls-3 {
-        stroke-width: 2px;
-      }
-
-      .cls-5, .cls-7, .cls-8 {
-        stroke: none;
-      }
-
-      .cls-6 {
-        fill: none;
-      }
-    </style>
+    <clipPath id="clip-path">
+      <rect width="34" height="347" fill="none"/>
+    </clipPath>
   </defs>
-  <g id="Groupe_13" data-name="Groupe 13" transform="translate(-69 -94)">
-    <g id="Groupe_10" data-name="Groupe 10">
-      <g id="Groupe_8" data-name="Groupe 8">
-        <g id="Rectangle_33" data-name="Rectangle 33" class="cls-1" transform="translate(142 153)">
-          <rect class="cls-5" width="89" height="361"/>
-          <rect class="cls-6" x="3" y="3" width="83" height="355"/>
+  <g id="Groupe_15" data-name="Groupe 15" transform="translate(-2446 -18)">
+    <g id="Groupe_14" data-name="Groupe 14">
+      <g id="Groupe_13" data-name="Groupe 13" transform="translate(2377 -76)">
+        <g id="Groupe_10" data-name="Groupe 10">
+          <g id="Groupe_8" data-name="Groupe 8">
+            <g id="Rectangle_33" data-name="Rectangle 33" transform="translate(142 153)" fill="#707070" stroke="#000" stroke-width="6">
+              <rect width="89" height="361" stroke="none"/>
+              <rect x="3" y="3" width="83" height="355" fill="none"/>
+            </g>
+            <g id="Union_9" data-name="Union 9" transform="translate(1404 94)">
+              <path d="M -1193.499633789063 116.499885559082 L -1240.5 116.499885559082 L -1240.5 34.00020217895508 L -1240.5 32.50020217895508 L -1242 32.50020217895508 L -1333.499755859375 32.50020217895508 L -1333.499755859375 1.500012874603271 L -1242 1.500012874603271 L -1191.999633789063 1.500012874603271 L -1100.499877929688 1.500012874603271 L -1100.499877929688 32.50020217895508 L -1191.999633789063 32.50020217895508 L -1193.499633789063 32.50020217895508 L -1193.499633789063 34.00020217895508 L -1193.499633789063 116.499885559082 Z" stroke="none"/>
+              <path d="M -1194.999633789063 114.9999160766602 L -1194.999633789063 34.00021743774414 L -1194.999633789063 31.00021743774414 L -1191.999633789063 31.00021743774414 L -1101.999877929688 31.00021743774414 L -1101.999877929688 3.000017166137695 L -1191.999633789063 3.000017166137695 L -1242 3.000017166137695 L -1331.999755859375 3.000017166137695 L -1331.999755859375 31.00021743774414 L -1242 31.00021743774414 L -1239 31.00021743774414 L -1239 34.00021743774414 L -1239 114.9999160766602 L -1194.999633789063 114.9999160766602 M -1191.999633789063 117.9999160766602 L -1242 117.9999160766602 L -1242 34.00021743774414 L -1334.999755859375 34.00021743774414 L -1334.999755859375 1.707560295471922e-05 L -1242 1.707560295471922e-05 L -1191.999633789063 1.707560295471922e-05 L -1098.999877929688 1.707560295471922e-05 L -1098.999877929688 34.00021743774414 L -1191.999633789063 34.00021743774414 L -1191.999633789063 117.9999160766602 Z" stroke="none" fill="#707070"/>
+            </g>
+            <g id="Rectangle_37" data-name="Rectangle 37" transform="translate(162 275)" stroke="#707070" stroke-width="3">
+              <rect width="50" height="387" rx="25" stroke="none"/>
+              <rect x="1.5" y="1.5" width="47" height="384" rx="23.5" fill="none"/>
+            </g>
+          </g>
         </g>
-        <g id="Union_9" data-name="Union 9" transform="translate(1404 94)">
-          <path class="cls-5" d="M -1193.499633789063 116.499885559082 L -1240.5 116.499885559082 L -1240.5 34.00020217895508 L -1240.5 32.50020217895508 L -1242 32.50020217895508 L -1333.499755859375 32.50020217895508 L -1333.499755859375 1.500012874603271 L -1242 1.500012874603271 L -1191.999633789063 1.500012874603271 L -1100.499877929688 1.500012874603271 L -1100.499877929688 32.50020217895508 L -1191.999633789063 32.50020217895508 L -1193.499633789063 32.50020217895508 L -1193.499633789063 34.00020217895508 L -1193.499633789063 116.499885559082 Z"/>
-          <path class="cls-7" d="M -1194.999633789063 114.9999160766602 L -1194.999633789063 34.00021743774414 L -1194.999633789063 31.00021743774414 L -1191.999633789063 31.00021743774414 L -1101.999877929688 31.00021743774414 L -1101.999877929688 3.000017166137695 L -1191.999633789063 3.000017166137695 L -1242 3.000017166137695 L -1331.999755859375 3.000017166137695 L -1331.999755859375 31.00021743774414 L -1242 31.00021743774414 L -1239 31.00021743774414 L -1239 34.00021743774414 L -1239 114.9999160766602 L -1194.999633789063 114.9999160766602 M -1191.999633789063 117.9999160766602 L -1242 117.9999160766602 L -1242 34.00021743774414 L -1334.999755859375 34.00021743774414 L -1334.999755859375 1.707560295471922e-05 L -1242 1.707560295471922e-05 L -1191.999633789063 1.707560295471922e-05 L -1098.999877929688 1.707560295471922e-05 L -1098.999877929688 34.00021743774414 L -1191.999633789063 34.00021743774414 L -1191.999633789063 117.9999160766602 Z"/>
+        <g id="Groupe_11" data-name="Groupe 11" transform="translate(230 216)">
+          <g id="Rectangle_47" data-name="Rectangle 47" fill="#707070" stroke="#000" stroke-width="2">
+            <rect width="17" height="118" stroke="none"/>
+            <rect x="1" y="1" width="15" height="116" fill="none"/>
+          </g>
+          <g id="Rectangle_48" data-name="Rectangle 48" transform="translate(30 13)" fill="#707070" stroke="#000" stroke-width="2">
+            <rect width="42" height="16" stroke="none"/>
+            <rect x="1" y="1" width="40" height="14" fill="none"/>
+          </g>
+          <g id="Tracé_1" data-name="Tracé 1" transform="translate(16 17)" fill="#707070">
+            <path d="M 15 7 L 1 7 L 1 1 L 15 1 L 15 7 Z" stroke="none"/>
+            <path d="M 14 6 L 14 2 L 2 2 L 2 6 L 14 6 M 16 8 L 0 8 L 0 0 L 16 0 L 16 8 Z" stroke="none"/>
+          </g>
         </g>
-        <g id="Rectangle_37" data-name="Rectangle 37" class="cls-2" transform="translate(162 275)">
-          <rect class="cls-5" width="50" height="387" rx="25"/>
-          <rect class="cls-6" x="1.5" y="1.5" width="47" height="384" rx="23.5"/>
+        <g id="Groupe_12" data-name="Groupe 12" transform="translate(70 334)">
+          <g id="Rectangle_47-2" data-name="Rectangle 47" transform="translate(55)" fill="#707070" stroke="#000" stroke-width="2">
+            <rect width="17" height="118" stroke="none"/>
+            <rect x="1" y="1" width="15" height="116" fill="none"/>
+          </g>
+          <g id="Rectangle_48-2" data-name="Rectangle 48" transform="translate(0 89)" fill="#707070" stroke="#000" stroke-width="2">
+            <rect width="42" height="16" stroke="none"/>
+            <rect x="1" y="1" width="40" height="14" fill="none"/>
+          </g>
+          <g id="Tracé_1-2" data-name="Tracé 1" transform="translate(40 93)" fill="#707070">
+            <path d="M 15 7 L 1 7 L 1 1 L 15 1 L 15 7 Z" stroke="none"/>
+            <path d="M 2 2 L 2 6 L 14 6 L 14 2 L 2 2 M 0 0 L 16 0 L 16 8 L 0 8 L 0 0 Z" stroke="none"/>
+          </g>
         </g>
       </g>
     </g>
-    <g id="Groupe_11" data-name="Groupe 11" transform="translate(2149 -60) rotate(180)">
-      <g id="Rectangle_47" data-name="Rectangle 47" class="cls-3" transform="translate(1902 -394)">
-        <rect class="cls-5" width="17" height="118"/>
-        <rect class="cls-6" x="1" y="1" width="15" height="116"/>
+    <g id="Grille_de_répétition_2" data-name="Grille de répétition 2" transform="translate(2547 206)" clip-path="url(#clip-path)">
+      <g transform="translate(-2547 -224)">
+        <g id="Rectangle_54" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
       </g>
-      <g id="Rectangle_48" data-name="Rectangle 48" class="cls-3" transform="translate(1847 -305)">
-        <rect class="cls-5" width="42" height="16"/>
-        <rect class="cls-6" x="1" y="1" width="40" height="14"/>
+      <g transform="translate(-2547 -195)">
+        <g id="Rectangle_54-2" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
       </g>
-      <g id="Tracé_1" data-name="Tracé 1" class="cls-4" transform="translate(1887 -301)">
-        <path class="cls-5" d="M 15 7 L 1 7 L 1 1 L 15 1 L 15 7 Z"/>
-        <path class="cls-8" d="M 2 2 L 2 6 L 14 6 L 14 2 L 2 2 M 0 0 L 16 0 L 16 8 L 0 8 L 0 0 Z"/>
+      <g transform="translate(-2547 -166)">
+        <g id="Rectangle_54-3" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
       </g>
-    </g>
-    <g id="Groupe_12" data-name="Groupe 12" transform="translate(-1776 728)">
-      <g id="Rectangle_47-2" data-name="Rectangle 47" class="cls-3" transform="translate(1902 -394)">
-        <rect class="cls-5" width="17" height="118"/>
-        <rect class="cls-6" x="1" y="1" width="15" height="116"/>
+      <g transform="translate(-2547 -137)">
+        <g id="Rectangle_54-4" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
       </g>
-      <g id="Rectangle_48-2" data-name="Rectangle 48" class="cls-3" transform="translate(1847 -305)">
-        <rect class="cls-5" width="42" height="16"/>
-        <rect class="cls-6" x="1" y="1" width="40" height="14"/>
+      <g transform="translate(-2547 -108)">
+        <g id="Rectangle_54-5" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
       </g>
-      <g id="Tracé_1-2" data-name="Tracé 1" class="cls-4" transform="translate(1887 -301)">
-        <path class="cls-5" d="M 15 7 L 1 7 L 1 1 L 15 1 L 15 7 Z"/>
-        <path class="cls-8" d="M 2 2 L 2 6 L 14 6 L 14 2 L 2 2 M 0 0 L 16 0 L 16 8 L 0 8 L 0 0 Z"/>
+      <g transform="translate(-2547 -79)">
+        <g id="Rectangle_54-6" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-2547 -50)">
+        <g id="Rectangle_54-7" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-2547 -21)">
+        <g id="Rectangle_54-8" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-2547 8)">
+        <g id="Rectangle_54-9" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-2547 37)">
+        <g id="Rectangle_54-10" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-2547 66)">
+        <g id="Rectangle_54-11" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-2547 95)">
+        <g id="Rectangle_54-12" data-name="Rectangle 54" transform="translate(2547 224)" fill="#707070" stroke="#707070" stroke-width="1">
+          <rect width="34" height="9" stroke="none"/>
+          <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+        </g>
       </g>
     </g>
   </g>

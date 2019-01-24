@@ -16,6 +16,9 @@ import {SocketManagerProvider} from '../providers/socket-manager/socket-manager'
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 import {DilemmePage} from "../pages/dilemme/dilemme";
 import {GamePage} from "../pages/game/game";
+import {Guideline2PageModule} from "../pages/guideline2/guideline2.module";
+import {SideguidelinePageModule} from "../pages/sideguideline/sideguideline.module";
+import {ReadyStepPage} from "../pages/ready-step/ready-step";
 
 const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
 
@@ -24,6 +27,7 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         MyApp,
         HomePage,
         DilemmePage,
+        ReadyStepPage
     ],
     imports: [
         SocketIoModule.forRoot(config),
@@ -32,16 +36,19 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         GamePageModule,
         GuidelinePageModule,
         MoveguidelinePageModule,
+        Guideline2PageModule,
+        SideguidelinePageModule,
         IonicModule.forRoot(MyApp),
         ComponentsModule,
-        LongPressModule
+        LongPressModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
         HomePage,
         DilemmePage,
-        GamePage
+        GamePage,
+        ReadyStepPage
     ],
     providers: [
         StatusBar,

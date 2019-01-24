@@ -1,0 +1,35 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row class="one-flex">
+      <div id="bike-wrapper" class="bike-wrapper">
+        <img src="../assets/imgs/bike.svg" class="bike">
+      </div>
+    </ion-row>
+
+    <ion-row class="two-flex">
+      <ion-col col-3>
+        <ion-grid>
+          <ion-row class="one-flex">
+            <img id="fleche" src="../assets/imgs/fleche.svg" class="arrow">
+          </ion-row>
+          <ion-row class="one-flex">
+            <img id="fleche2" src="../assets/imgs/fleche.svg" class="arrow">
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col col-6 class="center">
+        <img id="phone-img" src="../assets/imgs/phone.svg" class="phone-img">
+      </ion-col>
+      <ion-col col-3>
+        <ion-grid *ngIf="right">
+          <ion-row class="one-flex">
+            <img id="arrow3" src="../assets/imgs/fleche.svg" class="arrow-right">
+          </ion-row>
+          <ion-row class="one-flex">
+
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -7,46 +7,42 @@ module.exports = class Game {
         this.room = room;
         this.tableSocket = tableSocket;
         this.currentStep = 0;
+        this.readyCount = 0;
 
         this.adventureSteps = [
             {
-                type : "dilemme",
-                text : "Il est 19h et tu commences à avoir un petit creux...",
-                choices : [
+                type: "dilemme",
+                text: "Il est 19h et tu commences à avoir un petit creux...",
+                choices: [
                     {
-                        text : "Sucer des cailloux",
-                        result : "Très bon choix"
+                        text: "Sucer des cailloux",
+                        result: "Très bon choix"
                     },
                     {
-                        text : "Manger mon compagnon",
-                        result : "Régale toi fraté"
+                        text: "Manger mon compagnon",
+                        result: "Régale toi fraté"
                     },
                     {
-                        text : "Objectif Summer Body",
-                        result : "Tu le sais ;)"
+                        text: "Objectif Summer Body",
+                        result: "Tu le sais ;)"
                     },
                 ]
             },
             {
-                type : "minijeu",
-                desc : "Et hop c'est l'heure de faire un mini-jeu",
-                result : "Bravo ct bien"
-            },
-            {
-                type : "dilemme",
-                text : "Une dilemme se propose maintenant...",
-                choices : [
+                type: "dilemme",
+                text: "Une dilemme se propose maintenant...",
+                choices: [
                     {
-                        text : "Faire le choix 1 :o",
-                        result : "Très bon choix"
+                        text: "Faire le choix 1 :o",
+                        result: "Très bon choix"
                     },
                     {
-                        text : "Faire le choix 2 ;)",
-                        result : "Bon choix"
+                        text: "Faire le choix 2 ;)",
+                        result: "Bon choix"
                     },
                     {
-                        text : "Faire le choix 3 :>",
-                        result : "Choix bien mais pas top"
+                        text: "Faire le choix 3 :>",
+                        result: "Choix bien mais pas top"
                     },
                 ]
             },
@@ -55,62 +51,78 @@ module.exports = class Game {
         console.log("new game created : " + room)
     }
 
-    addAnswer(socket, data){
-        //players who has ended ++
-        //traitement du résultat
-        //réponse au phone
+    playerIsReady(socket) {
+        let p = this.getPlayerById(socket.id);
+        if(p) console.log(p.name+' is ready');
+        this.readyCount++;
+        if (this.readyCount === this.nbPlayers) {
+            console.log('every player is ready');
+            this.nextStep();
+        }
+    }
+
+    tableIsReady() {
+        if (this.players.length > 0) {
+            this.nbPlayers = this.players.length;
+            this.nextStep();
+        } else console.log("can't start a game with 0 players")
+    }
+
+
+    addAnswer(socket, data) {
     }
 
     addPlayer(socket) {
-        if(this.gameState === "init" && !this.alreadyInGame(socket.id)) {
+        if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
 
-            let name = "player "+(this.players.length+1);
+            let name = "player " + (this.players.length + 1);
             this.players.push({
                 socket: socket,
-                name: name
+                name: name,
             });
             console.log(name + " joined " + this.room);
-            socket.emit("joined", {message : "You are connected to the server !", player : name, status:'connected'});
-
-            if(this.players.length === this.nbPlayers){
-                console.log("everyone is here, we starting party");
-                this.start();
-            }
+            socket.emit("joined", {message: "You are connected to the server !", player: name, status: 'connected'});
         }
     }
 
-    nextStep(){
-        if(this.currentStep  >= this.adventureSteps.length){
+    nextStep() {
+        this.readyCount = 0;
+        if (this.currentStep >= this.adventureSteps.length) {
             console.log(this.room + " is over");
-            this.tableSocket.emit("gameover",{});
-            this.sendToAllPlayers("gameover",{});
+            this.tableSocket.emit("gameover", {});
+            this.sendToAllPlayers("gameover", {});
 
         } else {
+            this.gameState = "start";
+            this.tableSocket.emit("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
+            this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.currentStep++;
-            this.tableSocket.emit("start",{status: 'start',step : this.adventureSteps[this.currentStep]});
-            this.sendToAllPlayers("start",{status: 'start',step :this.adventureSteps[this.currentStep]});
         }
     }
 
 
-    start(){
-        this.gameState = "start";
-        this.tableSocket.emit("start",{status: 'start',step : this.adventureSteps[this.currentStep]});
-        this.sendToAllPlayers("start",{status: 'start',step :this.adventureSteps[this.currentStep]});
-    }
-
-
-    sendToAllPlayers(topic,param){
+    sendToAllPlayers(topic, param) {
         this.players.forEach(p => {
-            p.socket.emit(topic,param)
+            p.socket.emit(topic, param)
         })
     }
 
 
-    alreadyInGame(id){
+    getPlayerById(id) {
+        let player = null;
+        this.players.forEach(p => {
+            if (p.socket.id === id) {
+                player = p;
+            }
+        });
+        return player;
+    }
+
+
+    alreadyInGame(id) {
         let found = false;
         this.players.forEach(p => {
-            if(p.socket.id === id) {
+            if (p.socket.id === id) {
                 found = true;
             }
         });

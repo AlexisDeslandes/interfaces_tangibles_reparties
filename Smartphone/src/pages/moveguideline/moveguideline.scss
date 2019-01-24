@@ -8,10 +8,6 @@ page-moveguideline {
     display: flex;
   }
 
-  ion-grid {
-    background-color: #E3D0B8;
-  }
-
   .slider {
     width: 50%;
     height: 40%;
@@ -35,12 +31,14 @@ page-moveguideline {
     flex: 9;
     background-size: cover;
     background: url("../assets/imgs/bike.svg") no-repeat center center;
+    z-index: 2;
   }
 
   .nine-row-2 {
     flex: 9;
     background-size: cover;
     background: url("../assets/imgs/bike2.svg") no-repeat center center;
+    z-index: 2;
   }
 
   .two-row {

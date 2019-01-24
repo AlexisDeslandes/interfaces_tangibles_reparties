@@ -24,7 +24,7 @@
                 <ion-radio [value]="i"></ion-radio>
             </ion-item>
 
-            <div text-center>
+            <div text-center *ngIf="choice != null">
                 <button ion-button (click)="answer()">
                     OK
                 </button>
@@ -35,9 +35,13 @@
 
     <div *ngIf="hasAnswered" text-center>
         <h4>{{result}}</h4>
-        <button ion-button (click)="next()">
-            Epreuve suivante
+        <button ion-button round *ngIf="!isReady" (click)="ready()">
+            Prêt pour la suite ?
         </button>
+        <div text-center *ngIf="isReady">
+            <p>En attente des autres joueurs</p>
+            <ion-spinner name="crescent"></ion-spinner>
+        </div>
     </div>
 
 </ion-content>

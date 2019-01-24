@@ -7,7 +7,7 @@ const os = require('os');
 const Game = require('./model/Game');
 
 let roomsCount = 1;
-let playersPerGame = 1;
+let playersPerGame = 2;
 let games = [];
 
 io.on('connection', socket => {
@@ -31,6 +31,26 @@ io.on('connection', socket => {
             console.log("requested game does not exists")
         }
     });
+
+    socket.on('ready',m=>{
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.playerIsReady(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('table-ready',m=>{
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.tableIsReady(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+
 
     socket.on('next', m => {
         console.log('received next')

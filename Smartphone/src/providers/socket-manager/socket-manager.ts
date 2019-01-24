@@ -18,21 +18,10 @@ export class SocketManagerProvider {
     stateSubject = new Subject();
 
     room = null;
+    player;
     nav;
 
-    constructor(public socket: Socket,) {
-
-        let url = new URL(document.URL);
-        let room = url.searchParams.get("room");
-        let player = url.searchParams.get("player");
-
-        if (room && player) {
-            this.room = room;
-            socket.emit('join', {room: room})
-        }
-        else {
-            console.log('no parameters in URL, not connecting to the server (:')
-        }
+    constructor(public socket: Socket) {
 
         socket.on("joined", (data) => {
             this.state = data;
@@ -40,11 +29,24 @@ export class SocketManagerProvider {
         });
 
         socket.on("start",(data) => {
-
-            console.log("RECEIVED START")
             this.state = data;
             this.emit();
         })
+    }
+
+    join(room,player){
+        this.player = player;
+        this.room = room;
+        this.socket.emit('join', {room: room, player : player})
+    }
+
+    sendNext(){
+        this.socket.emit('next',{room:this.room})
+    }
+
+    sendReady(){
+
+        this.socket.emit('ready',{room:this.room})
     }
 
 

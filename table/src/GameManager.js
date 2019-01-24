@@ -32,11 +32,13 @@ class GameManager {
         this.socket.emit('init',{});
         this.socket.on('init', data => {
             this.gameRoom = data.room;
-            for(let i = 1; i < 5; i++){
-                $('#code-list').append("<li><a href='http://localhost:8100?room="+this.gameRoom+"&player="+i+"'</a>Joueur "+i+"</li>")
-            }
 
-            $('#tip').append("Pour rejoindre sinon : IP:8100/?room="+this.gameRoom+"&player=1");
+            let index = this.gameRoom.indexOf("room");
+            var roomId = this.gameRoom.substr(index + 1);
+
+            for(let i = 1; i < 5; i++){
+                $('#code-list').append("<li><a href='http://localhost:8100?room="+this.gameRoom+"&player="+i+"'</a>"+ this.gameRoom.substring(4)+"-"+i+"</li>")
+            }
 
 
             this.startDiv.remove();

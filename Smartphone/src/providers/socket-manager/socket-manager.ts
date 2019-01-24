@@ -20,7 +20,7 @@ export class SocketManagerProvider {
     room = null;
     nav;
 
-    constructor(public socket: Socket,) {
+    constructor(public socket: Socket) {
 
         let url = new URL(document.URL);
         let room = url.searchParams.get("room");
@@ -45,6 +45,11 @@ export class SocketManagerProvider {
             this.state = data;
             this.emit();
         })
+    }
+
+    sendNext(){
+        console.log("asking for next step",this.room)
+        this.socket.emit('next',{room:this.room})
     }
 
 

@@ -1,19 +1,44 @@
 page-home {
-  ion-grid{
+  ion-grid {
     height: 100%;
     display: flex;
   }
-  ion-row{
-    flex:1;
+  ion-row {
+    flex: 1;
     align-items: center;
     justify-content: center;
   }
 
-  h2{
+  h2 {
     text-align: center;
   }
 
-  p{
+  p {
     text-align: center;
   }
+}
+
+.code {
+
+  text-align: center;
+
+  input {
+    width: 100%;
+    height: 36px;
+  }
+
+  .btn{
+    text-align: center;
+  }
+
+  li{
+    display: inline-block;
+    font-size:20px;
+
+    &::after{
+      content: " - ";
+    }
+
+  }
+
 }

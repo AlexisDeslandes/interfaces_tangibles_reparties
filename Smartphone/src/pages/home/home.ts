@@ -16,6 +16,7 @@ export class HomePage {
 
   status = "";
   socketSubscription: Subscription;
+  code;
 
   readyToStart = false;
 
@@ -34,6 +35,10 @@ export class HomePage {
           }
       })
 
+  }
+
+  connectWithCode(){
+      console.log(this.code)
   }
 
   go(){

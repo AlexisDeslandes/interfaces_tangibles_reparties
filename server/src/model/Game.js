@@ -29,7 +29,8 @@ module.exports = class Game {
             },
             {
                 type : "minijeu",
-                desc : "Et hop c'est l'heure de faire un mini-jeu",
+                name: "velo",
+                desc : "Et hop c'est l'heure de faire un tour de vélo",
                 result : "Bravo ct bien"
             },
             {

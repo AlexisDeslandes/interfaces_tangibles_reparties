@@ -44,7 +44,7 @@ io.on('connection', socket => {
 
     socket.on("message", m =>{
         console.log(m)
-    })
+    });
 
     socket.on("answer", m => {
         let game = getGameByRoomName(m.room);
@@ -53,10 +53,10 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
-    })
+    });
 
     socket.on("map", m => {
-        console.log("Map tag received: "+ m)
+        console.log("Map tag received: "+ m);
         if (m === 1) {
             socket.emit("map-changed", {
                 img: 'https://images.ecosia.org/QljWRzschFge6Sg5DthS2uAklcc=/0x390/smart/http%3A%2F%2Fwww.weathergraphics.com%2Fedu%2Fforecastcenter%2Ffc_2010-0304-b.jpg'
@@ -66,9 +66,32 @@ io.on('connection', socket => {
                 img: 'https://images.ecosia.org/dK2oLsumxV_nfXN9_lg9FiNp9tU=/0x390/smart/https%3A%2F%2Faccuweather.brightspotcdn.com%2Fee%2F8e%2Fa49e80424dd4bace863679bab5ee%2Feurope-8-14.jpg'
             });
         } else {
-            socket.emit("map-changed", {
-                img: 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api'
+            // socket.emit("map-changed", {
+            //     img: 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api'
+            // });
+        }
+    });
+
+    socket.on("ration", m => {
+        console.log("Ration tag received: "+ m.toString());
+        if (m.id === 4) {
+            socket.emit("ration-used", {
+                id: 'chicken-'+m.player
             });
+            console.log("EAt Chicken");
+
+        } else if (m.id === 5) {
+            socket.emit("water-used", {
+                id: 'water-'+m.player
+            });
+            console.log("Drink Water");
+
+        } else if (m.id === 6) {
+            socket.emit("sun-used", {
+                id: 'sun-'+m.player
+            });
+            console.log("Avoid Sun");
+
         }
     })
 });

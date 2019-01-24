@@ -15,6 +15,7 @@ class GameManager {
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
         this.mapBtn = $("#fab");
+        this.readyBtn = $("#ready-btn");
 
         this.startDiv.click(function () {
             self.start();
@@ -24,8 +25,22 @@ class GameManager {
             self.showAndHideMap();
         });
 
+        this.readyBtn.click(function () {
+            self.ready();
+        });
+
+        this.socket.on('start', data => {
+            console.log('NEW STEP STARTING');
+            console.log(data);
+        });
+
         this.gameRoom = null;
 
+    }
+
+
+    ready(){
+        this.socket.emit('table-ready',{room:this.gameRoom})
     }
 
     start() {

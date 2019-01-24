@@ -83,16 +83,35 @@ class GameManager {
             document.getElementById('app').parentElement.parentElement.offsetTop,
             document.getElementById('app').offsetWidth,
             document.getElementById('app').offsetHeight);
-
         $('#app').append(mapWidget.domElem);
 
-        const rationWidgetP3 = new RationWidget('ration-p3', 'p3',
+        const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
+            document.getElementById('ration-container-p1').offsetLeft,
+            document.getElementById('ration-container-p1').offsetTop,
+            document.getElementById('ration-container-p1').offsetWidth,
+            document.getElementById('ration-container-p1').offsetHeight);
+        $('#ration-container-p1').append(rationWidgetP1.domElem);
+
+        const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
+            document.getElementById('ration-container-p2').offsetLeft,
+            document.getElementById('ration-container-p2').offsetTop,
+            document.getElementById('ration-container-p2').offsetWidth,
+            document.getElementById('ration-container-p2').offsetHeight);
+        $('#ration-container-p2').append(rationWidgetP2.domElem);
+
+        const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
             document.getElementById('ration-container-p3').offsetLeft,
             document.getElementById('ration-container-p3').offsetTop,
             document.getElementById('ration-container-p3').offsetWidth,
             document.getElementById('ration-container-p3').offsetHeight);
-
         $('#ration-container-p3').append(rationWidgetP3.domElem);
+
+        const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
+            document.getElementById('ration-container-p4').offsetLeft,
+            document.getElementById('ration-container-p4').offsetTop,
+            document.getElementById('ration-container-p4').offsetWidth,
+            document.getElementById('ration-container-p4').offsetHeight);
+        $('#ration-container-p4').append(rationWidgetP4.domElem);
     }
 
 

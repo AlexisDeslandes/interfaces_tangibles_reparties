@@ -30,9 +30,10 @@ class RationWidget extends TUIOWidget {
    * @param {number} width - RationWidget's width.
    * @param {number} height - RationWidget's height.
    */
-  constructor(id, player, x, y, width, height) {
+  constructor(id, player, gameRoom, x, y, width, height) {
       super(x, y, width, height);
-
+    this.gameRoom = gameRoom;
+    this.player = player;
     this._lastTouchesValues = {};
     this._lastTagsValues = {};
 
@@ -42,9 +43,6 @@ class RationWidget extends TUIOWidget {
       this._domElem.css('height', `${height}px`);
       this._domElem.css('position', 'absolute');
 
-
-
-      this._domElem.css('background-color', '#000000');
   }
 
 
@@ -133,19 +131,13 @@ class RationWidget extends TUIOWidget {
         },
       };
         const socket = io.connect('http://localhost:4444');
-        socket.emit('ration', {id: tuioTag.id, player: this.player});
+        socket.emit('ration', {id: tuioTag.id, player: this.player, gameRoom: this.gameRoom});
         socket.on('ration-used', (m) => {
           console.log(m);
-            document.getElementById(m.id).height = '120';
+           // document.getElementById(m.id).height = '120';
 
         });
     }
-      const socket = io.connect('http://localhost:4444');
-      socket.emit('ration', {id: tuioTag.id, player: this.player});
-      socket.on('ration-used', (m) => {
-          console.log(m);
-          document.getElementById(m.id).height = '120';
-      });
 
 
   }
@@ -189,14 +181,7 @@ class RationWidget extends TUIOWidget {
           y: tuioTag.y,
         },
       };
-        const socket = io.connect('http://localhost:4444');
-        socket.emit('ration', tuioTag.id);
-        socket.on('ration-used', (m) => {
-            console.log(m);
 
-            document.getElementById(m.id).height = '120';
-
-        });
     }
   }
     //

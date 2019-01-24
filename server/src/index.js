@@ -85,33 +85,18 @@ io.on('connection', socket => {
             socket.emit("map-changed", {
                 img: 'https://images.ecosia.org/dK2oLsumxV_nfXN9_lg9FiNp9tU=/0x390/smart/https%3A%2F%2Faccuweather.brightspotcdn.com%2Fee%2F8e%2Fa49e80424dd4bace863679bab5ee%2Feurope-8-14.jpg'
             });
-        } else {
-            // socket.emit("map-changed", {
-            //     img: 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api'
-            // });
+        } else if (m === 3) {
+            socket.emit("map-changed", {
+                img: 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api'
+            });
         }
     });
 
     socket.on("ration", m => {
-        console.log("Ration tag received: "+ m.toString());
-        if (m.id === 4) {
-            socket.emit("ration-used", {
-                id: 'chicken-'+m.player
-            });
-            console.log("EAt Chicken");
-
-        } else if (m.id === 5) {
-            socket.emit("water-used", {
-                id: 'water-'+m.player
-            });
-            console.log("Drink Water");
-
-        } else if (m.id === 6) {
-            socket.emit("sun-used", {
-                id: 'sun-'+m.player
-            });
-            console.log("Avoid Sun");
-
+        console.log("Ration tag received: "+ m.id + "  "+ m.player+ "   "+ m.gameRoom);
+        if(m.gameRoom !== null) {
+            let game = getGameByRoomName(m.gameRoom);
+            game.useRation(m);
         }
     })
 });

@@ -6,6 +6,7 @@ import {SocketManagerProvider} from "../../providers/socket-manager/socket-manag
 import {Subscription} from "rxjs";
 import {DilemmePage} from "../dilemme/dilemme";
 import {GamePage} from "../game/game";
+import {ReadyStepPage} from "../ready-step/ready-step";
 
 @Component({
   selector: 'page-home',
@@ -31,7 +32,7 @@ export class HomePage {
           if (data['status'] === 'connected') {
               this.status = data['message'];
               this.readyToStart = true;
-              console.log(this.status)
+              this.navCtrl.push(ReadyStepPage);
           } else if (data['status'] === 'start'){
               this.go()              //
           }

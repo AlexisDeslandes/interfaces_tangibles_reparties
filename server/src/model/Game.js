@@ -51,7 +51,9 @@ module.exports = class Game {
         console.log("new game created : " + room)
     }
 
-    playerIsReady() {
+    playerIsReady(socket) {
+        let p = this.getPlayerById(socket.id);
+        if(p) console.log(p.name+' is ready');
         this.readyCount++;
         if (this.readyCount === this.nbPlayers) {
             console.log('every player is ready');
@@ -80,7 +82,6 @@ module.exports = class Game {
             });
             console.log(name + " joined " + this.room);
             socket.emit("joined", {message: "You are connected to the server !", player: name, status: 'connected'});
-            this.playerIsReady();
         }
     }
 

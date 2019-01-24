@@ -36,6 +36,7 @@ export class SocketManagerProvider {
 
     join(room,player){
         this.player = player;
+        this.room = room;
         this.socket.emit('join', {room: room, player : player})
     }
 
@@ -44,6 +45,7 @@ export class SocketManagerProvider {
     }
 
     sendReady(){
+
         this.socket.emit('ready',{room:this.room})
     }
 

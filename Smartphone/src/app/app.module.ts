@@ -18,41 +18,44 @@ import {DilemmePage} from "../pages/dilemme/dilemme";
 import {GamePage} from "../pages/game/game";
 import {Guideline2PageModule} from "../pages/guideline2/guideline2.module";
 import {SideguidelinePageModule} from "../pages/sideguideline/sideguideline.module";
+import {ReadyStepPage} from "../pages/ready-step/ready-step";
 
 const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    DilemmePage,
-  ],
-  imports: [
-    SocketIoModule.forRoot(config),
-    BrowserModule,
-    ReadyPageModule,
-    GamePageModule,
-    GuidelinePageModule,
-    MoveguidelinePageModule,
-    Guideline2PageModule,
-    SideguidelinePageModule,
-    IonicModule.forRoot(MyApp),
-    ComponentsModule,
-    LongPressModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    DilemmePage,
-    GamePage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SocketManagerProvider
-  ]
+    declarations: [
+        MyApp,
+        HomePage,
+        DilemmePage,
+        ReadyStepPage
+    ],
+    imports: [
+        SocketIoModule.forRoot(config),
+        BrowserModule,
+        ReadyPageModule,
+        GamePageModule,
+        GuidelinePageModule,
+        MoveguidelinePageModule,
+        Guideline2PageModule,
+        SideguidelinePageModule,
+        IonicModule.forRoot(MyApp),
+        ComponentsModule,
+        LongPressModule,
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        HomePage,
+        DilemmePage,
+        GamePage,
+        ReadyStepPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        SocketManagerProvider
+    ]
 })
 export class AppModule {
 }

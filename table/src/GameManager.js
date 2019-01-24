@@ -16,6 +16,7 @@ class GameManager {
         this.startDiv = $("#start-btn");
         this.mapBtn = $("#fab");
         this.readyBtn = $("#ready-btn");
+        this.nextBtn = $("#next-btn");
 
         this.startDiv.click(function () {
             self.start();
@@ -27,6 +28,10 @@ class GameManager {
 
         this.readyBtn.click(function () {
             self.ready();
+        });
+
+        this.nextBtn.click(function () {
+            self.next();
         });
 
         this.socket.on('start', data => {
@@ -41,6 +46,10 @@ class GameManager {
 
     ready(){
         this.socket.emit('table-ready',{room:this.gameRoom})
+    }
+
+    next(){
+        this.socket.emit('next',{room:this.gameRoom})
     }
 
     start() {

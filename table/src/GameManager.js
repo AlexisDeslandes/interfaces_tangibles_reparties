@@ -31,7 +31,8 @@ class GameManager {
         this.socket.on('start', data => {
             self.showAndHideMap();
             console.log('NEW STEP STARTING');
-            console.log(data);
+            let nbPlayers = Object.keys(data.jauges).length;
+            self.adaptTable(nbPlayers);
             self.updateJauges(data.jauges);
         });
 
@@ -40,9 +41,10 @@ class GameManager {
     }
 
     updateJauges(jauges) {
+        console.log(jauges);
         for (let playerId in jauges) {
             for (let jaugeName in jauges[playerId]) {
-                document.getElementById(jaugeName+"-level-p"+playerId).style.height = (jauges[playerId][jaugeName]*10)+"%";
+                document.getElementById(jaugeName+"-level-p"+playerId).style.height = ((10-jauges[playerId][jaugeName])*10)+"%";
             }
         }
     }
@@ -79,7 +81,7 @@ class GameManager {
         $("#header").hide();
         $("#connect").hide();
         $("#main-container-board").css("display","block");
-        const mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
+        /*const mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
             document.getElementById('app').parentElement.parentElement.offsetTop,
             document.getElementById('app').offsetWidth,
             document.getElementById('app').offsetHeight);
@@ -92,7 +94,34 @@ class GameManager {
             document.getElementById('ration-container-p3').offsetWidth,
             document.getElementById('ration-container-p3').offsetHeight);
 
-        $('#ration-container-p3').append(rationWidgetP3.domElem);
+        $('#ration-container-p3').append(rationWidgetP3.domElem);*/
+    }
+
+    adaptTable(nbPlayers) {
+        switch (nbPlayers) {
+            case 1:
+                $("#section-2").css("display", "none");
+                $("#section-4").css("display", "none");
+                $("#section-6").css("display", "none");
+                $("#section-6").css("display", "none");
+                $(".second-section").css("top", "10%");
+                break;
+            case 2:
+                console.log($("#section-4"));
+                $("#section-4").css("visibility", "hidden");
+                $("#section-6").css("visibility", "hidden");
+
+                $("#section-1").css("display", "none");
+                $("#section-3").css("display", "none");
+                $("#section-2").css("width", "99.5%");
+
+                $("#section-7").css("display", "none");
+                $("#section-9").css("display", "none");
+                $("#section-8").css("width", "99.5%");
+                break;
+            case 3:
+                $("#section-6").css("visibility", "hidden");
+        }
     }
 
 

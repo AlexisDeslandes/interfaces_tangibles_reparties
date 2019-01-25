@@ -13,7 +13,7 @@ import {GuidelinePage} from "../pages/guideline/guideline";
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = GuidelinePage;
   //rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

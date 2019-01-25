@@ -1,9 +1,5 @@
 page-guideline {
 
-  ion-grid{
-    height: 100%;
-  }
-
   ion-row{
     flex:1;
     align-items: center;
@@ -27,5 +23,37 @@ page-guideline {
 
   ion-row{
     flex-direction: column;
+  }
+
+  ion-grid{
+    background-image: url("../../assets/imgs/sable.jpg");
+    height: 100%;
+  }
+
+  h1{
+    text-align: center;
+    color: #87870C;
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  h3{
+    text-align: center;
+    color: #87870C;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  h4{
+    text-align: center;
+    color: #707070;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .wrap-title{
+    background-color: white;
+    border: 3px #707070 solid;
+    border-radius: 17px;
   }
 }

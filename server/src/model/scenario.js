@@ -4,38 +4,39 @@ module.exports = [
             {
                 title: "Bienvenue au cœur de l'aventure de Jean Naud",
                 text: "En 1986, Jean Naud s'engage dans la traversée du Sahara à vélo. D'Alger" +
-                " à Tombouctou, découvrez une partie des 3200 km de cette folle expédition."
+                " à Tombouctou, découvrez une partie de cette folle expédition de 3200 km."
             },
             {
                 text: "Au cours de l'aventure, vous serez exposés aux mêmes choix qui se sont présentés à Jean Naud." +
-                " Chacun de vos choix impactera vos jauges : la soif, la faim, l'énergie, l'état du vélo et la santé " +
-                "mentale."
+                    "Chacun de vos choix impactera votre aventure. Votre soif, votre faim, votre énergie, l'état de " +
+                "votre vélo ainsi que votre santé mentale seront des indicateurs auxquels vous devrez faire attention" +
+                "tout au long de l'aventure."
             }
         ],
         type: "dilemme",
         time: "Janvier 1986 - Alger",
-        text: "Le jour du départ approche. A la fin des courses au supermarché, tous les sacs sont" +
-        " pleins à craquer. Il ne reste qu'un peu de place dans une sacoche pour un seul objet." +
-        "Que choisissez-vous d'emporter : ",
+        text: "Le jour du départ approche. A la fin sortie du Carrefour d'Alger, tous vos sacs sont" +
+            " pleins à craquer. Il ne reste que peu de place dans votre sacoche pour un seul objet." +
+            "Que choisissez-vous d'emporter : ",
         choices: [
             {
-                text: "Un parapluie",
-                result: "On ne sait jamais...",
+                text: "Un parasol",
+                result: "",
                 stats: [
-                    {type: 'Parapluie', value: 1},
+                    {type: 'Parassol', value: 1},
                 ]
             },
             {
                 text: "Une couverture de survie",
-                result: "Un choix tactique...",
+                result: "Vous pliez la couverture au maximum pour qu'elle rentre dans votre sacoche et prenez la route.",
                 stats: [
                     {type: 'Couverture', value: 1}]
             },
             {
-                text: "Une calculette",
-                result: "Pourquoi pas.",
+                text: "Un sac de couchage bien douillet",
+                result: "Vous pliez le sac de couchage au maximum pour qu'il rentre dans votre sacoche et prenez la route.",
                 stats: [
-                    {type: 'Calculette', value: 1}]
+                    {type: 'Duvet', value: 1}]
             },
         ],
     },

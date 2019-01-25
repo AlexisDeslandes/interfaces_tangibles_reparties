@@ -99,6 +99,22 @@ io.on('connection', socket => {
             game.useRation(m);
         }
     })
+
+
+
+    /////////////////////////////////////////////////// GAME /////////////////////////////////////////////////////////////
+
+    socket.on("playerJoin", m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.joinGame(m.player);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
 
 

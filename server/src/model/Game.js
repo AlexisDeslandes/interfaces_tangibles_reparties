@@ -1,4 +1,5 @@
 const scenario = require('./scenario');
+const VeloGame = require('./VeloGame');
 
 module.exports = class Game {
     constructor(room, nbPlayers, tableSocket) {
@@ -15,7 +16,11 @@ module.exports = class Game {
 
         this.adventureSteps = scenario;
 
+        this.veloGame = new VeloGame(nbPlayers);
+
         console.log("new game created : " + room)
+
+
     }
 
     playerIsReady(socket) {
@@ -39,18 +44,22 @@ module.exports = class Game {
     addAnswer(socket, data) {
     }
 
-    addPlayer(socket,m) {
+    addPlayer(socket, m) {
         if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
 
-            this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 10, "water": 10, "energy": 10};
+            this.jauges[this.players.length + 1] = {"mood": 10, "bike": 10, "chicken": 10, "water": 10, "energy": 10};
 
             this.players.push({
                 socket: socket,
                 name: m.player,
             });
-            console.log('player '+m.player + " joined " + this.room);
-            this.tableSocket.emit("joined", {player:m.player});
-            socket.emit("joined", {message: "You are connected to the server !", player: m.player, status: 'connected'});
+            console.log('player ' + m.player + " joined " + this.room);
+            this.tableSocket.emit("joined", {player: m.player});
+            socket.emit("joined", {
+                message: "You are connected to the server !",
+                player: m.player,
+                status: 'connected'
+            });
         }
     }
 
@@ -59,12 +68,16 @@ module.exports = class Game {
         if (this.currentStep === this.adventureSteps.length) {
             console.log(this.room + " is over");
             this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
-            this.sendToAllPlayers("start", {status:'gameover'});
+            this.sendToAllPlayers("start", {status: 'gameover'});
 
         } else {
             this.gameState = "start";
             this.consumeChickenWater();
-            this.tableSocket.emit("start", {status: 'start', step: this.adventureSteps[this.currentStep], jauges: this.jauges});
+            this.tableSocket.emit("start", {
+                status: 'start',
+                step: this.adventureSteps[this.currentStep],
+                jauges: this.jauges
+            });
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.currentStep++;
         }
@@ -108,30 +121,42 @@ module.exports = class Game {
     }
 
 
-    useRation(m){
-        if(typeof  this.jauges[m.player] !== 'undefined') {
+    useRation(m) {
+        if (typeof  this.jauges[m.player] !== 'undefined') {
             if (m.id === 4) {
                 this.jauges[m.player].water += 1;
-                console.log("Joueur "+m.player+" utilise de l'eau");
+                console.log("Joueur " + m.player + " utilise de l'eau");
 
             } else if (m.id === 5) {
                 this.jauges[m.player].energy += 1;
-                console.log("Joueur "+m.player+" utilise de l'énergie");
+                console.log("Joueur " + m.player + " utilise de l'énergie");
 
             } else if (m.id === 6) {
                 this.jauges[m.player].chicken += 1;
-                console.log("Joueur "+m.player+" utilise du poulet");
+                console.log("Joueur " + m.player + " utilise du poulet");
 
             } else if (m.id === 7) {
                 this.jauges[m.player].mood += 1;
-                console.log("Joueur "+m.player+" utilise de l'ectasy");
+                console.log("Joueur " + m.player + " utilise de l'ectasy");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;
-                console.log("Joueur "+m.player+" utilise son vélo");
+                console.log("Joueur " + m.player + " utilise son vélo");
             }
         }
     }
 
+    //////////////////////////////////////////////// Game //////////////////////////////////////////////////////
+
+    joinGame(playerId) {
+        const isGameReady = this.veloGame.playerJoin();
+        if (isGameReady){
+            this.sendToAllPlayers("playerJoinedVelo", {status:"playerJoinedVelo",playerId: playerId})
+        }else{
+            this.sendToAllPlayers("veloReady",{status:"veloReady"});
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 };

@@ -14,6 +14,9 @@
 
 
 <ion-content padding>
+
+  <button (click)="goTo()">GOTO</button>
+
     <ion-slides pager *ngIf="showIntro" class="intro">
         <ion-slide *ngFor="let t of data.intro; let i = index">
             <h1 *ngIf="t.hasOwnProperty('title')">{{t.title}}</h1>

@@ -13,7 +13,7 @@
         <h3 *ngIf="players>0">Il manque encore {{players}} joueurs.</h3>
         <h3 *ngIf="players === 0">{{seconds}} secondes avant le début de la partie !</h3>
       </div>
-      <button color="dark" ion-button="" (click)="peopleJoin()">Rejoindre</button>
+      <button id="readyButton" color="dark" ion-button="" (click)="actionButton()">Rejoindre</button>
     </ion-row>
   </ion-grid>
 

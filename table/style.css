@@ -286,9 +286,78 @@ div.main-container-board {
 
 .connect {
   margin: 0 auto;
-  width: 600px;
+  width: 100%;
+  height: 100%;
   text-align: center;
   display: none; }
+  .connect .qr_code {
+    position: absolute; }
+  .connect .ready {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  .connect #qr_1 {
+    left: 50%;
+    bottom: 5%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .connect #qr_2 {
+    left: 50%;
+    top: 5%;
+    -webkit-transform: translateX(-50%) rotate(90deg);
+    -ms-transform: translateX(-50%) rotate(90deg);
+    -moz-transform: translateX(-50%) rotate(90deg);
+    transform: translateX(-50%) rotate(90deg); }
+  .connect #qr_3 {
+    left: 3%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) rotate(180deg);
+    -ms-transform: translateY(-50%) rotate(180deg);
+    -moz-transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%) rotate(180deg); }
+  .connect #qr_4 {
+    right: 3%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) rotate(270deg);
+    -ms-transform: translateY(-50%) rotate(270deg);
+    -moz-transform: translateY(-50%) rotate(270deg);
+    transform: translateY(-50%) rotate(270deg); }
+  .connect b[id^=code_] {
+    position: absolute; }
+  .connect #code_1 {
+    bottom: 1%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .connect #code_2 {
+    -webkit-transform: translateX(-50%) rotate(180deg);
+    -ms-transform: translateX(-50%) rotate(180deg);
+    -moz-transform: translateX(-50%) rotate(180deg);
+    transform: translateX(-50%) rotate(180deg);
+    left: 50%;
+    top: 0; }
+  .connect #code_3 {
+    -webkit-transform: translateY(-50%) rotate(90deg);
+    -ms-transform: translateY(-50%) rotate(90deg);
+    -moz-transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%) rotate(90deg);
+    left: 0;
+    top: 50%; }
+  .connect #code_4 {
+    -webkit-transform: translateY(-50%) rotate(270deg);
+    -ms-transform: translateY(-50%) rotate(270deg);
+    -moz-transform: translateY(-50%) rotate(270deg);
+    transform: translateY(-50%) rotate(270deg);
+    right: 0;
+    top: 50%; }
   .connect .title {
     font-size: 20px;
     margin-bottom: 50px; }

@@ -451,9 +451,73 @@ div.main-container-board {
 
 .connect{
   margin:0 auto;
-  width:600px;
+  width: 100%;
+  height: 100%;
   text-align: center;
   display: none;
+
+  .qr_code {
+    position: absolute;
+  }
+
+  .ready {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+
+  #qr_1 {
+    left: 50%;
+    bottom: 5%;
+    @include transform(translateX(-50%));
+  }
+
+  #qr_2 {
+    left: 50%;
+    top: 5%;
+    @include transform(translateX(-50%) rotate(90deg));
+  }
+
+  #qr_3 {
+    left: 3%;
+    top: 50%;
+    @include transform(translateY(-50%) rotate(180deg));
+  }
+
+  #qr_4 {
+    right: 3%;
+    top: 50%;
+    @include transform(translateY(-50%) rotate(270deg));
+  }
+
+  b[id^=code_] {
+    position: absolute;
+  }
+
+  #code_1 {
+    bottom: 1%;
+    left: 50%;
+    @include transform(translateX(-50%));
+  }
+
+  #code_2 {
+    @include transform(translateX(-50%) rotate(180deg));
+    left: 50%;
+    top: 0;
+  }
+
+  #code_3 {
+    @include transform(translateY(-50%) rotate(90deg));
+    left: 0;
+    top: 50%;
+  }
+
+  #code_4 {
+    @include transform(translateY(-50%) rotate(270deg));
+    right: 0;
+    top: 50%;
+  }
 
   .title{
     font-size:20px;

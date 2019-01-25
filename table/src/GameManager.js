@@ -124,7 +124,11 @@ class GameManager {
                 $("#section-4").css("display", "none");
                 $("#section-6").css("display", "none");
                 $("#section-6").css("display", "none");
-                $(".second-section").css("top", "10%");
+                $(".second-section").css("top", "8%");
+                $(".second-section").css("text-align", "center");
+                $(".second-section").css("height", "60%");
+                $("#section-5").css("width", "60%");
+                $("#map").css("position", "relative");
                 break;
             case 2:
                 console.log($("#section-4"));

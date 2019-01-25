@@ -448,6 +448,7 @@ div.main-container-board {
 
 }
 
+
 .connect{
   margin:0 auto;
   width:600px;
@@ -459,10 +460,16 @@ div.main-container-board {
     margin-bottom: 50px;
   }
 
-  .codes li {
-    list-style: none;
-    padding-top:15px;
+  .codes{
+    text-align: center;
+
+
   }
+
+  table{
+    width:100%;
+  }
+
 
 }
 

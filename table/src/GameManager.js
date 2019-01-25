@@ -77,7 +77,8 @@ class GameManager {
             var roomId = this.gameRoom.substr(index + 1);
 
             for(let i = 1; i < 5; i++){
-                $('#code-list').append("<li><a href='http://localhost:8100?room="+this.gameRoom+"&player="+i+"'</a>"+ this.gameRoom.substring(4)+"-"+i+"</li>")
+                let code = this.gameRoom.substring(4)+"-"+i;
+                $('#code-list').append("<td style='margin:10px 20px'><b>"+code+"</b><br><img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+code+"'/></td>")
             }
 
 

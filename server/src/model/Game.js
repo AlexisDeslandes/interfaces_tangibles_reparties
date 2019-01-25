@@ -58,7 +58,7 @@ module.exports = class Game {
         this.readyCount = 0;
         if (this.currentStep === this.adventureSteps.length) {
             console.log(this.room + " is over");
-            this.tableSocket.emit("start", {status: 'gameover'}, this.jauges);
+            this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
             this.sendToAllPlayers("start", {status:'gameover'});
 
         } else {

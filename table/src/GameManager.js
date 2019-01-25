@@ -11,7 +11,7 @@ class GameManager {
         this.socket = io.connect('http://localhost:4444');
 
         let self = this;
-        let init = true;
+        self.init = true;
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
         this.readyBtn = $("#ready-btn");
@@ -37,9 +37,8 @@ class GameManager {
             if(self.init){
                 self.showAndHideMap();
                 self.adaptTable(nbPlayers);
-                self.initWidgets(nbPlayer);
-
-
+                self.initWidgets(nbPlayers);
+                self.init = false;
             }
 
             self.updateJauges(data.jauges);
@@ -70,10 +69,6 @@ class GameManager {
     start() {
         this.socket.emit('init', {});
         this.socket.on('init', data => {
-            if(this.init){
-                this.showAndHideMap();
-                this.init = false;
-            }
             this.gameRoom = data.room;
 
             let index = this.gameRoom.indexOf("room");
@@ -172,6 +167,11 @@ class GameManager {
                 document.getElementById('ration-container-p4').offsetHeight);
             $('#ration-container-p4').append(rationWidgetP4.domElem);
         }
+
+        if (nbPlayer === 1) {
+            $("#map").css("position", "relative");
+        }
+
     }
 
 
@@ -223,6 +223,9 @@ class GameManager {
     }
 
     showAndHideMap() {
+
+        console.log("show map");
+
         $("#start-btn").hide();
         $("#header").hide();
         $("#connect").hide();

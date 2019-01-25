@@ -42,7 +42,7 @@ module.exports = class Game {
     addPlayer(socket,m) {
         if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
 
-            this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 10, "water": 10, "energy": 10};
+            this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 11, "water": 11, "energy": 10};
 
             this.players.push({
                 socket: socket,

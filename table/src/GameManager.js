@@ -29,6 +29,10 @@ class GameManager {
             self.next();
         });
 
+        this.socket.on('joined', data => {
+            console.log(data.player+' joined game')
+        });
+
         this.socket.on('start', data => {
             self.showAndHideMap();
             //self.showGame()

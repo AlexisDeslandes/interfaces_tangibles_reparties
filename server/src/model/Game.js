@@ -39,18 +39,18 @@ module.exports = class Game {
     addAnswer(socket, data) {
     }
 
-    addPlayer(socket) {
+    addPlayer(socket,m) {
         if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
 
             this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 10, "water": 10, "energy": 10};
 
-            let name = "player " + (this.players.length + 1);
             this.players.push({
                 socket: socket,
-                name: name,
+                name: m.player,
             });
-            console.log(name + " joined " + this.room);
-            socket.emit("joined", {message: "You are connected to the server !", player: name, status: 'connected'});
+            console.log('player '+m.player + " joined " + this.room);
+            this.tableSocket.emit("joined", {player:m.player});
+            socket.emit("joined", {message: "You are connected to the server !", player: m.player, status: 'connected'});
         }
     }
 

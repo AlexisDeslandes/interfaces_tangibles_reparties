@@ -63,9 +63,18 @@ module.exports = class Game {
 
         } else {
             this.gameState = "start";
+            this.consumeChickenWater();
             this.tableSocket.emit("start", {status: 'start', step: this.adventureSteps[this.currentStep], jauges: this.jauges});
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.currentStep++;
+        }
+    }
+
+
+    consumeChickenWater() {
+        for (let playerId in this.jauges) {
+            this.jauges[playerId].water--;
+            this.jauges[playerId].chicken--;
         }
     }
 

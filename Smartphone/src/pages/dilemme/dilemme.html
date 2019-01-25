@@ -19,6 +19,10 @@
             <h1 *ngIf="t.hasOwnProperty('title')">{{t.title}}</h1>
             <p>{{t.text}}</p>
 
+            <button *ngIf="i < data.intro.length-1" ion-button round icon-end color="primary" (click)="nextIntro()">
+                Continuer
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
             <button *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
                 Continuer
                 <ion-icon name="arrow-forward"></ion-icon>
@@ -26,7 +30,10 @@
         </ion-slide>
     </ion-slides>
     <div *ngIf="!hasAnswered && showContent" class="content">
-        <p class="main-txt" text-center>{{data.text}}</p>
+        <p class="date-txt" text-left>{{data.time}}</p>
+        <p class="main-txt" style="text-align: justify;line-height:18px;">
+            {{data.text}}
+        </p>
 
         <ion-list radio-group [(ngModel)]="choice">
             <ion-item *ngFor="let c of data['choices']; let i = index">
@@ -45,8 +52,8 @@
 
     <div *ngIf="hasAnswered" text-center class="outro">
         <ion-card padding class="cardd">
-            {{result}}
-            <ul>
+            <p class="result">{{result}}</p>
+            <ul class="stats">
                 <li *ngFor="let s of stats"> {{s.type}} {{s.value > 0 ? '+'+s.value : s.value}}</li>
             </ul>
         </ion-card>

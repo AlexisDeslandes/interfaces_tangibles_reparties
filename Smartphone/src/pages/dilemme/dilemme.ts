@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 import {Subscription} from "rxjs/Rx";
 
@@ -17,10 +17,14 @@ import {Subscription} from "rxjs/Rx";
 })
 export class DilemmePage {
 
+    @ViewChild(Slides) slides: Slides;
+
+
     data;
     hasAnswered = false;
     choice = null;
     result;
+    stats;
     isReady;
     slideOptions = {effect: 'flip'};
     showIntro = true;
@@ -39,6 +43,12 @@ export class DilemmePage {
 
     }
 
+    nextIntro(){
+
+        this.slides.slideNext();
+
+    }
+
     endIntro(){
         this.showIntro = false;
         this.showContent = true;
@@ -48,6 +58,8 @@ export class DilemmePage {
     answer() {
         this.hasAnswered = true;
         this.result = this.data.choices[this.choice].result;
+        this.stats = this.data.choices[this.choice].stats
+        console.log(this.stats)
     }
 
     ready(){

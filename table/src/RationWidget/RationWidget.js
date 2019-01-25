@@ -181,6 +181,15 @@ class RationWidget extends TUIOWidget {
           y: tuioTag.y,
         },
       };
+        if (this.isTouched(tuioTag.x, tuioTag.y)) {
+            const socket = io.connect('http://localhost:4444');
+            socket.emit('ration', {id: tuioTag.id, player: this.player, gameRoom: this.gameRoom});
+            socket.on('ration-used', (m) => {
+                console.log(m);
+                // document.getElementById(m.id).height = '120';
+
+            });
+        }
 
     }
   }

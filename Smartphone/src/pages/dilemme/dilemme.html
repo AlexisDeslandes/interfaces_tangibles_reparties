@@ -4,14 +4,6 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-    <ion-navbar hideBackButton>
-        <ion-title  ></ion-title>
-    </ion-navbar>
-
-</ion-header>
-
 
 <ion-content padding>
 
@@ -22,10 +14,6 @@
             <h1 *ngIf="t.hasOwnProperty('title')">{{t.title}}</h1>
             <p>{{t.text}}</p>
 
-            <button *ngIf="i < data.intro.length-1" ion-button round icon-end color="primary" (click)="nextIntro()">
-                Continuer
-                <ion-icon name="arrow-forward"></ion-icon>
-            </button>
             <button *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
                 Continuer
                 <ion-icon name="arrow-forward"></ion-icon>

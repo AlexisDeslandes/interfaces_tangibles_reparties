@@ -46,8 +46,7 @@ module.exports = class Game {
 
     addPlayer(socket, m) {
         if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
-
-            this.jauges[this.players.length + 1] = {"mood": 10, "bike": 10, "chicken": 10, "water": 10, "energy": 10};
+            this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 11, "water": 11, "energy": 10};
 
             this.players.push({
                 socket: socket,
@@ -137,7 +136,7 @@ module.exports = class Game {
 
             } else if (m.id === 7) {
                 this.jauges[m.player].mood += 1;
-                console.log("Joueur " + m.player + " utilise de l'ectasy");
+                console.log("Joueur "+m.player+" utilise des antidepresseurs");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;

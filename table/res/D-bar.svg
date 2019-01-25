@@ -1,0 +1,332 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1922" height="1082" viewBox="0 0 1922 1082">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="450" height="150" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <rect width="150" height="449" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="D-bar" transform="translate(1 1)">
+    <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(449 465) rotate(90)" fill="#d5ce8b" stroke="#707070" stroke-width="2">
+      <rect width="150" height="450" stroke="none"/>
+      <rect x="1" y="1" width="148" height="448" fill="none"/>
+    </g>
+    <g id="Rectangle_4" data-name="Rectangle 4" transform="translate(1921 465) rotate(90)" fill="#d5ce8b" stroke="#707070" stroke-width="2">
+      <rect width="150" height="450" stroke="none"/>
+      <rect x="1" y="1" width="148" height="448" fill="none"/>
+    </g>
+    <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(885 631)" fill="#d5ce8b" stroke="#707070" stroke-width="2">
+      <rect width="150" height="450" stroke="none"/>
+      <rect x="1" y="1" width="148" height="448" fill="none"/>
+    </g>
+    <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(885 -1)" fill="#d5ce8b" stroke="#707070" stroke-width="2">
+      <rect width="150" height="450" stroke="none"/>
+      <rect x="1" y="1" width="148" height="448" fill="none"/>
+    </g>
+    <g id="Grille_de_répétition_1" data-name="Grille de répétition 1" transform="translate(0 465)" clip-path="url(#clip-path)">
+      <g transform="translate(0 -465)">
+        <g id="Rectangle_7" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(50 -465)">
+        <g id="Rectangle_7-2" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(100 -465)">
+        <g id="Rectangle_7-3" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(150 -465)">
+        <g id="Rectangle_7-4" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(200 -465)">
+        <g id="Rectangle_7-5" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(250 -465)">
+        <g id="Rectangle_7-6" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(300 -465)">
+        <g id="Rectangle_7-7" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(350 -465)">
+        <g id="Rectangle_7-8" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(400 -465)">
+        <g id="Rectangle_7-9" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_2" data-name="Grille de répétition 2" transform="translate(1470 465)" clip-path="url(#clip-path)">
+      <g transform="translate(0 -465)">
+        <g id="Rectangle_7-10" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(50 -465)">
+        <g id="Rectangle_7-11" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(100 -465)">
+        <g id="Rectangle_7-12" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(150 -465)">
+        <g id="Rectangle_7-13" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(200 -465)">
+        <g id="Rectangle_7-14" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(250 -465)">
+        <g id="Rectangle_7-15" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(300 -465)">
+        <g id="Rectangle_7-16" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(350 -465)">
+        <g id="Rectangle_7-17" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(400 -465)">
+        <g id="Rectangle_7-18" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_3" data-name="Grille de répétition 3" transform="translate(1035) rotate(90)" clip-path="url(#clip-path)">
+      <g transform="translate(0 -465)">
+        <g id="Rectangle_7-19" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(50 -465)">
+        <g id="Rectangle_7-20" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(100 -465)">
+        <g id="Rectangle_7-21" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(150 -465)">
+        <g id="Rectangle_7-22" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(200 -465)">
+        <g id="Rectangle_7-23" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(250 -465)">
+        <g id="Rectangle_7-24" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(300 -465)">
+        <g id="Rectangle_7-25" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(350 -465)">
+        <g id="Rectangle_7-26" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(400 -465)">
+        <g id="Rectangle_7-27" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_4" data-name="Grille de répétition 4" transform="translate(1035 630) rotate(90)" clip-path="url(#clip-path)">
+      <g transform="translate(0 -465)">
+        <g id="Rectangle_7-28" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(50 -465)">
+        <g id="Rectangle_7-29" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(100 -465)">
+        <g id="Rectangle_7-30" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(150 -465)">
+        <g id="Rectangle_7-31" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(200 -465)">
+        <g id="Rectangle_7-32" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(250 -465)">
+        <g id="Rectangle_7-33" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(300 -465)">
+        <g id="Rectangle_7-34" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(350 -465)">
+        <g id="Rectangle_7-35" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(400 -465)">
+        <g id="Rectangle_7-36" data-name="Rectangle 7" transform="translate(0 465)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="150" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="149" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_5" data-name="Grille de répétition 5" transform="translate(885 631)" clip-path="url(#clip-path-5)">
+      <g transform="translate(-885 -631)">
+        <g id="Rectangle_8" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-835 -631)">
+        <g id="Rectangle_8-2" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-785 -631)">
+        <g id="Rectangle_8-3" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_6" data-name="Grille de répétition 6" transform="translate(885 1)" clip-path="url(#clip-path-5)">
+      <g transform="translate(-885 -631)">
+        <g id="Rectangle_8-4" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-835 -631)">
+        <g id="Rectangle_8-5" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-785 -631)">
+        <g id="Rectangle_8-6" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_7" data-name="Grille de répétition 7" transform="translate(449.5 465.5) rotate(90)" clip-path="url(#clip-path-5)">
+      <g transform="translate(-885 -631)">
+        <g id="Rectangle_8-7" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-835 -631)">
+        <g id="Rectangle_8-8" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-785 -631)">
+        <g id="Rectangle_8-9" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Grille_de_répétition_8" data-name="Grille de répétition 8" transform="translate(1920.5 465.5) rotate(90)" clip-path="url(#clip-path-5)">
+      <g transform="translate(-885 -631)">
+        <g id="Rectangle_8-10" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-835 -631)">
+        <g id="Rectangle_8-11" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-785 -631)">
+        <g id="Rectangle_8-12" data-name="Rectangle 8" transform="translate(885 631)" fill="rgba(255,255,255,0)" stroke="#707070" stroke-width="1">
+          <rect width="50" height="449" stroke="none"/>
+          <rect x="0.5" y="0.5" width="49" height="448" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

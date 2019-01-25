@@ -11,10 +11,6 @@ page-guideline2 {
     display: flex;
   }
 
-  h3{
-    text-align: center;
-  }
-
   ion-item{
     align-items: center;
     justify-content: center;
@@ -23,5 +19,13 @@ page-guideline2 {
 
   ion-label{
     text-align: center;
+  }
+
+  button{
+    background-color: green;
+  }
+
+  ion-row{
+    flex-direction: column;
   }
 }

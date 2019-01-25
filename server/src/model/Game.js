@@ -112,6 +112,7 @@ module.exports = class Game {
         if(typeof  this.jauges[m.player] !== 'undefined') {
             if (m.id === 4) {
                 this.jauges[m.player].water += 1;
+
                 console.log("Joueur "+m.player+" utilise de l'eau");
 
             } else if (m.id === 5) {
@@ -124,7 +125,7 @@ module.exports = class Game {
 
             } else if (m.id === 7) {
                 this.jauges[m.player].mood += 1;
-                console.log("Joueur "+m.player+" utilise de l'ectasy");
+                console.log("Joueur "+m.player+" utilise des antidepresseurs");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;

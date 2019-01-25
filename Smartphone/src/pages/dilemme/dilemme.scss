@@ -13,25 +13,52 @@
   }
 }
 
+
+.main-txt {
+  line-height: 25px;
+  font-size: 17px;
+  text-align: center;
+  text-justify: inter-word;
+}
+
+
 .content {
-  .main-txt {
-    line-height: 25px;
-    font-size: 17px;
-    text-align: justify;
-    text-justify: inter-word;
+  .date-txt{
+    font-weight: 500;
+    padding-top:5px;
+    padding-bottom: 20px;
+    font-size: 20px;
   }
 
   .btn-ok {
     margin-top: 25px;
   }
 
-  p {
-    font-size: 15px;
+  .main-txt {
+    font-size: 17px;
+    line-height: 25px;
     color: #4e4e4e;
   }
 }
 
 .outro {
+
+  .result{
+    line-height:21px;
+    font-size:18px;
+    text-align: justify;
+  }
+
+  ul{
+    border-top:1px solid #dedede;
+    padding-left:unset;
+    padding-top:20px;
+  }
+
+  li{
+    font-size:17px;
+    list-style: none;
+  }
 
   .rdy {
     padding: 20px 15px;

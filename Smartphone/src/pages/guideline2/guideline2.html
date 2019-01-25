@@ -1,17 +1,18 @@
-<ion-content padding>
+<ion-content no-padding="">
   <ion-grid>
     <ion-row>
-      <h3>Consignes</h3>
+      <div class="wrap-title">
+        <h1>Consignes</h1>
+      </div>
     </ion-row>
     <ion-row>
-      <ion-card>
-        <ion-item>
-          <ion-label>Etape1</ion-label>
-        </ion-item>
-        <ion-label>Se déplacer sur les côtés</ion-label>
-      </ion-card>
-
-      <button ion-button="" (click)="goToSideGuideline()">Suite</button>
+      <div class="wrap-title">
+        <h3>Etape 2</h3>
+        <h4>Se déplacer sur les côtés</h4>
+      </div>
+    </ion-row>
+    <ion-row>
+      <button color="dark" ion-button="" (click)="goToSideGuideline()">Suite</button>
     </ion-row>
   </ion-grid>
 </ion-content>

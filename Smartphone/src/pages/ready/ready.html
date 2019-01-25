@@ -1,13 +1,20 @@
-<ion-content padding>
+<ion-content no-padding="">
   <ion-grid>
     <ion-row>
-      <h2>Epreuve de rapidité</h2>
-      <p>En attente des autres joueurs ...</p>
+      <div class="wrap-title">
+        <h1>Epreuve de rapidité</h1>
+      </div>
+      <div class="wrap-title">
+        <h3>En attente des autres joueurs ...</h3>
+      </div>
     </ion-row>
     <ion-row>
-      <h3 *ngIf="players>0">Il manque encore {{players}} joueurs.</h3>
-      <h3 *ngIf="players === 0">{{seconds}} secondes avant le début de la partie !</h3>
+      <div class="wrap-title">
+        <h3 *ngIf="players>0">Il manque encore {{players}} joueurs.</h3>
+        <h3 *ngIf="players === 0">{{seconds}} secondes avant le début de la partie !</h3>
+      </div>
+      <button color="dark" ion-button="" (click)="peopleJoin()">Rejoindre</button>
     </ion-row>
   </ion-grid>
-  <button ion-button="" (click)="peopleJoin()">Rejoindre</button>
+
 </ion-content>

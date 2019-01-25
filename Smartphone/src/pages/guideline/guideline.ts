@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {SideguidelinePage} from "../sideguideline/sideguideline";
+import {MoveguidelinePage} from "../moveguideline/moveguideline";
 
 /**
  * Generated class for the GuidelinePage page.
@@ -22,4 +24,7 @@ export class GuidelinePage {
     console.log('ionViewDidLoad GuidelinePage');
   }
 
+  goToMoveguidelinePage() {
+    this.navCtrl.push(MoveguidelinePage)
+  }
 }

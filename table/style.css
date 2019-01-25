@@ -292,9 +292,10 @@ div.main-container-board {
   .connect .title {
     font-size: 20px;
     margin-bottom: 50px; }
-  .connect .codes li {
-    list-style: none;
-    padding-top: 15px; }
+  .connect .codes {
+    text-align: center; }
+  .connect table {
+    width: 100%; }
 
 #fab {
   position: absolute;

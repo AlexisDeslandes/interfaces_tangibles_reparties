@@ -78,7 +78,7 @@ module.exports = [
                 ]
             },
         ]
-    },/*
+    },
     {
         intro : [],
         type:'',
@@ -86,5 +86,5 @@ module.exports = [
         text:'',
         choices:[],
 
-    }*/
+    }
 ];

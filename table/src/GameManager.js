@@ -33,6 +33,8 @@ class GameManager {
             $("#qr_"+data.player).hide();
         });
 
+
+
         this.socket.on('start', data => {
             self.showMap();
             //self.showGame()

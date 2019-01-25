@@ -64,6 +64,11 @@ export class HomePage {
 
     }
 
+
+    startQR(){
+
+    }
+
     go() {
 
     }

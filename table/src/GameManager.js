@@ -30,16 +30,16 @@ class GameManager {
         });
 
         this.socket.on('joined', data => {
-            console.log(data.player+' joined game')
+            $("#qr_"+data.player).hide();
         });
 
         this.socket.on('start', data => {
-            self.showAndHideMap();
+            self.showMap();
             //self.showGame()
             console.log('NEW STEP STARTING');
             let nbPlayers = Object.keys(data.jauges).length;
             if(self.init){
-                self.showAndHideMap();
+                self.showMap();
                 self.adaptTable(nbPlayers);
                 self.initWidgets(nbPlayers);
                 self.init = false;
@@ -54,7 +54,6 @@ class GameManager {
     }
 
     updateJauges(jauges) {
-        console.log(jauges);
         for (let playerId in jauges) {
             for (let jaugeName in jauges[playerId]) {
                 document.getElementById(jaugeName + "-level-p" + playerId).style.height = ((10 - jauges[playerId][jaugeName]) * 10) + "%";
@@ -80,7 +79,7 @@ class GameManager {
 
             for(let i = 1; i < 5; i++){
                 let code = this.gameRoom.substring(4)+"-"+i;
-                $('#code-list').append("<td style='margin:10px 20px'><b>"+code+"</b><br><img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+code+"'/></td>")
+                $('#code-list').append("<td style='margin:10px 20px'><b>"+code+"</b><br><img id='qr_"+ i +"' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+code+"'/></td>")
             }
 
 
@@ -227,7 +226,7 @@ class GameManager {
         }
     }
 
-    showAndHideMap() {
+    showMap() {
 
         console.log("show map");
 

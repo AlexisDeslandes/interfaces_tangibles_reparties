@@ -31,9 +31,15 @@ class GameManager {
         this.socket.on('start', data => {
             console.log('NEW STEP STARTING');
             let nbPlayers = Object.keys(data.jauges).length;
-            self.adaptTable(nbPlayers);
+            if(self.init){
+                self.showAndHideMap();
+                self.adaptTable(nbPlayers);
+                self.initWidgets(nbPlayer);
+
+
+            }
+
             self.updateJauges(data.jauges);
-            self.showAndHideMap(nbPlayers);
 
         });
 
@@ -125,12 +131,11 @@ class GameManager {
         }
     }
 
-    showAndHideMap(nbPlayer) {
+    showAndHideMap() {
         $("#start-btn").hide();
         $("#header").hide();
         $("#connect").hide();
         $("#main-container-board").css("display","block");
-        this.initWidgets(nbPlayer);
 
 
     }

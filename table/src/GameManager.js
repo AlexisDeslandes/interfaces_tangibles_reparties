@@ -9,7 +9,7 @@ class GameManager {
 
     constructor() {
 
-        this.showGame(1)
+        this.showGame(4)
 
         /*
 
@@ -147,6 +147,19 @@ class GameManager {
             img.style.position = "absolute";
             img.style.width = "50px";
             img.style.height = "50px";
+            switch (i) {
+                case 1:
+                    img.style.transform = "rotate(90deg)";
+                    break;
+                case 2:
+                    img.style.transform = "rotate(180deg)";
+                    break;
+                case 3:
+                    img.style.transform = "rotate(-90deg)";
+                    break;
+                default:
+                    break;
+            }
             document.body.appendChild(img);
             playersImg.push(new Observer(img));
         }

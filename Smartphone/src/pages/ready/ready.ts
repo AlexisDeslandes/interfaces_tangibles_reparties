@@ -18,20 +18,15 @@ import {Subscription} from "rxjs";
 })
 export class ReadyPage {
 
-  players: number = 4;
+  players: number = 1;
   seconds: number = 5;
 
-  socketSubscription: Subscription;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private socketManager: SocketManagerProvider) {
-
-  }
-
-  ionViewDidLoad() {
-    this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {
+    this.socketManager.stateSubject.subscribe(data => {
       if (data["status"] == "playerJoinedVelo" && data['playerId'] != this.socketManager.player) {
         --this.players;
-      } else if (data['status'] === "veloReady") {
+      }
+      if (data['status'] === "veloReady") {
         this.players = 0;
         const timeOut: number = setInterval(() => {
           if (--this.seconds === 0) {

@@ -31,9 +31,14 @@ export class SocketManagerProvider {
     socket.on("start", (data) => {
       this.state = data;
       this.emit();
-    })
+    });
 
     socket.on("playerJoinedVelo", (data) => {
+      this.state = data;
+      this.emit()
+    });
+
+    socket.on("veloReady", (data) => {
       this.state = data;
       this.emit()
     })

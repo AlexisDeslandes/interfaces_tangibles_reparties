@@ -2,11 +2,16 @@ import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
-import GameWidget from "./GameWidget/GameWidget";
+import {Observer} from "./model/Observer";
+import {GameState} from "./model/GameState";
 
 class GameManager {
 
     constructor() {
+
+        this.showGame(1)
+
+        /*
 
         this.socket = io.connect('http://localhost:4444');
 
@@ -30,9 +35,8 @@ class GameManager {
         });
 
         this.socket.on('joined', data => {
-            $("#qr_"+data.player).hide();
+            $("#qr_" + data.player).hide();
         });
-
 
 
         this.socket.on('start', data => {
@@ -40,7 +44,7 @@ class GameManager {
             //self.showGame()
             console.log('NEW STEP STARTING');
             let nbPlayers = Object.keys(data.jauges).length;
-            if(self.init){
+            if (self.init) {
                 self.showMap();
                 self.adaptTable(nbPlayers);
                 self.initWidgets(nbPlayers);
@@ -51,8 +55,33 @@ class GameManager {
 
         });
 
+        this.socket.on('gameIsReady', gameState => {
+            self.showGame();
+            const players = gameState.players;
+            self.playersImg = players.map(() => {
+                //const playerImg = document.createElement("img");
+                //document.body.appendChild(playerImg);
+                //return playerImg;
+            });
+            self.placePlayers(gameState);
+        });
         this.gameRoom = null;
+        */
+    }
 
+    placePlayers(gameState) {
+        for (let player in gameState.players) {
+            console.log(player);
+            console.log(this.playersImg);
+            const playerImg = this.playersImg[player.id - 1];
+            if (player.id == 1) {
+                //playerImg.style.position = "absolute";
+                //const top = document.getElementById('ration-container-p1').offsetTop + document.getElementById('app').offsetTop;
+                //const left = document.getElementById('ration-container-p1').offsetLeft + document.get
+                //playerImg.style.top = top + "px";
+
+            }
+        }
     }
 
     updateJauges(jauges) {
@@ -79,9 +108,9 @@ class GameManager {
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);
 
-            for(let i = 1; i < 5; i++){
-                let code = this.gameRoom.substring(4)+"-"+i;
-                $('#code-list').append("<b id='code_"+ i +"'>"+code+"</b><img class='qr_code' id='qr_"+ i +"' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+code+"'/>")
+            for (let i = 1; i < 5; i++) {
+                let code = this.gameRoom.substring(4) + "-" + i;
+                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + code + "'/>")
             }
 
 
@@ -93,54 +122,58 @@ class GameManager {
 
     }
 
-    showGame() {
-        $("#start-btn").hide();
-        $("#header").hide();
-        $("#connect").hide();
-        $("#main-container-board").css("display", "block");
-        const mapWidget = new GameWidget(document.getElementById('app').offsetLeft,
-            document.getElementById('app').parentElement.parentElement.offsetTop,
-            document.getElementById('app').offsetWidth,
-            document.getElementById('app').offsetHeight);
-        $('#app').append(mapWidget.domElem);
+    showGame(nbPlayer) {
 
-        const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
-            document.getElementById('ration-container-p1').offsetLeft,
-            document.getElementById('ration-container-p1').offsetTop,
-            document.getElementById('ration-container-p1').offsetWidth,
-            document.getElementById('ration-container-p1').offsetHeight);
-        $('#ration-container-p1').append(rationWidgetP1.domElem);
+        const width = document.body.clientWidth;
+        const height = document.body.clientHeight;
+        console.log(width);
+        console.log(height);
+        const trueGame = document.getElementById("trueGame");
+        trueGame.style.backgroundColor = "white";
+        trueGame.style.display = "block";
+        trueGame.style.width = "100%";
+        trueGame.style.height = "100%";
+        const sizeRect = height / 3;
+        const halfSize = sizeRect / 2;
+        this.drawRect((width / 2) - halfSize, 0, sizeRect, (height / 2));
+        this.drawRect(0, (height / 2) - halfSize, (height / 2), sizeRect);
+        this.drawRect((width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));
+        this.drawRect(width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect);
 
-        const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
-            document.getElementById('ration-container-p2').offsetLeft,
-            document.getElementById('ration-container-p2').offsetTop,
-            document.getElementById('ration-container-p2').offsetWidth,
-            document.getElementById('ration-container-p2').offsetHeight);
-        $('#ration-container-p2').append(rationWidgetP2.domElem);
+        const playersImg = [];
+        for (let i = 0; i < nbPlayer; i++) {
+            const img = document.createElement('img');
+            img.src = "../res/bike2.svg";
+            img.style.position = "absolute";
+            img.style.width = "50px";
+            img.style.height = "50px";
+            document.body.appendChild(img);
+            playersImg.push(new Observer(img));
+        }
 
-        const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
-            document.getElementById('ration-container-p3').offsetLeft,
-            document.getElementById('ration-container-p3').offsetTop,
-            document.getElementById('ration-container-p3').offsetWidth,
-            document.getElementById('ration-container-p3').offsetHeight);
-        $('#ration-container-p3').append(rationWidgetP3.domElem);
-
-        const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
-            document.getElementById('ration-container-p4').offsetLeft,
-            document.getElementById('ration-container-p4').offsetTop,
-            document.getElementById('ration-container-p4').offsetWidth,
-            document.getElementById('ration-container-p4').offsetHeight);
-        $('#ration-container-p4').append(rationWidgetP4.domElem);
+        this.gameState = new GameState(nbPlayer, playersImg);
     }
 
-    initWidgets(nbPlayer){
-        const mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
+    drawRect(leftMargin, topMargin, width, height) {
+        const rectangle = document.createElement('div');
+        //rectangle.style.border = "2px black solid";
+        rectangle.style.backgroundColor = "orange";
+        rectangle.style.position = "absolute";
+        rectangle.style.top = topMargin + "px";
+        rectangle.style.left = leftMargin + "px";
+        rectangle.style.width = width + "px";
+        rectangle.style.height = height + "px";
+        document.body.appendChild(rectangle);
+    }
+
+    initWidgets(nbPlayer) {
+        this.mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
             document.getElementById('app').parentElement.parentElement.offsetTop,
             document.getElementById('app').offsetWidth,
             document.getElementById('app').offsetHeight);
-        $('#app').append(mapWidget.domElem);
+        $('#app').append(this.mapWidget.domElem);
 
-        if(nbPlayer >=1 ) {
+        if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
                 document.getElementById('ration-container-p1').offsetLeft,
                 document.getElementById('ration-container-p1').offsetTop,
@@ -148,7 +181,7 @@ class GameManager {
                 document.getElementById('ration-container-p1').offsetHeight);
             $('#ration-container-p1').append(rationWidgetP1.domElem);
         }
-        if(nbPlayer >= 2) {
+        if (nbPlayer >= 2) {
             const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
                 document.getElementById('ration-container-p2').offsetLeft,
                 document.getElementById('ration-container-p2').offsetTop,
@@ -157,7 +190,7 @@ class GameManager {
             $('#ration-container-p2').append(rationWidgetP2.domElem);
         }
 
-        if(nbPlayer >= 3) {
+        if (nbPlayer >= 3) {
             const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
                 document.getElementById('ration-container-p3').offsetLeft,
                 document.getElementById('ration-container-p3').offsetTop,
@@ -166,7 +199,7 @@ class GameManager {
             $('#ration-container-p3').append(rationWidgetP3.domElem);
         }
 
-        if(nbPlayer === 4) {
+        if (nbPlayer === 4) {
             const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
                 document.getElementById('ration-container-p4').offsetLeft,
                 document.getElementById('ration-container-p4').offsetTop,
@@ -193,7 +226,7 @@ class GameManager {
             document.getElementById('app').offsetHeight);
         $('#app').append(mapWidget.domElem);
 
-        if(nbPlayer >=1 ) {
+        if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
                 document.getElementById('ration-container-p1').offsetLeft,
                 document.getElementById('ration-container-p1').offsetTop,
@@ -201,7 +234,7 @@ class GameManager {
                 document.getElementById('ration-container-p1').offsetHeight);
             $('#ration-container-p1').append(rationWidgetP1.domElem);
         }
-        if(nbPlayer >= 2) {
+        if (nbPlayer >= 2) {
             const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
                 document.getElementById('ration-container-p2').offsetLeft,
                 document.getElementById('ration-container-p2').offsetTop,
@@ -210,7 +243,7 @@ class GameManager {
             $('#ration-container-p2').append(rationWidgetP2.domElem);
         }
 
-        if(nbPlayer >= 3) {
+        if (nbPlayer >= 3) {
             const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
                 document.getElementById('ration-container-p3').offsetLeft,
                 document.getElementById('ration-container-p3').offsetTop,
@@ -219,7 +252,7 @@ class GameManager {
             $('#ration-container-p3').append(rationWidgetP3.domElem);
         }
 
-        if(nbPlayer === 4) {
+        if (nbPlayer === 4) {
             const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
                 document.getElementById('ration-container-p4').offsetLeft,
                 document.getElementById('ration-container-p4').offsetTop,
@@ -236,7 +269,7 @@ class GameManager {
         $("#start-btn").hide();
         $("#header").hide();
         $("#connect").hide();
-        $("#main-container-board").css("display","block");
+        $("#main-container-board").css("display", "block");
 
 
     }
@@ -271,8 +304,6 @@ class GameManager {
                 $("#section-6").css("visibility", "hidden");
         }
     }
-
-
 }
 
 

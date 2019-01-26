@@ -17,7 +17,13 @@
             crossorigin="anonymous"></script>
     <title>Table 👌😂</title>
 </head>
-<body>
+<body style="height: 100vh">
+
+<div id="trueGame" style="display: block;z-index: 10000">
+
+</div>
+
+<!--
 
 <div class="header" id="header">
     <div class="jumbotron jumbotron-fluid text-center bg-danger text-white">
@@ -39,7 +45,8 @@
     </div>
 
     <div class="ready">
-        <button id="ready-btn"></button><br>
+        <button id="ready-btn"></button>
+        <br>
     </div>
 </div>
 
@@ -48,29 +55,29 @@
         <div class="inner-section corner-section" id="section-1">
         </div>
         <div class="inner-section long-edge" id="section-2">
-            <img class="picto picto-p2" id="chicken-p2" src="res/chicken.svg" height="20%" />
+            <img class="picto picto-p2" id="chicken-p2" src="res/chicken.svg" height="20%"/>
             <div class="level-outline-p2-left" id="chicken-outline-p2">
                 <div class="level-p2" id="chicken-level-p2"></div>
             </div>
-            <img class="picto picto-p2" id="water-p2" src="res/water.svg" height="20%" />
+            <img class="picto picto-p2" id="water-p2" src="res/water.svg" height="20%"/>
             <div class="level-outline-p2-left" id="water-outline-p2">
                 <div class="level-p2" id="water-level-p2"></div>
             </div>
-            <img class="picto picto-p2" id="energy-p2" src="res/energy.svg" height="20%" />
+            <img class="picto picto-p2" id="energy-p2" src="res/energy.svg" height="20%"/>
             <div class="level-outline-p2-left" id="energy-outline-p2">
                 <div class="level-p2" id="energy-level-p2"></div>
             </div>
 
-            <img class="picto picto-p2" id="mood-p2" src="res/mood.svg" height="20%" />
+            <img class="picto picto-p2" id="mood-p2" src="res/mood.svg" height="20%"/>
             <div class="level-outline-p2-right" id="mood-outline-p2">
                 <div class="level-p2" id="mood-level-p2"></div>
             </div>
-            <img class="picto picto-p2" id="thermometer-p2" src="res/thermometer.svg" height="20%" />
+            <img class="picto picto-p2" id="thermometer-p2" src="res/thermometer.svg" height="20%"/>
             <div class="level-outline-p2-right" id="thermometer-outline-p2">
                 <div class="level-p2" id="thermometer-level-p2"></div>
             </div>
 
-            <img class="picto picto-p2" id="bike-p2" src="res/bike.svg" height="20%" />
+            <img class="picto picto-p2" id="bike-p2" src="res/bike.svg" height="20%"/>
             <div class="level-outline-p2-right" id="bike-outline-p2">
                 <div class="level-p2" id="bike-level-p2"></div>
             </div>
@@ -82,29 +89,29 @@
     </div>
     <div class="section second-section">
         <div class="inner-section short-edge" id="section-4">
-            <img class="picto picto-p3" id="chicken-p3" src="res/chicken.svg" height="10%" />
+            <img class="picto picto-p3" id="chicken-p3" src="res/chicken.svg" height="10%"/>
             <div class="level-outline-p3-right" id="chicken-outline-p3">
                 <div class="level-p3" id="chicken-level-p3"></div>
             </div>
-            <img class="picto picto-p3" id="water-p3" src="res/water.svg" height="10%" />
+            <img class="picto picto-p3" id="water-p3" src="res/water.svg" height="10%"/>
             <div class="level-outline-p3-right" id="water-outline-p3">
                 <div class="level-p3" id="water-level-p3"></div>
             </div>
-            <img class="picto picto-p3" id="energy-p3" src="res/energy.svg" height="10%" />
+            <img class="picto picto-p3" id="energy-p3" src="res/energy.svg" height="10%"/>
             <div class="level-outline-p3-right" id="energy-outline-p3">
                 <div class="level-p3" id="energy-level-p3"></div>
             </div>
 
-            <img class="picto picto-p3" id="mood-p3" src="res/mood.svg" height="10%" />
+            <img class="picto picto-p3" id="mood-p3" src="res/mood.svg" height="10%"/>
             <div class="level-outline-p3-left" id="mood-outline-p3">
                 <div class="level-p3" id="mood-level-p3"></div>
             </div>
-            <img class="picto picto-p3" id="thermometer-p3" src="res/thermometer.svg" height="10%" />
+            <img class="picto picto-p3" id="thermometer-p3" src="res/thermometer.svg" height="10%"/>
             <div class="level-outline-p3-left" id="thermometer-outline-p3">
                 <div class="level-p3" id="thermometer-level-p3"></div>
             </div>
 
-            <img class="picto picto-p3" id="bike-p3" src="res/bike.svg" height="10%" />
+            <img class="picto picto-p3" id="bike-p3" src="res/bike.svg" height="10%"/>
             <div class="level-outline-p3-left" id="bike-outline-p3">
                 <div class="level-p3" id="bike-level-p3"></div>
             </div>
@@ -114,29 +121,29 @@
             <div id="app" style="width: 100%; height: 100%;"></div>
         </div>
         <div class="inner-section short-edge" id="section-6">
-            <img class="picto picto-p4" id="chicken-p4" src="res/chicken.svg" height="10%" />
+            <img class="picto picto-p4" id="chicken-p4" src="res/chicken.svg" height="10%"/>
             <div class="level-outline-p4-left" id="chicken-outline-p4">
                 <div class="level-p4" id="chicken-level-p4"></div>
             </div>
-            <img class="picto picto-p4" id="water-p4" src="res/water.svg" height="10%" />
+            <img class="picto picto-p4" id="water-p4" src="res/water.svg" height="10%"/>
             <div class="level-outline-p4-left" id="water-outline-p4">
                 <div class="level-p4" id="water-level-p4"></div>
             </div>
-            <img class="picto picto-p4" id="energy-p4" src="res/energy.svg" height="10%" />
+            <img class="picto picto-p4" id="energy-p4" src="res/energy.svg" height="10%"/>
             <div class="level-outline-p4-left" id="energy-outline-p4">
                 <div class="level-p4" id="energy-level-p4"></div>
             </div>
 
-            <img class="picto picto-p4" id="mood-p4" src="res/mood.svg" height="10%" />
+            <img class="picto picto-p4" id="mood-p4" src="res/mood.svg" height="10%"/>
             <div class="level-outline-p4-right" id="mood-outline-p4">
                 <div class="level-p4" id="mood-level-p4"></div>
             </div>
-            <img class="picto picto-p4" id="thermometer-p4" src="res/thermometer.svg" height="10%" />
+            <img class="picto picto-p4" id="thermometer-p4" src="res/thermometer.svg" height="10%"/>
             <div class="level-outline-p4-right" id="thermometer-outline-p4">
                 <div class="level-p4" id="thermometer-level-p4"></div>
             </div>
 
-            <img class="picto picto-p4" id="bike-p4" src="res/bike.svg" height="10%" />
+            <img class="picto picto-p4" id="bike-p4" src="res/bike.svg" height="10%"/>
             <div class="level-outline-p4-right" id="bike-outline-p4">
                 <div class="level-p4" id="bike-level-p4"></div>
             </div>
@@ -148,29 +155,29 @@
 
         </div>
         <div class="inner-section long-edge" id="section-8">
-            <img class="picto" id="chicken-p1" src="res/chicken.svg" height="20%" />
+            <img class="picto" id="chicken-p1" src="res/chicken.svg" height="20%"/>
             <div class="level-outline-p1-right" id="chicken-outline-p1">
                 <div class="level-p1" id="chicken-level-p1"></div>
             </div>
-            <img class="picto" id="water-p1" src="res/water.svg" height="20%" />
+            <img class="picto" id="water-p1" src="res/water.svg" height="20%"/>
             <div class="level-outline-p1-right" id="water-outline-p1">
                 <div class="level-p1" id="water-level-p1"></div>
             </div>
-            <img class="picto" id="energy-p1" src="res/energy.svg" height="20%" />
+            <img class="picto" id="energy-p1" src="res/energy.svg" height="20%"/>
             <div class="level-outline-p1-right" id="energy-outline-p1">
                 <div class="level-p1" id="energy-level-p1"></div>
             </div>
 
-            <img class="picto" id="mood-p1" src="res/mood.svg" height="20%" />
+            <img class="picto" id="mood-p1" src="res/mood.svg" height="20%"/>
             <div class="level-outline-p1-left" id="mood-outline-p1">
                 <div class="level-p1" id="mood-level-p1"></div>
             </div>
-            <img class="picto" id="thermometer-p1" src="res/thermometer.svg" height="20%" />
+            <img class="picto" id="thermometer-p1" src="res/thermometer.svg" height="20%"/>
             <div class="level-outline-p1-left" id="thermometer-outline-p1">
                 <div class="level-p1" id="thermometer-level-p1"></div>
             </div>
 
-            <img class="picto" id="bike-p1" src="res/bike.svg" height="20%" />
+            <img class="picto" id="bike-p1" src="res/bike.svg" height="20%"/>
             <div class="level-outline-p1-left" id="bike-outline-p1">
                 <div class="level-p1" id="bike-level-p1"></div>
             </div>
@@ -182,7 +189,7 @@
     </div>
 </div>
 
-
+-->
 </body>
 
 </html>

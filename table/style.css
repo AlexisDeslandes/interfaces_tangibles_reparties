@@ -112,6 +112,15 @@ div.main-container-board {
   div.main-container-board div.level-p2 {
     background-color: #fff;
     width: 100%; }
+  div.main-container-board div.substract-level {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    animation-name: substract;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    height: 0; }
   div.main-container-board #chicken-outline-p2, div.main-container-board #mood-outline-p2 {
     bottom: 5%; }
     div.main-container-board #chicken-outline-p2 #chicken-level-p2, div.main-container-board #chicken-outline-p2 #mood-level-p2, div.main-container-board #mood-outline-p2 #chicken-level-p2, div.main-container-board #mood-outline-p2 #mood-level-p2 {
@@ -295,6 +304,11 @@ div.main-container-board {
     -ms-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     transform: rotate(360deg); } }
+@keyframes substract {
+  from {
+    background-color: red; }
+  to {
+    background-color: white; } }
 .connect {
   margin: 0 auto;
   width: 100%;

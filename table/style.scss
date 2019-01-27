@@ -116,8 +116,6 @@ div.main-container-board {
   }
 
 
-
-
   div.level-outline-p3-right, div.level-outline-p3-left {
     @include transform(rotate(90deg));
     border: 1px solid $secondary;
@@ -187,6 +185,17 @@ div.main-container-board {
   div.level-p2 {
     background-color: $background;
     width: 100%;
+  }
+
+  div.substract-level {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    animation-name: substract;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    height: 0;
   }
 
   #chicken-outline-p2, #mood-outline-p2 {
@@ -451,6 +460,11 @@ div.main-container-board {
 @keyframes playanim {
   from {@include transform(rotate(0deg))}
   to {@include transform(rotate(360deg))}
+}
+
+@keyframes substract {
+  from {background-color: red;}
+  to {background-color: white;}
 }
 
 .connect{

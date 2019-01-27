@@ -66,12 +66,17 @@ class GameManager {
                 }
                 $("#substract-"+ jaugeName +"-level-p"+playerId).css("height", (delta*10)+"%");
                 $("#substract-"+ jaugeName +"-level-p"+playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10)+"%");
+                if (delta > 0)
+                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkred");
+                else if (delta < 0)
+                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkgreen");
                 $("#"+jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
             }
         }
 
         setTimeout(function() {
             $(".substract-level").css("height", 0);
+            $("div[class^=level-outline-p]").css("animation-name", "none");
         }, 6000);
 
     }

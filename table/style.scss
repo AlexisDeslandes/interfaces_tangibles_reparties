@@ -267,6 +267,10 @@ div.main-container-board {
     }
   }
 
+  div[class^=level-outline-p] {
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+  }
 
 
   div.long-edge {
@@ -457,16 +461,6 @@ div.main-container-board {
 
 }
 
-@keyframes playanim {
-  from {@include transform(rotate(0deg))}
-  to {@include transform(rotate(360deg))}
-}
-
-@keyframes substract {
-  from {background-color: red;}
-  to {background-color: white;}
-}
-
 .connect{
   margin:0 auto;
   width: 100%;
@@ -570,16 +564,23 @@ div.main-container-board {
 
 }
 
-#fab{
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width:300px;
-  height:70px;
-  background-color: #32db64;
-  text-align: center;
-  line-height: 70px;
-  border-radius:20px;
-  font-size:20px;
-  border:3px solid #222222;
+
+@keyframes playanim {
+  from {@include transform(rotate(0deg))}
+  to {@include transform(rotate(360deg))}
+}
+
+@keyframes substract {
+  from {background-color: white;}
+  to {background-color: red;}
+}
+
+@keyframes jaugeblinkred {
+  from {box-shadow: 0 0 10px 0 red;}
+  to {box-shadow: 0 0 10px 5px red;}
+}
+
+@keyframes jaugeblinkgreen {
+  from {box-shadow: 0 0 10px 0 green;}
+  to {box-shadow: 0 0 10px 5px green;}
 }

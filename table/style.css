@@ -164,6 +164,9 @@ div.main-container-board {
     left: 47%; }
     div.main-container-board #energy-outline-p4 #energy-level-p4, div.main-container-board #energy-outline-p4 #bike-level-p4, div.main-container-board #bike-outline-p4 #energy-level-p4, div.main-container-board #bike-outline-p4 #bike-level-p4 {
       height: 0; }
+  div.main-container-board div[class^=level-outline-p] {
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s; }
   div.main-container-board div.long-edge {
     width: 49.5%;
     overflow-y: hidden;
@@ -293,22 +296,6 @@ div.main-container-board {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.28), 0 3px 1px -2px rgba(0, 0, 0, 0.24), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
     transition: 0.25s box-shadow; }
 
-@keyframes playanim {
-  from {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-@keyframes substract {
-  from {
-    background-color: red; }
-  to {
-    background-color: white; } }
 .connect {
   margin: 0 auto;
   width: 100%;
@@ -404,17 +391,31 @@ div.main-container-board {
   .connect table {
     width: 100%; }
 
-#fab {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 300px;
-  height: 70px;
-  background-color: #32db64;
-  text-align: center;
-  line-height: 70px;
-  border-radius: 20px;
-  font-size: 20px;
-  border: 3px solid #222222; }
+@keyframes playanim {
+  from {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@keyframes substract {
+  from {
+    background-color: white; }
+  to {
+    background-color: red; } }
+@keyframes jaugeblinkred {
+  from {
+    box-shadow: 0 0 10px 0 red; }
+  to {
+    box-shadow: 0 0 10px 5px red; } }
+@keyframes jaugeblinkgreen {
+  from {
+    box-shadow: 0 0 10px 0 green; }
+  to {
+    box-shadow: 0 0 10px 5px green; } }
 
 /*# sourceMappingURL=style.css.map */

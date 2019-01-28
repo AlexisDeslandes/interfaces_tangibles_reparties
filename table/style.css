@@ -315,6 +315,21 @@ div.main-container-board {
     animation-timing-function: linear; }
   .connect .qr_code {
     position: absolute; }
+  .connect .connected-block {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    display: none;
+    box-shadow: 1px 1px 10px; }
+  .connect span.player-connected {
+    font-weight: bold;
+    display: block;
+    margin-top: 50%;
+    color: white;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%); }
   .connect .ready {
     position: absolute;
     width: 100px;
@@ -325,28 +340,36 @@ div.main-container-board {
     -ms-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
-  .connect #qr_1 {
+  .connect #connected_1 {
+    background-color: #a22b28; }
+  .connect #connected_2 {
+    background-color: #393bb5; }
+  .connect #connected_3 {
+    background-color: #007207; }
+  .connect #connected_4 {
+    background-color: #b8b918; }
+  .connect #qr_1, .connect #connected_1 {
     left: 50%;
     bottom: 5%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     transform: translateX(-50%); }
-  .connect #qr_2 {
+  .connect #qr_2, .connect #connected_2 {
     left: 50%;
     top: 5%;
     -webkit-transform: translateX(-50%) rotate(180deg);
     -ms-transform: translateX(-50%) rotate(180deg);
     -moz-transform: translateX(-50%) rotate(180deg);
     transform: translateX(-50%) rotate(180deg); }
-  .connect #qr_3 {
+  .connect #qr_3, .connect #connected_3 {
     left: 3%;
     top: 50%;
     -webkit-transform: translateY(-50%) rotate(90deg);
     -ms-transform: translateY(-50%) rotate(90deg);
     -moz-transform: translateY(-50%) rotate(90deg);
     transform: translateY(-50%) rotate(90deg); }
-  .connect #qr_4 {
+  .connect #qr_4, .connect #connected_4 {
     right: 3%;
     top: 50%;
     -webkit-transform: translateY(-50%) rotate(270deg);
@@ -417,5 +440,15 @@ div.main-container-board {
     box-shadow: 0 0 10px 0 green; }
   to {
     box-shadow: 0 0 10px 5px green; } }
+@keyframes scale-center {
+  0% {
+    transform: scale(0); }
+  100% {
+    transform: scale(1); } }
+@keyframes scale-vertical {
+  from {
+    height: 0; }
+  tp {
+    height: 150px; } }
 
 /*# sourceMappingURL=style.css.map */

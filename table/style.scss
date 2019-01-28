@@ -1,7 +1,7 @@
 
 $colorP1: #a22b28;
-$colorp2: #393bb5;
-$colorp3: #007207;
+$colorP2: #393bb5;
+$colorP3: #007207;
 $colorP4: #b8b918;
 
 $background: #fff;
@@ -340,7 +340,7 @@ div.main-container-board {
     }
 
     div.ration-zone-p2 {
-      background-color: $colorp2;
+      background-color: $colorP2;
       bottom: 72%;
     }
 
@@ -410,7 +410,7 @@ div.main-container-board {
     }
 
     div.ration-zone-p3 {
-      background-color: $colorp3;
+      background-color: $colorP3;
       top: 50%;
       right: 85%;
       @include transform(translateY(-50%));
@@ -485,6 +485,22 @@ div.main-container-board {
     position: absolute;
   }
 
+  .connected-block {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    display: none;
+    box-shadow: 1px 1px 10px;
+  }
+
+  span.player-connected {
+    font-weight: bold;
+    display: block;
+    margin-top: 50%;
+    color: white;
+    @include transform(translateY(-50%));
+  }
+
   .ready {
     position: absolute;
     width: 100px;
@@ -494,25 +510,41 @@ div.main-container-board {
     @include transform(translate(-50%, -50%));
   }
 
-  #qr_1 {
+  #connected_1 {
+    background-color: $colorP1;
+  }
+
+  #connected_2 {
+    background-color: $colorP2;
+  }
+
+  #connected_3 {
+    background-color: $colorP3;
+  }
+
+  #connected_4 {
+    background-color: $colorP4;
+  }
+
+  #qr_1, #connected_1 {
     left: 50%;
     bottom: 5%;
     @include transform(translateX(-50%));
   }
 
-  #qr_2 {
+  #qr_2, #connected_2 {
     left: 50%;
     top: 5%;
     @include transform(translateX(-50%) rotate(180deg));
   }
 
-  #qr_3 {
+  #qr_3, #connected_3 {
     left: 3%;
     top: 50%;
     @include transform(translateY(-50%) rotate(90deg));
   }
 
-  #qr_4 {
+  #qr_4, #connected_4 {
     right: 3%;
     top: 50%;
     @include transform(translateY(-50%) rotate(270deg));
@@ -583,4 +615,18 @@ div.main-container-board {
 @keyframes jaugeblinkgreen {
   from {box-shadow: 0 0 10px 0 green;}
   to {box-shadow: 0 0 10px 5px green;}
+}
+
+@keyframes scale-center {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-vertical {
+  from {height: 0;}
+  tp {height: 150px;}
 }

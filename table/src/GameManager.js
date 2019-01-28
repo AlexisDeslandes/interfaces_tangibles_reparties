@@ -33,6 +33,7 @@ class GameManager {
 
         this.socket.on('joined', data => {
             $("#qr_"+data.player).hide();
+            $("#connected_"+data.player).show();
         });
 
 

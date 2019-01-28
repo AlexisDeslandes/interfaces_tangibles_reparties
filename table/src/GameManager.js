@@ -49,6 +49,12 @@ class GameManager {
                 this.jauges = data.jauges;
             }
 
+            $(".smartphone-picto").css("display", "block");
+
+            setTimeout(function() {
+                $(".smartphone-picto").css("display", "none");
+                }, 6000);
+
             self.updateJauges(data.jauges);
 
         });

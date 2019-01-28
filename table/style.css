@@ -133,6 +133,10 @@ div.main-container-board {
     bottom: 55%; }
     div.main-container-board #energy-outline-p2 #energy-level-p2, div.main-container-board #energy-outline-p2 #bike-level-p2, div.main-container-board #bike-outline-p2 #energy-level-p2, div.main-container-board #bike-outline-p2 #bike-level-p2 {
       height: 0; }
+  div.main-container-board img.smartphone-picto {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    display: none; }
   div.main-container-board div.level-outline-p4-right, div.main-container-board div.level-outline-p4-left {
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
@@ -171,6 +175,22 @@ div.main-container-board {
     width: 49.5%;
     overflow-y: hidden;
     position: relative; }
+    div.main-container-board div.long-edge img.smartphone-picto.picto-p1 {
+      left: 50%;
+      bottom: 50%;
+      -webkit-transform: translate(-50%);
+      -ms-transform: translate(-50%);
+      -moz-transform: translate(-50%);
+      transform: translate(-50%);
+      animation-name: phone-tilt-p1; }
+    div.main-container-board div.long-edge img.smartphone-picto.picto-p2 {
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%) rotate(180deg);
+      -ms-transform: translate(-50%) rotate(180deg);
+      -moz-transform: translate(-50%) rotate(180deg);
+      transform: translate(-50%) rotate(180deg);
+      animation-name: phone-tilt-p2; }
     div.main-container-board div.long-edge img.picto-p2 {
       -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
@@ -229,6 +249,22 @@ div.main-container-board {
       -ms-transform: rotate(270deg);
       -moz-transform: rotate(270deg);
       transform: rotate(270deg); }
+    div.main-container-board div.short-edge img.smartphone-picto.picto-p3 {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translateY(-50%) rotate(90deg);
+      -ms-transform: translateY(-50%) rotate(90deg);
+      -moz-transform: translateY(-50%) rotate(90deg);
+      transform: translateY(-50%) rotate(90deg);
+      animation-name: phone-tilt-p3; }
+    div.main-container-board div.short-edge img.smartphone-picto.picto-p4 {
+      top: 50%;
+      right: 50%;
+      -webkit-transform: translateY(-50%) rotate(270deg);
+      -ms-transform: translateY(-50%) rotate(270deg);
+      -moz-transform: translateY(-50%) rotate(270deg);
+      transform: translateY(-50%) rotate(270deg);
+      animation-name: phone-tilt-p4; }
     div.main-container-board div.short-edge #chicken-p3, div.main-container-board div.short-edge #water-p3, div.main-container-board div.short-edge #energy-p3 {
       bottom: 15%; }
     div.main-container-board div.short-edge #mood-p4, div.main-container-board div.short-edge #thermometer-p4, div.main-container-board div.short-edge #bike-p4 {
@@ -448,7 +484,51 @@ div.main-container-board {
 @keyframes scale-vertical {
   from {
     height: 0; }
-  tp {
+  to {
     height: 150px; } }
+@keyframes phone-tilt-p1 {
+  from {
+    -webkit-transform: translate(-50%) rotateX(0);
+    -ms-transform: translate(-50%) rotateX(0);
+    -moz-transform: translate(-50%) rotateX(0);
+    transform: translate(-50%) rotateX(0); }
+  to {
+    -webkit-transform: translate(-50%) rotateX(-40deg);
+    -ms-transform: translate(-50%) rotateX(-40deg);
+    -moz-transform: translate(-50%) rotateX(-40deg);
+    transform: translate(-50%) rotateX(-40deg); } }
+@keyframes phone-tilt-p2 {
+  from {
+    -webkit-transform: translate(-50%) rotate(180deg) rotateX(0);
+    -ms-transform: translate(-50%) rotate(180deg) rotateX(0);
+    -moz-transform: translate(-50%) rotate(180deg) rotateX(0);
+    transform: translate(-50%) rotate(180deg) rotateX(0); }
+  to {
+    -webkit-transform: translate(-50%) rotate(180deg) rotateX(-40deg);
+    -ms-transform: translate(-50%) rotate(180deg) rotateX(-40deg);
+    -moz-transform: translate(-50%) rotate(180deg) rotateX(-40deg);
+    transform: translate(-50%) rotate(180deg) rotateX(-40deg); } }
+@keyframes phone-tilt-p3 {
+  from {
+    -webkit-transform: translateY(-50%) rotate(90deg) rotateX(0);
+    -ms-transform: translateY(-50%) rotate(90deg) rotateX(0);
+    -moz-transform: translateY(-50%) rotate(90deg) rotateX(0);
+    transform: translateY(-50%) rotate(90deg) rotateX(0); }
+  to {
+    -webkit-transform: translateY(-50%) rotate(90deg) rotateX(-40deg);
+    -ms-transform: translateY(-50%) rotate(90deg) rotateX(-40deg);
+    -moz-transform: translateY(-50%) rotate(90deg) rotateX(-40deg);
+    transform: translateY(-50%) rotate(90deg) rotateX(-40deg); } }
+@keyframes phone-tilt-p4 {
+  from {
+    -webkit-transform: translateY(-50%) rotate(270deg) rotateX(0);
+    -ms-transform: translateY(-50%) rotate(270deg) rotateX(0);
+    -moz-transform: translateY(-50%) rotate(270deg) rotateX(0);
+    transform: translateY(-50%) rotate(270deg) rotateX(0); }
+  to {
+    -webkit-transform: translateY(-50%) rotate(270deg) rotateX(-40deg);
+    -ms-transform: translateY(-50%) rotate(270deg) rotateX(-40deg);
+    -moz-transform: translateY(-50%) rotate(270deg) rotateX(-40deg);
+    transform: translateY(-50%) rotate(270deg) rotateX(-40deg); } }
 
 /*# sourceMappingURL=style.css.map */

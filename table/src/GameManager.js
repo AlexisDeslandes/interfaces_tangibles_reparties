@@ -10,6 +10,8 @@ class GameManager {
 
         this.socket = io.connect('http://localhost:4444');
 
+        this.jauges = {};
+
         let self = this;
         self.init = true;
         this.connectDiv = $("#connect");
@@ -31,21 +33,27 @@ class GameManager {
 
         this.socket.on('joined', data => {
             $("#qr_"+data.player).hide();
+            $("#connected_"+data.player).show();
         });
 
 
 
         this.socket.on('start', data => {
             self.showMap();
-            //self.showGame()
-            console.log('NEW STEP STARTING');
             let nbPlayers = Object.keys(data.jauges).length;
             if(self.init){
                 self.showMap();
                 self.adaptTable(nbPlayers);
                 self.initWidgets(nbPlayers);
                 self.init = false;
+                this.jauges = data.jauges;
             }
+
+            $(".smartphone-picto").css("display", "block");
+
+            setTimeout(function() {
+                $(".smartphone-picto").css("display", "none");
+                }, 6000);
 
             self.updateJauges(data.jauges);
 
@@ -56,11 +64,28 @@ class GameManager {
     }
 
     updateJauges(jauges) {
+
         for (let playerId in jauges) {
             for (let jaugeName in jauges[playerId]) {
-                document.getElementById(jaugeName + "-level-p" + playerId).style.height = ((10 - jauges[playerId][jaugeName]) * 10) + "%";
+                let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
+                if (delta !== 0) {
+                    this.jauges[playerId][jaugeName] = jauges[playerId][jaugeName];
+                }
+                $("#substract-"+ jaugeName +"-level-p"+playerId).css("height", (delta*10)+"%");
+                $("#substract-"+ jaugeName +"-level-p"+playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10)+"%");
+                if (delta > 0)
+                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkred");
+                else if (delta < 0)
+                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkgreen");
+                $("#"+jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
             }
         }
+
+        setTimeout(function() {
+            $(".substract-level").css("height", 0);
+            $("div[class^=level-outline-p]").css("animation-name", "none");
+        }, 6000);
+
     }
 
     ready() {
@@ -181,53 +206,6 @@ class GameManager {
 
     }
 
-
-    showAndHideMap() {
-        $("#start-btn").hide();
-        $("#header").hide();
-        $("#connect").hide();
-        $("#main-container-board").css("display", "block");
-        const mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
-            document.getElementById('app').parentElement.parentElement.offsetTop,
-            document.getElementById('app').offsetWidth,
-            document.getElementById('app').offsetHeight);
-        $('#app').append(mapWidget.domElem);
-
-        if(nbPlayer >=1 ) {
-            const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
-                document.getElementById('ration-container-p1').offsetLeft,
-                document.getElementById('ration-container-p1').offsetTop,
-                document.getElementById('ration-container-p1').offsetWidth,
-                document.getElementById('ration-container-p1').offsetHeight);
-            $('#ration-container-p1').append(rationWidgetP1.domElem);
-        }
-        if(nbPlayer >= 2) {
-            const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
-                document.getElementById('ration-container-p2').offsetLeft,
-                document.getElementById('ration-container-p2').offsetTop,
-                document.getElementById('ration-container-p2').offsetWidth,
-                document.getElementById('ration-container-p2').offsetHeight);
-            $('#ration-container-p2').append(rationWidgetP2.domElem);
-        }
-
-        if(nbPlayer >= 3) {
-            const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
-                document.getElementById('ration-container-p3').offsetLeft,
-                document.getElementById('ration-container-p3').offsetTop,
-                document.getElementById('ration-container-p3').offsetWidth,
-                document.getElementById('ration-container-p3').offsetHeight);
-            $('#ration-container-p3').append(rationWidgetP3.domElem);
-        }
-
-        if(nbPlayer === 4) {
-            const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
-                document.getElementById('ration-container-p4').offsetLeft,
-                document.getElementById('ration-container-p4').offsetTop,
-                document.getElementById('ration-container-p4').offsetWidth,
-                document.getElementById('ration-container-p4').offsetHeight);
-            $('#ration-container-p4').append(rationWidgetP4.domElem);
-        }
-    }
 
     showMap() {
 

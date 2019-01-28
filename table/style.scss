@@ -1,7 +1,7 @@
 
 $colorP1: #a22b28;
-$colorp2: #393bb5;
-$colorp3: #007207;
+$colorP2: #393bb5;
+$colorP3: #007207;
 $colorP4: #b8b918;
 
 $background: #fff;
@@ -116,8 +116,6 @@ div.main-container-board {
   }
 
 
-
-
   div.level-outline-p3-right, div.level-outline-p3-left {
     @include transform(rotate(90deg));
     border: 1px solid $secondary;
@@ -189,6 +187,17 @@ div.main-container-board {
     width: 100%;
   }
 
+  div.substract-level {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    animation-name: substract;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    height: 0;
+  }
+
   #chicken-outline-p2, #mood-outline-p2 {
     bottom: 5%;
     #chicken-level-p2, #mood-level-p2 {
@@ -211,6 +220,11 @@ div.main-container-board {
   }
 
 
+  img.smartphone-picto {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    display: none;
+  }
 
 
   div.level-outline-p4-right, div.level-outline-p4-left {
@@ -258,12 +272,30 @@ div.main-container-board {
     }
   }
 
+  div[class^=level-outline-p] {
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+  }
 
 
   div.long-edge {
     width: 49.5%;
     overflow-y: hidden;
     position: relative;
+
+    img.smartphone-picto.picto-p1 {
+      left: 50%;
+      bottom: 50%;
+      @include transform(translate(-50%));
+      animation-name: phone-tilt-p1;
+    }
+
+    img.smartphone-picto.picto-p2 {
+      left: 50%;
+      top: 50%;
+      @include transform(translate(-50%) rotate(180deg));
+      animation-name: phone-tilt-p2;
+    }
 
     img.picto-p2 {
       @include transform(rotate(180deg));
@@ -327,7 +359,7 @@ div.main-container-board {
     }
 
     div.ration-zone-p2 {
-      background-color: $colorp2;
+      background-color: $colorP2;
       bottom: 72%;
     }
 
@@ -344,6 +376,20 @@ div.main-container-board {
 
     img.picto-p4 {
       @include transform(rotate(270deg));
+    }
+
+    img.smartphone-picto.picto-p3 {
+      top: 50%;
+      left: 50%;
+      @include transform(translateY(-50%) rotate(90deg));
+      animation-name: phone-tilt-p3;
+    }
+
+    img.smartphone-picto.picto-p4 {
+      top: 50%;
+      right: 50%;
+      @include transform(translateY(-50%) rotate(270deg));
+      animation-name: phone-tilt-p4;
     }
 
     #chicken-p3, #water-p3, #energy-p3 {
@@ -397,7 +443,7 @@ div.main-container-board {
     }
 
     div.ration-zone-p3 {
-      background-color: $colorp3;
+      background-color: $colorP3;
       top: 50%;
       right: 85%;
       @include transform(translateY(-50%));
@@ -448,11 +494,6 @@ div.main-container-board {
 
 }
 
-@keyframes playanim {
-  from {@include transform(rotate(0deg))}
-  to {@include transform(rotate(360deg))}
-}
-
 .connect{
   margin:0 auto;
   width: 100%;
@@ -477,6 +518,22 @@ div.main-container-board {
     position: absolute;
   }
 
+  .connected-block {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    display: none;
+    box-shadow: 1px 1px 10px;
+  }
+
+  span.player-connected {
+    font-weight: bold;
+    display: block;
+    margin-top: 50%;
+    color: white;
+    @include transform(translateY(-50%));
+  }
+
   .ready {
     position: absolute;
     width: 100px;
@@ -486,25 +543,41 @@ div.main-container-board {
     @include transform(translate(-50%, -50%));
   }
 
-  #qr_1 {
+  #connected_1 {
+    background-color: $colorP1;
+  }
+
+  #connected_2 {
+    background-color: $colorP2;
+  }
+
+  #connected_3 {
+    background-color: $colorP3;
+  }
+
+  #connected_4 {
+    background-color: $colorP4;
+  }
+
+  #qr_1, #connected_1 {
     left: 50%;
     bottom: 5%;
     @include transform(translateX(-50%));
   }
 
-  #qr_2 {
+  #qr_2, #connected_2 {
     left: 50%;
     top: 5%;
     @include transform(translateX(-50%) rotate(180deg));
   }
 
-  #qr_3 {
+  #qr_3, #connected_3 {
     left: 3%;
     top: 50%;
     @include transform(translateY(-50%) rotate(90deg));
   }
 
-  #qr_4 {
+  #qr_4, #connected_4 {
     right: 3%;
     top: 50%;
     @include transform(translateY(-50%) rotate(270deg));
@@ -556,16 +629,57 @@ div.main-container-board {
 
 }
 
-#fab{
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width:300px;
-  height:70px;
-  background-color: #32db64;
-  text-align: center;
-  line-height: 70px;
-  border-radius:20px;
-  font-size:20px;
-  border:3px solid #222222;
+
+@keyframes playanim {
+  from {@include transform(rotate(0deg))}
+  to {@include transform(rotate(360deg))}
+}
+
+@keyframes substract {
+  from {background-color: white;}
+  to {background-color: red;}
+}
+
+@keyframes jaugeblinkred {
+  from {box-shadow: 0 0 10px 0 red;}
+  to {box-shadow: 0 0 10px 5px red;}
+}
+
+@keyframes jaugeblinkgreen {
+  from {box-shadow: 0 0 10px 0 green;}
+  to {box-shadow: 0 0 10px 5px green;}
+}
+
+@keyframes scale-center {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-vertical {
+  from {height: 0;}
+  to {height: 150px;}
+}
+
+@keyframes phone-tilt-p1 {
+  from {@include transform(translate(-50%) rotateX(0));}
+  to {@include transform(translate(-50%) rotateX(-40deg));}
+}
+
+@keyframes phone-tilt-p2 {
+  from {@include transform(translate(-50%) rotate(180deg) rotateX(0));}
+  to {@include transform(translate(-50%) rotate(180deg) rotateX(-40deg));}
+}
+
+@keyframes phone-tilt-p3 {
+  from {@include transform(translateY(-50%) rotate(90deg) rotateX(0));}
+  to {@include transform(translateY(-50%) rotate(90deg) rotateX(-40deg));}
+}
+
+@keyframes phone-tilt-p4 {
+  from {@include transform(translateY(-50%) rotate(270deg) rotateX(0));}
+  to {@include transform(translateY(-50%) rotate(270deg) rotateX(-40deg));}
 }

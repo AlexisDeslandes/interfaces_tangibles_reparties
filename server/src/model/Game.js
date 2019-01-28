@@ -10,16 +10,10 @@ module.exports = class Game {
         this.tableSocket = tableSocket;
         this.currentStep = 0;
         this.readyCount = 0;
-
         this.temperature = 35;
         this.jauges = {};
-
         this.adventureSteps = scenario;
-
-        this.veloGame = new VeloGame(nbPlayers);
-
         console.log("new game created : " + room)
-
 
     }
 
@@ -36,6 +30,7 @@ module.exports = class Game {
     tableIsReady() {
         if (this.players.length > 0) {
             this.nbPlayers = this.players.length;
+            this.veloGame = new VeloGame(this.nbPlayers);
             this.nextStep();
         } else console.log("can't start a game with 0 players")
     }
@@ -46,7 +41,7 @@ module.exports = class Game {
 
     addPlayer(socket, m) {
         if (this.gameState === "init" && !this.alreadyInGame(socket.id)) {
-            this.jauges[this.players.length+1] = {"mood": 10, "bike": 10, "chicken": 11, "water": 11, "energy": 10};
+            this.jauges[this.players.length + 1] = {"mood": 10, "bike": 10, "chicken": 11, "water": 11, "energy": 10};
 
             this.players.push({
                 socket: socket,
@@ -136,7 +131,7 @@ module.exports = class Game {
 
             } else if (m.id === 7) {
                 this.jauges[m.player].mood += 1;
-                console.log("Joueur "+m.player+" utilise des antidepresseurs");
+                console.log("Joueur " + m.player + " utilise des antidepresseurs");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;
@@ -149,11 +144,30 @@ module.exports = class Game {
 
     joinGame(playerId) {
         const isGameReady = this.veloGame.playerJoin();
-        if (isGameReady){
-            this.sendToAllPlayers("playerJoinedVelo", {status:"playerJoinedVelo",playerId: playerId})
-        }else{
-            this.sendToAllPlayers("veloReady",{status:"veloReady"});
+        if (isGameReady) {
+            this.sendToAllPlayers("veloReady", {status: "veloReady"});
+            setTimeout(() => {
+                this.tableSocket.emit("askTableDataGame", {playersCount: this.players.length})
+            }, 5000)
+        } else {
+            this.sendToAllPlayers("playerJoinedVelo", {status: "playerJoinedVelo", playerId: playerId})
         }
+    }
+
+    makeYouMove(playerId) {
+        this.veloGame.makePlayerMove(playerId);
+    }
+
+    setPlayerData(state) {
+        this.veloGame.setState(state);
+        setInterval(() => {
+            this.tableSocket.emit('stateGame', this.veloGame.getState());
+            this.veloGame.players.forEach(player => player.back());
+        }, 16)
+    }
+
+    moveSideRequest(player, x) {
+        this.veloGame.makePlayerMoveSide(player, x);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////

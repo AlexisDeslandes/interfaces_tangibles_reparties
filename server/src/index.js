@@ -26,13 +26,13 @@ io.on('connection', socket => {
     socket.on('join', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.addPlayer(socket,m)
+            game.addPlayer(socket, m)
         } else {
             console.log("requested game does not exists")
         }
     });
 
-    socket.on('ready',m=>{
+    socket.on('ready', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.playerIsReady(socket)
@@ -41,7 +41,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('table-ready',m=>{
+    socket.on('table-ready', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.tableIsReady(socket)
@@ -49,7 +49,6 @@ io.on('connection', socket => {
             console.log("requested game does not exists")
         }
     });
-
 
 
     socket.on('next', m => {
@@ -62,7 +61,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on("message", m =>{
+    socket.on("message", m => {
         console.log(m)
     });
 
@@ -76,7 +75,7 @@ io.on('connection', socket => {
     });
 
     socket.on("map", m => {
-        console.log("Map tag received: "+ m);
+        console.log("Map tag received: " + m);
         if (m === 1) {
             socket.emit("map-changed", {
                 img: 'https://images.ecosia.org/QljWRzschFge6Sg5DthS2uAklcc=/0x390/smart/http%3A%2F%2Fwww.weathergraphics.com%2Fedu%2Fforecastcenter%2Ffc_2010-0304-b.jpg'
@@ -93,13 +92,12 @@ io.on('connection', socket => {
     });
 
     socket.on("ration", m => {
-        console.log("Ration tag received: "+ m.id + "  "+ m.player+ "   "+ m.gameRoom);
-        if(m.gameRoom !== null) {
+        console.log("Ration tag received: " + m.id + "  " + m.player + "   " + m.gameRoom);
+        if (m.gameRoom !== null) {
             let game = getGameByRoomName(m.gameRoom);
             game.useRation(m);
         }
     })
-
 
 
     /////////////////////////////////////////////////// GAME /////////////////////////////////////////////////////////////
@@ -111,12 +109,38 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
+    });
+
+    socket.on("moveRequest", m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.makeYouMove(m.player);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
+    socket.on("gamePreparation", data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.setPlayerData(data.state);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
+    socket.on('moveSideRequest', data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.moveSideRequest(data.player,data.y);
+        } else {
+            console.log("requested game does not exists")
+        }
     })
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
-
 
 
 http.listen(4444, function () {

@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Guideline2Page} from "../guideline2/guideline2";
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
+import {Gyroscope} from "@ionic-native/gyroscope";
+import {ReadyPage} from "../ready/ready";
 
 /**
  * Generated class for the GamePage page.
@@ -23,6 +25,9 @@ export class GamePage {
   private sendRight: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
+    Gyroscope.watch({frequency: 16}).subscribe(value => {
+      this.socket.sendMoveSideRequest(value.y);
+    });
   }
 
   private rolling(background) {

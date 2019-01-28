@@ -31,9 +31,14 @@ export class SocketManagerProvider {
     socket.on("start", (data) => {
       this.state = data;
       this.emit();
-    })
+    });
 
     socket.on("playerJoinedVelo", (data) => {
+      this.state = data;
+      this.emit()
+    });
+
+    socket.on("veloReady", (data) => {
       this.state = data;
       this.emit()
     })
@@ -66,5 +71,9 @@ export class SocketManagerProvider {
 
   sendMoveRequest() {
     this.socket.emit("moveRequest", {room: this.room, player: this.player});
+  }
+
+  sendMoveSideRequest(y: number) {
+    this.socket.emit("moveSideRequest", {room: this.room, player: this.player, y: y * 10})
   }
 }

@@ -15,12 +15,12 @@ export class Player {
                 this.y = height - 50;
                 break;
             case 2:
-                this.x = 0;
-                this.y = (height / 2) - 25;
-                break;
-            case 3:
                 this.x = (width / 2) - 25;
                 this.y = 0;
+                break;
+            case 3:
+                this.x = 0;
+                this.y = (height / 2) - 25;
                 break;
             default:
                 this.x = width - 50;

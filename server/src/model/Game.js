@@ -15,7 +15,6 @@ module.exports = class Game {
         this.adventureSteps = scenario;
         console.log("new game created : " + room)
 
-
     }
 
     playerIsReady(socket) {
@@ -148,7 +147,7 @@ module.exports = class Game {
         if (isGameReady) {
             this.sendToAllPlayers("veloReady", {status: "veloReady"});
             setTimeout(() => {
-                this.tableSocket.emit("gameIsReady", this.veloGame.getState())
+                this.tableSocket.emit("askTableDataGame", {playersCount: this.players.length})
             }, 5000)
         } else {
             this.sendToAllPlayers("playerJoinedVelo", {status: "playerJoinedVelo", playerId: playerId})
@@ -158,6 +157,10 @@ module.exports = class Game {
     makeYouMove(playerId) {
         const stateGame = this.veloGame.makePlayerMove(playerId);
         this.tableSocket.emit("stateGame", stateGame)
+    }
+
+    setPlayerData(state) {
+        this.veloGame.setState(state)
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////

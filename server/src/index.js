@@ -109,12 +109,21 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
-    })
+    });
 
     socket.on("moveRequest", m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.makeYouMove(m.player);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
+    socket.on("gamePreparation", data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.setPlayerData(data.state);
         } else {
             console.log("requested game does not exists")
         }

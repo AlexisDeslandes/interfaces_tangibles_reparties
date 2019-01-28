@@ -31,7 +31,7 @@ export class ReadyPage {
         const timeOut: number = setInterval(() => {
           if (--this.seconds === 0) {
             clearTimeout(timeOut);
-            this.navCtrl.push(GamePage)
+            this.navCtrl.push(GamePage,{playersCount : this.players});
           }
         }, 1000);
       }

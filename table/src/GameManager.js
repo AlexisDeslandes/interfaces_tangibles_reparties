@@ -9,11 +9,13 @@ class GameManager {
 
     constructor() {
 
-        this.showGame(4)
-
-        /*
 
         this.socket = io.connect('http://localhost:4444');
+
+        this.socket.on("askTableDataGame", (data) => {
+            this.showGame(data.playersCount);
+        });
+
 
         let self = this;
         self.init = true;
@@ -54,34 +56,14 @@ class GameManager {
             self.updateJauges(data.jauges);
 
         });
-
-        this.socket.on('gameIsReady', gameState => {
-            self.showGame();
-            const players = gameState.players;
-            self.playersImg = players.map(() => {
-                //const playerImg = document.createElement("img");
-                //document.body.appendChild(playerImg);
-                //return playerImg;
-            });
-            self.placePlayers(gameState);
-        });
         this.gameRoom = null;
-        */
-    }
 
-    placePlayers(gameState) {
-        for (let player in gameState.players) {
-            console.log(player);
-            console.log(this.playersImg);
-            const playerImg = this.playersImg[player.id - 1];
-            if (player.id == 1) {
-                //playerImg.style.position = "absolute";
-                //const top = document.getElementById('ration-container-p1').offsetTop + document.getElementById('app').offsetTop;
-                //const left = document.getElementById('ration-container-p1').offsetLeft + document.get
-                //playerImg.style.top = top + "px";
-
+        this.socket.on("stateGame", (data) => {
+            const players = data.players;
+            for (let i = 0; i < players.length; i++) {
+                this.gameState.players[i].setCoordinates(players[i].x, players[i].y);
             }
-        }
+        })
     }
 
     updateJauges(jauges) {
@@ -123,11 +105,8 @@ class GameManager {
     }
 
     showGame(nbPlayer) {
-
         const width = document.body.clientWidth;
         const height = document.body.clientHeight;
-        console.log(width);
-        console.log(height);
         const trueGame = document.getElementById("trueGame");
         trueGame.style.backgroundColor = "white";
         trueGame.style.display = "block";
@@ -135,15 +114,20 @@ class GameManager {
         trueGame.style.height = "100%";
         const sizeRect = height / 3;
         const halfSize = sizeRect / 2;
-        this.drawRect((width / 2) - halfSize, 0, sizeRect, (height / 2));
-        this.drawRect(0, (height / 2) - halfSize, (height / 2), sizeRect);
-        this.drawRect((width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));
-        this.drawRect(width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect);
+        this.drawRect((width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
+        this.drawRect(0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
+        this.drawRect((width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
+        this.drawRect(width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect);   //joueur 4
 
         const playersImg = [];
         for (let i = 0; i < nbPlayer; i++) {
             const img = document.createElement('img');
             img.src = "../res/bike2.svg";
+            let velo1 = true;
+            setInterval(() => {
+                img.src = velo1 ? "../res/bike2.svg" : "../res/bayke.svg";
+                velo1 = !velo1;
+            }, 200);
             img.style.position = "absolute";
             img.style.width = "50px";
             img.style.height = "50px";
@@ -165,6 +149,118 @@ class GameManager {
         }
 
         this.gameState = new GameState(nbPlayer, playersImg);
+        const state = nbPlayer === 1
+            ? this.generateState1(width, height, halfSize, sizeRect)
+            : nbPlayer === 2
+                ? this.generateState2(width, height, halfSize, sizeRect)
+                : nbPlayer === 3
+                    ? this.generateState3(width, height, halfSize, sizeRect)
+                    : this.generateState4(width, height, halfSize, sizeRect);
+
+        this.socket.emit('gamePreparation', {
+            room: this.gameRoom,
+            state: state
+        });
+    }
+
+    generateState1(width, height, halfSize, sizeRect) {
+        return {
+            "player1": {
+                "x": this.gameState.players[0].x,
+                "y": this.gameState.players[0].y,
+                "left": (width / 2) - halfSize,
+                "leftMax": (width / 2) - halfSize + sizeRect,
+                "top": 0.5 * height,
+                "topMax": height
+            }
+        }
+    }
+
+    generateState2(width, height, halfSize, sizeRect) {
+        return {
+            "player1": {
+                "x": this.gameState.players[0].x,
+                "y": this.gameState.players[0].y,
+                "left": (width / 2) - halfSize,
+                "leftMax": (width / 2) - halfSize + sizeRect,
+                "top": 0.5 * height,
+                "topMax": height
+            },
+            "player2": {
+                "x": this.gameState.players[1].x,
+                "y": this.gameState.players[1].y,
+                "left": 0.5 * width - halfSize,
+                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "top": 0,
+                "topMax": 0.5 * height
+            }
+        }
+    }
+
+    generateState3(width, height, halfSize, sizeRect) {
+        return {
+            "player1": {
+                "x": this.gameState.players[0].x,
+                "y": this.gameState.players[0].y,
+                "left": (width / 2) - halfSize,
+                "leftMax": (width / 2) - halfSize + sizeRect,
+                "top": 0.5 * height,
+                "topMax": height
+            },
+            "player2": {
+                "x": this.gameState.players[1].x,
+                "y": this.gameState.players[1].y,
+                "left": 0.5 * width - halfSize,
+                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "top": 0,
+                "topMax": 0.5 * height
+            },
+            "player3": {
+                "x": this.gameState.players[2].x,
+                "y": this.gameState.players[2].y,
+                "left": 0,
+                "leftMax": 0.5 * height,
+                "top": 0.5 * height - halfSize,
+                "topMax": 0.5 * height - halfSize + sizeRect
+            }
+        }
+    }
+
+    generateState4(width, height, halfSize, sizeRect) {
+        return {
+            "player1": {
+                "x": this.gameState.players[0].x,
+                "y": this.gameState.players[0].y,
+                "left": (width / 2) - halfSize,
+                "leftMax": (width / 2) - halfSize + sizeRect,
+                "top": 0.5 * height,
+                "topMax": height
+            },
+            "player2": {
+                "x": this.gameState.players[1].x,
+                "y": this.gameState.players[1].y,
+                "left": 0.5 * width - halfSize,
+                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "top": 0,
+                "topMax": 0.5 * height
+            },
+            "player3": {
+                "x": this.gameState.players[2].x,
+                "y": this.gameState.players[2].y,
+                "left": 0,
+                "leftMax": 0.5 * height,
+                "top": 0.5 * height - halfSize,
+                "topMax": 0.5 * height - halfSize + sizeRect
+            },
+            "player4": {
+                "x": this.gameState.players[3].x,
+                "y": this.gameState.players[3].y,
+                "left": width - 0.5 * height,
+                "leftMax": width,
+                "top": 0.5 * height - halfSize,
+                "topMax": 0.5 * height
+            }
+        }
     }
 
     drawRect(leftMargin, topMargin, width, height) {

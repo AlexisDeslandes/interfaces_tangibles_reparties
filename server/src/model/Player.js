@@ -13,6 +13,10 @@ module.exports = class Player {
         this.y -= 50;
     }
 
+    back(){
+        this.y += 50;
+    }
+
     moveSide(y){
         this.y += y;
     }

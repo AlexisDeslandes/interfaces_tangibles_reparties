@@ -16,7 +16,6 @@ module.exports = class VeloGame {
 
     makePlayerMove(playerId) {
         this.players[playerId - 1].move();
-        return this.getState();
     }
 
     getState() {
@@ -34,7 +33,10 @@ module.exports = class VeloGame {
             this.players[i].leftMax = player.leftMax;
             this.players[i].top = player.top;
             this.players[i].topMax = player.topMax;
-            console.log(this.players[i]);
         }
+    }
+
+    makePlayerMoveSide(player, y) {
+        this.players[player-1].moveSide(y);
     }
 }

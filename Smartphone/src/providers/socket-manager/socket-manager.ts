@@ -72,4 +72,8 @@ export class SocketManagerProvider {
   sendMoveRequest() {
     this.socket.emit("moveRequest", {room: this.room, player: this.player});
   }
+
+  sendMoveSideRequest(y: number) {
+    this.socket.emit("moveSideRequest", {room: this.room, player: this.player, y: y * 50})
+  }
 }

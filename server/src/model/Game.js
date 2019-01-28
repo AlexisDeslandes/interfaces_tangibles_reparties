@@ -155,12 +155,18 @@ module.exports = class Game {
     }
 
     makeYouMove(playerId) {
-        const stateGame = this.veloGame.makePlayerMove(playerId);
-        this.tableSocket.emit("stateGame", stateGame)
+        this.veloGame.makePlayerMove(playerId);
     }
 
     setPlayerData(state) {
         this.veloGame.setState(state)
+        setInterval(() => {
+            this.tableSocket.emit('stateGame', this.veloGame.getState())
+        }, 17)
+    }
+
+    moveSideRequest(player, y) {
+        this.veloGame.makePlayerMoveSide(player, y);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////

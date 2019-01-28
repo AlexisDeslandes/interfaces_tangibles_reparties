@@ -129,6 +129,15 @@ io.on('connection', socket => {
         }
     })
 
+    socket.on('moveSideRequest', data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.moveSideRequest(data.player,data.y);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });

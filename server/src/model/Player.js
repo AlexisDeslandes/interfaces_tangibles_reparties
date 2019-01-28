@@ -12,4 +12,8 @@ module.exports = class Player {
     move(){
         this.y -= 50;
     }
+
+    moveSide(y){
+        this.y += y;
+    }
 };

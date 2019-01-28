@@ -25,11 +25,9 @@ export class GamePage {
   private sendRight: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
-    /*
     Gyroscope.watch({frequency: 16}).subscribe(value => {
       this.socket.sendMoveSideRequest(value.y);
     });
-    */
   }
 
   private rolling(background) {

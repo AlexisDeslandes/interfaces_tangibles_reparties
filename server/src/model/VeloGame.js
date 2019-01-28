@@ -36,7 +36,7 @@ module.exports = class VeloGame {
         }
     }
 
-    makePlayerMoveSide(player, y) {
-        this.players[player-1].moveSide(y);
+    makePlayerMoveSide(player, x) {
+        this.players[player-1].moveSide(x);
     }
 }

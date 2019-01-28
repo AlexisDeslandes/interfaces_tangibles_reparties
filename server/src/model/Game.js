@@ -165,11 +165,11 @@ module.exports = class Game {
         }, 700);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState())
-        }, 17)
+        }, 16)
     }
 
-    moveSideRequest(player, y) {
-        this.veloGame.makePlayerMoveSide(player, y);
+    moveSideRequest(player, x) {
+        this.veloGame.makePlayerMoveSide(player, x);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -16,8 +16,8 @@ module.exports = class Player {
     }
 
     back() {
-        if (this.y + 50 <= this.topMax) {
-            this.y += 50;
+        if (this.y + 1.15 <= this.topMax) {
+            this.y += 1.15;
         }
     }
 

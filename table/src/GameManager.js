@@ -124,10 +124,12 @@ class GameManager {
             const img = document.createElement('img');
             img.src = "../res/bike2.svg";
             let velo1 = true;
+            /*
             setInterval(() => {
                 img.src = velo1 ? "../res/bike2.svg" : "../res/bayke.svg";
                 velo1 = !velo1;
             }, 200);
+            */
             img.style.position = "absolute";
             img.style.width = "50px";
             img.style.height = "50px";

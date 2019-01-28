@@ -161,10 +161,8 @@ module.exports = class Game {
     setPlayerData(state) {
         this.veloGame.setState(state);
         setInterval(() => {
+            this.tableSocket.emit('stateGame', this.veloGame.getState());
             this.veloGame.players.forEach(player => player.back());
-        }, 700);
-        setInterval(() => {
-            this.tableSocket.emit('stateGame', this.veloGame.getState())
         }, 16)
     }
 

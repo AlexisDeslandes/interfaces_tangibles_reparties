@@ -1,0 +1,62 @@
+page-inventory {
+
+}
+
+.own {
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .item {
+    flex: 1 0 31%; /* explanation below */
+    margin: 0px 2px;
+
+    img {
+      height: 70px;
+    }
+  }
+
+
+}
+
+
+.puzzle {
+
+
+  .parent {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .child {
+    flex: 1 0 31%; /* explanation below */
+    margin: 0px 2px;
+    height: 100%;
+
+  }
+
+}
+
+.hidden {
+  box-shadow: inset 0 0 10px rgba(97, 97, 97, 100);
+
+  img {
+    visibility: hidden;
+  }
+
+
+}
+
+.shown {
+
+  img {
+    padding: 2px 0;
+  }
+
+  .holder p {
+    display: none;
+    text-align: center;
+  }
+}

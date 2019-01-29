@@ -15,7 +15,9 @@ module.exports = class Game {
         this.adventureSteps = scenario;
         console.log("new game created : " + room)
 
+
     }
+
 
     playerIsReady(socket) {
         let p = this.getPlayerById(socket.id);

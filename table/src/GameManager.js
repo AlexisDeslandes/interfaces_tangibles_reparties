@@ -53,6 +53,7 @@ class GameManager {
                 self.initWidgets(nbPlayers);
                 self.init = false;
                 this.jauges = data.jauges;
+                self.initCanvas(nbPlayers);
             }
 
             $(".smartphone-picto").css("display", "block");
@@ -72,6 +73,57 @@ class GameManager {
                 this.gameState.players[i].setCoordinates(players[i].x, players[i].y);
             }
         })
+    }
+
+    initCanvas(nb) {
+        for (let i = 1; i <= nb; i++) {
+            $("#jean-p"+i).css("display", "block");
+            $("#bike-p"+i).css("display", "block");
+        }
+        const jeanP1 = $("#jean-p1"); const bikeP1 = $("#bike-p1");
+        const jeanP2 = $("#jean-p2"); const bikeP2 = $("#bike-p2");
+        const jeanP3 = $("#jean-p3"); const bikeP3 = $("#bike-p3");
+        const jeanP4 = $("#jean-p4"); const bikeP4 = $("#bike-p4");
+        switch (nb) {
+            case 1:
+                bikeP1.attr("width", 0.38*$(window).width()); bikeP1.attr("height", 0.28*$(window).height());
+                bikeP1.css("bottom", 0.01*$(window).height()); bikeP1.css("left", 0.01*$(window).width());
+                jeanP1.attr("width", 0.38*$(window).width()); jeanP1.attr("height", 0.28*$(window).height());
+                jeanP1.css("bottom", 0.01*$(window).height()); jeanP1.css("right", 0.01*$(window).width());
+                break;
+            case 2:
+                bikeP1.attr("width", 0.23*$(window).width()); bikeP1.attr("height", 0.28*$(window).height());
+                bikeP1.css("bottom", 0.01*$(window).height()); bikeP1.css("left", 0.01*$(window).width());
+                jeanP1.attr("width", 0.20*$(window).width()); jeanP1.attr("height", 0.4*$(window).height());
+                jeanP1.css("bottom", 0.01*$(window).height()); jeanP1.css("right", 0.03*$(window).width());
+
+                bikeP2.attr("width", 0.23*$(window).width()); bikeP2.attr("height", 0.28*$(window).height());
+                bikeP2.css("top", 0.01*$(window).height()); bikeP2.css("right", 0.01*$(window).width());
+                jeanP2.attr("width", 0.20*$(window).width()); jeanP2.attr("height", 0.40*$(window).height());
+                jeanP2.css("top", 0.01*$(window).height()); jeanP2.css("left", 0.03*$(window).width());
+                break;
+            case 3:
+            case 4:
+                bikeP1.attr("width", 0.23*$(window).width()); bikeP1.attr("height", 0.28*$(window).height());
+                bikeP1.css("bottom", 0.01*$(window).height()); bikeP1.css("left", 0.01*$(window).width());
+                jeanP1.attr("width", 0.20*$(window).width()); jeanP1.attr("height", 0.4*$(window).height());
+                jeanP1.css("bottom", 0.01*$(window).height()); jeanP1.css("right", 0.03*$(window).width());
+
+                bikeP2.attr("width", 0.23*$(window).width()); bikeP2.attr("height", 0.28*$(window).height());
+                bikeP2.css("top", 0.01*$(window).height()); bikeP2.css("right", 0.01*$(window).width());
+                jeanP2.attr("width", 0.20*$(window).width()); jeanP2.attr("height", 0.40*$(window).height());
+                jeanP2.css("top", 0.01*$(window).height()); jeanP2.css("left", 0.03*$(window).width());
+
+                bikeP3.attr("width", 0.23*$(window).width()); bikeP3.attr("height", 0.28*$(window).height());
+                bikeP3.css("bottom", 0.01*$(window).height()); bikeP3.css("left", 0.01*$(window).width());
+                jeanP3.attr("width", 0.20*$(window).width()); jeanP3.attr("height", 0.4*$(window).height());
+                jeanP3.css("bottom", 0.01*$(window).height()); jeanP3.css("right", 0.03*$(window).width());
+
+                bikeP4.attr("width", 0.23*$(window).width()); bikeP4.attr("height", 0.28*$(window).height());
+                bikeP4.css("top", 0.01*$(window).height()); bikeP4.css("right", 0.01*$(window).width());
+                jeanP4.attr("width", 0.20*$(window).width()); jeanP4.attr("height", 0.40*$(window).height());
+                jeanP4.css("top", 0.01*$(window).height()); jeanP4.css("left", 0.03*$(window).width());
+        }
     }
 
     updateJauges(jauges) {

@@ -34,6 +34,24 @@ div.main-container-board {
   margin-right: auto;
   margin-left: auto;
 
+  canvas[id^=jean-p], canvas[id^=bike-p] {
+    display: none;
+    position: absolute;
+    border: 1px solid;
+  }
+
+  #jean-p2 {
+    @include transform(rotate(180deg));
+  }
+
+  #jean-p3 {
+    @include transform(rotate(90deg));
+  }
+
+  #jean-p4 {
+    @include transform(rotate(270deg));
+  }
+
   div.section {
     width: 100%;
     position: absolute;

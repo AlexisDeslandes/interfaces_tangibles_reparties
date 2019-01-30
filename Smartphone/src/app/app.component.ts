@@ -3,14 +3,8 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {HomePage} from "../pages/home/home";
-import {MoveguidelinePage} from "../pages/moveguideline/moveguideline";
-import {ReadyPage} from "../pages/ready/ready";
-import {Guideline2Page} from "../pages/guideline2/guideline2";
-import {SideguidelinePage} from "../pages/sideguideline/sideguideline";
-import {GuidelinePage} from "../pages/guideline/guideline";
-import {GamePage} from "../pages/game/game";
 import {InventoryPage} from "../pages/inventory/inventory";
+import {HomePage} from "../pages/home/home";
 @Component({
   templateUrl: 'app.html'
 })

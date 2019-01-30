@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 import {Subscription} from "rxjs/Rx";
 import {ReadyPage} from "../ready/ready";
+import {InventoryPage} from "../inventory/inventory";
 
 /**
  * Generated class for the DilemmePage page.
@@ -53,6 +54,10 @@ export class DilemmePage {
   endIntro() {
     this.showIntro = false;
     this.showContent = true;
+  }
+
+  openInventory(){
+    this.navCtrl.push(InventoryPage);
   }
 
 

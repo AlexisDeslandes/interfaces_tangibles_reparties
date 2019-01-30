@@ -7,30 +7,30 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Inventaire de photos</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="goHome()">
-                <ion-icon name="home"></ion-icon>
-            </button>
-        </ion-buttons>
+        <ion-title>Album photo</ion-title>
     </ion-navbar>
-
-
 
 </ion-header>
 
 
 <ion-content>
+
+
     <div class="own" text-center>
-        <p>Ici sont listés les pièces de puzzle que vous avez découvertes. Parcourez les icônes
-            <ion-icon name="camera"></ion-icon>
-            sur la carte.
-        </p>
-        <div class="list">
-            <div class="item" *ngFor="let o of ownedPieces">
-                <img [src]="'../../assets/imgs/puzzle1/'+o['picture']"/>
+
+            <div class="img-slider">
+                <p>Vous avez {{ownedPieces.length}} image{{ownedPieces.length === 1 ? '' : 's'}}</p>
+                <ion-card class="list">
+                    <div class='empty' *ngIf="ownedPieces.length === 0">
+                        <i>Parcourez l'aventure pour découvrir des images</i>
+                    </div>
+                    <div class="item slide-in-fwd-center" *ngFor="let o of ownedPieces.reverse()"
+                         [ngClass]="{selected : selectedPiece ? selectedPiece.picture === o.picture : false}"
+                         (click)="selectPiece(o)">
+                        <img [src]="'../../assets/imgs/puzzle1/'+o['picture']"/>
+                    </div>
+                </ion-card>
             </div>
-        </div>
     </div>
 
 
@@ -42,18 +42,40 @@
     <hr>
 
     <div text-center>
-        <button ion-button (click)="getPuzzle()">GET PUZZLE</button>
+        <button ion-button (click)="getPuzzle()">SHOW PUZZLE TO ALL</button>
     </div>
 
+
     <div class="puzzle" *ngIf="showPuzzle">
+        <p padding text-center>
+            Choisissez un bout de photo de votre inventaire, puis insérez le dans le puzzle en touchant la case ciblée.
+        </p>
         <div class="parent">
-            <div class="child"  *ngFor="let p of puzzle" [ngClass]="p.shown ? 'shown' : 'hidden'">
-                <div class="holder" *ngIf='p.shown'>
-                    <p>???</p>
+            <div class="child" *ngFor="let p of puzzle;let i = index" [id]="'piece'+i"
+                 (click)="pickTarget(p,i)">
+
+                <img class="slide-in-fwd-center" *ngIf="p.shown" [src]="'../../assets/imgs/puzzle1/'+p['picture']"/>
+
+                <img class="slide-in-fwd-center" *ngIf="!p.shown && !targetsOn"
+                     src="../../assets/imgs/puzzle1/hidden.jpg"/>
+
+                <img class="slide-in-fwd-center vibrate" *ngIf="!p.shown && targetsOn"
+                     src="../../assets/imgs/puzzle1/try.jpg"/>
+
+
+                <!--
+                <div class="found blk" *ngIf="p.shown">
+                    <img [src]="'../../assets/imgs/puzzle1/'+p['picture']"/>
                 </div>
-                <img [src]="'../../assets/imgs/puzzle1/'+p['picture']"/>
+
+                <div class="not-found" *ngIf="!p.shown">
+                    <ion-icon name="help"></ion-icon>
+                </div>
+                -->
             </div>
         </div>
+
     </div>
+
 
 </ion-content>

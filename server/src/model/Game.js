@@ -1,5 +1,6 @@
 const scenario = require('./scenario');
 const VeloGame = require('./VeloGame');
+const PuzzleManager = require('../model/PuzzleManager');
 
 module.exports = class Game {
     constructor(room, nbPlayers, tableSocket) {
@@ -13,9 +14,22 @@ module.exports = class Game {
         this.temperature = 35;
         this.jauges = {};
         this.adventureSteps = scenario;
-        console.log("new game created : " + room)
+        console.log("new game created : " + room);
+        this.puzzle = new PuzzleManager();
+    }
+
+    showPuzzleToAll(){
+        this.players.forEach(p => {
+            this.puzzle.sendPuzzle(p.socket)
+        })
+    }
 
 
+    givePuzzle(socket){
+        this.puzzle.sendPuzzle(socket);
+    }
+    givePuzzlePart(socket){
+        this.puzzle.getUnrevealedPart(socket);
     }
 
 

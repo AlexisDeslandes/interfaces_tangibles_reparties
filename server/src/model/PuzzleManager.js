@@ -93,7 +93,7 @@ module.exports = class PuzzleManager {
     }
 
     init(){
-        for(let i = 0; i < 9;i++){
+        for(let i = 0; i < 3;i++){
             this.parts[this.getRandomInt(0,this.parts.length-1)].shown = true;
         }
     }

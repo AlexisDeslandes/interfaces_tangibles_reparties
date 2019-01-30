@@ -1,13 +1,12 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const Puzzle = require('./model/PuzzleManager');
+
 
 const os = require('os');
 
 const Game = require('./model/Game');
 
-const puzzle = new Puzzle();
 
 let roomsCount = 1;
 let playersPerGame = 4;
@@ -54,11 +53,30 @@ io.on('connection', socket => {
     });
 
     socket.on('get-puzzle-part',m => {
-        puzzle.getUnrevealedPart(socket)
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.givePuzzlePart(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
     });
 
     socket.on('get-puzzle',m => {
-        puzzle.sendPuzzle(socket)
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.givePuzzle(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('show-puzzle-on-table', m =>{
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.showPuzzleToAll();
+        } else {
+            console.log("requested game does not exists")
+        }
     });
 
 

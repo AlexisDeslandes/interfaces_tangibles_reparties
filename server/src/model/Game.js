@@ -1,5 +1,7 @@
 const scenario = require('./scenario');
 const VeloGame = require('./VeloGame');
+const PuzzleManager = require('../model/PuzzleManager');
+
 
 module.exports = class Game {
     constructor(room, nbPlayers, tableSocket) {
@@ -13,9 +15,42 @@ module.exports = class Game {
         this.temperature = 35;
         this.jauges = {};
         this.adventureSteps = scenario;
-        console.log("new game created : " + room)
+        console.log("new game created : " + room);
+        this.puzzle = new PuzzleManager(8);
+    }
+
+    showPuzzleToAll() {
+        this.players.forEach(p => {
+            this.puzzle.sendPuzzle(p.socket)
+        })
+    }
+
+    showEndedPuzzleToAll() {
+        this.players.forEach(p => {
+            p.socket.emit('puzzle-ended')
+        });
+    }
 
 
+    givePuzzle(socket) {
+        this.puzzle.sendPuzzle(socket);
+    }
+
+    givePuzzlePart(socket) {
+        this.puzzle.getUnrevealedPart(socket);
+    }
+
+    sendPuzzleParts(socket){
+        this.puzzle.sendPuzzleParts(socket);
+    }
+
+    playerPuzzleUpdate(socket, d) {
+        let res = this.puzzle.playerPuzzleUpdate(socket, d);
+        if (res === 'ok') {
+            this.showPuzzleToAll();
+        } else if (res === 'end') {
+            this.showEndedPuzzleToAll();
+        }
     }
 
 
@@ -118,7 +153,7 @@ module.exports = class Game {
 
 
     useRation(m) {
-        if (typeof  this.jauges[m.player] !== 'undefined') {
+        if (typeof this.jauges[m.player] !== 'undefined') {
             if (m.id === 4) {
                 this.jauges[m.player].water += 1;
                 console.log("Joueur " + m.player + " utilise de l'eau");

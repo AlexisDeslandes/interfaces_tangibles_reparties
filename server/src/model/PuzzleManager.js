@@ -90,6 +90,14 @@ module.exports = class PuzzleManager {
         return true;
     }
 
+    sendPuzzleParts(socket){
+        let p = [];
+        this.parts.forEach(a => {
+            if(a.player === socket.id && !a.shown) p.push(a)
+        });
+        socket.emit('get-puzzle-parts',p)
+    }
+
     playerPuzzleUpdate(socket,d){
         let res = "fail";
         let source = d.source;
@@ -135,7 +143,7 @@ module.exports = class PuzzleManager {
                 p = this.parts[this.getRandomInt(0, this.parts.length - 1)];
             }
             p.player = socket.id;
-            socket.emit('get-puzzle-part',p)
+            this.sendPuzzleParts(socket)
         }
     }
 

@@ -40,6 +40,10 @@ module.exports = class Game {
         this.puzzle.getUnrevealedPart(socket);
     }
 
+    sendPuzzleParts(socket){
+        this.puzzle.sendPuzzleParts(socket);
+    }
+
     playerPuzzleUpdate(socket, d) {
         let res = this.puzzle.playerPuzzleUpdate(socket, d);
         if (res === 'ok') {

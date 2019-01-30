@@ -52,7 +52,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('get-puzzle-part',m => {
+    socket.on('get-puzzle-part', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.givePuzzlePart(socket)
@@ -61,7 +61,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('put-part-of-puzzle',m => {
+    socket.on('put-part-of-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.playerPuzzleUpdate(socket, m)
@@ -70,7 +70,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('get-puzzle',m => {
+    socket.on('get-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.givePuzzle(socket)
@@ -79,7 +79,16 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('show-puzzle-on-table', m =>{
+    socket.on('get-player-puzzle-parts', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.sendPuzzleParts(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('show-puzzle-on-table', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.showPuzzleToAll();
@@ -170,7 +179,7 @@ io.on('connection', socket => {
     socket.on('moveSideRequest', data => {
         let game = getGameByRoomName(data.room);
         if (game) {
-            game.moveSideRequest(data.player,data.y);
+            game.moveSideRequest(data.player, data.y);
         } else {
             console.log("requested game does not exists")
         }

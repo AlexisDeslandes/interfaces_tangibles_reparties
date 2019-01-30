@@ -36,6 +36,13 @@ export class InventoryPage {
         this.selectedPiece = null;
         this.targetsOn = false;
 
+        this.socketManager.socket.emit('get-player-puzzle-parts',{room : this.socketManager.room});
+
+        this.socketManager.socket.on('get-puzzle-parts', data => {
+           console.log('player has '+data.length+' images in inventory');
+            this.ownedPieces = data;
+        });
+
         this.socketManager.socket.on('get-puzzle', data => {
             this.puzzle = data.puzzle;
             this.showPuzzle = true;

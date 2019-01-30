@@ -8,7 +8,7 @@ class GameManager {
 
     constructor() {
 
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.2:4444');
 
         let self = this;
         self.init = true;
@@ -31,6 +31,10 @@ class GameManager {
 
         this.socket.on('joined', data => {
             $("#qr_"+data.player).hide();
+        });
+
+        this.socket.on('ration-used', data => {
+            self.updateJauges(data.jauges);
         });
 
         this.socket.on('start', data => {

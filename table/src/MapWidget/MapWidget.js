@@ -148,25 +148,21 @@ class MapWidget extends TUIOWidget {
      */
     onTagCreation(tuioTag) {
         super.onTagCreation(tuioTag);
+        console.log(tuioTag);
+
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this._lastTagsValues = {
-                ...this._lastTagsValues,
-                [tuioTag.id]: {
-                    x: tuioTag.x,
-                    y: tuioTag.y,
-                },
-            };
 
-        }
-        //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
-
-
-            const socket = io.connect('http://localhost:4444');
+            const socket = io.connect('http://192.168.1.2:4444');
             socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
             socket.emit('map', tuioTag.id);
             socket.on('map-changed', (m) => {
                 document.getElementById('map').src = m.img;
             });
+        }
+        //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
+
+
+
         //}
 
 
@@ -213,7 +209,7 @@ class MapWidget extends TUIOWidget {
                     y: tuioTag.y,
                 },
             };
-            const socket = io.connect('http://localhost:4444');
+            const socket = io.connect('http://192.168.1.2:4444');
             socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);
             socket.emit('map', tuioTag.id);
             socket.on('map-changed', (m) => {

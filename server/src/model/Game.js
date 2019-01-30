@@ -112,22 +112,26 @@ module.exports = class Game {
         if(typeof  this.jauges[m.player] !== 'undefined') {
             if (m.id === 4) {
                 this.jauges[m.player].water += 1;
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise de l'eau");
-
             } else if (m.id === 5) {
                 this.jauges[m.player].energy += 1;
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise de l'énergie");
 
             } else if (m.id === 6) {
                 this.jauges[m.player].chicken += 1;
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise du poulet");
 
             } else if (m.id === 7) {
                 this.jauges[m.player].mood += 1;
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise de l'ectasy");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise son vélo");
             }
         }

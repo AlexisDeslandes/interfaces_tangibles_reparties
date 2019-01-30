@@ -51,9 +51,8 @@ io.on('connection', socket => {
     });
 
 
-
     socket.on('next', m => {
-        console.log('received next')
+        console.log('received next');
         let game = getGameByRoomName(m.room);
         if (game) {
             game.nextStep();
@@ -64,6 +63,15 @@ io.on('connection', socket => {
 
     socket.on("message", m =>{
         console.log(m)
+    });
+
+    socket.on("isTouched", m =>{
+        console.log(m);
+        console.log("Mon message");
+        console.log("tuioTag.x >= this._x = " +(m.tag_x >= m.x)+ "   " + m.tag_x +">="+m.x);
+        console.log("tuioTag.x <= this._x + this._width = " +(m.tag_x <= m.x + m._width)+ "   " + m.tag_x+"<="+ m.x +"+"+ m._width);
+        console.log("tuioTag.y >= this._y  = " +(m.tag_y >= m.y) + "   " + m.tag_y +">="+m.y);
+        console.log("tuioTag.y <= this._y + this._height = " +(m.tag_y <= m.y + m._height)+ "   " + m.tag_y +"<=" +m.y +"+"+ m._height);
     });
 
     socket.on("answer", m => {
@@ -77,17 +85,17 @@ io.on('connection', socket => {
 
     socket.on("map", m => {
         console.log("Map tag received: "+ m);
-        if (m === 1) {
+        if (m === 'BC') {
             socket.emit("map-changed", {
-                img: 'https://images.ecosia.org/QljWRzschFge6Sg5DthS2uAklcc=/0x390/smart/http%3A%2F%2Fwww.weathergraphics.com%2Fedu%2Fforecastcenter%2Ffc_2010-0304-b.jpg'
+                img: 'res/map_init.png'
             });
-        } else if (m === 2) {
+        } else if (m === '7D') {
             socket.emit("map-changed", {
-                img: 'https://images.ecosia.org/dK2oLsumxV_nfXN9_lg9FiNp9tU=/0x390/smart/https%3A%2F%2Faccuweather.brightspotcdn.com%2Fee%2F8e%2Fa49e80424dd4bace863679bab5ee%2Feurope-8-14.jpg'
+                img: 'res/map_village.png'
             });
-        } else if (m === 3) {
+        } else if (m === 'BD') {
             socket.emit("map-changed", {
-                img: 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api'
+                img: 'res/map_road.png'
             });
         }
     });
@@ -98,7 +106,9 @@ io.on('connection', socket => {
             let game = getGameByRoomName(m.gameRoom);
             game.useRation(m);
         }
-    })
+    });
+
+
 });
 
 

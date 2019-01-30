@@ -1,13 +1,16 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const Puzzle = require('./model/PuzzleManager');
 
 const os = require('os');
 
 const Game = require('./model/Game');
 
+const puzzle = new Puzzle();
+
 let roomsCount = 1;
-let playersPerGame = 2;
+let playersPerGame = 4;
 let games = [];
 
 io.on('connection', socket => {
@@ -26,13 +29,13 @@ io.on('connection', socket => {
     socket.on('join', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.addPlayer(socket,m)
+            game.addPlayer(socket, m)
         } else {
             console.log("requested game does not exists")
         }
     });
 
-    socket.on('ready',m=>{
+    socket.on('ready', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.playerIsReady(socket)
@@ -41,7 +44,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('table-ready',m=>{
+    socket.on('table-ready', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.tableIsReady(socket)
@@ -50,6 +53,13 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('get-puzzle-part',m => {
+        puzzle.getUnrevealedPart(socket)
+    });
+
+    socket.on('get-puzzle',m => {
+        puzzle.sendPuzzle(socket)
+    });
 
     socket.on('next', m => {
         console.log('received next');
@@ -61,7 +71,7 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on("message", m =>{
+    socket.on("message", m => {
         console.log(m)
     });
 
@@ -101,16 +111,55 @@ io.on('connection', socket => {
     });
 
     socket.on("ration", m => {
-        console.log("Ration tag received: "+ m.id + "  "+ m.player+ "   "+ m.gameRoom);
-        if(m.gameRoom !== null) {
+        console.log("Ration tag received: " + m.id + "  " + m.player + "   " + m.gameRoom);
+        if (m.gameRoom !== null) {
             let game = getGameByRoomName(m.gameRoom);
             game.useRation(m);
         }
+    })
+
+
+    /////////////////////////////////////////////////// GAME /////////////////////////////////////////////////////////////
+
+    socket.on("playerJoin", m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.joinGame(m.player);
+        } else {
+            console.log("requested game does not exists")
+        }
     });
 
+    socket.on("moveRequest", m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.makeYouMove(m.player);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
 
+    socket.on("gamePreparation", data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.setPlayerData(data.state);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
+    socket.on('moveSideRequest', data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.moveSideRequest(data.player,data.y);
+        } else {
+            console.log("requested game does not exists")
+        }
+    })
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
-
 
 
 http.listen(4444, function () {

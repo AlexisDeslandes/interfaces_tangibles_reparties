@@ -20,8 +20,10 @@ import {Guideline2PageModule} from "../pages/guideline2/guideline2.module";
 import {SideguidelinePageModule} from "../pages/sideguideline/sideguideline.module";
 import {ReadyStepPage} from "../pages/ready-step/ready-step";
 import {GameoverPage} from "../pages/gameover/gameover";
+import {InventoryPage} from "../pages/inventory/inventory";
 
-const config: SocketIoConfig = {url: 'http://192.168.1.2:4444', options: {}};
+//const config: SocketIoConfig = {url: 'http://192.168.43.242:4444', options: {}};
+const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ const config: SocketIoConfig = {url: 'http://192.168.1.2:4444', options: {}};
         HomePage,
         DilemmePage,
         ReadyStepPage,
-        GameoverPage
+        GameoverPage,
+        InventoryPage
     ],
     imports: [
         SocketIoModule.forRoot(config),
@@ -51,7 +54,8 @@ const config: SocketIoConfig = {url: 'http://192.168.1.2:4444', options: {}};
         DilemmePage,
         GamePage,
         ReadyStepPage,
-        GameoverPage
+        GameoverPage,
+        InventoryPage
     ],
     providers: [
         StatusBar,

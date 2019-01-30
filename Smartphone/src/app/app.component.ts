@@ -9,12 +9,14 @@ import {ReadyPage} from "../pages/ready/ready";
 import {Guideline2Page} from "../pages/guideline2/guideline2";
 import {SideguidelinePage} from "../pages/sideguideline/sideguideline";
 import {GuidelinePage} from "../pages/guideline/guideline";
+import {GamePage} from "../pages/game/game";
+import {InventoryPage} from "../pages/inventory/inventory";
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = GuidelinePage;
   rootPage:any = HomePage;
+  //rootPage:any = InventoryPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

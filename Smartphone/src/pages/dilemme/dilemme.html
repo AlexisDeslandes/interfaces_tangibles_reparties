@@ -48,7 +48,8 @@
                 <li *ngFor="let s of stats"> {{s.type}} {{s.value > 0 ? '+'+s.value : s.value}}</li>
             </ul>
             <div class="puzzle">
-                <button ion-button round color="secondary" (click)="openInventory()">
+                <button ion-button outline item-end icon-start (click)="openInventory()">
+                    <ion-icon name="camera"></ion-icon>
                     Ouvrir l'album photo
                 </button>
             </div>

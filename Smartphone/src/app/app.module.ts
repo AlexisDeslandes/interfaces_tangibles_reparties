@@ -32,7 +32,7 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         DilemmePage,
         ReadyStepPage,
         GameoverPage,
-        InventoryPage
+        InventoryPage,
     ],
     imports: [
         SocketIoModule.forRoot(config),
@@ -55,7 +55,7 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         GamePage,
         ReadyStepPage,
         GameoverPage,
-        InventoryPage
+        InventoryPage,
     ],
     providers: [
         StatusBar,

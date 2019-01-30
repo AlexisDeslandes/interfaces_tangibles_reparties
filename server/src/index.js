@@ -1,13 +1,12 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const Puzzle = require('./model/PuzzleManager');
+
 
 const os = require('os');
 
 const Game = require('./model/Game');
 
-const puzzle = new Puzzle();
 
 let roomsCount = 1;
 let playersPerGame = 4;
@@ -53,12 +52,49 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('get-puzzle-part',m => {
-        puzzle.getUnrevealedPart(socket)
+    socket.on('get-puzzle-part', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.givePuzzlePart(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
     });
 
-    socket.on('get-puzzle',m => {
-        puzzle.sendPuzzle(socket)
+    socket.on('put-part-of-puzzle', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.playerPuzzleUpdate(socket, m)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('get-puzzle', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.givePuzzle(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('get-player-puzzle-parts', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.sendPuzzleParts(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('show-puzzle-on-table', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.showPuzzleToAll();
+        } else {
+            console.log("requested game does not exists")
+        }
     });
 
     socket.on('next', m => {
@@ -151,7 +187,7 @@ io.on('connection', socket => {
     socket.on('moveSideRequest', data => {
         let game = getGameByRoomName(data.room);
         if (game) {
-            game.moveSideRequest(data.player,data.y);
+            game.moveSideRequest(data.player, data.y);
         } else {
             console.log("requested game does not exists")
         }

@@ -23,9 +23,12 @@ export class InventoryPage {
     showPuzzle;
     selectedPiece;
     targetsOn;
+    showResult;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public socketManager: SocketManagerProvider) {
+
+        this.showResult = socketManager.puzzleEnded;
 
         this.showPuzzle = false;
         this.puzzle = [];
@@ -40,6 +43,13 @@ export class InventoryPage {
 
         this.socketManager.socket.on('get-puzzle-part', data => {
             this.ownedPieces.push(data);
+        });
+
+        this.socketManager.socket.on('puzzle-ended',data => {
+            console.log("puzzle ended");
+            this.showPuzzle = false;
+            this.showResult = true;
+            this.socketManager.puzzleEnded = true;
         });
     }
 
@@ -56,6 +66,11 @@ export class InventoryPage {
     pickTarget(o, i) {
         let id = '#piece' + i;
         if (this.selectedPiece) {
+            this.socketManager.socket.emit('put-part-of-puzzle', {
+                room: this.socketManager.room,
+                source : this.selectedPiece,
+                target : o
+            });
             if (!o.shown) {
                 if (o.picture === this.selectedPiece.picture) {
                     this.showSuccess(id);
@@ -94,11 +109,11 @@ export class InventoryPage {
     }
 
     askForImage() {
-        this.socketManager.socket.emit('get-puzzle-part', {room:this.socketManager.room});
+        this.socketManager.socket.emit('get-puzzle-part', {room: this.socketManager.room});
     }
 
     getPuzzle() {
-        this.socketManager.socket.emit('show-puzzle-on-table',{room:this.socketManager.room});
+        this.socketManager.socket.emit('show-puzzle-on-table', {room: this.socketManager.room});
     }
 
     goHome() {

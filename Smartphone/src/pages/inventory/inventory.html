@@ -16,7 +16,7 @@
 <ion-content>
 
 
-    <div class="own" text-center>
+    <div class="own" text-center *ngIf="!showResult">
 
             <div class="img-slider">
                 <p>Vous avez {{ownedPieces.length}} image{{ownedPieces.length === 1 ? '' : 's'}}</p>
@@ -34,6 +34,7 @@
     </div>
 
 
+    <div *ngIf="!showResult">
     <div text-center>
         <button ion-button (click)="askForImage()">GET AN IMAGE</button>
     </div>
@@ -43,6 +44,8 @@
 
     <div text-center>
         <button ion-button (click)="getPuzzle()">SHOW PUZZLE TO ALL</button>
+    </div>
+
     </div>
 
 
@@ -76,6 +79,21 @@
         </div>
 
     </div>
+
+
+    <div class="result puff-in-center" *ngIf="showResult">
+
+        <div class="text">
+            <h3> Félicitations ! </h3>
+            <div class="p"> Vous avez completé le puzzle</div>
+            <div class="p desc"> Il s'agit d'une photo de Jean Naud qui puise de l'eau.</div>
+        </div>
+
+        <div class="image">
+            <img src="../../assets/imgs/puzzle1/full.jpg"/>
+        </div>
+    </div>
+
 
 
 </ion-content>

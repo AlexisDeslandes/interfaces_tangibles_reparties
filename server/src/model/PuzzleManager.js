@@ -1,99 +1,77 @@
 module.exports = class PuzzleManager {
 
-
-    constructor() {
+    /**
+     * @param n the amount of shown pieces
+     */
+    constructor(n) {
         this.finished = false;
         this.parts = [
             {
                 picture: 'row-1-col-1.jpg',
                 player: null,
-                shown : false,
-                x: 1,
-                y: 1
+                shown : false
             }, {
                 picture:
                     'row-1-col-2.jpg',
                 player: null,
-                shown : false,
-                x: 2,
-                y: 1
+                shown : false
             }, {
                 picture:
                     'row-1-col-3.jpg',
                 player: null,
-                shown : false,
-                x: 3,
-                y: 1
+                shown : false
             },  {
                 picture:
                     'row-2-col-1.jpg',
                 player: null,
-                shown : false,
-                x: 1,
-                y: 2
+                shown : false
             },
             {
                 picture: 'row-2-col-2.jpg',
                 player: null,
-                shown : false,
-                x: 2,
-                y: 2
+                shown : false
             },
             {
                 picture: 'row-2-col-3.jpg',
                 player: null,
-                shown : false,
-                x: 3,
-                y: 2
+                shown : false
             },
             {
                 picture: 'row-3-col-1.jpg',
                 player: null,
-                shown : false,
-                x: 1,
-                y: 3
+                shown : false
             },
             {
                 picture: 'row-3-col-2.jpg',
                 player: null,
-                shown : false,
-                x: 2,
-                y: 3
+                shown : false
             },
             {
                 picture: 'row-3-col-3.jpg',
                 player: null,
-                shown : false,
-                x: 3,
-                y: 3
+                shown : false
             },
             {
                 picture: 'row-4-col-1.jpg',
                 player: null,
-                shown : false,
-                x: 1,
-                y: 4
+                shown : false
             },
             {
                 picture: 'row-4-col-2.jpg',
                 player: null,
-                shown : false,
-                x: 2,
-                y: 4
+                shown : false
             },
             {
                 picture: 'row-4-col-3.jpg',
                 player: null,
-                shown : false,
-                x: 3,
-                y: 4
+                shown : false
             }
         ];
-        this.init();
+        this.init(n);
     }
 
-    init(){
-        for(let i = 0; i < 3;i++){
+    init(n){
+        for(let i = 0; i < n;i++){
             this.parts[this.getRandomInt(0,this.parts.length-1)].shown = true;
         }
     }
@@ -104,9 +82,50 @@ module.exports = class PuzzleManager {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    isComplete(){
+        for(let i in this.parts){
+            if(!this.parts[i].shown) return false;
+        }
+        this.finished = true;
+        return true;
+    }
+
+    playerPuzzleUpdate(socket,d){
+        let res = "fail";
+        let source = d.source;
+        let target = d.target;
+        if(source.picture === target.picture){
+
+            this.parts.forEach(a => {
+                if(a.picture === source.picture){
+                    a.player = socket.id;
+                    a.shown = true;
+                }
+            });
+
+            if(this.isComplete()) {
+                res = 'end';
+                console.log('puzzle is complete ')
+            }
+            else {
+                res = 'ok';
+                console.log('puzzle updated with a new piece ');
+            }
+
+        } else {
+            console.log('wrong piece tried on the puzzle')
+            //emit fail event to table
+        }
+        return res;
+    }
+
 
     sendPuzzle(socket){
-        socket.emit('get-puzzle',{puzzle:this.parts})
+        if(this.finished){
+            socket.emit('puzzle-ended')
+        } else {
+            socket.emit('get-puzzle',{puzzle:this.parts})
+        }
     }
 
     getUnrevealedPart(socket){

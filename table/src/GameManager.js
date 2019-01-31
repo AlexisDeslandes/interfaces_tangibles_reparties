@@ -153,6 +153,8 @@ class GameManager {
 
         const sizeRect = height / 3;
         const halfSize = sizeRect / 2;
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
         this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
         this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
@@ -180,7 +182,15 @@ class GameManager {
             const contextGamer = canvas.getContext("2d");
             contextGamer.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < this.players.length; i++) {
+                if (i === 1) {
+                    contextGamer.rotate(Math.PI);
+                } else if (i === 2) {
+                    contextGamer.rotate(90 * Math.PI / 180);
+                } else if (i === 3) {
+                    contextGamer.rotate(-90 * Math.PI / 180);
+                }
                 contextGamer.drawImage(bike, this.players[i].x, this.players[i].y, 50, 100);
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
             }
             this.count = (this.count + 1) % 10;
             if (this.count === 0) {
@@ -213,15 +223,15 @@ class GameManager {
                 "left": (width / 2) - halfSize,
                 "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             },
             "player2": {
                 "x": this.gameState.players[1].x,
                 "y": this.gameState.players[1].y,
                 "left": 0.5 * width - halfSize,
-                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - 100
             }
         }
     }
@@ -232,25 +242,25 @@ class GameManager {
                 "x": this.gameState.players[0].x,
                 "y": this.gameState.players[0].y,
                 "left": (width / 2) - halfSize,
-                "leftMax": (width / 2) - halfSize + sizeRect,
+                "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             },
             "player2": {
                 "x": this.gameState.players[1].x,
                 "y": this.gameState.players[1].y,
                 "left": 0.5 * width - halfSize,
-                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - 100
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height,
+                "leftMax": 0.5 * height - 100,
                 "top": 0.5 * height - halfSize,
-                "topMax": 0.5 * height - halfSize + sizeRect
+                "topMax": 0.5 * height - halfSize + sizeRect - 50
             }
         }
     }
@@ -261,33 +271,33 @@ class GameManager {
                 "x": this.gameState.players[0].x,
                 "y": this.gameState.players[0].y,
                 "left": (width / 2) - halfSize,
-                "leftMax": (width / 2) - halfSize + sizeRect,
+                "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             },
             "player2": {
                 "x": this.gameState.players[1].x,
                 "y": this.gameState.players[1].y,
                 "left": 0.5 * width - halfSize,
-                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - 100
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height,
+                "leftMax": 0.5 * height - 100,
                 "top": 0.5 * height - halfSize,
-                "topMax": 0.5 * height - halfSize + sizeRect
+                "topMax": 0.5 * height - halfSize + sizeRect - 50
             },
             "player4": {
                 "x": this.gameState.players[3].x,
                 "y": this.gameState.players[3].y,
                 "left": width - 0.5 * height,
-                "leftMax": width,
+                "leftMax": width - 100,
                 "top": 0.5 * height - halfSize,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - halfSize + sizeRect - 50
             }
         }
     }

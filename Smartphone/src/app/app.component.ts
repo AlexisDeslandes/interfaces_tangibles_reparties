@@ -14,7 +14,7 @@ import {GamePage} from "../pages/game/game";
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = GuidelinePage;
   //rootPage:any = GamePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

@@ -1,15 +1,15 @@
 <ion-content no-padding="">
   <ion-grid>
     <ion-row>
-      <div class="wrap-title">
+      <div>
         <h1>Epreuve de rapidité</h1>
       </div>
-      <div class="wrap-title">
+      <div>
         <h3>En attente des autres joueurs ...</h3>
       </div>
     </ion-row>
     <ion-row>
-      <div class="wrap-title">
+      <div>
         <h3 *ngIf="players>0">Il manque encore {{players}} joueurs.</h3>
         <h3 *ngIf="players === 0">{{seconds}} secondes avant le début de la partie !</h3>
       </div>

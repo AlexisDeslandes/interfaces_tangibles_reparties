@@ -11,7 +11,7 @@ export class Player {
         switch (id) {
             case 1:
                 this.x = (width / 2) - 25;
-                this.y = height - 50;
+                this.y = height - 100;
                 break;
             case 2:
                 this.x = (width / 2) - 25;
@@ -22,7 +22,7 @@ export class Player {
                 this.y = (height / 2) - 25;
                 break;
             default:
-                this.x = width - 50;
+                this.x = width - 100;
                 this.y = (height / 2) - 25;
                 break;
         }

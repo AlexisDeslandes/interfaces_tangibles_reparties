@@ -61,17 +61,6 @@ io.on('connection', socket => {
         }
     });
 
-    /*
-    socket.on('get-puzzle-part', m => {
-        let game = getGameByRoomName(m.room);
-        if (game) {
-            game.givePuzzlePartAndSend(socket)
-        } else {
-            console.log("requested game does not exists")
-        }
-    });
-    */
-
     socket.on('put-part-of-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {

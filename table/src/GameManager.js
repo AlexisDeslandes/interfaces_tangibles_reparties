@@ -31,6 +31,7 @@ class GameManager {
         this.startDiv = $("#start-btn");
         this.readyBtn = $("#ready-btn");
         this.nextBtn = $("#next-btn");
+        this.closePuzzleBtn = $("#close-puzzle");
 
         this.startDiv.click(function () {
             self.start();
@@ -44,6 +45,10 @@ class GameManager {
             self.next();
         });
 
+        this.closePuzzleBtn.click(function () {
+           self.hidePuzzle();
+        });
+
         this.socket.on('joined', data => {
             $("#qr_" + data.player).hide();
             $("#connected_" + data.player).show();
@@ -54,8 +59,18 @@ class GameManager {
             self.updateJauges(data.jauges);
         });
 
+
+        this.socket.on('get-puzzle', data => {
+            console.log('get-puzzle');
+            this.showPuzzle();
+            //update puzzle data
+        });
+
+
+
         this.socket.on('start', data => {
             self.showMap();
+            self.hidePuzzle();
             let nbPlayers = Object.keys(data.jauges).length;
             if (self.init) {
                 self.showMap();
@@ -182,6 +197,20 @@ class GameManager {
         }
     }
 
+
+    showPuzzleToAll(){
+        $("#puzzle").toggle();
+        this.socket.emit('show-puzzle-on-table',{room : this.gameRoom})
+    }
+
+    showPuzzle(){
+        $("#puzzle").show();
+    }
+
+    hidePuzzle(){
+        $("#puzzle").hide();
+    }
+
     drawJean(ctx, jeanWidth, jeanHeight, width) {
         const center = jeanWidth / 2;
         const left = jeanWidth / 2.5;
@@ -287,6 +316,7 @@ class GameManager {
         this.socket.emit('init', {});
         this.socket.on('init', data => {
             this.gameRoom = data.room;
+
 
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);

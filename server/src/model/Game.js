@@ -16,7 +16,7 @@ module.exports = class Game {
         this.jauges = {};
         this.adventureSteps = scenario;
         console.log("new game created : " + room);
-        this.puzzle = new PuzzleManager(20);
+        this.puzzle = new PuzzleManager(7);
     }
 
     showPuzzleToAll() {

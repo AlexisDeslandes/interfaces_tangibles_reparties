@@ -48,9 +48,11 @@ export class InventoryPage {
             this.showPuzzle = true;
         });
 
+        /*
         this.socketManager.socket.on('get-puzzle-part', data => {
             this.ownedPieces.push(data);
         });
+        */
 
         this.socketManager.socket.on('puzzle-ended',data => {
             console.log("puzzle ended");

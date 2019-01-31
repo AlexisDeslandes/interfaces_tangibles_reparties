@@ -40,6 +40,7 @@ module.exports = class Game {
         this.puzzle.getUnrevealedPart(socket);
     }
 
+
     sendPuzzleParts(socket){
         this.puzzle.sendPuzzleParts(socket);
     }

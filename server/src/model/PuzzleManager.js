@@ -9,113 +9,112 @@ module.exports = class PuzzleManager {
             {
                 picture: 'row-1-col-1.jpg',
                 player: null,
-                shown : false
+                shown: false
             }, {
                 picture:
                     'row-1-col-2.jpg',
                 player: null,
-                shown : false
+                shown: false
             }, {
                 picture:
                     'row-1-col-3.jpg',
                 player: null,
-                shown : false
-            },  {
+                shown: false
+            }, {
                 picture:
                     'row-2-col-1.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-2-col-2.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-2-col-3.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-3-col-1.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-3-col-2.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-3-col-3.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-4-col-1.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-4-col-2.jpg',
                 player: null,
-                shown : false
+                shown: false
             },
             {
                 picture: 'row-4-col-3.jpg',
                 player: null,
-                shown : false
+                shown: false
             }
         ];
         this.init(n);
     }
 
-    init(n){
-        for(let i = 0; i < n;i++){
-            this.parts[this.getRandomInt(0,this.parts.length-1)].shown = true;
+    init(n) {
+        for (let i = 0; i < n; i++) {
+            this.parts[this.getRandomInt(0, this.parts.length - 1)].shown = true;
         }
     }
 
-    getRandomInt(min,max){
+    getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    isComplete(){
-        for(let i in this.parts){
-            if(!this.parts[i].shown) return false;
+    isComplete() {
+        for (let i in this.parts) {
+            if (!this.parts[i].shown) return false;
         }
         this.finished = true;
         return true;
     }
 
-    sendPuzzleParts(socket){
+    sendPuzzleParts(socket) {
         let p = [];
         this.parts.forEach(a => {
-            if(a.player === socket.id && !a.shown) p.push(a)
+            if (a.player === socket.id && !a.shown) p.push(a)
         });
-        socket.emit('get-puzzle-parts',p)
+        socket.emit('get-puzzle-parts', p)
     }
 
-    playerPuzzleUpdate(socket,d){
+    playerPuzzleUpdate(socket, d) {
         let res = "fail";
         let source = d.source;
         let target = d.target;
-        if(source.picture === target.picture){
+        if (source.picture === target.picture) {
 
             this.parts.forEach(a => {
-                if(a.picture === source.picture){
+                if (a.picture === source.picture) {
                     a.player = socket.id;
                     a.shown = true;
                 }
             });
 
-            if(this.isComplete()) {
+            if (this.isComplete()) {
                 res = 'end';
                 console.log('puzzle is complete ')
-            }
-            else {
+            } else {
                 res = 'ok';
                 console.log('puzzle updated with a new piece ');
             }
@@ -128,22 +127,28 @@ module.exports = class PuzzleManager {
     }
 
 
-    sendPuzzle(socket){
-        if(this.finished){
+    sendPuzzle(socket) {
+        if (this.finished) {
             socket.emit('puzzle-ended')
         } else {
-            socket.emit('get-puzzle',{puzzle:this.parts})
+            socket.emit('get-puzzle', {puzzle: this.parts})
         }
     }
 
-    getUnrevealedPart(socket){
-        if(!this.finished) {
+
+    /**
+     * gives a part of the puzzle to a player and send it to him
+     */
+    getUnrevealedPart(socket) {
+        if (!this.finished) {
             let p = this.parts[this.getRandomInt(0, this.parts.length - 1)];
             while (p.shown || p.player !== null) {
                 p = this.parts[this.getRandomInt(0, this.parts.length - 1)];
             }
             p.player = socket.id;
-            this.sendPuzzleParts(socket)
+            console.log('sending ',socket.id, ' his new puzzle part');
+            socket.emit('ask-for-new-part' )
+            //this.sendPuzzleParts(socket)
         }
     }
 

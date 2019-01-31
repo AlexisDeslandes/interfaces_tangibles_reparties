@@ -31,6 +31,7 @@ export class DilemmePage {
   slideOptions = {effect: 'flip'};
   showIntro = true;
   showContent = false;
+  receivedPart = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.data = navParams.get('step');
@@ -42,6 +43,11 @@ export class DilemmePage {
       this.showContent = false;
     }
     this.isReady = false;
+
+    this.socketManager.socket.on('ask-for-new-part', () => {
+      this.receivedPart = true;
+      console.log('received image :)')
+    });
 
   }
 
@@ -62,10 +68,12 @@ export class DilemmePage {
 
 
   answer() {
+
     this.hasAnswered = true;
     this.result = this.data.choices[this.choice].result;
     this.stats = this.data.choices[this.choice].stats
-    console.log(this.stats)
+
+    this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room});
   }
 
   ready() {

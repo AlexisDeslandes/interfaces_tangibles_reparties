@@ -341,7 +341,8 @@ class GameManager {
             var roomId = this.gameRoom.substr(index + 1);
 
 
-            this.socket.emit('get-puzzle', {room: data.room});
+
+            //this.socket.emit('get-puzzle', {room: data.room});
 
 
             for (let i = 1; i < 5; i++) {

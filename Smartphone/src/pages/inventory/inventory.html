@@ -18,41 +18,36 @@
 
     <div class="own" text-center *ngIf="!showResult">
 
-            <div class="img-slider">
-                <p>Vous avez {{ownedPieces.length}} image{{ownedPieces.length === 1 ? '' : 's'}}</p>
-                <ion-card class="list">
-                    <div class='empty' *ngIf="ownedPieces.length === 0">
-                        <i>Parcourez l'aventure pour découvrir des images</i>
-                    </div>
-                    <div class="item slide-in-fwd-center" *ngFor="let o of ownedPieces.reverse()"
-                         [ngClass]="{selected : selectedPiece ? selectedPiece.picture === o.picture : false}"
-                         (click)="selectPiece(o)">
-                        <img [src]="'../../assets/imgs/puzzle1/'+o['picture']"/>
-                    </div>
-                </ion-card>
-            </div>
+        <div class="img-slider">
+            <p>Vous avez {{ownedPieces.length}} image{{ownedPieces.length === 1 ? '' : 's'}}</p>
+            <ion-card class="list">
+                <div class='empty' *ngIf="ownedPieces.length === 0">
+                    <i>Parcourez l'aventure pour découvrir des images</i>
+                </div>
+                <div class="item slide-in-fwd-center" *ngFor="let o of ownedPieces.reverse()"
+                     [ngClass]="{selected : selectedPiece ? selectedPiece.picture === o.picture : false}"
+                     (click)="selectPiece(o)">
+                    <img [src]="'../../assets/imgs/puzzle1/'+o['picture']"/>
+                </div>
+            </ion-card>
+        </div>
     </div>
 
 
-    <div *ngIf="!showResult">
-    <div text-center>
-        <button ion-button (click)="askForImage()">GET AN IMAGE</button>
-    </div>
-
-
-    <hr>
-
-    <div text-center>
-        <button ion-button (click)="getPuzzle()">SHOW PUZZLE TO ALL</button>
-    </div>
+    <div *ngIf="!showResult && !showPuzzle">
+        <div text-center padding>
+            Pour compléter le puzzle, vous devez l'afficher sur la table
+            (<ion-icon name="camera"></ion-icon>)
+            ou <a (click)="getPuzzle()"> tricher</a>
+        </div>
 
     </div>
 
 
     <div class="puzzle" *ngIf="showPuzzle">
-        <p padding text-center>
-            Choisissez un bout de photo de votre inventaire, puis insérez le dans le puzzle en touchant la case ciblée.
-        </p>
+        <div padding text-center>
+            Choisissez une image de votre inventaire, puis insérez la dans le puzzle en touchant la case ciblée.
+        </div>
         <div class="parent">
             <div class="child" *ngFor="let p of puzzle;let i = index" [id]="'piece'+i"
                  (click)="pickTarget(p,i)">
@@ -93,7 +88,6 @@
             <img src="../../assets/imgs/puzzle1/full.jpg"/>
         </div>
     </div>
-
 
 
 </ion-content>

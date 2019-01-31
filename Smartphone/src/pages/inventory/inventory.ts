@@ -36,10 +36,9 @@ export class InventoryPage {
         this.selectedPiece = null;
         this.targetsOn = false;
 
-        this.socketManager.socket.emit('get-player-puzzle-parts',{room : this.socketManager.room});
+        this.socketManager.socket.emit('get-player-puzzle-parts', {room: this.socketManager.room});
 
         this.socketManager.socket.on('get-puzzle-parts', data => {
-           console.log('player has '+data.length+' images in inventory');
             this.ownedPieces = data;
         });
 
@@ -48,13 +47,7 @@ export class InventoryPage {
             this.showPuzzle = true;
         });
 
-        /*
-        this.socketManager.socket.on('get-puzzle-part', data => {
-            this.ownedPieces.push(data);
-        });
-        */
-
-        this.socketManager.socket.on('puzzle-ended',data => {
+        this.socketManager.socket.on('puzzle-ended', data => {
             console.log("puzzle ended");
             this.showPuzzle = false;
             this.showResult = true;
@@ -77,8 +70,8 @@ export class InventoryPage {
         if (this.selectedPiece) {
             this.socketManager.socket.emit('put-part-of-puzzle', {
                 room: this.socketManager.room,
-                source : this.selectedPiece,
-                target : o
+                source: this.selectedPiece,
+                target: o
             });
             if (!o.shown) {
                 if (o.picture === this.selectedPiece.picture) {

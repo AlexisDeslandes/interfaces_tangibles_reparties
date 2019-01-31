@@ -46,7 +46,7 @@ class GameManager {
         });
 
         this.closePuzzleBtn.click(function () {
-           self.hidePuzzle();
+            self.hidePuzzle();
         });
 
         this.socket.on('joined', data => {
@@ -61,11 +61,28 @@ class GameManager {
 
 
         this.socket.on('get-puzzle', data => {
-            console.log('get-puzzle');
-            this.showPuzzle();
-            //update puzzle data
+            if (data.hasOwnProperty('puzzle')) {
+                let ctn = $('#puzzle-parent');
+                ctn.empty();
+                data.puzzle.forEach(p => {
+                    let img;
+                    if (p.shown) img = "<img src='../res/puzzle1/" + p.picture + "' class='slide-in-fwd-center'/>";
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
+                    ctn.append(
+                        "<div class='puzzle-child' id='" + p.picture + "'>" +
+                        img +
+                        "" +
+                        "</div>"
+                    );
+                });
+                this.showPuzzle();
+            }
         });
 
+        this.socket.on('puzzle-ended', () => {
+            $('#puzzle-parent').hide();
+            $('#puzzle-result').show();
+        });
 
 
         this.socket.on('start', data => {
@@ -198,16 +215,16 @@ class GameManager {
     }
 
 
-    showPuzzleToAll(){
+    showPuzzleToAll() {
         $("#puzzle").toggle();
-        this.socket.emit('show-puzzle-on-table',{room : this.gameRoom})
+        this.socket.emit('show-puzzle-on-table', {room: this.gameRoom})
     }
 
-    showPuzzle(){
+    showPuzzle() {
         $("#puzzle").show();
     }
 
-    hidePuzzle(){
+    hidePuzzle() {
         $("#puzzle").hide();
     }
 
@@ -274,7 +291,7 @@ class GameManager {
             const canvas = $("#jean-p" + playerId)[0];
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"]/2);
+            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"] / 2);
         }
 
         /*
@@ -320,6 +337,10 @@ class GameManager {
 
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);
+
+            /*
+            this.socket.emit('get-puzzle', {room: data.room});
+            */
 
             for (let i = 1; i < 5; i++) {
                 let code = this.gameRoom.substring(4) + "-" + i;

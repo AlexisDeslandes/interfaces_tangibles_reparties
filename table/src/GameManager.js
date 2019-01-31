@@ -141,6 +141,8 @@ class GameManager {
         const ctxJeanP4 = jeanP4[0].getContext("2d");
         const ctxBikeP4 = bikeP4[0].getContext("2d");
 
+        const substractChickenP1 = $("#substract-chicken-p1");
+
         switch (nb) {
             case 1:
                 const jeanWidth = 0.2 * $(window).width();
@@ -153,6 +155,11 @@ class GameManager {
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", 0.01 * $(window).height());
                 jeanP1.css("right", 0.1 * $(window).width());
+                substractChickenP1.css("width", jeanWidth / 12);
+                substractChickenP1.css("height", jeanWidth / 12);
+                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
 
                 this.drawJean(ctxJeanP1, jeanWidth, jeanHeight, 5);
 
@@ -294,34 +301,34 @@ class GameManager {
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"] / 2);
-        }
-
-        /*
-        for (let playerId in jauges) {
             for (let jaugeName in jauges[playerId]) {
                 let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
                 if (delta !== 0) {
                     this.jauges[playerId][jaugeName] = jauges[playerId][jaugeName];
                 }
-            }
-        }
-
-
-                $("#substract-"+ jaugeName +"-level-p"+playerId).css("height", (delta*10)+"%");
-                $("#substract-"+ jaugeName +"-level-p"+playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10)+"%");
                 if (delta > 0)
-                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkred");
+                    $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
-                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkgreen");
-                $("#"+jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+                    $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
+
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
+                if (delta > 0)
+                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkred");
+                else if (delta < 0)
+                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
+                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+
             }
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
+            $("div[class^=substract]").css("animation-name", "none");
             $(".substract-level").css("height", 0);
             $("div[class^=level-outline-p]").css("animation-name", "none");
-        }, 6000);*/
+        }, 6000);
     }
+
 
     ready() {
         this.socket.emit('table-ready', {room: this.gameRoom})
@@ -339,7 +346,6 @@ class GameManager {
 
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);
-
 
 
             //this.socket.emit('get-puzzle', {room: data.room});

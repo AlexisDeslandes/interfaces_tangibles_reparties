@@ -31,6 +31,9 @@ div {
   transform: $property;
 }
 
+#map {
+  left: 0;
+}
 
 .puzzlewesh{
   color:red;
@@ -225,6 +228,20 @@ div.main-container-board {
     height: 0;
   }
 
+  div[id^=substract-] {
+    position: absolute;
+    border: none;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-color: red;
+    opacity: 0;
+  }
+
+  div[id^=substract-mood-p] {
+    background-color: transparent;
+  }
+
   #chicken-outline-p2, #mood-outline-p2 {
     bottom: 5%;
     #chicken-level-p2, #mood-level-p2 {
@@ -329,7 +346,7 @@ div.main-container-board {
     }
 
     #chicken-p1, #water-p1, #energy-p1 {
-      right: 10%;
+      left: 10%;
     }
 
     #mood-p2, #thermometer-p2, #bike-p2 {
@@ -676,13 +693,13 @@ div.main-container-board {
 }
 
 @keyframes jaugeblinkred {
-  from {box-shadow: 0 0 10px 0 red;}
-  to {box-shadow: 0 0 10px 5px red;}
+  from {box-shadow: 0 0 10px 0 red;opacity:0}
+  to {box-shadow: 0 0 10px 5px red;opacity:0.8}
 }
 
 @keyframes jaugeblinkgreen {
-  from {box-shadow: 0 0 10px 0 green;}
-  to {box-shadow: 0 0 10px 5px green;}
+  from {box-shadow: 0 0 10px 0 green;opacity:0}
+  to {box-shadow: 0 0 10px 5px green;opacity:0.8}
 }
 
 @keyframes scale-center {

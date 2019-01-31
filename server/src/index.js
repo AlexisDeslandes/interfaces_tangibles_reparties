@@ -52,6 +52,19 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('updateStats', m => {
+        let game = getGameByRoomName(m.room);
+        let stats = m.stats;
+        let p = game.getPlayerById(socket.id);
+        let playerId = p.name;
+        let playerJauge = game.jauges[playerId];
+        for (let stat of stats) {
+            if (stat.type in playerJauge) {
+                playerJauge[stat.type] = Math.min(parseInt(playerJauge[stat.type]) + stat.value, 10);
+            }
+        }
+    });
+
     socket.on('table-ready', m => {
         let game = getGameByRoomName(m.room);
         if (game) {

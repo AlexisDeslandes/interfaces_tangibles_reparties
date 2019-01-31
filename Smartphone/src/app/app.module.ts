@@ -22,8 +22,8 @@ import {ReadyStepPage} from "../pages/ready-step/ready-step";
 import {GameoverPage} from "../pages/gameover/gameover";
 import {InventoryPage} from "../pages/inventory/inventory";
 
-const config: SocketIoConfig = {url: 'http://192.168.1.66:4444', options: {}};
-//const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
+//const config: SocketIoConfig = {url: 'http://192.168.1.66:4444', options: {}};
+const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
 
 @NgModule({
     declarations: [

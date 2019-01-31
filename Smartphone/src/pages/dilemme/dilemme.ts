@@ -71,9 +71,10 @@ export class DilemmePage {
 
     this.hasAnswered = true;
     this.result = this.data.choices[this.choice].result;
-    this.stats = this.data.choices[this.choice].stats
+    this.stats = this.data.choices[this.choice].stats;
 
-    this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room});
+    this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
+    this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});
   }
 
   ready() {

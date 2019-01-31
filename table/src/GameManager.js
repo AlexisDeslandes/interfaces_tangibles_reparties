@@ -4,6 +4,9 @@ import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
 import {Observer} from "./model/Observer";
 import {GameState} from "./model/GameState";
+import Datamap from "datamaps/dist/datamaps.world.min";
+
+
 
 class GameManager {
 
@@ -106,6 +109,8 @@ class GameManager {
                 $(".smartphone-picto").css("display", "none");
             }, 6000);
 
+
+
             self.updateJauges(data.jauges);
 
         });
@@ -141,6 +146,10 @@ class GameManager {
         const ctxJeanP4 = jeanP4[0].getContext("2d");
         const ctxBikeP4 = bikeP4[0].getContext("2d");
 
+        const substractChickenP1 = $("#substract-chicken-p1");
+        const substractMoodP1 = $("#substract-mood-p1");
+
+
         switch (nb) {
             case 1:
                 const jeanWidth = 0.2 * $(window).width();
@@ -153,8 +162,16 @@ class GameManager {
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", 0.01 * $(window).height());
                 jeanP1.css("right", 0.1 * $(window).width());
-
-                this.drawJean(ctxJeanP1, jeanWidth, jeanHeight, 5);
+                substractChickenP1.css("width", jeanWidth / 12);
+                substractChickenP1.css("height", jeanWidth / 12);
+                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP1.css("width", jeanWidth / 8);
+                substractMoodP1.css("height", jeanWidth / 8);
+                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractMoodP1.css("border-radius", jeanWidth / 8 + "px " + jeanWidth / 8 + "px");
 
                 break;
             case 2:
@@ -230,7 +247,7 @@ class GameManager {
         $("#puzzle").hide();
     }
 
-    drawJean(ctx, jeanWidth, jeanHeight, width) {
+    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood) {
         const center = jeanWidth / 2;
         const left = jeanWidth / 2.5;
         const right = 2 * center - left;
@@ -238,6 +255,7 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
+        const width = chicken/2;
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -250,18 +268,29 @@ class GameManager {
         this.drawLine(ctx, center, middle, left, 3 * headRadius, width);
         // RIGHT ARM
         this.drawLine(ctx, center, middle, right, 3 * headRadius, width);
+        // MOUTH
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width, mood);
         // EYES
         this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width);
         this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width);
-        // MOUTH
-        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, false, width);
     }
 
-    drawMouth(ctx, x, y, r, start, end, ccw, width) {
-        ctx.lineWidth = width;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI, false);
-        ctx.stroke();
+    drawMouth(ctx, x, y, r, start, end, width, mood) {
+        if (mood > 6) {
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI, false);
+            ctx.stroke();
+        }
+        else if (mood > 3 && mood <= 6) {
+            this.drawLine(ctx, x - r, y + r/3, x + r, y + r/3, width);
+        }
+        else {
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.arc(x, y + r, r*0.8, 0, Math.PI, true);
+            ctx.stroke();
+        }
     }
 
     fillCircle(ctx, x, y, r) {
@@ -293,35 +322,35 @@ class GameManager {
             const canvas = $("#jean-p" + playerId)[0];
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"] / 2);
-        }
-
-        /*
-        for (let playerId in jauges) {
+            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"]);
             for (let jaugeName in jauges[playerId]) {
                 let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
                 if (delta !== 0) {
                     this.jauges[playerId][jaugeName] = jauges[playerId][jaugeName];
                 }
-            }
-        }
-
-
-                $("#substract-"+ jaugeName +"-level-p"+playerId).css("height", (delta*10)+"%");
-                $("#substract-"+ jaugeName +"-level-p"+playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10)+"%");
                 if (delta > 0)
-                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkred");
+                    $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
-                    $("#"+ jaugeName +"-outline-p"+playerId).css("animation-name", "jaugeblinkgreen");
-                $("#"+jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+                    $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
+
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
+                if (delta > 0)
+                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkred");
+                else if (delta < 0)
+                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
+                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+
             }
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
+            $("div[class^=substract]").css("animation-name", "none");
             $(".substract-level").css("height", 0);
             $("div[class^=level-outline-p]").css("animation-name", "none");
-        }, 6000);*/
+        }, 6000);
     }
+
 
     ready() {
         this.socket.emit('table-ready', {room: this.gameRoom})
@@ -339,7 +368,6 @@ class GameManager {
 
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);
-
 
 
             //this.socket.emit('get-puzzle', {room: data.room});
@@ -576,7 +604,11 @@ class GameManager {
             document.getElementById('app').getBoundingClientRect().top,
             document.getElementById('app').getBoundingClientRect().width,
             document.getElementById('app').getBoundingClientRect().height);
-        $('#app').append(this.mapWidget.domElem).css('z-index', '500');
+        $('#app').append(this.mapWidget.domElem);
+        this.mapWidget.addMap();
+
+
+
 
     }
 

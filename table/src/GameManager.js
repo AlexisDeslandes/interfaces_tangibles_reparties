@@ -161,8 +161,6 @@ class GameManager {
                 substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
 
-                this.drawJean(ctxJeanP1, jeanWidth, jeanHeight, 5);
-
                 break;
             case 2:
                 bikeP1.attr("width", 0.23 * $(window).width());
@@ -237,7 +235,7 @@ class GameManager {
         $("#puzzle").hide();
     }
 
-    drawJean(ctx, jeanWidth, jeanHeight, width) {
+    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood) {
         const center = jeanWidth / 2;
         const left = jeanWidth / 2.5;
         const right = 2 * center - left;
@@ -245,6 +243,7 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
+        const width = chicken/2;
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -257,18 +256,29 @@ class GameManager {
         this.drawLine(ctx, center, middle, left, 3 * headRadius, width);
         // RIGHT ARM
         this.drawLine(ctx, center, middle, right, 3 * headRadius, width);
+        // MOUTH
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width, mood);
         // EYES
         this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width);
         this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width);
-        // MOUTH
-        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, false, width);
     }
 
-    drawMouth(ctx, x, y, r, start, end, ccw, width) {
-        ctx.lineWidth = width;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI, false);
-        ctx.stroke();
+    drawMouth(ctx, x, y, r, start, end, width, mood) {
+        if (mood > 6) {
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI, false);
+            ctx.stroke();
+        }
+        else if (mood > 3 && mood <= 6) {
+            this.drawLine(ctx, x - r, y + r/3, x + r, y + r/3, width);
+        }
+        else {
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.arc(x, y + r, r*0.8, 0, Math.PI, true);
+            ctx.stroke();
+        }
     }
 
     fillCircle(ctx, x, y, r) {
@@ -300,7 +310,7 @@ class GameManager {
             const canvas = $("#jean-p" + playerId)[0];
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"] / 2);
+            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"]);
             for (let jaugeName in jauges[playerId]) {
                 let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
                 if (delta !== 0) {

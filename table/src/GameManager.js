@@ -80,8 +80,10 @@ class GameManager {
         });
 
         this.socket.on('puzzle-ended', () => {
+            console.log("puzzle ended");
             $('#puzzle-parent').hide();
             $('#puzzle-result').show();
+            $('#puzzle-title').hide();
         });
 
 
@@ -338,9 +340,9 @@ class GameManager {
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);
 
-            /*
+
             this.socket.emit('get-puzzle', {room: data.room});
-            */
+
 
             for (let i = 1; i < 5; i++) {
                 let code = this.gameRoom.substring(4) + "-" + i;

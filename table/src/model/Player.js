@@ -3,7 +3,6 @@ export class Player {
     constructor(id) {
         this.id = id;
         this.attributeCoordinates(id);
-        this.observers = []
     }
 
     attributeCoordinates(id) {
@@ -29,20 +28,8 @@ export class Player {
         }
     }
 
-    addObserver(observer) {
-        this.observers.push(observer);
-        this.notifyObservers()
-    }
-
     setCoordinates(x, y) {
         this.x = x;
         this.y = y;
-        this.notifyObservers()
-    }
-
-    notifyObservers() {
-        for (let observer of this.observers) {
-            observer.update(this);
-        }
     }
 }

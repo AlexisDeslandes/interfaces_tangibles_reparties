@@ -4,6 +4,9 @@ import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
 import {Observer} from "./model/Observer";
 import {GameState} from "./model/GameState";
+import Datamap from "datamaps/dist/datamaps.world.min";
+
+
 
 class GameManager {
 
@@ -601,7 +604,11 @@ class GameManager {
             document.getElementById('app').getBoundingClientRect().top,
             document.getElementById('app').getBoundingClientRect().width,
             document.getElementById('app').getBoundingClientRect().height);
-        $('#app').append(this.mapWidget.domElem).css('z-index', '500');
+        $('#app').append(this.mapWidget.domElem);
+        this.mapWidget.addMap();
+
+
+
 
     }
 

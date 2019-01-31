@@ -21,6 +21,12 @@ class GameManager {
 
         let self = this;
         self.init = true;
+
+        self.rationWidgetP1 = null;
+        self.rationWidgetP2 = null;
+        self.rationWidgetP3 = null;
+        self.rationWidgetP4 = null;
+
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
         this.readyBtn = $("#ready-btn");
@@ -473,50 +479,50 @@ class GameManager {
     }
 
     initWidgets(nbPlayer) {
-        this.mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
-            document.getElementById('app').parentElement.parentElement.offsetTop,
-            document.getElementById('app').offsetWidth,
-            document.getElementById('app').offsetHeight);
-        $('#app').append(this.mapWidget.domElem);
-
         if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
-                document.getElementById('ration-container-p1').offsetLeft,
-                document.getElementById('ration-container-p1').offsetTop,
-                document.getElementById('ration-container-p1').offsetWidth,
-                document.getElementById('ration-container-p1').offsetHeight);
+                document.getElementById('ration-container-p1').getBoundingClientRect().left,
+                document.getElementById('ration-container-p1').getBoundingClientRect().top,
+                document.getElementById('ration-container-p1').getBoundingClientRect().width,
+                document.getElementById('ration-container-p1').getBoundingClientRect().height);
             $('#ration-container-p1').append(rationWidgetP1.domElem);
         }
         if (nbPlayer >= 2) {
             const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
-                document.getElementById('ration-container-p2').offsetLeft,
-                document.getElementById('ration-container-p2').offsetTop,
-                document.getElementById('ration-container-p2').offsetWidth,
-                document.getElementById('ration-container-p2').offsetHeight);
+                document.getElementById('ration-container-p2').getBoundingClientRect().left,
+                document.getElementById('ration-container-p2').getBoundingClientRect().top,
+                document.getElementById('ration-container-p2').getBoundingClientRect().width,
+                document.getElementById('ration-container-p2').getBoundingClientRect().height);
             $('#ration-container-p2').append(rationWidgetP2.domElem);
         }
 
         if (nbPlayer >= 3) {
             const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
-                document.getElementById('ration-container-p3').offsetLeft,
-                document.getElementById('ration-container-p3').offsetTop,
-                document.getElementById('ration-container-p3').offsetWidth,
-                document.getElementById('ration-container-p3').offsetHeight);
+                document.getElementById('ration-container-p3').getBoundingClientRect().left,
+                document.getElementById('ration-container-p3').getBoundingClientRect().top,
+                document.getElementById('ration-container-p3').getBoundingClientRect().width,
+                document.getElementById('ration-container-p3').getBoundingClientRect().height);
             $('#ration-container-p3').append(rationWidgetP3.domElem);
         }
 
         if (nbPlayer === 4) {
             const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
-                document.getElementById('ration-container-p4').offsetLeft,
-                document.getElementById('ration-container-p4').offsetTop,
-                document.getElementById('ration-container-p4').offsetWidth,
-                document.getElementById('ration-container-p4').offsetHeight);
+                document.getElementById('ration-container-p4').getBoundingClientRect().left,
+                document.getElementById('ration-container-p4').getBoundingClientRect().top,
+                document.getElementById('ration-container-p4').getBoundingClientRect().width,
+                document.getElementById('ration-container-p4').getBoundingClientRect().height);
             $('#ration-container-p4').append(rationWidgetP4.domElem);
         }
 
         if (nbPlayer === 1) {
             $("#map").css("position", "relative");
         }
+        this.mapWidget = new MapWidget(
+            document.getElementById('app').getBoundingClientRect().left,
+            document.getElementById('app').getBoundingClientRect().top,
+            document.getElementById('app').getBoundingClientRect().width,
+            document.getElementById('app').getBoundingClientRect().height);
+        $('#app').append(this.mapWidget.domElem).css('z-index', '500');
 
     }
 

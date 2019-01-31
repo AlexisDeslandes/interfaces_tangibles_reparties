@@ -44,6 +44,7 @@ class RationWidget extends TUIOWidget {
       this._domElem.css('width', `${width}px`);
       this._domElem.css('height', `${height}px`);
       this._domElem.css('position', 'absolute');
+      this._domElem.css('background-color', '#5d5d5d');
 
       console.log(this.idWidget);
       console.log( "x= "+ this._x+ "  y= "+this._y+ " width = "+this._width+" height = "+ this._height);
@@ -127,22 +128,22 @@ class RationWidget extends TUIOWidget {
   onTagCreation(tuioTag) {
     super.onTagCreation(tuioTag);
       console.log(tuioTag);
-
-      console.log(this.id);
+      console.log(this.player);
       console.log(this.isTouched(tuioTag.x, tuioTag.y));
 
       console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
       console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
       console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
-      console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + this._y +"<=" +this._y +"+"+ this._height);
-      const socket = io.connect('http://192.168.1.2:4444');
+      console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
+
+      const socket = io.connect('http://localhost:4444');
 
       // socket.emit('isTouched', {tag_x: tuioTag.x, tag_y:tuioTag.y, x: this._x, y: this._y, _width: this._width, _height: this._height});
 
       if (this.isTouched(tuioTag.x, tuioTag.y)) {
-
-
           socket.emit('ration', {id: tuioTag.id, player: this.player, gameRoom: this.gameRoom});
+
+
           socket.on('ration-used', (m) => {
               console.log(m);
               // document.getElementById(m.id).height = '120';
@@ -160,7 +161,16 @@ class RationWidget extends TUIOWidget {
    */
 
   onTagUpdate(tuioTag) {
-      const socket = io.connect('http://192.168.1.2:4444');
+      const socket = io.connect('http://localhost:4444');
+      console.log(tuioTag);
+      console.log(this.player);
+      console.log(this.isTouched(tuioTag.x, tuioTag.y));
+
+      console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
+      console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
+      console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
+      console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
+
       if (typeof (this._lastTagsValues[tuioTag.id]) !== 'undefined') {
        const lastTagValue = this._lastTagsValues[tuioTag.id];
       const diffX = tuioTag.x - lastTagValue.x;
@@ -193,20 +203,22 @@ class RationWidget extends TUIOWidget {
           y: tuioTag.y,
         },
       };
-        if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            const socket = io.connect('http://localhost:4444');
-            socket.emit('ration', {id: tuioTag.id, player: this.player, gameRoom: this.gameRoom});
-            socket.on('ration-used', (m) => {
-                console.log(m);
-                // document.getElementById(m.id).height = '120';
 
-            });
-        }
+
 
         // socket.emit('isTouched', {tag_x: tuioTag.x, tag_y:tuioTag.y, x: this._x, y: this._y, _width: this._width, _height: this._height});
     }
-      socket.emit('isTouched', {tag_x: tuioTag.x, tag_y:tuioTag.y, x: this._x, y: this._y, _width: this._width, _height: this._height});
+     // socket.emit('isTouched', {tag_x: tuioTag.x, tag_y:tuioTag.y, x: this._x, y: this._y, _width: this._width, _height: this._height});
+      if (this.isTouched(tuioTag.x, tuioTag.y)) {
 
+          // const socket = io.connect('http://localhost:4444');
+          socket.emit('ration', {id: tuioTag.id, player: this.player, gameRoom: this.gameRoom});
+          socket.on('ration-used', (m) => {
+              console.log(m);
+              // document.getElementById(m.id).height = '120';
+
+          });
+      }
   }
     //
     // onTagDeletion(tuioTag) {

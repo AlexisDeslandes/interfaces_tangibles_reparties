@@ -54,13 +54,14 @@ class MapWidget extends TUIOWidget {
         // this._domElem.css('background-color', '#f4f4f4');
 
         elem.append($('<img>')
-            .attr('src', 'https://tse1.mm.bing.net/th?id=OIP.Cu2gKN_R48BSE862JgRIVgHaEb&pid=Api')
+            .attr('src', 'res/map_init.png')
             .attr('id', 'map')
             .css('width', `100%`)
             .css('height', `100%`)
             .css('position', 'absolute'));
         this._domElem = elem;
-
+        console.log("MAAAAAAAAPPPPPP");
+        console.log( "x= "+ this._x+ "  y= "+this._y+ " width = "+this._width+" height = "+ this._height);
     }
 
 
@@ -148,19 +149,32 @@ class MapWidget extends TUIOWidget {
      */
     onTagCreation(tuioTag) {
         super.onTagCreation(tuioTag);
-        console.log(tuioTag);
-
+        // console.log('On creation Tag');
+        // console.log(tuioTag);
+        // console.log(this.isTouched(tuioTag.x, tuioTag.y));
+        //
+        // console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
+        // console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
+        // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
+        // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
 
-            const socket = io.connect('http://192.168.1.2:4444');
+            const socket = io.connect('http://localhost:4444');
             socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
             socket.emit('map', tuioTag.id);
             socket.on('map-changed', (m) => {
+                console.log("map changed");
                 document.getElementById('map').src = m.img;
             });
         }
         //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
-
+        // const socket = io.connect('http://localhost:4444');
+        // socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
+        // socket.emit('map', tuioTag.id);
+        // socket.on('map-changed', (m) => {
+        //     console.log("map changed");
+        //     document.getElementById('map').src = m.img;
+        // });
 
 
         //}
@@ -177,7 +191,25 @@ class MapWidget extends TUIOWidget {
      * @param {TUIOTag} tuioTag - A TUIOTag instance.
      */
     onTagUpdate(tuioTag) {
+        console.log('On Update Tag');
+        console.log(tuioTag);
+        console.log(this.isTouched(tuioTag.x, tuioTag.y));
+
+        console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
+        console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
+        console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
+        console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (typeof (this._lastTagsValues[tuioTag.id]) !== 'undefined') {
+
+            console.log('On Update Tag');
+            console.log(tuioTag);
+            console.log(this.isTouched(tuioTag.x, tuioTag.y));
+
+            console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
+            console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
+            console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
+            console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
+
             const lastTagValue = this._lastTagsValues[tuioTag.id];
             const diffX = tuioTag.x - lastTagValue.x;
             const diffY = tuioTag.y - lastTagValue.y;
@@ -209,15 +241,23 @@ class MapWidget extends TUIOWidget {
                     y: tuioTag.y,
                 },
             };
-            const socket = io.connect('http://192.168.1.2:4444');
-            socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);
+            // const socket = io.connect('http://localhost:4444');
+            // socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);
+            // socket.emit('map', tuioTag.id);
+            // socket.on('map-changed', (m) => {
+            //     document.getElementById('map').src = m.img;
+            // });
+        }
+
+        if (this.isTouched(tuioTag.x, tuioTag.y)) {
+
+            const socket = io.connect('http://localhost:4444');
+            socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
             socket.emit('map', tuioTag.id);
             socket.on('map-changed', (m) => {
                 document.getElementById('map').src = m.img;
             });
         }
-
-
 
 
 

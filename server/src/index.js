@@ -131,15 +131,15 @@ io.on('connection', socket => {
 
     socket.on("map", m => {
         console.log("Map tag received: "+ m);
-        if (m === 'BC') {
+        if (m === 1) {
             socket.emit("map-changed", {
                 img: 'res/map_init.png'
             });
-        } else if (m === '7D') {
+        } else if (m === 2) {
             socket.emit("map-changed", {
                 img: 'res/map_village.png'
             });
-        } else if (m === 'BD') {
+        } else if (m === 3) {
             socket.emit("map-changed", {
                 img: 'res/map_road.png'
             });

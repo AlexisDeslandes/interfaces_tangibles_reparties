@@ -56,7 +56,6 @@ module.exports = class Game {
         }
     }
 
-
     playerIsReady(socket) {
         let p = this.getPlayerById(socket.id);
         if (p) console.log(p.name + ' is ready');

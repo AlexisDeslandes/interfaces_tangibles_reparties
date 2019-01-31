@@ -238,6 +238,10 @@ div.main-container-board {
     opacity: 0;
   }
 
+  div[id^=substract-mood-p] {
+    background-color: transparent;
+  }
+
   #chicken-outline-p2, #mood-outline-p2 {
     bottom: 5%;
     #chicken-level-p2, #mood-level-p2 {

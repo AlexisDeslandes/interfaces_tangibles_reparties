@@ -26,27 +26,97 @@
 </div>
 
 <style>
-    .puzzle{
-        display:none;
-        background-color: #51a7e8;
-        position:fixed;
+    .puzzle {
+        box-sizing: border-box;
+        display: none;
+        background-color: #73a5ad;
+        position: fixed;
         top: 50%;
         left: 50%;
-        width:80em;
-        height:46em;
-        margin-top: -23em; /*set to a negative number 1/2 of your height*/
-        margin-left: -40em; /*set to a negative number 1/2 of your width*/
+        width: 76em;
+        margin-left: -38em;
+        height: 50em;
+        margin-top: -25em;
         border: 1px solid #ccc;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        padding-left: 70px;
     }
 
-    #close-puzzle{
-        float:right;
+    .puzzle h1{
+        color:#fff;
+        margin-bottom: 10px;
+    }
+
+    #puzzle-parent {
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .puzzle-child {
+        flex: 0 0 32%;
+        margin-bottom: 9px;
+        background-color: unset;
+    }
+
+    .puzzle-child img {
+        height: auto;
+        width: 100%;
+    }
+
+    #close-puzzle {
+        float: right;
+        font-size: 40px;
+        color: #007aff;
+        border: solid 3px #007aff;
+        border-radius: 50%;
+        height: 80px;
+        background-color: #fff;
+        width: 80px;
+        line-height: 40px;
+        position: relative;
+        top: -45px;
+        left: 45px;
+    }
+
+    #close-puzzle:focus {
+        background-color: #F5F5F5;
+        outline: unset;
+    }
+
+    #puzzle-result{
+        display: none;
+    }
+
+    .slide-in-fwd-center {
+        animation: slide-in-fwd-center 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    @keyframes slide-in-fwd-center {
+        0% {
+            transform: translateZ(-1400px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateZ(0);
+            opacity: 1;
+        }
     }
 </style>
 
 <div id="puzzle" class="puzzle" style="z-index: 10001">
-    <button id="close-puzzle"> X </button>
-    <h1>Affichage du puzzle</h1>
+    <button id="close-puzzle"> ❌</button>
+    <h1 id="puzzle-title">Puzzle collaboratif</h1>
+    <div id="puzzle-parent">
+    </div>
+    <div id="puzzle-result">
+        <h1> Féliciations </h1>
+        <h2>Vous avez completé le puzzle !</h2>
+        <img class="slide-in-fwd-center" style="width:80%" src="res/puzzle1/full.jpg"/>
+    </div>
 </div>
 
 
@@ -89,6 +159,8 @@
 
     <canvas id="jean-p1"></canvas>
     <canvas id="bike-p1"></canvas>
+    <div class="substract" id="substract-chicken-p1"></div>
+    <div class="substract" id="substract-mood-p1"></div>
 
     <canvas id="jean-p2"></canvas>
     <canvas id="bike-p2"></canvas>
@@ -226,12 +298,13 @@
             <div class="level-outline-p1-right" id="chicken-outline-p1">
                 <div class="substract-level" id="substract-chicken-level-p1"></div>
                 <div class="level-p1" id="chicken-level-p1"></div>
-            </div>
+            </div>-->
             <img class="picto" id="water-p1" src="res/water.svg" height="20%" />
-            <div class="level-outline-p1-right" id="water-outline-p1">
+            <div class="level-outline-p1-left" id="water-outline-p1">
                 <div class="substract-level" id="substract-water-level-p1"></div>
                 <div class="level-p1" id="water-level-p1"></div>
             </div>
+            <!--
             <img class="picto" id="energy-p1" src="res/energy.svg" height="20%" />
             <div class="level-outline-p1-right" id="energy-outline-p1">
                 <div class="substract-level" id="substract-energy-level-p1"></div>

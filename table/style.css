@@ -12,6 +12,12 @@ body {
 div {
   box-sizing: content-box; }
 
+#map {
+  left: 0; }
+
+.puzzlewesh {
+  color: red; }
+
 div.main-container-board {
   height: 100%;
   width: 100%;
@@ -143,6 +149,16 @@ div.main-container-board {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     height: 0; }
+  div.main-container-board div[id^=substract-] {
+    position: absolute;
+    border: none;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-color: red;
+    opacity: 0; }
+  div.main-container-board div[id^=substract-mood-p] {
+    background-color: transparent; }
   div.main-container-board #chicken-outline-p2, div.main-container-board #mood-outline-p2 {
     bottom: 5%; }
     div.main-container-board #chicken-outline-p2 #chicken-level-p2, div.main-container-board #chicken-outline-p2 #mood-level-p2, div.main-container-board #mood-outline-p2 #chicken-level-p2, div.main-container-board #mood-outline-p2 #mood-level-p2 {
@@ -219,7 +235,7 @@ div.main-container-board {
       -moz-transform: rotate(180deg);
       transform: rotate(180deg); }
     div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #energy-p1 {
-      right: 10%; }
+      left: 10%; }
     div.main-container-board div.long-edge #mood-p2, div.main-container-board div.long-edge #thermometer-p2, div.main-container-board div.long-edge #bike-p2 {
       right: 10%; }
     div.main-container-board div.long-edge #mood-p1, div.main-container-board div.long-edge #thermometer-p1, div.main-container-board div.long-edge #bike-p1 {
@@ -500,14 +516,18 @@ div.main-container-board {
     background-color: red; } }
 @keyframes jaugeblinkred {
   from {
-    box-shadow: 0 0 10px 0 red; }
+    box-shadow: 0 0 10px 0 red;
+    opacity: 0; }
   to {
-    box-shadow: 0 0 10px 5px red; } }
+    box-shadow: 0 0 10px 5px red;
+    opacity: 0.8; } }
 @keyframes jaugeblinkgreen {
   from {
-    box-shadow: 0 0 10px 0 green; }
+    box-shadow: 0 0 10px 0 green;
+    opacity: 0; }
   to {
-    box-shadow: 0 0 10px 5px green; } }
+    box-shadow: 0 0 10px 5px green;
+    opacity: 0.8; } }
 @keyframes scale-center {
   0% {
     transform: scale(0); }

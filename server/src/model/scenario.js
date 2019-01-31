@@ -23,7 +23,7 @@ module.exports = [
                 text: "Un parasol",
                 result: "",
                 stats: [
-                    {type: 'Parassol', value: 1},
+                    {type: 'Parasol', value: 1},
                 ]
             },
             {

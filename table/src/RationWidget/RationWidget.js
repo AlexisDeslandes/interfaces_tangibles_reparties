@@ -44,7 +44,6 @@ class RationWidget extends TUIOWidget {
       this._domElem.css('width', `${width}px`);
       this._domElem.css('height', `${height}px`);
       this._domElem.css('position', 'absolute');
-      this._domElem.css('background-color', '#5d5d5d');
 
       console.log(this.idWidget);
       console.log( "x= "+ this._x+ "  y= "+this._y+ " width = "+this._width+" height = "+ this._height);

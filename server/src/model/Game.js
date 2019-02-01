@@ -123,6 +123,8 @@ module.exports = class Game {
     consumeChickenWater() {
         for (let playerId in this.jauges) {
             this.jauges[playerId].water--;
+            this.jauges[playerId].water--;
+            this.jauges[playerId].chicken--;
             this.jauges[playerId].chicken--;
         }
     }
@@ -163,7 +165,7 @@ module.exports = class Game {
 
     useRation(m) {
         if (typeof this.jauges[m.player] !== 'undefined') {
-            if (m.id === 4) {
+            if (m.id === 'B3') {
                 this.jauges[m.player].water += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise de l'eau");
@@ -177,7 +179,7 @@ module.exports = class Game {
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise du poulet");
 
-            } else if (m.id === 7) {
+            } else if (m.id === 'B4') {
                 this.jauges[m.player].mood += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
                 console.log("Joueur "+m.player+" utilise de l'ectasy");

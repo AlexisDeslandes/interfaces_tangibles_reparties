@@ -95,9 +95,9 @@ module.exports = class MapManager {
     }
 
     drawArc(m){
-        if (m === 1) {
+        if (m === 'A6') {
             this.arcs = [];
-        } else if (m === 2) {
+        } else if (m === 'B5') {
             this.arcs = [];
             for(let i=0; i<this.cities.length;i++){
                 if(i < this.cities.length-1){

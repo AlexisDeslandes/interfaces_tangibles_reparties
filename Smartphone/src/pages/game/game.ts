@@ -50,11 +50,11 @@ export class GamePage {
   }
 
   ionViewDidLoad() {
-    const slider = document.getElementById("slider");
-    const slider2 = document.getElementById("slider2");
-    const slide = document.getElementById("slide");
-    const slide2 = document.getElementById("slide2");
-    const background = document.getElementById("background");
+    const slider = document.getElementById("slidr");
+    const slider2 = document.getElementById("slidr2");
+    const slide = document.getElementById("slid");
+    const slide2 = document.getElementById("slid2");
+    const background = document.getElementById("background2");
     const width: number = slider.clientWidth;
     const startY: number = slider.offsetTop;
     const goalY: number = slider.clientHeight + startY - width;
@@ -101,8 +101,8 @@ export class GamePage {
   }
 
   private moveSand() {
-    const sable: HTMLImageElement = <HTMLImageElement>document.getElementById("sable");
-    const sable2: HTMLImageElement = <HTMLImageElement>document.getElementById("sable2");
+    const sable: HTMLImageElement = <HTMLImageElement>document.getElementById("sabl");
+    const sable2: HTMLImageElement = <HTMLImageElement>document.getElementById("sabl2");
     const topSable: number = (parseInt(sable.style.top.split("p")[0]) - 10);
     const topSable2: number = (parseInt(sable2.style.top.split("p")[0]) - 10);
     sable.style.top = topSable + "px";

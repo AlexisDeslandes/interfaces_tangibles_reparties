@@ -41,8 +41,10 @@ export class HomePage {
                         this.navCtrl.push(DilemmePage, data);
                         break;
                     case 'minijeu':
-                        this.navCtrl.push(GuidelinePage, data);
-                        break;
+                        if (this.socketManager.player == 1) {
+                            this.navCtrl.push(GuidelinePage, data);
+                            break;
+                        }
                 }
             }
         })

@@ -66,16 +66,16 @@ module.exports = [
                 + "à visiter la maison et à partager un repas. Il se laisse envahir par la nostalgie..." +
                 "par la nostalgie.",
                 stats: [
-                    {type: 'mood', value: -1},
-                    {type: 'chicken', value: 1}
+                    {type: 'mood', value: -3},
+                    {type: 'chicken', value: 2}
                 ]
             },
             {
                 text: "Aller se promener au marché",
                 result: "Rien de plus ressourçant qu'une promenade dans les rues de Blida.",
                 stats: [
-                    {type: 'mood', value: 1},
-                    {type: 'water', value: 1}
+                    {type: 'mood', value: 2},
+                    {type: 'water', value: 2}
                 ]
             },
         ]
@@ -100,8 +100,8 @@ module.exports = [
                 "compter les bruits de chacals dans les buissons, cette route est un désastre. " +
                 "Heureusement, vous avez trouvé un petit coin sympa pour faire une sieste.",
                 stats: [
-                    {type: 'mood', value: -1},
-                    {type: 'energy', value: 1}
+                    {type: 'mood', value: -2},
+                    {type: 'energy', value: 2}
                 ]
             },
             {
@@ -109,10 +109,10 @@ module.exports = [
                 result: "Le vélo tremble en roulant sur les cailloux. Difficile d'avancer dans ces " +
                 "conditions... Mais au loin, vous apercevez une oasis. Quoi de mieux pour reprendre des forces ?",
                 stats: [
-                    {type: 'mood', value: 1},
-                    {type: 'energy', value: 1},
-                    {type: 'water', value: 1},
-                    {type: 'chicken', value: 1}
+                    {type: 'mood', value: 2},
+                    {type: 'energy', value: 2},
+                    {type: 'water', value: 2},
+                    {type: 'chicken', value: 2}
                 ]
             }],
     },
@@ -133,16 +133,16 @@ module.exports = [
                 text: "Attendre que les camions passent",
                 result: "Bonne idée, la route sera plus calme et le voyage plus agréable après une petite pause.",
                 stats: [
-                    {type: 'mood', value: 1},
-                    {type: 'energy', value: -1}
+                    {type: 'mood', value: 2},
+                    {type: 'energy', value: -2}
                 ]
             },
             {
                 text: "Ne pas perdre de temps",
                 result: "Quel enfer ! Avec le bruit et la pollution, vous peinez à gravir la montée...",
                 stats: [
-                    {type: 'mood', value: -1},
-                    {type: 'energy', value: -2}
+                    {type: 'mood', value: -2},
+                    {type: 'energy', value: -3}
                 ]
             }
         ]

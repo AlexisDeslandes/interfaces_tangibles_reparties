@@ -62,7 +62,7 @@ io.on('connection', socket => {
 
             for (let stat of stats) {
 
-                if (stat.type in playerJauge) {
+                if (playerJauge.hasOwnProperty(stat.type)) {
                     playerJauge[stat.type] = Math.min(parseInt(playerJauge[stat.type]) + stat.value, 10);
                 }
             }

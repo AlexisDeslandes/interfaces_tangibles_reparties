@@ -16,6 +16,10 @@ img, div {
   -ms-user-select: none;
 }
 
+body {
+  overflow-y: hidden;
+}
+
 div {
   box-sizing: content-box;
 }
@@ -27,12 +31,38 @@ div {
   transform: $property;
 }
 
+#map {
+  left: 0;
+}
+
+.puzzlewesh{
+  color:red;
+}
+
 div.main-container-board {
   height: 100%;
   width: 100%;
   display: none;
   margin-right: auto;
   margin-left: auto;
+
+  canvas[id^=jean-p], canvas[id^=bike-p] {
+    display: none;
+    position: absolute;
+    border: 1px solid;
+  }
+
+  #jean-p2 {
+    @include transform(rotate(180deg));
+  }
+
+  #jean-p3 {
+    @include transform(rotate(90deg));
+  }
+
+  #jean-p4 {
+    @include transform(rotate(270deg));
+  }
 
   div.section {
     width: 100%;
@@ -198,6 +228,20 @@ div.main-container-board {
     height: 0;
   }
 
+  div[id^=substract-] {
+    position: absolute;
+    border: none;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-color: red;
+    opacity: 0;
+  }
+
+  div[id^=substract-mood-p] {
+    background-color: transparent;
+  }
+
   #chicken-outline-p2, #mood-outline-p2 {
     bottom: 5%;
     #chicken-level-p2, #mood-level-p2 {
@@ -302,7 +346,7 @@ div.main-container-board {
     }
 
     #chicken-p1, #water-p1, #energy-p1 {
-      right: 10%;
+      left: 10%;
     }
 
     #mood-p2, #thermometer-p2, #bike-p2 {
@@ -469,11 +513,19 @@ div.main-container-board {
   padding:40px 0;
 }
 
+.regular-title, .reversed-title {
+  width: 100%;
+  height: 50%;
+}
+
+.reversed-title {
+  @include transform(rotate(180deg));
+  border-top: 1px solid #cccccc;
+}
 
 .start-game{
-  margin:0 auto;
-  margin-top:100px;
   width:400px;
+  margin: 30vh auto 0 auto;
   text-align: center;
   padding: 20px 20px 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.16);
@@ -641,13 +693,13 @@ div.main-container-board {
 }
 
 @keyframes jaugeblinkred {
-  from {box-shadow: 0 0 10px 0 red;}
-  to {box-shadow: 0 0 10px 5px red;}
+  from {box-shadow: 0 0 10px 0 red;opacity:0}
+  to {box-shadow: 0 0 10px 5px red;opacity:0.8}
 }
 
 @keyframes jaugeblinkgreen {
-  from {box-shadow: 0 0 10px 0 green;}
-  to {box-shadow: 0 0 10px 5px green;}
+  from {box-shadow: 0 0 10px 0 green;opacity:0}
+  to {box-shadow: 0 0 10px 5px green;opacity:0.8}
 }
 
 @keyframes scale-center {

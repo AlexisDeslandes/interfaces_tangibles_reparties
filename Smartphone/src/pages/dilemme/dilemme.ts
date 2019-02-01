@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 import {Subscription} from "rxjs/Rx";
 import {ReadyPage} from "../ready/ready";
+import {InventoryPage} from "../inventory/inventory";
 
 /**
  * Generated class for the DilemmePage page.
@@ -30,6 +31,7 @@ export class DilemmePage {
   slideOptions = {effect: 'flip'};
   showIntro = true;
   showContent = false;
+  receivedPart = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.data = navParams.get('step');
@@ -41,6 +43,11 @@ export class DilemmePage {
       this.showContent = false;
     }
     this.isReady = false;
+
+    this.socketManager.socket.on('ask-for-new-part', () => {
+      this.receivedPart = true;
+      console.log('received image :)')
+    });
 
   }
 
@@ -55,12 +62,19 @@ export class DilemmePage {
     this.showContent = true;
   }
 
+  openInventory(){
+    this.navCtrl.push(InventoryPage);
+  }
+
 
   answer() {
+
     this.hasAnswered = true;
     this.result = this.data.choices[this.choice].result;
-    this.stats = this.data.choices[this.choice].stats
-    console.log(this.stats)
+    this.stats = this.data.choices[this.choice].stats;
+
+    this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
+    this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});
   }
 
   ready() {

@@ -1,5 +1,7 @@
 const scenario = require('./scenario');
 const VeloGame = require('./VeloGame');
+const PuzzleManager = require('../model/PuzzleManager');
+
 
 module.exports = class Game {
     constructor(room, nbPlayers, tableSocket) {
@@ -13,8 +15,45 @@ module.exports = class Game {
         this.temperature = 35;
         this.jauges = {};
         this.adventureSteps = scenario;
-        console.log("new game created : " + room)
+        console.log("new game created : " + room);
+        this.puzzle = new PuzzleManager(7);
+    }
 
+    showPuzzleToAll() {
+        this.players.forEach(p => {
+            this.puzzle.sendPuzzle(p.socket)
+        });
+        this.puzzle.sendPuzzle(this.tableSocket)
+    }
+
+    showEndedPuzzleToAll() {
+        this.players.forEach(p => {
+            p.socket.emit('puzzle-ended')
+        });
+        this.tableSocket.emit('puzzle-ended')
+    }
+
+
+    givePuzzle(socket) {
+        this.puzzle.sendPuzzle(socket);
+    }
+
+    givePuzzlePart(socket) {
+        this.puzzle.getUnrevealedPart(socket);
+    }
+
+
+    sendPuzzleParts(socket){
+        this.puzzle.sendPuzzleParts(socket);
+    }
+
+    playerPuzzleUpdate(socket, d) {
+        let res = this.puzzle.playerPuzzleUpdate(socket, d);
+        if (res === 'ok') {
+            this.showPuzzleToAll();
+        } else if (res === 'end') {
+            this.showEndedPuzzleToAll();
+        }
     }
 
     playerIsReady(socket) {
@@ -116,26 +155,30 @@ module.exports = class Game {
 
 
     useRation(m) {
-        if (typeof  this.jauges[m.player] !== 'undefined') {
+        if (typeof this.jauges[m.player] !== 'undefined') {
             if (m.id === 4) {
                 this.jauges[m.player].water += 1;
-                console.log("Joueur " + m.player + " utilise de l'eau");
-
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                console.log("Joueur "+m.player+" utilise de l'eau");
             } else if (m.id === 5) {
                 this.jauges[m.player].energy += 1;
-                console.log("Joueur " + m.player + " utilise de l'énergie");
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                console.log("Joueur "+m.player+" utilise de l'énergie");
 
             } else if (m.id === 6) {
                 this.jauges[m.player].chicken += 1;
-                console.log("Joueur " + m.player + " utilise du poulet");
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                console.log("Joueur "+m.player+" utilise du poulet");
 
             } else if (m.id === 7) {
                 this.jauges[m.player].mood += 1;
-                console.log("Joueur " + m.player + " utilise des antidepresseurs");
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                console.log("Joueur "+m.player+" utilise de l'ectasy");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;
-                console.log("Joueur " + m.player + " utilise son vélo");
+                this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                console.log("Joueur "+m.player+" utilise son vélo");
             }
         }
     }

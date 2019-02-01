@@ -6,8 +6,17 @@ img, div {
   -webkit-user-select: none;
   -ms-user-select: none; }
 
+body {
+  overflow-y: hidden; }
+
 div {
   box-sizing: content-box; }
+
+#map {
+  left: 0; }
+
+.puzzlewesh {
+  color: red; }
 
 div.main-container-board {
   height: 100%;
@@ -15,6 +24,25 @@ div.main-container-board {
   display: none;
   margin-right: auto;
   margin-left: auto; }
+  div.main-container-board canvas[id^=jean-p], div.main-container-board canvas[id^=bike-p] {
+    display: none;
+    position: absolute;
+    border: 1px solid; }
+  div.main-container-board #jean-p2 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg); }
+  div.main-container-board #jean-p3 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg); }
+  div.main-container-board #jean-p4 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg); }
   div.main-container-board div.section {
     width: 100%;
     position: absolute;
@@ -121,6 +149,16 @@ div.main-container-board {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     height: 0; }
+  div.main-container-board div[id^=substract-] {
+    position: absolute;
+    border: none;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-color: red;
+    opacity: 0; }
+  div.main-container-board div[id^=substract-mood-p] {
+    background-color: transparent; }
   div.main-container-board #chicken-outline-p2, div.main-container-board #mood-outline-p2 {
     bottom: 5%; }
     div.main-container-board #chicken-outline-p2 #chicken-level-p2, div.main-container-board #chicken-outline-p2 #mood-level-p2, div.main-container-board #mood-outline-p2 #chicken-level-p2, div.main-container-board #mood-outline-p2 #mood-level-p2 {
@@ -197,7 +235,7 @@ div.main-container-board {
       -moz-transform: rotate(180deg);
       transform: rotate(180deg); }
     div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #energy-p1 {
-      right: 10%; }
+      left: 10%; }
     div.main-container-board div.long-edge #mood-p2, div.main-container-board div.long-edge #thermometer-p2, div.main-container-board div.long-edge #bike-p2 {
       right: 10%; }
     div.main-container-board div.long-edge #mood-p1, div.main-container-board div.long-edge #thermometer-p1, div.main-container-board div.long-edge #bike-p1 {
@@ -316,10 +354,20 @@ div.main-container-board {
 .jumbotron {
   padding: 40px 0; }
 
+.regular-title, .reversed-title {
+  width: 100%;
+  height: 50%; }
+
+.reversed-title {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+  border-top: 1px solid #cccccc; }
+
 .start-game {
-  margin: 0 auto;
-  margin-top: 100px;
   width: 400px;
+  margin: 30vh auto 0 auto;
   text-align: center;
   padding: 20px 20px 10px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.16); }
@@ -468,14 +516,18 @@ div.main-container-board {
     background-color: red; } }
 @keyframes jaugeblinkred {
   from {
-    box-shadow: 0 0 10px 0 red; }
+    box-shadow: 0 0 10px 0 red;
+    opacity: 0; }
   to {
-    box-shadow: 0 0 10px 5px red; } }
+    box-shadow: 0 0 10px 5px red;
+    opacity: 0.8; } }
 @keyframes jaugeblinkgreen {
   from {
-    box-shadow: 0 0 10px 0 green; }
+    box-shadow: 0 0 10px 0 green;
+    opacity: 0; }
   to {
-    box-shadow: 0 0 10px 5px green; } }
+    box-shadow: 0 0 10px 5px green;
+    opacity: 0.8; } }
 @keyframes scale-center {
   0% {
     transform: scale(0); }

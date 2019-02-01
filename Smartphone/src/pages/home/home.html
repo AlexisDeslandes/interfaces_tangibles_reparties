@@ -14,7 +14,7 @@
     <p>Scanner le QR ou entrer le code donné par la table</p>
     <ion-row class="code">
         <div col-8>
-            <input type="text" placeholder="XX-X" [(ngModel)]="code" (keyup.enter)="connectWithCode()">
+            <input type="text" class="lol" placeholder="XX-X" [(ngModel)]="code" (keyup.enter)="connectWithCode()">
         </div>
         <div col-2 class="btn">
             <button ion-button (click)="connectWithCode()" > GO</button>

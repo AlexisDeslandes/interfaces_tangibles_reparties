@@ -28,7 +28,6 @@ export class HomePage {
         this.status = "Connexion au serveur en cours...";
 
         this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {
-            console.log(data);
             if (data['status'] === 'connected') {
                 this.status = data['message'];
                 this.navCtrl.push(ReadyStepPage);

@@ -3,6 +3,9 @@ import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
 import {GameState} from "./model/GameState";
+import Datamap from "datamaps/dist/datamaps.world.min";
+
+
 
 class GameManager {
 
@@ -32,10 +35,17 @@ class GameManager {
 
         let self = this;
         self.init = true;
+
+        self.rationWidgetP1 = null;
+        self.rationWidgetP2 = null;
+        self.rationWidgetP3 = null;
+        self.rationWidgetP4 = null;
+
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
         this.readyBtn = $("#ready-btn");
         this.nextBtn = $("#next-btn");
+        this.closePuzzleBtn = $("#close-puzzle");
 
         this.startDiv.click(function () {
             self.start();
@@ -49,14 +59,51 @@ class GameManager {
             self.next();
         });
 
+        this.closePuzzleBtn.click(function () {
+            self.hidePuzzle();
+        });
+
         this.socket.on('joined', data => {
             $("#qr_" + data.player).hide();
             $("#connected_" + data.player).show();
         });
 
 
+        this.socket.on('ration-used', data => {
+            self.updateJauges(data.jauges);
+        });
+
+
+        this.socket.on('get-puzzle', data => {
+            if (data.hasOwnProperty('puzzle')) {
+                let ctn = $('#puzzle-parent');
+                ctn.empty();
+                data.puzzle.forEach(p => {
+                    let img;
+                    if (p.shown) img = "<img src='../res/puzzle1/" + p.picture + "' class='slide-in-fwd-center'/>";
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
+                    ctn.append(
+                        "<div class='puzzle-child' id='" + p.picture + "'>" +
+                        img +
+                        "" +
+                        "</div>"
+                    );
+                });
+                this.showPuzzle();
+            }
+        });
+
+        this.socket.on('puzzle-ended', () => {
+            console.log("puzzle ended");
+            $('#puzzle-parent').hide();
+            $('#puzzle-result').show();
+            $('#puzzle-title').hide();
+        });
+
+
         this.socket.on('start', data => {
             self.showMap();
+            self.hidePuzzle();
             let nbPlayers = Object.keys(data.jauges).length;
             if (self.init) {
                 self.showMap();
@@ -64,6 +111,7 @@ class GameManager {
                 self.initWidgets(nbPlayers);
                 self.init = false;
                 this.jauges = data.jauges;
+                self.initCanvas(nbPlayers);
             }
 
             $(".smartphone-picto").css("display", "block");
@@ -71,6 +119,8 @@ class GameManager {
             setTimeout(function () {
                 $(".smartphone-picto").css("display", "none");
             }, 6000);
+
+
 
             self.updateJauges(data.jauges);
 
@@ -85,9 +135,205 @@ class GameManager {
         })
     }
 
+    initCanvas(nb) {
+        for (let i = 1; i <= nb; i++) {
+            $("#jean-p" + i).css("display", "block");
+            $("#bike-p" + i).css("display", "block");
+        }
+        const jeanP1 = $("#jean-p1");
+        const bikeP1 = $("#bike-p1");
+        const ctxJeanP1 = jeanP1[0].getContext("2d");
+        const ctxBikeP1 = bikeP1[0].getContext("2d");
+        const jeanP2 = $("#jean-p2");
+        const bikeP2 = $("#bike-p2");
+        const ctxJeanP2 = jeanP2[0].getContext("2d");
+        const ctxBikeP2 = bikeP2[0].getContext("2d");
+        const jeanP3 = $("#jean-p3");
+        const bikeP3 = $("#bike-p3");
+        const ctxJeanP3 = jeanP3[0].getContext("2d");
+        const ctxBikeP3 = bikeP3[0].getContext("2d");
+        const jeanP4 = $("#jean-p4");
+        const bikeP4 = $("#bike-p4");
+        const ctxJeanP4 = jeanP4[0].getContext("2d");
+        const ctxBikeP4 = bikeP4[0].getContext("2d");
+
+        const substractChickenP1 = $("#substract-chicken-p1");
+        const substractMoodP1 = $("#substract-mood-p1");
+
+
+        switch (nb) {
+            case 1:
+                const jeanWidth = 0.2 * $(window).width();
+                const jeanHeight = 0.28 * $(window).height();
+                bikeP1.attr("width", 0.38 * $(window).width());
+                bikeP1.attr("height", 0.28 * $(window).height());
+                bikeP1.css("bottom", 0.01 * $(window).height());
+                bikeP1.css("left", 0.01 * $(window).width());
+                jeanP1.attr("width", jeanWidth);
+                jeanP1.attr("height", jeanHeight);
+                jeanP1.css("bottom", 0.01 * $(window).height());
+                jeanP1.css("right", 0.1 * $(window).width());
+                substractChickenP1.css("width", jeanWidth / 12);
+                substractChickenP1.css("height", jeanWidth / 12);
+                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP1.css("width", jeanWidth / 3.5);
+                substractMoodP1.css("height", jeanWidth / 3.5);
+                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight*0.65);
+                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 7);
+                substractMoodP1.css("border-radius", jeanWidth / 3.5 + "px " + jeanWidth / 3.5 + "px");
+
+                break;
+            case 2:
+                bikeP1.attr("width", 0.23 * $(window).width());
+                bikeP1.attr("height", 0.28 * $(window).height());
+                bikeP1.css("bottom", 0.01 * $(window).height());
+                bikeP1.css("left", 0.01 * $(window).width());
+                jeanP1.attr("width", 0.20 * $(window).width());
+                jeanP1.attr("height", 0.4 * $(window).height());
+                jeanP1.css("bottom", 0.01 * $(window).height());
+                jeanP1.css("right", 0.1 * $(window).width());
+
+                bikeP2.attr("width", 0.23 * $(window).width());
+                bikeP2.attr("height", 0.28 * $(window).height());
+                bikeP2.css("top", 0.01 * $(window).height());
+                bikeP2.css("right", 0.01 * $(window).width());
+                jeanP2.attr("width", 0.20 * $(window).width());
+                jeanP2.attr("height", 0.40 * $(window).height());
+                jeanP2.css("top", 0.01 * $(window).height());
+                jeanP2.css("left", 0.03 * $(window).width());
+                break;
+            case 3:
+            case 4:
+                bikeP1.attr("width", 0.23 * $(window).width());
+                bikeP1.attr("height", 0.28 * $(window).height());
+                bikeP1.css("bottom", 0.01 * $(window).height());
+                bikeP1.css("left", 0.01 * $(window).width());
+                jeanP1.attr("width", 0.20 * $(window).width());
+                jeanP1.attr("height", 0.4 * $(window).height());
+                jeanP1.css("bottom", 0.01 * $(window).height());
+                jeanP1.css("right", 0.03 * $(window).width());
+
+                bikeP2.attr("width", 0.23 * $(window).width());
+                bikeP2.attr("height", 0.28 * $(window).height());
+                bikeP2.css("top", 0.01 * $(window).height());
+                bikeP2.css("right", 0.01 * $(window).width());
+                jeanP2.attr("width", 0.20 * $(window).width());
+                jeanP2.attr("height", 0.40 * $(window).height());
+                jeanP2.css("top", 0.01 * $(window).height());
+                jeanP2.css("left", 0.03 * $(window).width());
+
+                bikeP3.attr("width", 0.23 * $(window).width());
+                bikeP3.attr("height", 0.28 * $(window).height());
+                bikeP3.css("bottom", 0.01 * $(window).height());
+                bikeP3.css("left", 0.01 * $(window).width());
+                jeanP3.attr("width", 0.20 * $(window).width());
+                jeanP3.attr("height", 0.4 * $(window).height());
+                jeanP3.css("bottom", 0.01 * $(window).height());
+                jeanP3.css("right", 0.03 * $(window).width());
+
+                bikeP4.attr("width", 0.23 * $(window).width());
+                bikeP4.attr("height", 0.28 * $(window).height());
+                bikeP4.css("top", 0.01 * $(window).height());
+                bikeP4.css("right", 0.01 * $(window).width());
+                jeanP4.attr("width", 0.20 * $(window).width());
+                jeanP4.attr("height", 0.40 * $(window).height());
+                jeanP4.css("top", 0.01 * $(window).height());
+                jeanP4.css("left", 0.03 * $(window).width());
+        }
+    }
+
+
+    showPuzzleToAll() {
+        $("#puzzle").toggle();
+        this.socket.emit('show-puzzle-on-table', {room: this.gameRoom})
+    }
+
+    showPuzzle() {
+        $("#puzzle").show();
+    }
+
+    hidePuzzle() {
+        $("#puzzle").hide();
+    }
+
+    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood) {
+        const center = jeanWidth / 2;
+        const left = jeanWidth / 2.5;
+        const right = 2 * center - left;
+        const middle = jeanHeight / 2;
+        const up = jeanHeight / 4;
+        const down = 5.2 * jeanHeight / 6;
+        const headRadius = jeanHeight / 8;
+        const width = chicken/2;
+        // HEAD
+        this.drawCircle(ctx, center, up, headRadius, width);
+        // BODY
+        this.drawLine(ctx, center, up + headRadius, center, middle + 1.5 * headRadius, width);
+        // LEFT LEG
+        this.drawLine(ctx, center, middle + 1.5 * headRadius, left, down, width);
+        // RIGHT LEG
+        this.drawLine(ctx, center, middle + 1.5 * headRadius, right, down, width);
+        // LEFT ARM
+        this.drawLine(ctx, center, middle, left, 3 * headRadius, width);
+        // RIGHT ARM
+        this.drawLine(ctx, center, middle, right, 3 * headRadius, width);
+        // MOUTH
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width, mood);
+        // EYES
+        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width);
+        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width);
+    }
+
+    drawMouth(ctx, x, y, r, start, end, width, mood) {
+        if (mood > 6) {
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI, false);
+            ctx.stroke();
+        }
+        else if (mood > 3 && mood <= 6) {
+            this.drawLine(ctx, x - r, y + r/3, x + r, y + r/3, width);
+        }
+        else {
+            ctx.lineWidth = width;
+            ctx.beginPath();
+            ctx.arc(x, y + r, r*0.8, 0, Math.PI, true);
+            ctx.stroke();
+        }
+    }
+
+    fillCircle(ctx, x, y, r) {
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(x, y, r, r, 360);
+        ctx.fill();
+    }
+
+
+    drawCircle(ctx, x, y, r, w) {
+        ctx.lineWidth = w;
+        ctx.beginPath();
+        ctx.arc(x, y, r, r, 360);
+        ctx.stroke();
+    }
+
+    drawLine(ctx, x1, y1, x2, y2, w) {
+        ctx.lineWidth = w;
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+
     updateJauges(jauges) {
 
         for (let playerId in jauges) {
+            const canvas = $("#jean-p" + playerId)[0];
+            const ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"]);
             for (let jaugeName in jauges[playerId]) {
                 let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
                 if (delta !== 0) {
@@ -96,19 +342,31 @@ class GameManager {
                 $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
                 $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
                 if (delta > 0)
+                    $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkred");
+                else if (delta < 0)
+                    $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
+
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
+                if (delta > 0)
                     $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
                     $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
                 $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
+                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+
             }
         }
 
         setTimeout(function () {
+        setTimeout(function () {
+            $("div[class^=substract]").css("animation-name", "none");
             $(".substract-level").css("height", 0);
             $("div[class^=level-outline-p]").css("animation-name", "none");
         }, 6000);
-
     }
+
 
     ready() {
         this.socket.emit('table-ready', {room: this.gameRoom})
@@ -123,8 +381,13 @@ class GameManager {
         this.socket.on('init', data => {
             this.gameRoom = data.room;
 
+
             let index = this.gameRoom.indexOf("room");
             var roomId = this.gameRoom.substr(index + 1);
+
+
+            //this.socket.emit('get-puzzle', {room: data.room});
+
 
             for (let i = 1; i < 5; i++) {
                 let code = this.gameRoom.substring(4) + "-" + i;
@@ -308,50 +571,54 @@ class GameManager {
     }
 
     initWidgets(nbPlayer) {
-        this.mapWidget = new MapWidget(document.getElementById('app').offsetLeft,
-            document.getElementById('app').parentElement.parentElement.offsetTop,
-            document.getElementById('app').offsetWidth,
-            document.getElementById('app').offsetHeight);
-        $('#app').append(this.mapWidget.domElem);
-
         if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
-                document.getElementById('ration-container-p1').offsetLeft,
-                document.getElementById('ration-container-p1').offsetTop,
-                document.getElementById('ration-container-p1').offsetWidth,
-                document.getElementById('ration-container-p1').offsetHeight);
+                document.getElementById('ration-container-p1').getBoundingClientRect().left,
+                document.getElementById('ration-container-p1').getBoundingClientRect().top,
+                document.getElementById('ration-container-p1').getBoundingClientRect().width,
+                document.getElementById('ration-container-p1').getBoundingClientRect().height);
             $('#ration-container-p1').append(rationWidgetP1.domElem);
         }
         if (nbPlayer >= 2) {
             const rationWidgetP2 = new RationWidget('ration-p2', '2', this.gameRoom,
-                document.getElementById('ration-container-p2').offsetLeft,
-                document.getElementById('ration-container-p2').offsetTop,
-                document.getElementById('ration-container-p2').offsetWidth,
-                document.getElementById('ration-container-p2').offsetHeight);
+                document.getElementById('ration-container-p2').getBoundingClientRect().left,
+                document.getElementById('ration-container-p2').getBoundingClientRect().top,
+                document.getElementById('ration-container-p2').getBoundingClientRect().width,
+                document.getElementById('ration-container-p2').getBoundingClientRect().height);
             $('#ration-container-p2').append(rationWidgetP2.domElem);
         }
 
         if (nbPlayer >= 3) {
             const rationWidgetP3 = new RationWidget('ration-p3', '3', this.gameRoom,
-                document.getElementById('ration-container-p3').offsetLeft,
-                document.getElementById('ration-container-p3').offsetTop,
-                document.getElementById('ration-container-p3').offsetWidth,
-                document.getElementById('ration-container-p3').offsetHeight);
+                document.getElementById('ration-container-p3').getBoundingClientRect().left,
+                document.getElementById('ration-container-p3').getBoundingClientRect().top,
+                document.getElementById('ration-container-p3').getBoundingClientRect().width,
+                document.getElementById('ration-container-p3').getBoundingClientRect().height);
             $('#ration-container-p3').append(rationWidgetP3.domElem);
         }
 
         if (nbPlayer === 4) {
             const rationWidgetP4 = new RationWidget('ration-p4', '4', this.gameRoom,
-                document.getElementById('ration-container-p4').offsetLeft,
-                document.getElementById('ration-container-p4').offsetTop,
-                document.getElementById('ration-container-p4').offsetWidth,
-                document.getElementById('ration-container-p4').offsetHeight);
+                document.getElementById('ration-container-p4').getBoundingClientRect().left,
+                document.getElementById('ration-container-p4').getBoundingClientRect().top,
+                document.getElementById('ration-container-p4').getBoundingClientRect().width,
+                document.getElementById('ration-container-p4').getBoundingClientRect().height);
             $('#ration-container-p4').append(rationWidgetP4.domElem);
         }
 
         if (nbPlayer === 1) {
             $("#map").css("position", "relative");
         }
+        this.mapWidget = new MapWidget(
+            document.getElementById('app').getBoundingClientRect().left,
+            document.getElementById('app').getBoundingClientRect().top,
+            document.getElementById('app').getBoundingClientRect().width,
+            document.getElementById('app').getBoundingClientRect().height);
+        $('#app').append(this.mapWidget.domElem);
+        this.mapWidget.addMap();
+
+
+
 
     }
 

@@ -13,16 +13,7 @@ class GameManager {
 
         this.change = true;
 
-        const width = document.body.clientWidth;
-        const height = document.body.clientHeight;
-        const canvas = document.getElementById("gamer");
-        canvas.display = "block";
-        canvas.width = width;
-        canvas.height = height;
-        const contextGamer = canvas.getContext("2d");
-
-
-        this.socket = io.connect('http://192.168.1.33:4444');
+        this.socket = io.connect('http://10.212.102.44:4444');
         //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
@@ -397,7 +388,7 @@ class GameManager {
 
             this.startDiv.remove();
             this.connectDiv.show();
-            $("#header").hide();
+            //$("#header").hide();
 
         });
 
@@ -412,6 +403,8 @@ class GameManager {
         canvas.style.display = "block";
         canvas.width = width;
         canvas.height = height;
+        canvas2.width = width;
+        canvas2.height = height;
         const ctx = canvas.getContext("2d");
 
         const sizeRect = height / 3;

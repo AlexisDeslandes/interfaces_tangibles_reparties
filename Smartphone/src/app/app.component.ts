@@ -10,7 +10,7 @@ import {ReadyPage} from "../pages/ready/ready";
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = ReadyPage;
+  rootPage:any = HomePage;
   //rootPage:any = InventoryPage;
   //rootPage:any = GuidelinePage;
 

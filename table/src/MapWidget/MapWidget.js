@@ -31,11 +31,12 @@ class MapWidget extends TUIOWidget {
      * @param {number} width - MapWidget's width.
      * @param {number} height - MapWidget's height.
      */
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, socket) {
         // alert(x +' '+ y +' '+ width + ' ' + height);
 
         super(x, y, width, height);
         this.map = null;
+        this.socket = socket;
         this._lastTouchesValues = {};
         this._lastTagsValues = {};
         let elem = $('<div id="map-container"></div>')
@@ -103,7 +104,8 @@ class MapWidget extends TUIOWidget {
                 name: 'Tombouctou',
                 fillKey: 'black',
                 radius: 20,
-                significance: 'Step 7',
+                significance: 'St' +
+                'ep 7',
                 latitude: 16.7719091,
                 longitude: -3.0087272
             },
@@ -241,10 +243,9 @@ class MapWidget extends TUIOWidget {
         // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
 
-            const socket = io.connect('http://localhost:4444');
-            socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
-            socket.emit('map', tuioTag.id);
-            socket.on('map-changed', (m) => {
+            this.socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
+            this.socket.emit('map', tuioTag.id);
+            this.socket.on('map-changed', (m) => {
                 console.log("MAP");
                 console.log(this.map);
                 let arcs =[];
@@ -346,10 +347,9 @@ class MapWidget extends TUIOWidget {
 
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
 
-            const socket = io.connect('http://localhost:4444');
-            socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
-            socket.emit('map', tuioTag.id);
-            socket.on('map-changed', (m) => {
+            this.socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
+            this.socket.emit('map', tuioTag.id);
+            this.socket.on('map-changed', (m) => {
                 console.log("MAP BUBBLE");
                 console.log(this.map.bubbles);
                 let arcs =[];

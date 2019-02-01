@@ -4,7 +4,6 @@ import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
 import {Observer} from "./model/Observer";
 import {GameState} from "./model/GameState";
-import Datamap from "datamaps/dist/datamaps.world.min";
 
 
 
@@ -566,7 +565,8 @@ class GameManager {
                 document.getElementById('ration-container-p1').getBoundingClientRect().left,
                 document.getElementById('ration-container-p1').getBoundingClientRect().top,
                 document.getElementById('ration-container-p1').getBoundingClientRect().width,
-                document.getElementById('ration-container-p1').getBoundingClientRect().height);
+                document.getElementById('ration-container-p1').getBoundingClientRect().height,
+                this.socket);
             $('#ration-container-p1').append(rationWidgetP1.domElem);
         }
         if (nbPlayer >= 2) {
@@ -574,7 +574,8 @@ class GameManager {
                 document.getElementById('ration-container-p2').getBoundingClientRect().left,
                 document.getElementById('ration-container-p2').getBoundingClientRect().top,
                 document.getElementById('ration-container-p2').getBoundingClientRect().width,
-                document.getElementById('ration-container-p2').getBoundingClientRect().height);
+                document.getElementById('ration-container-p2').getBoundingClientRect().height,
+                this.socket);
             $('#ration-container-p2').append(rationWidgetP2.domElem);
         }
 
@@ -583,7 +584,8 @@ class GameManager {
                 document.getElementById('ration-container-p3').getBoundingClientRect().left,
                 document.getElementById('ration-container-p3').getBoundingClientRect().top,
                 document.getElementById('ration-container-p3').getBoundingClientRect().width,
-                document.getElementById('ration-container-p3').getBoundingClientRect().height);
+                document.getElementById('ration-container-p3').getBoundingClientRect().height,
+                this.socket);
             $('#ration-container-p3').append(rationWidgetP3.domElem);
         }
 
@@ -592,7 +594,8 @@ class GameManager {
                 document.getElementById('ration-container-p4').getBoundingClientRect().left,
                 document.getElementById('ration-container-p4').getBoundingClientRect().top,
                 document.getElementById('ration-container-p4').getBoundingClientRect().width,
-                document.getElementById('ration-container-p4').getBoundingClientRect().height);
+                document.getElementById('ration-container-p4').getBoundingClientRect().height,
+                this.socket);
             $('#ration-container-p4').append(rationWidgetP4.domElem);
         }
 
@@ -603,7 +606,8 @@ class GameManager {
             document.getElementById('app').getBoundingClientRect().left,
             document.getElementById('app').getBoundingClientRect().top,
             document.getElementById('app').getBoundingClientRect().width,
-            document.getElementById('app').getBoundingClientRect().height);
+            document.getElementById('app').getBoundingClientRect().height,
+            this.socket);
         $('#app').append(this.mapWidget.domElem);
         this.mapWidget.addMap();
 

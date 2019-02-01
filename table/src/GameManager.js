@@ -13,7 +13,7 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://10.212.102.44:4444');
+        this.socket = io.connect('http://localhost:4444');
         //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
@@ -332,8 +332,6 @@ class GameManager {
                 if (delta !== 0) {
                     this.jauges[playerId][jaugeName] = jauges[playerId][jaugeName];
                 }
-                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
-                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
                 if (delta > 0)
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
@@ -345,9 +343,7 @@ class GameManager {
                     $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
                     $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
-                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
-                $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
-                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+                $("#"+jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
 
             }
         }

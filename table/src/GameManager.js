@@ -127,7 +127,7 @@ class GameManager {
     initCanvas(nb) {
         for (let i = 1; i <= nb; i++) {
             $("#jean-p" + i).css("display", "block");
-            $("#bike-p" + i).css("display", "block");
+            //$("#bike-p" + i).css("display", "block");
         }
         const jeanP1 = $("#jean-p1");
         const bikeP1 = $("#bike-p1");
@@ -148,16 +148,19 @@ class GameManager {
 
         const substractChickenP1 = $("#substract-chicken-p1");
         const substractMoodP1 = $("#substract-mood-p1");
+        const substractChickenP2 = $("#substract-chicken-p2");
+        const substractMoodP2 = $("#substract-mood-p2");
 
+        let jeanWidth, jeanHeight;
 
         switch (nb) {
             case 1:
-                const jeanWidth = 0.2 * $(window).width();
-                const jeanHeight = 0.28 * $(window).height();
-                bikeP1.attr("width", 0.38 * $(window).width());
+                jeanWidth = 0.2 * $(window).width();
+                jeanHeight = 0.28 * $(window).height();
+                /*bikeP1.attr("width", 0.38 * $(window).width());
                 bikeP1.attr("height", 0.28 * $(window).height());
                 bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());
+                bikeP1.css("left", 0.01 * $(window).width());*/
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", 0.01 * $(window).height());
@@ -172,60 +175,81 @@ class GameManager {
                 substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.65);
                 substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
                 substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
-
                 break;
             case 2:
-                bikeP1.attr("width", 0.23 * $(window).width());
+                jeanWidth = 0.2 * $(window).width();
+                jeanHeight = 0.4 * $(window).height();
+                /*bikeP1.attr("width", 0.23 * $(window).width());
                 bikeP1.attr("height", 0.28 * $(window).height());
                 bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());
-                jeanP1.attr("width", 0.20 * $(window).width());
-                jeanP1.attr("height", 0.4 * $(window).height());
+                bikeP1.css("left", 0.01 * $(window).width());*/
+                jeanP1.attr("width", jeanWidth);
+                jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.1 * $(window).width());
+                jeanP1.css("right", 0.03 * $(window).width());
+                substractChickenP1.css("width", jeanWidth / 12);
+                substractChickenP1.css("height", jeanWidth / 12);
+                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP1.css("right", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP1.css("width", jeanWidth / 3.4);
+                substractMoodP1.css("height", jeanWidth / 3.4);
+                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.60);
+                substractMoodP1.css("right", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
+                substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
 
-                bikeP2.attr("width", 0.23 * $(window).width());
+                /*bikeP2.attr("width", 0.23 * $(window).width());
                 bikeP2.attr("height", 0.28 * $(window).height());
                 bikeP2.css("top", 0.01 * $(window).height());
-                bikeP2.css("right", 0.01 * $(window).width());
+                bikeP2.css("right", 0.01 * $(window).width());*/
                 jeanP2.attr("width", 0.20 * $(window).width());
                 jeanP2.attr("height", 0.40 * $(window).height());
                 jeanP2.css("top", 0.01 * $(window).height());
                 jeanP2.css("left", 0.03 * $(window).width());
+                substractChickenP2.css("width", jeanWidth / 12);
+                substractChickenP2.css("height", jeanWidth / 12);
+                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP2.css("width", jeanWidth / 3.4);
+                substractMoodP2.css("height", jeanWidth / 3.4);
+                substractMoodP2.css("top", 0.01 * $(window).height() + jeanHeight * 0.60);
+                substractMoodP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
+                substractMoodP2.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
                 break;
             case 3:
             case 4:
-                bikeP1.attr("width", 0.23 * $(window).width());
+                /*bikeP1.attr("width", 0.23 * $(window).width());
                 bikeP1.attr("height", 0.28 * $(window).height());
                 bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());
+                bikeP1.css("left", 0.01 * $(window).width());*/
                 jeanP1.attr("width", 0.20 * $(window).width());
                 jeanP1.attr("height", 0.4 * $(window).height());
                 jeanP1.css("bottom", 0.01 * $(window).height());
                 jeanP1.css("right", 0.03 * $(window).width());
 
-                bikeP2.attr("width", 0.23 * $(window).width());
+                /*bikeP2.attr("width", 0.23 * $(window).width());
                 bikeP2.attr("height", 0.28 * $(window).height());
                 bikeP2.css("top", 0.01 * $(window).height());
-                bikeP2.css("right", 0.01 * $(window).width());
+                bikeP2.css("right", 0.01 * $(window).width());*/
                 jeanP2.attr("width", 0.20 * $(window).width());
                 jeanP2.attr("height", 0.40 * $(window).height());
                 jeanP2.css("top", 0.01 * $(window).height());
                 jeanP2.css("left", 0.03 * $(window).width());
 
-                bikeP3.attr("width", 0.23 * $(window).width());
+                /*bikeP3.attr("width", 0.23 * $(window).width());
                 bikeP3.attr("height", 0.28 * $(window).height());
                 bikeP3.css("bottom", 0.01 * $(window).height());
-                bikeP3.css("left", 0.01 * $(window).width());
+                bikeP3.css("left", 0.01 * $(window).width());*/
                 jeanP3.attr("width", 0.20 * $(window).width());
                 jeanP3.attr("height", 0.4 * $(window).height());
                 jeanP3.css("bottom", 0.01 * $(window).height());
                 jeanP3.css("right", 0.03 * $(window).width());
 
-                bikeP4.attr("width", 0.23 * $(window).width());
+                /*bikeP4.attr("width", 0.23 * $(window).width());
                 bikeP4.attr("height", 0.28 * $(window).height());
                 bikeP4.css("top", 0.01 * $(window).height());
-                bikeP4.css("right", 0.01 * $(window).width());
+                bikeP4.css("right", 0.01 * $(window).width());*/
                 jeanP4.attr("width", 0.20 * $(window).width());
                 jeanP4.attr("height", 0.40 * $(window).height());
                 jeanP4.css("top", 0.01 * $(window).height());
@@ -318,9 +342,9 @@ class GameManager {
 
     updateJauges(jauges) {
 
-        $("#water-blue-level-p1").css("height", $("#water-p1").height() * 0.9);
+        /*$("#water-blue-level-p1").css("height", $("#water-p1").height() * 0.9);
         $("#water-blue-level-p1").css("width", $("#water-p1").width() * 0.47);
-        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);
+        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);*/
 
         for (let playerId in jauges) {
             const canvas = $("#jean-p" + playerId)[0];

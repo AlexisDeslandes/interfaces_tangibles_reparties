@@ -11,6 +11,7 @@ import {HomePage} from "../pages/home/home";
 export class MyApp {
   rootPage:any = HomePage;
   //rootPage:any = InventoryPage;
+  //rootPage:any = GuidelinePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

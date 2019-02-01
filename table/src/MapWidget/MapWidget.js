@@ -241,7 +241,7 @@ class MapWidget extends TUIOWidget {
         // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
 
-            const socket = io.connect('http://localhost:4444');
+            const socket = io.connect('http://192.168.1.33:4444');
             socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
             socket.emit('map', tuioTag.id);
             socket.on('map-changed', (m) => {

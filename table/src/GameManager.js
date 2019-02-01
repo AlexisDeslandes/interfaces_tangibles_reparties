@@ -24,7 +24,8 @@ class GameManager {
         const contextGamer = canvas.getContext("2d");
 
 
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.33:4444');
+        //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
 

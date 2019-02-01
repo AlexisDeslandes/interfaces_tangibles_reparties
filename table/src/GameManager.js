@@ -13,7 +13,7 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.3:4444');
         //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
@@ -54,6 +54,8 @@ class GameManager {
         });
 
         this.socket.on('joined', data => {
+            let audio = new Audio('../res/sounds/connect.wav');
+            audio.play();
             $("#qr_" + data.player).hide();
             $("#connected_" + data.player).show();
         });
@@ -66,6 +68,8 @@ class GameManager {
 
         this.socket.on('get-puzzle', data => {
             if (data.hasOwnProperty('puzzle')) {
+                let audio = new Audio('../res/sounds/valid.wav');
+                audio.play();
                 let ctn = $('#puzzle-parent');
                 ctn.empty();
                 data.puzzle.forEach(p => {
@@ -92,6 +96,8 @@ class GameManager {
 
 
         this.socket.on('start', data => {
+            let audio = new Audio('../res/sounds/netflix.mp3');
+            audio.play();
             self.showMap();
             self.hidePuzzle();
             let nbPlayers = Object.keys(data.jauges).length;

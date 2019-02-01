@@ -110,7 +110,7 @@ div.main-container-board {
   }
 
   div.level-outline-p1-right {
-    right: 3%;
+    left: 3%;
     background-color: green;
   }
 
@@ -143,6 +143,10 @@ div.main-container-board {
     #energy-level-p1, #bike-level-p1 {
       height: 0;
     }
+  }
+
+  #energy-outline-p1 {
+    top: 5%;
   }
 
 
@@ -349,6 +353,14 @@ div.main-container-board {
       left: 10%;
     }
 
+    #water-blue-level-p1 {
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      background-color: lightblue;
+      z-index: -1;
+    }
+
     #mood-p2, #thermometer-p2, #bike-p2 {
       right: 10%;
     }
@@ -379,6 +391,10 @@ div.main-container-board {
 
     #energy-p1, #bike-p1 {
       top: 55%;
+    }
+
+    #energy-p1 {
+      top: 5%;
     }
 
     #energy-p2, #bike-p2 {

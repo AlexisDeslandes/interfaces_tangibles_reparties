@@ -70,7 +70,7 @@ div.main-container-board {
     position: absolute;
     z-index: 10; }
   div.main-container-board div.level-outline-p1-right {
-    right: 3%;
+    left: 3%;
     background-color: green; }
   div.main-container-board div.level-outline-p1-left {
     left: 3%;
@@ -90,6 +90,8 @@ div.main-container-board {
     top: 55%; }
     div.main-container-board #energy-outline-p1 #energy-level-p1, div.main-container-board #energy-outline-p1 #bike-level-p1, div.main-container-board #bike-outline-p1 #energy-level-p1, div.main-container-board #bike-outline-p1 #bike-level-p1 {
       height: 0; }
+  div.main-container-board #energy-outline-p1 {
+    top: 5%; }
   div.main-container-board div.level-outline-p3-right, div.main-container-board div.level-outline-p3-left {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -236,6 +238,12 @@ div.main-container-board {
       transform: rotate(180deg); }
     div.main-container-board div.long-edge #chicken-p1, div.main-container-board div.long-edge #water-p1, div.main-container-board div.long-edge #energy-p1 {
       left: 10%; }
+    div.main-container-board div.long-edge #water-blue-level-p1 {
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      background-color: lightblue;
+      z-index: -1; }
     div.main-container-board div.long-edge #mood-p2, div.main-container-board div.long-edge #thermometer-p2, div.main-container-board div.long-edge #bike-p2 {
       right: 10%; }
     div.main-container-board div.long-edge #mood-p1, div.main-container-board div.long-edge #thermometer-p1, div.main-container-board div.long-edge #bike-p1 {
@@ -252,6 +260,8 @@ div.main-container-board {
       bottom: 30%; }
     div.main-container-board div.long-edge #energy-p1, div.main-container-board div.long-edge #bike-p1 {
       top: 55%; }
+    div.main-container-board div.long-edge #energy-p1 {
+      top: 5%; }
     div.main-container-board div.long-edge #energy-p2, div.main-container-board div.long-edge #bike-p2 {
       bottom: 55%; }
     div.main-container-board div.long-edge div.ration-zone {

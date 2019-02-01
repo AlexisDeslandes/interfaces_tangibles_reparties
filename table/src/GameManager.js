@@ -167,11 +167,11 @@ class GameManager {
                 substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
                 substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP1.css("width", jeanWidth / 3.5);
-                substractMoodP1.css("height", jeanWidth / 3.5);
+                substractMoodP1.css("width", jeanWidth / 3.4);
+                substractMoodP1.css("height", jeanWidth / 3.4);
                 substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight*0.65);
-                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 7);
-                substractMoodP1.css("border-radius", jeanWidth / 3.5 + "px " + jeanWidth / 3.5 + "px");
+                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
+                substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
 
                 break;
             case 2:
@@ -317,6 +317,10 @@ class GameManager {
     }
 
     updateJauges(jauges) {
+
+        $("#water-blue-level-p1").css("height", $("#water-p1").height()*0.9);
+        $("#water-blue-level-p1").css("width", $("#water-p1").width()*0.47);
+        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width()*0.3);
 
         for (let playerId in jauges) {
             const canvas = $("#jean-p" + playerId)[0];

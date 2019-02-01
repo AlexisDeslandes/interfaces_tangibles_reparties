@@ -59,51 +59,51 @@ class MapWidget extends TUIOWidget {
         this.itineraire = [
             {
                 name: 'Alger',
-                fillKey: 'blue',
-                radius: 10,
+                fillKey: 'black',
+                radius: 20,
                 significance: 'Step 1',
                 latitude: 36.731088,
                 longitude: 3.087776
             },{
                 name: 'Bilda',
                 fillKey: 'blue',
-                radius: 10,
-                significance: 'Step 1',
+                radius: 5,
+                significance: 'Step 2',
                 latitude: 36.4701645,
                 longitude: 2.8287985
             },{
                 name: 'Médéa',
                 fillKey: 'blue',
-                radius: 10,
-                significance: 'Step 1',
+                radius: 5,
+                significance: 'Step 3',
                 latitude: 36.265344,
                 longitude: 2.766957
             },{
                 name: 'In Salah',
                 fillKey: 'blue',
-                radius: 10,
-                significance: 'Step 1',
+                radius: 5,
+                significance: 'Step 4',
                 latitude: 27.1950331,
                 longitude: 2.4826132
             },{
                 name: 'Tessalit',
                 fillKey: 'blue',
-                radius: 10,
-                significance: 'Step 1',
+                radius: 5,
+                significance: 'Step 5',
                 latitude: 20.231916,
                 longitude: 0.863977
             },{
                 name: 'Gao',
                 fillKey: 'blue',
-                radius: 10,
-                significance: 'Step 1',
+                radius: 5,
+                significance: 'Step 6',
                 latitude: 16.2788129,
                 longitude: -0.0412392
             },{
                 name: 'Tombouctou',
-                fillKey: 'blue',
-                radius: 10,
-                significance: 'Step 1',
+                fillKey: 'black',
+                radius: 20,
+                significance: 'Step 7',
                 latitude: 16.7719091,
                 longitude: -3.0087272
             },
@@ -142,7 +142,8 @@ class MapWidget extends TUIOWidget {
             ,
             fills: {
                 defaultFill: '#ABDDA4',
-                blue: '#0000FF'
+                blue: '#0000FF',
+                black: '#000000'
             },
             arcConfig: {arcSharpness: 0}
         });

@@ -31,12 +31,13 @@ class MapWidget extends TUIOWidget {
      * @param {number} width - MapWidget's width.
      * @param {number} height - MapWidget's height.
      */
-    constructor(x, y, width, height, socket) {
+    constructor(x, y, width, height, socket, gameRoom) {
         // alert(x +' '+ y +' '+ width + ' ' + height);
 
         super(x, y, width, height);
         this.map = null;
         this.socket = socket;
+        this.gameRoom = gameRoom;
         this._lastTouchesValues = {};
         this._lastTagsValues = {};
         let elem = $('<div id="map-container"></div>')
@@ -108,7 +109,19 @@ class MapWidget extends TUIOWidget {
                 latitude: 16.7719091,
                 longitude: -3.0087272
             },
-        ]
+        ];
+
+
+        this.socket.on('map-progressed', (m) => {
+            console.log("map progressed");
+            console.log(m);
+            this.updateMap(m);
+        });
+
+        this.socket.on('map-changed', (m) => {
+            console.log("map changed");
+            this.map.arc(m);
+        });
         console.log("MAAAAAAAAPPPPPP");
         console.log( "x= "+ this._x+ "  y= "+this._y+ " width = "+this._width+" height = "+ this._height);
         console.log(this.itineraire);
@@ -133,7 +146,7 @@ class MapWidget extends TUIOWidget {
                 var projection = d3.geo.equirectangular()
                     .center([5, 27])
                     .rotate([0, 0])
-                    .scale(1600)
+                    .scale(1400)
                     .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
                 var path = d3.geo.path()
                     .projection(projection);
@@ -144,16 +157,21 @@ class MapWidget extends TUIOWidget {
             fills: {
                 defaultFill: '#ABDDA4',
                 blue: '#0000FF',
-                black: '#000000'
+                black: '#000000',
+                grey: '#939393'
             },
-            arcConfig: {arcSharpness: 0}
-        });
-        this.map.bubbles(this.itineraire, {
-            popupTemplate: function(geo, data) {
-                return '<div class="hoverinfo">' + data.name + '';
-            }
+            arcConfig: {arcSharpness: 0.2}
         });
 
+    }
+
+    updateMap(m){
+        let tmp = [];
+        this.map.bubbles(tmp.concat(m), {
+            popupTemplate: function() {
+                return '<div class="hoverinfo">Hello';
+            }
+        });
     }
 
     /**
@@ -241,26 +259,7 @@ class MapWidget extends TUIOWidget {
         // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
         // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
-
-            this.socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
-            this.socket.emit('map', tuioTag.id);
-            this.socket.on('map-changed', (m) => {
-                console.log("MAP");
-                console.log(this.map);
-                let arcs =[];
-                for(let i=0; i<this.itineraire.length;i++){
-                    if(i === this.itineraire.length-1){
-                        arcs.push({
-                            origin: {latitude: this.itineraire[i].latitude, longitude: this.itineraire[i].longitude},
-                            destination: {latitude: this.itineraire[i+1].latitude, longitude: this.itineraire[i+1].longitude}
-                        });
-                    }
-
-                }
-                this.map.arc(arcs);
-                console.log(arcs);
-                // document.getElementById('map').src = m.img;
-            });
+            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
         }
         //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
         // const socket = io.connect('http://localhost:4444');
@@ -296,14 +295,6 @@ class MapWidget extends TUIOWidget {
         console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (typeof (this._lastTagsValues[tuioTag.id]) !== 'undefined') {
 
-            console.log('On Update Tag');
-            console.log(tuioTag);
-            console.log(this.isTouched(tuioTag.x, tuioTag.y));
-
-            console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
-            console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
-            console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
-            console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
 
             const lastTagValue = this._lastTagsValues[tuioTag.id];
             const diffX = tuioTag.x - lastTagValue.x;
@@ -336,6 +327,8 @@ class MapWidget extends TUIOWidget {
                     y: tuioTag.y,
                 },
             };
+            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+
             // const socket = io.connect('http://localhost:4444');
             // socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);
             // socket.emit('map', tuioTag.id);
@@ -345,27 +338,7 @@ class MapWidget extends TUIOWidget {
         }
 
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
-
-            this.socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
-            this.socket.emit('map', tuioTag.id);
-            this.socket.on('map-changed', (m) => {
-                console.log("MAP BUBBLE");
-                console.log(this.map.bubbles);
-                let arcs =[];
-                for(let i=0; i<this.itineraire.length;i++){
-                    if(i < this.itineraire.length-1){
-                        arcs.push({
-                            origin: {latitude: this.itineraire[i].latitude, longitude: this.itineraire[i].longitude},
-                            destination: {latitude: this.itineraire[i+1].latitude, longitude: this.itineraire[i+1].longitude}
-
-                        });
-                    }
-
-                }
-                this.map.arc(arcs);
-                console.log(arcs);
-                // document.getElementById('map').src = m.img;
-            });
+            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
         }
 
 

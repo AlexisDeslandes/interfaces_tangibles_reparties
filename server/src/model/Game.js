@@ -1,6 +1,7 @@
 const scenario = require('./scenario');
 const VeloGame = require('./VeloGame');
 const PuzzleManager = require('../model/PuzzleManager');
+const MapManager = require('../model/MapManager');
 
 
 module.exports = class Game {
@@ -17,6 +18,7 @@ module.exports = class Game {
         this.adventureSteps = scenario;
         console.log("new game created : " + room);
         this.puzzle = new PuzzleManager(7);
+        this.map = new MapManager();
     }
 
     showPuzzleToAll() {
@@ -102,7 +104,6 @@ module.exports = class Game {
             console.log(this.room + " is over");
             this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
             this.sendToAllPlayers("start", {status: 'gameover'});
-
         } else {
             this.gameState = "start";
             this.consumeChickenWater();
@@ -112,6 +113,8 @@ module.exports = class Game {
                 jauges: this.jauges
             });
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
+            this.map.refreshStep(this.currentStep);
+            this.map.sendProgression(this.tableSocket);
             this.currentStep++;
         }
     }
@@ -153,6 +156,10 @@ module.exports = class Game {
         return found;
     }
 
+    changeMap(id){
+        this.map.drawArc(id);
+        this.map.sendArcs(this.tableSocket);
+    }
 
     useRation(m) {
         if (typeof this.jauges[m.player] !== 'undefined') {

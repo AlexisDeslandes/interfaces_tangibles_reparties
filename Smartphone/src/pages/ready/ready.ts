@@ -18,10 +18,11 @@ import {Subscription} from "rxjs";
 })
 export class ReadyPage {
 
-  players: number = 1;
+  players: number = -1;
   seconds: number = 5;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socketManager: SocketManagerProvider) {
+    this.players = this.socketManager.player;
     this.socketManager.stateSubject.subscribe(data => {
       if (data["status"] == "playerJoinedVelo" && data['playerId'] != this.socketManager.player) {
         --this.players;

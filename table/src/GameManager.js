@@ -2,7 +2,6 @@ import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
-import {Observer} from "./model/Observer";
 import {GameState} from "./model/GameState";
 
 
@@ -10,6 +9,18 @@ import {GameState} from "./model/GameState";
 class GameManager {
 
     constructor() {
+
+        this.players = [];
+
+        this.change = true;
+
+        const width = document.body.clientWidth;
+        const height = document.body.clientHeight;
+        const canvas = document.getElementById("gamer");
+        canvas.display = "block";
+        canvas.width = width;
+        canvas.height = height;
+        const contextGamer = canvas.getContext("2d");
 
 
         this.socket = io.connect('http://192.168.1.33:4444');
@@ -116,11 +127,11 @@ class GameManager {
         });
         this.gameRoom = null;
 
+        //let change = true;
+
         this.socket.on("stateGame", (data) => {
-            const players = data.players;
-            for (let i = 0; i < players.length; i++) {
-                this.gameState.players[i].setCoordinates(players[i].x, players[i].y);
-            }
+            this.players = data.players;
+            //change = !change;
         })
     }
 
@@ -328,6 +339,8 @@ class GameManager {
                 if (delta !== 0) {
                     this.jauges[playerId][jaugeName] = jauges[playerId][jaugeName];
                 }
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
+                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
                 if (delta > 0)
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
@@ -340,10 +353,13 @@ class GameManager {
                 else if (delta < 0)
                     $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
                 $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
+                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
+                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
 
             }
         }
 
+        setTimeout(function () {
         setTimeout(function () {
             $("div[class^=substract]").css("animation-name", "none");
             $(".substract-level").css("height", 0);
@@ -390,50 +406,24 @@ class GameManager {
     showGame(nbPlayer) {
         const width = document.body.clientWidth;
         const height = document.body.clientHeight;
-        const trueGame = document.getElementById("trueGame");
-        trueGame.style.backgroundColor = "white";
-        trueGame.style.display = "block";
-        trueGame.style.width = "100%";
-        trueGame.style.height = "100%";
+        const canvas = document.getElementById("trueGame");
+        const canvas2 = document.getElementById("gamer");
+        canvas2.style.display = "block";
+        canvas.style.display = "block";
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+
         const sizeRect = height / 3;
         const halfSize = sizeRect / 2;
-        this.drawRect((width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
-        this.drawRect(0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
-        this.drawRect((width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
-        this.drawRect(width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect);   //joueur 4
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
+        this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
+        this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
+        this.drawRect(ctx, width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect);   //joueur 4
 
-        const playersImg = [];
-        for (let i = 0; i < nbPlayer; i++) {
-            const img = document.createElement('img');
-            img.src = "../res/bike2.svg";
-            let velo1 = true;
-            /*
-            setInterval(() => {
-                img.src = velo1 ? "../res/bike2.svg" : "../res/bayke.svg";
-                velo1 = !velo1;
-            }, 200);
-            */
-            img.style.position = "absolute";
-            img.style.width = "50px";
-            img.style.height = "50px";
-            switch (i) {
-                case 1:
-                    img.style.transform = "rotate(90deg)";
-                    break;
-                case 2:
-                    img.style.transform = "rotate(180deg)";
-                    break;
-                case 3:
-                    img.style.transform = "rotate(-90deg)";
-                    break;
-                default:
-                    break;
-            }
-            document.body.appendChild(img);
-            playersImg.push(new Observer(img));
-        }
-
-        this.gameState = new GameState(nbPlayer, playersImg);
+        this.gameState = new GameState(nbPlayer);
         const state = nbPlayer === 1
             ? this.generateState1(width, height, halfSize, sizeRect)
             : nbPlayer === 2
@@ -446,6 +436,33 @@ class GameManager {
             room: this.gameRoom,
             state: state
         });
+
+        this.count = 0;
+
+        const loop = () => {
+            const bike = document.getElementById(this.change ? 'bike' : 'bike2');
+            const canvas = document.getElementById("gamer");
+            const contextGamer = canvas.getContext("2d");
+            contextGamer.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < this.players.length; i++) {
+                if (i === 1) {
+                    contextGamer.rotate(Math.PI);
+                } else if (i === 2) {
+                    contextGamer.rotate(90 * Math.PI / 180);
+                } else if (i === 3) {
+                    contextGamer.rotate(-90 * Math.PI / 180);
+                }
+                contextGamer.drawImage(bike, this.players[i].x, this.players[i].y, 50, 100);
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+            }
+            this.count = (this.count + 1) % 10;
+            if (this.count === 0) {
+                this.change = !this.change;
+            }
+            requestAnimationFrame(loop)
+        };
+
+        requestAnimationFrame(loop);
     }
 
     generateState1(width, height, halfSize, sizeRect) {
@@ -454,9 +471,9 @@ class GameManager {
                 "x": this.gameState.players[0].x,
                 "y": this.gameState.players[0].y,
                 "left": (width / 2) - halfSize,
-                "leftMax": (width / 2) - halfSize + sizeRect,
+                "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             }
         }
     }
@@ -467,17 +484,17 @@ class GameManager {
                 "x": this.gameState.players[0].x,
                 "y": this.gameState.players[0].y,
                 "left": (width / 2) - halfSize,
-                "leftMax": (width / 2) - halfSize + sizeRect,
+                "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             },
             "player2": {
                 "x": this.gameState.players[1].x,
                 "y": this.gameState.players[1].y,
                 "left": 0.5 * width - halfSize,
-                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - 100
             }
         }
     }
@@ -488,25 +505,25 @@ class GameManager {
                 "x": this.gameState.players[0].x,
                 "y": this.gameState.players[0].y,
                 "left": (width / 2) - halfSize,
-                "leftMax": (width / 2) - halfSize + sizeRect,
+                "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             },
             "player2": {
                 "x": this.gameState.players[1].x,
                 "y": this.gameState.players[1].y,
                 "left": 0.5 * width - halfSize,
-                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - 100
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height,
+                "leftMax": 0.5 * height - 100,
                 "top": 0.5 * height - halfSize,
-                "topMax": 0.5 * height - halfSize + sizeRect
+                "topMax": 0.5 * height - halfSize + sizeRect - 50
             }
         }
     }
@@ -517,47 +534,40 @@ class GameManager {
                 "x": this.gameState.players[0].x,
                 "y": this.gameState.players[0].y,
                 "left": (width / 2) - halfSize,
-                "leftMax": (width / 2) - halfSize + sizeRect,
+                "leftMax": (width / 2) - halfSize + sizeRect - 50,
                 "top": 0.5 * height,
-                "topMax": height
+                "topMax": height - 100
             },
             "player2": {
                 "x": this.gameState.players[1].x,
                 "y": this.gameState.players[1].y,
                 "left": 0.5 * width - halfSize,
-                "leftMax": 0.5 * width - halfSize + sizeRect,
+                "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - 100
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height,
+                "leftMax": 0.5 * height - 100,
                 "top": 0.5 * height - halfSize,
-                "topMax": 0.5 * height - halfSize + sizeRect
+                "topMax": 0.5 * height - halfSize + sizeRect - 50
             },
             "player4": {
                 "x": this.gameState.players[3].x,
                 "y": this.gameState.players[3].y,
                 "left": width - 0.5 * height,
-                "leftMax": width,
+                "leftMax": width - 100,
                 "top": 0.5 * height - halfSize,
-                "topMax": 0.5 * height
+                "topMax": 0.5 * height - halfSize + sizeRect - 50
             }
         }
     }
 
-    drawRect(leftMargin, topMargin, width, height) {
-        const rectangle = document.createElement('div');
-        //rectangle.style.border = "2px black solid";
-        rectangle.style.backgroundColor = "orange";
-        rectangle.style.position = "absolute";
-        rectangle.style.top = topMargin + "px";
-        rectangle.style.left = leftMargin + "px";
-        rectangle.style.width = width + "px";
-        rectangle.style.height = height + "px";
-        document.body.appendChild(rectangle);
+    drawRect(ctx, leftMargin, topMargin, width, height) {
+        ctx.fillStyle = "orange";
+        ctx.fillRect(leftMargin, topMargin, width, height);
     }
 
     initWidgets(nbPlayer) {

@@ -5,7 +5,6 @@ import RationWidget from './RationWidget/RationWidget';
 import {GameState} from "./model/GameState";
 
 
-
 class GameManager {
 
     constructor() {
@@ -121,7 +120,6 @@ class GameManager {
             }, 6000);
 
 
-
             self.updateJauges(data.jauges);
 
         });
@@ -180,7 +178,7 @@ class GameManager {
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanWidth / 3.4);
                 substractMoodP1.css("height", jeanWidth / 3.4);
-                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight*0.65);
+                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.65);
                 substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
                 substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
 
@@ -266,7 +264,7 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
-        const width = chicken/2;
+        const width = chicken / 2;
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -294,12 +292,12 @@ class GameManager {
             ctx.stroke();
         }
         else if (mood > 3 && mood <= 6) {
-            this.drawLine(ctx, x - r, y + r/3, x + r, y + r/3, width);
+            this.drawLine(ctx, x - r, y + r / 3, x + r, y + r / 3, width);
         }
         else {
             ctx.lineWidth = width;
             ctx.beginPath();
-            ctx.arc(x, y + r, r*0.8, 0, Math.PI, true);
+            ctx.arc(x, y + r, r * 0.8, 0, Math.PI, true);
             ctx.stroke();
         }
     }
@@ -329,9 +327,9 @@ class GameManager {
 
     updateJauges(jauges) {
 
-        $("#water-blue-level-p1").css("height", $("#water-p1").height()*0.9);
-        $("#water-blue-level-p1").css("width", $("#water-p1").width()*0.47);
-        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width()*0.3);
+        $("#water-blue-level-p1").css("height", $("#water-p1").height() * 0.9);
+        $("#water-blue-level-p1").css("width", $("#water-p1").width() * 0.47);
+        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);
 
         for (let playerId in jauges) {
             const canvas = $("#jean-p" + playerId)[0];
@@ -357,13 +355,11 @@ class GameManager {
                 else if (delta < 0)
                     $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
                 $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
-                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
+                $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
                 $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
 
             }
         }
-
-        setTimeout(function () {
         setTimeout(function () {
             $("div[class^=substract]").css("animation-name", "none");
             $(".substract-level").css("height", 0);
@@ -625,8 +621,6 @@ class GameManager {
             this.socket);
         $('#app').append(this.mapWidget.domElem);
         this.mapWidget.addMap();
-
-
 
 
     }

@@ -68,7 +68,7 @@ class ImageWidget extends TUIOWidget {
         },
       };
     }
-    const socket = io.connect('http://localhost:4444');
+    const socket = io.connect('http://192.168.1.33:4444');
     socket.emit('message', 'Table');
   }
 

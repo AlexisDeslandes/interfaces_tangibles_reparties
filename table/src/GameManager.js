@@ -13,7 +13,8 @@ class GameManager {
     constructor() {
 
 
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.33:4444');
+        //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
 

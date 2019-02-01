@@ -146,7 +146,11 @@ module.exports = [
                 ]
             }
         ]
-    },/*
+    },
+    {
+        type : "minijeu"
+    }
+    /*
     {
         intro: [{
             title:"Le voyage continue",

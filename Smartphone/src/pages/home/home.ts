@@ -8,6 +8,7 @@ import {DilemmePage} from "../dilemme/dilemme";
 import {GamePage} from "../game/game";
 import {ReadyStepPage} from "../ready-step/ready-step";
 import {GameoverPage} from "../gameover/gameover";
+import {GuidelinePage} from "../guideline/guideline";
 
 @Component({
     selector: 'page-home',
@@ -40,7 +41,7 @@ export class HomePage {
                         this.navCtrl.push(DilemmePage, data);
                         break;
                     case 'minijeu':
-                        this.navCtrl.push(GamePage, data);
+                        this.navCtrl.push(GuidelinePage, data);
                         break;
                 }
             }

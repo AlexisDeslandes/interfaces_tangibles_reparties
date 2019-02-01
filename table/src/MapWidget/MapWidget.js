@@ -104,8 +104,7 @@ class MapWidget extends TUIOWidget {
                 name: 'Tombouctou',
                 fillKey: 'black',
                 radius: 20,
-                significance: 'St' +
-                'ep 7',
+                significance: 'Step 7',
                 latitude: 16.7719091,
                 longitude: -3.0087272
             },

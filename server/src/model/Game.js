@@ -23,7 +23,7 @@ module.exports = class Game {
         this.players.forEach(p => {
             this.puzzle.sendPuzzle(p.socket)
         });
-        this.puzzle.sendPuzzle(this.tableSocket)
+        this.puzzle .sendPuzzle(this.tableSocket)
     }
 
     showEndedPuzzleToAll() {

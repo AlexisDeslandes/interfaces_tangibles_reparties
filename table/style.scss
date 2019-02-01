@@ -267,6 +267,10 @@ div.main-container-board {
     }
   }
 
+  #energy-outline-p2 {
+    bottom: 5%;
+  }
+
 
   img.smartphone-picto {
     animation-duration: 1s;
@@ -369,8 +373,16 @@ div.main-container-board {
       left: 10%;
     }
 
-    #chicken-p2, #water-p2, #energy-p2 {
+    #chicken-p2 {
       left: 10%;
+    }
+
+    #water-p2 {
+      right: 10%;
+    }
+
+    #energy-p2 {
+      right: 10%;
     }
 
     #chicken-p1, #mood-p1 {
@@ -397,8 +409,12 @@ div.main-container-board {
       top: 5%;
     }
 
-    #energy-p2, #bike-p2 {
+    #bike-p2 {
       bottom: 55%;
+    }
+
+    #energy-p2 {
+      bottom: 5%;
     }
 
     div.ration-zone {

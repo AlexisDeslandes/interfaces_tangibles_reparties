@@ -157,71 +157,75 @@ class GameManager {
         const substractChickenP2 = $("#substract-chicken-p2");
         const substractMoodP2 = $("#substract-mood-p2");
 
-        let jeanWidth, jeanHeight;
+        let jeanWidth, jeanHeight, mx, my;
 
         switch (nb) {
             case 1:
                 jeanWidth = 0.2 * $(window).width();
                 jeanHeight = 0.28 * $(window).height();
+                mx = 0.1 * $(window).width();
+                my = 0.01 * $(window).height();
                 /*bikeP1.attr("width", 0.38 * $(window).width());
                 bikeP1.attr("height", 0.28 * $(window).height());
                 bikeP1.css("bottom", 0.01 * $(window).height());
                 bikeP1.css("left", 0.01 * $(window).width());*/
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.1 * $(window).width());
+                jeanP1.css("bottom", my);
+                jeanP1.css("right", mx);
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
-                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP1.css("right", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanHeight / 4);
                 substractMoodP1.css("height", jeanHeight / 4);
-                substractMoodP1.css("bottom", 0.01 * $(window).height() + 3*jeanHeight/4 - jeanHeight/8);
-                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
             case 2:
                 jeanWidth = 0.2 * $(window).width();
                 jeanHeight = 0.4 * $(window).height();
+                mx = 0.03 * $(window).width();
+                my = 0.01 * $(window).height();
                 /*bikeP1.attr("width", 0.23 * $(window).width());
                 bikeP1.attr("height", 0.28 * $(window).height());
                 bikeP1.css("bottom", 0.01 * $(window).height());
                 bikeP1.css("left", 0.01 * $(window).width());*/
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.03 * $(window).width());
+                jeanP1.css("bottom", my);
+                jeanP1.css("right", mx);
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
-                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
-                substractChickenP1.css("right", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP1.css("right", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP1.css("width", jeanWidth / 3.4);
-                substractMoodP1.css("height", jeanWidth / 3.4);
-                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.60);
-                substractMoodP1.css("right", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
-                substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
+                substractMoodP1.css("width", jeanWidth / 4);
+                substractMoodP1.css("height", jeanWidth / 4);
+                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
                 /*bikeP2.attr("width", 0.23 * $(window).width());
                 bikeP2.attr("height", 0.28 * $(window).height());
                 bikeP2.css("top", 0.01 * $(window).height());
                 bikeP2.css("right", 0.01 * $(window).width());*/
-                jeanP2.attr("width", 0.20 * $(window).width());
-                jeanP2.attr("height", 0.40 * $(window).height());
-                jeanP2.css("top", 0.01 * $(window).height());
-                jeanP2.css("left", 0.03 * $(window).width());
+                jeanP2.attr("width", jeanWidth);
+                jeanP2.attr("height", jeanHeight);
+                jeanP2.css("top", my);
+                jeanP2.css("left", mx);
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
-                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
                 substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP2.css("width", jeanWidth / 3.4);
-                substractMoodP2.css("height", jeanWidth / 3.4);
-                substractMoodP2.css("top", 0.01 * $(window).height() + jeanHeight * 0.60);
-                substractMoodP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
-                substractMoodP2.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
+                substractMoodP2.css("width", jeanWidth / 4);
+                substractMoodP2.css("height", jeanWidth / 4);
+                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
             case 3:
             case 4:

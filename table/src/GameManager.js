@@ -13,7 +13,7 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://192.168.1.3:4444');
+        this.socket = io.connect('http://localhost:4444');
         //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
@@ -173,14 +173,14 @@ class GameManager {
                 jeanP1.css("right", 0.1 * $(window).width());
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
-                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
                 substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP1.css("width", jeanWidth / 3.4);
-                substractMoodP1.css("height", jeanWidth / 3.4);
-                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.65);
-                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
-                substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
+                substractMoodP1.css("width", jeanHeight / 4);
+                substractMoodP1.css("height", jeanHeight / 4);
+                substractMoodP1.css("bottom", 0.01 * $(window).height() + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
             case 2:
                 jeanWidth = 0.2 * $(window).width();
@@ -285,7 +285,7 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
-        const width = chicken / 2;
+        const width = chicken;
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -299,10 +299,10 @@ class GameManager {
         // RIGHT ARM
         this.drawLine(ctx, center, middle, right, 3 * headRadius, width);
         // MOUTH
-        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width, mood);
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width/2, mood);
         // EYES
-        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width);
-        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width);
+        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width/2);
+        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width/2);
     }
 
     drawMouth(ctx, x, y, r, start, end, width, mood) {

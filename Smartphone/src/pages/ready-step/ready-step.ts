@@ -18,11 +18,14 @@ export class ReadyStepPage {
 
   isReady;
 
+  colors = ["", "#a22b28", "#393bb5", "#007207", "#b8b918"];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.isReady = false;
   }
 
   ready(){
+    //document.getElementById("ready-step-wrapper").style.backgroundColor = this.colors[1];
     this.socketManager.sendReady();
     this.isReady = true;
   }

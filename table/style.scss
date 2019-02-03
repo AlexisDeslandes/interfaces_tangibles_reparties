@@ -49,7 +49,6 @@ div.main-container-board {
   canvas[id^=jean-p], canvas[id^=bike-p] {
     display: none;
     position: absolute;
-    border: 1px solid;
   }
 
   #jean-p2 {
@@ -235,6 +234,7 @@ div.main-container-board {
   div[id^=substract-] {
     position: absolute;
     border: none;
+    animation-name: jaugeblinkred;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;

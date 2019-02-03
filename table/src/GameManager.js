@@ -134,6 +134,8 @@ class GameManager {
         for (let i = 1; i <= nb; i++) {
             $("#jean-p" + i).css("display", "block");
             $("#bike-p" + i).css("display", "block");
+            $("#substract-chicken-p" + i).css("display", "block");
+            $("#substract-mood-p" + i).css("display", "block");
         }
         const jeanP1 = $("#jean-p1");
         const jeanP2 = $("#jean-p2");
@@ -223,8 +225,8 @@ class GameManager {
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
-                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP2.css("top", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP2.css("left", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP2.css("width", jeanWidth / 4);
                 substractMoodP2.css("height", jeanWidth / 4);
@@ -272,8 +274,8 @@ class GameManager {
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
-                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP2.css("top", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP2.css("left", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP2.css("width", jeanWidth / 4);
                 substractMoodP2.css("height", jeanWidth / 4);
@@ -293,13 +295,13 @@ class GameManager {
 
                 substractChickenP3.css("width", jeanWidth / 12);
                 substractChickenP3.css("height", jeanWidth / 12);
-                substractChickenP3.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP3.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP3.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP3.css("left", my + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP3.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP3.css("width", jeanWidth / 4);
                 substractMoodP3.css("height", jeanWidth / 4);
-                substractMoodP3.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
-                substractMoodP3.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP3.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP3.css("left", my + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP3.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
 
@@ -315,13 +317,13 @@ class GameManager {
 
                 substractChickenP4.css("width", jeanWidth / 12);
                 substractChickenP4.css("height", jeanWidth / 12);
-                substractChickenP4.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP4.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP4.css("top", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP4.css("right", my + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP4.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP4.css("width", jeanWidth / 4);
                 substractMoodP4.css("height", jeanWidth / 4);
                 substractMoodP4.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
-                substractMoodP4.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP4.css("right", my + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 
                 
@@ -454,8 +456,6 @@ class GameManager {
         }
         setTimeout(function () {
             $("div[class^=substract]").css("animation-name", "none");
-            $(".substract-level").css("height", 0);
-            $("div[class^=level-outline-p]").css("animation-name", "none");
         }, 6000);
     }
 

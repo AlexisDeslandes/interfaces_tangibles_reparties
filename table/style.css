@@ -159,7 +159,7 @@ div.main-container-board {
     height: 0; }
   div.main-container-board div[id^=substract-] {
     position: absolute;
-    border: none;
+    display: none;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;

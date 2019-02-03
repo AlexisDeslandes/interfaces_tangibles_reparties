@@ -246,7 +246,8 @@ div.main-container-board {
 
   div[id^=substract-] {
     position: absolute;
-    border: none;
+    display: none;
+    //animation-name: jaugeblinkred;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;

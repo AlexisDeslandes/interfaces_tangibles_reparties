@@ -142,11 +142,17 @@ class GameManager {
 
         const bikeP1 = $("#bike-p1");
         const bikeP2 = $("#bike-p2");
+        const bikeP3 = $("#bike-p3");
+        const bikeP4 = $("#bike-p4");
 
         const substractChickenP1 = $("#substract-chicken-p1");
         const substractMoodP1 = $("#substract-mood-p1");
         const substractChickenP2 = $("#substract-chicken-p2");
         const substractMoodP2 = $("#substract-mood-p2");
+        const substractChickenP3 = $("#substract-chicken-p3");
+        const substractMoodP3 = $("#substract-mood-p3");
+        const substractChickenP4 = $("#substract-chicken-p4");
+        const substractMoodP4 = $("#substract-mood-p4");
 
         let jeanWidth, jeanHeight, mx, my;
 
@@ -189,9 +195,9 @@ class GameManager {
                 jeanP1.css("bottom", my);
                 jeanP1.css("right", mx);
 
-                bikeP1.css("width", jeanWidth*1.2);
-                bikeP1.css("height", jeanHeight*1.2);
-                bikeP1.css("bottom", -10*my);
+                bikeP1.css("width", jeanWidth);
+                bikeP1.css("height", jeanHeight);
+                bikeP1.css("bottom", -8*my);
                 bikeP1.css("left", mx);
 
                 substractChickenP1.css("width", jeanWidth / 12);
@@ -210,9 +216,9 @@ class GameManager {
                 jeanP2.css("top", my);
                 jeanP2.css("left", mx);
 
-                bikeP2.css("width", jeanWidth*1.2);
-                bikeP2.css("height", jeanHeight*1.2);
-                bikeP2.css("top", -10*my);
+                bikeP2.css("width", jeanWidth);
+                bikeP2.css("height", jeanHeight);
+                bikeP2.css("top", -8*my);
                 bikeP2.css("right", mx);
 
                 substractChickenP2.css("width", jeanWidth / 12);
@@ -228,6 +234,97 @@ class GameManager {
                 break;
             case 3:
             case 4:
+                jeanWidth = 0.1 * $(window).width();
+                jeanHeight = 0.2 * $(window).height();
+                mx = 0.28 * $(window).width();
+                my = 0.01 * $(window).height();
+
+                jeanP1.attr("width", jeanWidth);
+                jeanP1.attr("height", jeanHeight);
+                jeanP1.css("bottom", my);
+                jeanP1.css("right", mx);
+
+                bikeP1.css("width", jeanWidth);
+                bikeP1.css("height", jeanHeight);
+                bikeP1.css("bottom", my);
+                bikeP1.css("left", mx);
+
+                substractChickenP1.css("width", jeanWidth / 12);
+                substractChickenP1.css("height", jeanWidth / 12);
+                substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP1.css("right", mx + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP1.css("width", jeanWidth / 4);
+                substractMoodP1.css("height", jeanWidth / 4);
+                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+
+                jeanP2.attr("width", jeanWidth);
+                jeanP2.attr("height", jeanHeight);
+                jeanP2.css("top", my);
+                jeanP2.css("left", mx);
+
+                bikeP2.css("width", jeanWidth);
+                bikeP2.css("height", jeanHeight);
+                bikeP2.css("top", my);
+                bikeP2.css("right", mx);
+
+                substractChickenP2.css("width", jeanWidth / 12);
+                substractChickenP2.css("height", jeanWidth / 12);
+                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP2.css("width", jeanWidth / 4);
+                substractMoodP2.css("height", jeanWidth / 4);
+                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+                
+                jeanP3.attr("width", jeanWidth);
+                jeanP3.attr("height", jeanHeight);
+                jeanP3.css("bottom", my);
+                jeanP3.css("left", my);
+
+                bikeP3.css("width", jeanWidth);
+                bikeP3.css("height", jeanHeight);
+                bikeP3.css("top", my);
+                bikeP3.css("left", my);
+
+                substractChickenP3.css("width", jeanWidth / 12);
+                substractChickenP3.css("height", jeanWidth / 12);
+                substractChickenP3.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP3.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP3.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP3.css("width", jeanWidth / 4);
+                substractMoodP3.css("height", jeanWidth / 4);
+                substractMoodP3.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP3.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP3.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+
+
+                jeanP4.attr("width", jeanWidth);
+                jeanP4.attr("height", jeanHeight);
+                jeanP4.css("top", my);
+                jeanP4.css("right", my);
+
+                bikeP4.css("width", jeanWidth);
+                bikeP4.css("height", jeanHeight);
+                bikeP4.css("bottom", my);
+                bikeP4.css("right", my);
+
+                substractChickenP4.css("width", jeanWidth / 12);
+                substractChickenP4.css("height", jeanWidth / 12);
+                substractChickenP4.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP4.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP4.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP4.css("width", jeanWidth / 4);
+                substractMoodP4.css("height", jeanWidth / 4);
+                substractMoodP4.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP4.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+                
+                
                 break;
         }
     }
@@ -246,7 +343,7 @@ class GameManager {
         $("#puzzle").hide();
     }
 
-    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood) {
+    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood, nbPlayers) {
         const center = jeanWidth / 2;
         const left = jeanWidth / 2.5;
         const right = 2 * center - left;
@@ -254,7 +351,13 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
-        const width = chicken;
+        let width;
+        if (nbPlayers <= 2) {
+            width = chicken;
+        }
+        else {
+            width = 0.6*chicken;
+        }
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -332,7 +435,7 @@ class GameManager {
             const canvas = $("#jean-p" + playerId)[0];
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"]);
+            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"], Object.keys(jauges).length);
             for (let jaugeName in jauges[playerId]) {
                 let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
                 if (delta !== 0) {

@@ -64,15 +64,15 @@ div.main-container-board {
     animation-timing-function: linear;
   }
 
-  #jean-p2 {
+  #jean-p2, #bike-p2 {
     @include transform(rotate(180deg));
   }
 
-  #jean-p3 {
+  #jean-p3, #bike-p3 {
     @include transform(rotate(90deg));
   }
 
-  #jean-p4 {
+  #jean-p4, #bike-p4 {
     @include transform(rotate(270deg));
   }
 

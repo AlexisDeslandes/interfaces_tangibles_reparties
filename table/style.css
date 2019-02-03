@@ -34,17 +34,17 @@ div.main-container-board {
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear; }
-  div.main-container-board #jean-p2 {
+  div.main-container-board #jean-p2, div.main-container-board #bike-p2 {
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     transform: rotate(180deg); }
-  div.main-container-board #jean-p3 {
+  div.main-container-board #jean-p3, div.main-container-board #bike-p3 {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     transform: rotate(90deg); }
-  div.main-container-board #jean-p4 {
+  div.main-container-board #jean-p4, div.main-container-board #bike-p4 {
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     -moz-transform: rotate(270deg);

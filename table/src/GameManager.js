@@ -162,8 +162,8 @@ class GameManager {
                 jeanP1.css("bottom", my);
                 jeanP1.css("right", mx);
 
-                bikeP1.css("width", jeanWidth*1.2);
-                bikeP1.css("height", jeanHeight*1.2);
+                bikeP1.css("width", jeanWidth);
+                bikeP1.css("height", jeanHeight);
                 bikeP1.css("bottom", my);
                 bikeP1.css("left", mx);
 
@@ -188,6 +188,12 @@ class GameManager {
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", my);
                 jeanP1.css("right", mx);
+
+                bikeP1.css("width", jeanWidth*1.2);
+                bikeP1.css("height", jeanHeight*1.2);
+                bikeP1.css("bottom", -10*my);
+                bikeP1.css("left", mx);
+
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
                 substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
@@ -203,6 +209,12 @@ class GameManager {
                 jeanP2.attr("height", jeanHeight);
                 jeanP2.css("top", my);
                 jeanP2.css("left", mx);
+
+                bikeP2.css("width", jeanWidth*1.2);
+                bikeP2.css("height", jeanHeight*1.2);
+                bikeP2.css("top", -10*my);
+                bikeP2.css("right", mx);
+
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
                 substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);

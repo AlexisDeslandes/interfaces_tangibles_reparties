@@ -130,133 +130,102 @@ class GameManager {
     initCanvas(nb) {
         for (let i = 1; i <= nb; i++) {
             $("#jean-p" + i).css("display", "block");
-            //$("#bike-p" + i).css("display", "block");
+            $("#bike-p" + i).css("display", "block");
         }
         const jeanP1 = $("#jean-p1");
-        const bikeP1 = $("#bike-p1");
-        const ctxJeanP1 = jeanP1[0].getContext("2d");
-        const ctxBikeP1 = bikeP1[0].getContext("2d");
         const jeanP2 = $("#jean-p2");
-        const bikeP2 = $("#bike-p2");
-        const ctxJeanP2 = jeanP2[0].getContext("2d");
-        const ctxBikeP2 = bikeP2[0].getContext("2d");
         const jeanP3 = $("#jean-p3");
-        const bikeP3 = $("#bike-p3");
-        const ctxJeanP3 = jeanP3[0].getContext("2d");
-        const ctxBikeP3 = bikeP3[0].getContext("2d");
         const jeanP4 = $("#jean-p4");
-        const bikeP4 = $("#bike-p4");
-        const ctxJeanP4 = jeanP4[0].getContext("2d");
-        const ctxBikeP4 = bikeP4[0].getContext("2d");
+
+        const bikeP1 = $("#bike-p1");
+        const bikeP2 = $("#bike-p2");
 
         const substractChickenP1 = $("#substract-chicken-p1");
         const substractMoodP1 = $("#substract-mood-p1");
         const substractChickenP2 = $("#substract-chicken-p2");
         const substractMoodP2 = $("#substract-mood-p2");
 
-        let jeanWidth, jeanHeight;
+        let jeanWidth, jeanHeight, mx, my;
 
         switch (nb) {
             case 1:
                 jeanWidth = 0.2 * $(window).width();
                 jeanHeight = 0.28 * $(window).height();
-                /*bikeP1.attr("width", 0.38 * $(window).width());
-                bikeP1.attr("height", 0.28 * $(window).height());
-                bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());*/
+                mx = 0.1 * $(window).width();
+                my = 0.01 * $(window).height();
+
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.1 * $(window).width());
+                jeanP1.css("bottom", my);
+                jeanP1.css("right", mx);
+
+                bikeP1.css("width", jeanWidth);
+                bikeP1.css("height", jeanHeight);
+                bikeP1.css("bottom", my);
+                bikeP1.css("left", mx);
+
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
-                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
-                substractChickenP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP1.css("right", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP1.css("width", jeanWidth / 3.4);
-                substractMoodP1.css("height", jeanWidth / 3.4);
-                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.65);
-                substractMoodP1.css("right", 0.1 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
-                substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
+                substractMoodP1.css("width", jeanHeight / 4);
+                substractMoodP1.css("height", jeanHeight / 4);
+                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
             case 2:
                 jeanWidth = 0.2 * $(window).width();
                 jeanHeight = 0.4 * $(window).height();
-                /*bikeP1.attr("width", 0.23 * $(window).width());
-                bikeP1.attr("height", 0.28 * $(window).height());
-                bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());*/
+                mx = 0.03 * $(window).width();
+                my = 0.01 * $(window).height();
+
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.03 * $(window).width());
+                jeanP1.css("bottom", my);
+                jeanP1.css("right", mx);
+
+                bikeP1.css("width", jeanWidth*1.2);
+                bikeP1.css("height", jeanHeight*1.2);
+                bikeP1.css("bottom", -10*my);
+                bikeP1.css("left", mx);
+
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
-                substractChickenP1.css("bottom", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
-                substractChickenP1.css("right", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP1.css("right", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP1.css("width", jeanWidth / 3.4);
-                substractMoodP1.css("height", jeanWidth / 3.4);
-                substractMoodP1.css("bottom", 0.01 * $(window).height() + jeanHeight * 0.60);
-                substractMoodP1.css("right", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
-                substractMoodP1.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
+                substractMoodP1.css("width", jeanWidth / 4);
+                substractMoodP1.css("height", jeanWidth / 4);
+                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
-                /*bikeP2.attr("width", 0.23 * $(window).width());
-                bikeP2.attr("height", 0.28 * $(window).height());
-                bikeP2.css("top", 0.01 * $(window).height());
-                bikeP2.css("right", 0.01 * $(window).width());*/
-                jeanP2.attr("width", 0.20 * $(window).width());
-                jeanP2.attr("height", 0.40 * $(window).height());
-                jeanP2.css("top", 0.01 * $(window).height());
-                jeanP2.css("left", 0.03 * $(window).width());
+                jeanP2.attr("width", jeanWidth);
+                jeanP2.attr("height", jeanHeight);
+                jeanP2.css("top", my);
+                jeanP2.css("left", mx);
+
+                bikeP2.css("width", jeanWidth*1.2);
+                bikeP2.css("height", jeanHeight*1.2);
+                bikeP2.css("top", -10*my);
+                bikeP2.css("right", mx);
+
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
-                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 12);
+                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
                 substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
-                substractMoodP2.css("width", jeanWidth / 3.4);
-                substractMoodP2.css("height", jeanWidth / 3.4);
-                substractMoodP2.css("top", 0.01 * $(window).height() + jeanHeight * 0.60);
-                substractMoodP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 6.8);
-                substractMoodP2.css("border-radius", jeanWidth / 3.4 + "px " + jeanWidth / 3.4 + "px");
+                substractMoodP2.css("width", jeanWidth / 4);
+                substractMoodP2.css("height", jeanWidth / 4);
+                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
             case 3:
             case 4:
-                /*bikeP1.attr("width", 0.23 * $(window).width());
-                bikeP1.attr("height", 0.28 * $(window).height());
-                bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());*/
-                jeanP1.attr("width", 0.20 * $(window).width());
-                jeanP1.attr("height", 0.4 * $(window).height());
-                jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.03 * $(window).width());
-
-                /*bikeP2.attr("width", 0.23 * $(window).width());
-                bikeP2.attr("height", 0.28 * $(window).height());
-                bikeP2.css("top", 0.01 * $(window).height());
-                bikeP2.css("right", 0.01 * $(window).width());*/
-                jeanP2.attr("width", 0.20 * $(window).width());
-                jeanP2.attr("height", 0.40 * $(window).height());
-                jeanP2.css("top", 0.01 * $(window).height());
-                jeanP2.css("left", 0.03 * $(window).width());
-
-                /*bikeP3.attr("width", 0.23 * $(window).width());
-                bikeP3.attr("height", 0.28 * $(window).height());
-                bikeP3.css("bottom", 0.01 * $(window).height());
-                bikeP3.css("left", 0.01 * $(window).width());*/
-                jeanP3.attr("width", 0.20 * $(window).width());
-                jeanP3.attr("height", 0.4 * $(window).height());
-                jeanP3.css("bottom", 0.01 * $(window).height());
-                jeanP3.css("right", 0.03 * $(window).width());
-
-                /*bikeP4.attr("width", 0.23 * $(window).width());
-                bikeP4.attr("height", 0.28 * $(window).height());
-                bikeP4.css("top", 0.01 * $(window).height());
-                bikeP4.css("right", 0.01 * $(window).width());*/
-                jeanP4.attr("width", 0.20 * $(window).width());
-                jeanP4.attr("height", 0.40 * $(window).height());
-                jeanP4.css("top", 0.01 * $(window).height());
-                jeanP4.css("left", 0.03 * $(window).width());
+                break;
         }
     }
 
@@ -282,7 +251,7 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
-        const width = chicken / 2;
+        const width = chicken;
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -291,15 +260,22 @@ class GameManager {
         this.drawLine(ctx, center, middle + 1.5 * headRadius, left, down, width);
         // RIGHT LEG
         this.drawLine(ctx, center, middle + 1.5 * headRadius, right, down, width);
-        // LEFT ARM
-        this.drawLine(ctx, center, middle, left, 3 * headRadius, width);
-        // RIGHT ARM
-        this.drawLine(ctx, center, middle, right, 3 * headRadius, width);
+        // ARMS
+        let armPos;
+        if (mood > 6)
+            armPos = 3;
+        else if (mood > 3 && mood <= 6) {
+            armPos = 5;
+        }
+        else
+            armPos = 6;
+        this.drawLine(ctx, center, middle, left, armPos * headRadius, width);
+        this.drawLine(ctx, center, middle, right, armPos * headRadius, width);
         // MOUTH
-        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width, mood);
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width/2, mood);
         // EYES
-        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width);
-        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width);
+        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width/2);
+        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width/2);
     }
 
     drawMouth(ctx, x, y, r, start, end, width, mood) {
@@ -364,14 +340,10 @@ class GameManager {
                 else if (delta < 0)
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
 
-                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
-                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
-                if (delta > 0)
-                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkred");
-                else if (delta < 0)
-                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
-                $("#" + jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
-
+                if (jaugeName === "bike") {
+                    let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
+                    $("#bike-p"+playerId).css("background-color", "rgb("+ redShade +", 0, 0)");
+                }
             }
         }
         setTimeout(function () {

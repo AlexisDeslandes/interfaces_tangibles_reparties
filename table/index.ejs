@@ -115,23 +115,9 @@
     </div>
 </div>
 
-<div style="display:none;">
-    <img id="bike" src="../res/bike2.svg" width="50">
-    <img id="bike2" src="../res/bayke.svg" width="50">
-</div>
+<canvas id="trueGame" style="display: none;position: absolute;z-index: 1000;left: 0;top: 0;"></canvas>
 
-
-<canvas id="trueGame" style="display: none;position: absolute;z-index: 1000;left: 0;top: 0;">
-
-</canvas>
-
-<canvas id="gamer" style="display: none;position: absolute;z-index: 1001;left: 0;top: 0;">
-
-</canvas>
-
-
-
-
+<canvas id="gamer" style="display: none;position: absolute;z-index: 1001;left: 0;top: 0;"></canvas>
 
 <div class="header" id="header">
 
@@ -164,60 +150,20 @@
 
 <div class="main-container-board" id="main-container-board">
 
-
     <canvas id="jean-p1"></canvas>
-    <canvas id="bike-p1"></canvas>
     <div class="substract" id="substract-chicken-p1"></div>
     <div class="substract" id="substract-mood-p1"></div>
+    <div id="bike-p1"></div>
 
     <canvas id="jean-p2"></canvas>
-    <canvas id="bike-p2"></canvas>
     <div class="substract" id="substract-chicken-p2"></div>
     <div class="substract" id="substract-mood-p2"></div>
-
-    <canvas id="jean-p3"></canvas>
-    <canvas id="bike-p3"></canvas>
-
-    <canvas id="jean-p4"></canvas>
-    <canvas id="bike-p4"></canvas>
-
+    <div id="bike-p2"></div>
 
     <div class="section first-section">
         <div class="inner-section corner-section" id="section-1">
         </div>
         <div class="inner-section long-edge" id="section-2">
-            <!--<img class="picto picto-p2" id="chicken-p2" src="res/chicken.svg" height="20%"/>
-            <div class="level-outline-p2-left" id="chicken-outline-p2">
-                <div class="substract-level" id="substract-chicken-level-p2"></div>
-                <div class="level-p2" id="chicken-level-p2"></div>
-            </div>-->
-            <img class="picto picto-p2" id="water-p2" src="res/water.svg" height="20%"/>
-            <div class="level-outline-p2-right" id="water-outline-p2">
-                <div class="substract-level" id="substract-water-level-p2"></div>
-                <div class="level-p2" id="water-level-p2"></div>
-            </div>
-            <img class="picto picto-p2" id="energy-p2" src="res/energy.svg" height="20%"/>
-            <div class="level-outline-p2-right" id="energy-outline-p2">
-                <div class="substract-level" id="substract-energy-level-p2"></div>
-                <div class="level-p2" id="energy-level-p2"></div>
-            </div>
-
-            <!--
-            <img class="picto picto-p2" id="mood-p2" src="res/mood.svg" height="20%"/>
-            <div class="level-outline-p2-right" id="mood-outline-p2">
-                <div class="substract-level" id="substract-mood-level-p2"></div>
-                <div class="level-p2" id="mood-level-p2"></div>
-            </div>
-            <img class="picto picto-p2" id="thermometer-p2" src="res/thermometer.svg" height="20%"/>
-            <div class="level-outline-p2-right" id="thermometer-outline-p2">
-                <div class="substract-level" id="substract-thermometer-level-p2"></div>
-                <div class="level-p2" id="thermometer-level-p2"></div>
-            </div>-->
-            <img class="picto picto-p2" id="bike-p2" src="res/bike.svg" height="20%" />
-            <div class="level-outline-p2-right" id="bike-outline-p2">
-                <div class="substract-level" id="substract-bike-level-p2"></div>
-                <div class="level-p2" id="bike-level-p2"></div>
-            </div>
             <div id="ration-container-p2" class="ration-zone ration-zone-p2"></div>
             <img class="picto picto-p2 smartphone-picto" src="res/smartphone.svg" height="40%"/>
         </div>
@@ -227,37 +173,6 @@
     </div>
     <div class="section second-section">
         <div class="inner-section short-edge" id="section-4">
-            <!--<img class="picto picto-p3" id="chicken-p3" src="res/chicken.svg" height="10%" />
-            <div class="level-outline-p3-right" id="chicken-outline-p3">
-                <div class="substract-level" id="substract-chicken-level-p3"></div>
-                <div class="level-p3" id="chicken-level-p3"></div>
-            </div>
-            <img class="picto picto-p3" id="water-p3" src="res/water.svg" height="10%" />
-            <div class="level-outline-p3-right" id="water-outline-p3">
-                <div class="substract-level" id="substract-water-level-p3"></div>
-                <div class="level-p3" id="water-level-p3"></div>
-            </div>
-            <img class="picto picto-p3" id="energy-p3" src="res/energy.svg" height="10%" />
-            <div class="level-outline-p3-right" id="energy-outline-p3">
-                <div class="substract-level" id="substract-energy-level-p3"></div>
-                <div class="level-p3" id="energy-level-p3"></div>
-            </div>
-
-            <img class="picto picto-p3" id="mood-p3" src="res/mood.svg" height="10%" />
-            <div class="level-outline-p3-left" id="mood-outline-p3">
-                <div class="substract-level" id="substract-mood-level-p3"></div>
-                <div class="level-p3" id="mood-level-p3"></div>
-            </div>
-            <img class="picto picto-p3" id="thermometer-p3" src="res/thermometer.svg" height="10%" />
-            <div class="level-outline-p3-left" id="thermometer-outline-p3">
-                <div class="substract-level" id="substract-thermometer-level-p3"></div>
-                <div class="level-p3" id="thermometer-level-p3"></div>
-            </div>
-            <img class="picto picto-p3" id="bike-p3" src="res/bike.svg" height="10%" />
-            <div class="level-outline-p3-left" id="bike-outline-p3">
-                <div class="substract-level" id="substract-bike-level-p3"></div>
-                <div class="level-p3" id="bike-level-p3"></div>
-            </div>-->
             <div id="ration-container-p3" class="ration-zone ration-zone-p3"></div>
             <img class="picto picto-p3 smartphone-picto" src="res/smartphone.svg" height="20%"/>
         </div>
@@ -265,37 +180,6 @@
             <div id="app" style="width: 100%; height: 100%;"></div>
         </div>
         <div class="inner-section short-edge" id="section-6">
-            <!--<img class="picto picto-p4" id="chicken-p4" src="res/chicken.svg" height="10%" />
-            <div class="level-outline-p4-left" id="chicken-outline-p4">
-                <div class="substract-level" id="substract-chicken-level-p4"></div>
-                <div class="level-p4" id="chicken-level-p4"></div>
-            </div>
-            <img class="picto picto-p4" id="water-p4" src="res/water.svg" height="10%" />
-            <div class="level-outline-p4-left" id="water-outline-p4">
-                <div class="substract-level" id="substract-water-level-p4"></div>
-                <div class="level-p4" id="water-level-p4"></div>
-            </div>
-            <img class="picto picto-p4" id="energy-p4" src="res/energy.svg" height="10%" />
-            <div class="level-outline-p4-left" id="energy-outline-p4">
-                <div class="substract-level" id="substract-energy-level-p4"></div>
-                <div class="level-p4" id="energy-level-p4"></div>
-            </div>
-
-            <img class="picto picto-p4" id="mood-p4" src="res/mood.svg" height="10%" />
-            <div class="level-outline-p4-right" id="mood-outline-p4">
-                <div class="substract-level" id="substract-mood-level-p4"></div>
-                <div class="level-p4" id="mood-level-p4"></div>
-            </div>
-            <img class="picto picto-p4" id="thermometer-p4" src="res/thermometer.svg" height="10%" />
-            <div class="level-outline-p4-right" id="thermometer-outline-p4">
-                <div class="substract-level" id="substract-thermometer-level-p4"></div>
-                <div class="level-p4" id="thermometer-level-p4"></div>
-            </div>
-            <img class="picto picto-p4" id="bike-p4" src="res/bike.svg" height="10%" />
-            <div class="level-outline-p4-right" id="bike-outline-p4">
-                <div class="substract-level" id="substract-bike-level-p4"></div>
-                <div class="level-p4" id="bike-level-p4"></div>
-            </div>-->
             <div id="ration-container-p4" class="ration-zone ration-zone-p4"></div>
             <img class="picto picto-p4 smartphone-picto" src="res/smartphone.svg" height="20%"/>
         </div>
@@ -305,40 +189,6 @@
 
         </div>
         <div class="inner-section long-edge" id="section-8">
-            <!--<img class="picto" id="chicken-p1" src="res/chicken.svg" height="20%" />
-            <div class="level-outline-p1-right" id="chicken-outline-p1">
-                <div class="substract-level" id="substract-chicken-level-p1"></div>
-                <div class="level-p1" id="chicken-level-p1"></div>
-            </div>-->
-            <img class="picto" id="water-p1" src="res/water.svg" height="20%" />
-            <div class="level-outline-p1-left" id="water-outline-p1">
-                <div class="substract-level" id="substract-water-level-p1"></div>
-                <div class="level-p1" id="water-level-p1"></div>
-            </div>
-            <!--<div class="level-p1" id="water-blue-level-p1"></div>-->
-            <img class="picto" id="energy-p1" src="res/energy.svg" height="20%" />
-            <div class="level-outline-p1-right" id="energy-outline-p1">
-                <div class="substract-level" id="substract-energy-level-p1"></div>
-                <div class="level-p1" id="energy-level-p1"></div>
-            </div>
-            <!--
-            <img class="picto" id="mood-p1" src="res/mood.svg" height="20%" />
-            <div class="level-outline-p1-left" id="mood-outline-p1">
-                <div class="substract-level" id="substract-mood-level-p1"></div>
-                <div class="level-p1" id="mood-level-p1"></div>
-            </div>
-            <img class="picto" id="thermometer-p1" src="res/thermometer.svg" height="20%" />
-            <div class="level-outline-p1-left" id="thermometer-outline-p1">
-                <div class="substract-level" id="substract-thermometer-level-p1"></div>
-                <div class="level-p1" id="thermometer-level-p1"></div>
-            </div>
-            -->
-            <img class="picto" id="bike-p1" src="res/bike.svg" height="20%" />
-            <div class="level-outline-p1-left" id="bike-outline-p1">
-                <div class="substract-level" id="substract-bike-level-p1"></div>
-                <div class="level-p1" id="bike-level-p1"></div>
-            </div>
-
             <div id="ration-container-p1" class="ration-zone ration-zone-p1"></div>
             <img class="picto picto-p1 smartphone-picto" src="res/smartphone.svg" height="40%"/>
         </div>

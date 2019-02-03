@@ -4,6 +4,7 @@ import {SocketManagerProvider} from "../../providers/socket-manager/socket-manag
 import {Subscription} from "rxjs/Rx";
 import {ReadyPage} from "../ready/ready";
 import {InventoryPage} from "../inventory/inventory";
+import {GuidelinePage} from "../guideline/guideline";
 
 /**
  * Generated class for the DilemmePage page.
@@ -87,6 +88,6 @@ export class DilemmePage {
   }
 
   goTo() {
-    this.navCtrl.push(ReadyPage);
+    this.navCtrl.push(GuidelinePage);
   }
 }

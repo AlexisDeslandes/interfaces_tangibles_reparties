@@ -51,4 +51,7 @@ export class ReadyPage {
   }
 
 
+    startt() {
+        this.navCtrl.push(GamePage,{playersCount : this.players});
+    }
 }

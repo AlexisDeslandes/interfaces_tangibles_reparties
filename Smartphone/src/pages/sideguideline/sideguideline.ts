@@ -72,7 +72,7 @@ export class SideguidelinePage {
 
   private triggerArrow2() {
     const url: string = this.red ? "../assets/imgs/fleche.svg" : "../assets/imgs/fleche-red.svg";
-    const urlPhone: string = this.red ? "../assets/imgs/phone.svg" : "../assets/imgs/phone-side2.svg";
+    const urlPhone: string = this.red ? "../assets/imgs/phone.svg" : "../assets/imgs/slide2.svg";
     const justifyContentPhone: string = this.red ? "center" : "flex-end";
     const arrow: HTMLImageElement = <HTMLImageElement>document.getElementById("fleche3");
     const arrow2: HTMLImageElement = <HTMLImageElement>document.getElementById("fleche4");

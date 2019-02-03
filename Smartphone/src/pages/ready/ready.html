@@ -1,21 +1,19 @@
 <ion-content no-padding="">
-  <ion-grid>
-    <ion-row>
-      <div>
-        <h1>Epreuve de rapidité</h1>
-      </div>
-      <div>
-        <h3>En attente des autres joueurs ...</h3>
-      </div>
-    </ion-row>
-    <ion-row>
-      <div>
-        <h3 *ngIf="players>0">Il manque encore {{players}} joueurs.</h3>
-        <h3 *ngIf="players === 0">{{seconds}} secondes avant le début de la partie !</h3>
-      </div>
-      <button id="readyButton" color="dark" ion-button="" (click)="actionButton()">Rejoindre</button>
-      <button (click)="startt()">Lancer</button>
-    </ion-row>
-  </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <div>
+                <h1>Epreuve de rapidité</h1>
+            </div>
+            <div>
+                <h3>En attente des autres joueurs ...</h3>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div>
+                <h3 *ngIf="seconds<5">{{seconds}} secondes avant le début de la partie !</h3>
+            </div>
+            <button id="readyButton" color="dark" ion-button="" (click)="actionButton()">Rejoindre</button>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

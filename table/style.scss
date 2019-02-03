@@ -31,6 +31,11 @@ div {
   transform: $property;
 }
 
+@mixin mask($property) {
+  -webkit-mask: $property;
+  mask: $property;
+}
+
 #map {
   left: 0;
 }
@@ -46,9 +51,17 @@ div.main-container-board {
   margin-right: auto;
   margin-left: auto;
 
-  canvas[id^=jean-p], canvas[id^=bike-p] {
+  canvas[id^=jean-p], canvas[id^=bike-p], div[id^=bike-p] {
     display: none;
     position: absolute;
+  }
+
+  div[id^=bike-p] {
+    background-color: black;
+    @include mask(url("res/bike.svg") no-repeat center);
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 
   #jean-p2 {

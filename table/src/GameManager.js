@@ -133,12 +133,15 @@ class GameManager {
     initCanvas(nb) {
         for (let i = 1; i <= nb; i++) {
             $("#jean-p" + i).css("display", "block");
-            //$("#bike-p" + i).css("display", "block");
+            $("#bike-p" + i).css("display", "block");
         }
         const jeanP1 = $("#jean-p1");
         const jeanP2 = $("#jean-p2");
         const jeanP3 = $("#jean-p3");
         const jeanP4 = $("#jean-p4");
+
+        const bikeP1 = $("#bike-p1");
+        const bikeP2 = $("#bike-p2");
 
         const substractChickenP1 = $("#substract-chicken-p1");
         const substractMoodP1 = $("#substract-mood-p1");
@@ -158,6 +161,12 @@ class GameManager {
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", my);
                 jeanP1.css("right", mx);
+
+                bikeP1.css("width", jeanWidth*1.2);
+                bikeP1.css("height", jeanHeight*1.2);
+                bikeP1.css("bottom", my);
+                bikeP1.css("left", mx);
+
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
                 substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
@@ -322,14 +331,10 @@ class GameManager {
                 else if (delta < 0)
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
 
-                $("#substract-" + jaugeName + "-level-p" + playerId).css("height", (delta * 10) + "%");
-                $("#substract-" + jaugeName + "-level-p" + playerId).css("top", ((10 - (jauges[playerId][jaugeName] + delta)) * 10) + "%");
-                if (delta > 0)
-                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkred");
-                else if (delta < 0)
-                    $("#" + jaugeName + "-outline-p" + playerId).css("animation-name", "jaugeblinkgreen");
-                $("#"+jaugeName + "-level-p" + playerId).css("height", ((10 - jauges[playerId][jaugeName]) * 10) + "%");
-
+                if (jaugeName === "bike") {
+                    let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
+                    $("#bike-p"+playerId).css("background-color", "rgb("+ redShade +", 0, 0)");
+                }
             }
         }
         setTimeout(function () {

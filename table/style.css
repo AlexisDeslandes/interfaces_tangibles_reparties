@@ -24,9 +24,16 @@ div.main-container-board {
   display: none;
   margin-right: auto;
   margin-left: auto; }
-  div.main-container-board canvas[id^=jean-p], div.main-container-board canvas[id^=bike-p] {
+  div.main-container-board canvas[id^=jean-p], div.main-container-board canvas[id^=bike-p], div.main-container-board div[id^=bike-p] {
     display: none;
     position: absolute; }
+  div.main-container-board div[id^=bike-p] {
+    background-color: black;
+    -webkit-mask: url("res/bike.svg") no-repeat center;
+    mask: url("res/bike.svg") no-repeat center;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; }
   div.main-container-board #jean-p2 {
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);

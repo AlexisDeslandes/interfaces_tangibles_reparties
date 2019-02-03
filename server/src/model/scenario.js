@@ -67,7 +67,8 @@ module.exports = [
                 "par la nostalgie.",
                 stats: [
                     {type: 'mood', value: -3},
-                    {type: 'chicken', value: 2}
+                    {type: 'chicken', value: 2},
+                    {type: 'bike', value: -1}
                 ]
             },
             {
@@ -101,7 +102,8 @@ module.exports = [
                 "Heureusement, vous avez trouvé un petit coin sympa pour faire une sieste.",
                 stats: [
                     {type: 'mood', value: -2},
-                    {type: 'energy', value: 2}
+                    {type: 'energy', value: 2},
+                    {type: 'bike', value: -1}
                 ]
             },
             {
@@ -134,7 +136,8 @@ module.exports = [
                 result: "Bonne idée, la route sera plus calme et le voyage plus agréable après une petite pause.",
                 stats: [
                     {type: 'mood', value: 2},
-                    {type: 'energy', value: -2}
+                    {type: 'energy', value: -2},
+                    {type: 'bike', value: -1}
                 ]
             },
             {

@@ -136,21 +136,9 @@ class GameManager {
             //$("#bike-p" + i).css("display", "block");
         }
         const jeanP1 = $("#jean-p1");
-        const bikeP1 = $("#bike-p1");
-        const ctxJeanP1 = jeanP1[0].getContext("2d");
-        const ctxBikeP1 = bikeP1[0].getContext("2d");
         const jeanP2 = $("#jean-p2");
-        const bikeP2 = $("#bike-p2");
-        const ctxJeanP2 = jeanP2[0].getContext("2d");
-        const ctxBikeP2 = bikeP2[0].getContext("2d");
         const jeanP3 = $("#jean-p3");
-        const bikeP3 = $("#bike-p3");
-        const ctxJeanP3 = jeanP3[0].getContext("2d");
-        const ctxBikeP3 = bikeP3[0].getContext("2d");
         const jeanP4 = $("#jean-p4");
-        const bikeP4 = $("#bike-p4");
-        const ctxJeanP4 = jeanP4[0].getContext("2d");
-        const ctxBikeP4 = bikeP4[0].getContext("2d");
 
         const substractChickenP1 = $("#substract-chicken-p1");
         const substractMoodP1 = $("#substract-mood-p1");
@@ -165,10 +153,7 @@ class GameManager {
                 jeanHeight = 0.28 * $(window).height();
                 mx = 0.1 * $(window).width();
                 my = 0.01 * $(window).height();
-                /*bikeP1.attr("width", 0.38 * $(window).width());
-                bikeP1.attr("height", 0.28 * $(window).height());
-                bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());*/
+
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", my);
@@ -189,10 +174,7 @@ class GameManager {
                 jeanHeight = 0.4 * $(window).height();
                 mx = 0.03 * $(window).width();
                 my = 0.01 * $(window).height();
-                /*bikeP1.attr("width", 0.23 * $(window).width());
-                bikeP1.attr("height", 0.28 * $(window).height());
-                bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());*/
+
                 jeanP1.attr("width", jeanWidth);
                 jeanP1.attr("height", jeanHeight);
                 jeanP1.css("bottom", my);
@@ -208,10 +190,6 @@ class GameManager {
                 substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
-                /*bikeP2.attr("width", 0.23 * $(window).width());
-                bikeP2.attr("height", 0.28 * $(window).height());
-                bikeP2.css("top", 0.01 * $(window).height());
-                bikeP2.css("right", 0.01 * $(window).width());*/
                 jeanP2.attr("width", jeanWidth);
                 jeanP2.attr("height", jeanHeight);
                 jeanP2.css("top", my);
@@ -229,41 +207,7 @@ class GameManager {
                 break;
             case 3:
             case 4:
-                /*bikeP1.attr("width", 0.23 * $(window).width());
-                bikeP1.attr("height", 0.28 * $(window).height());
-                bikeP1.css("bottom", 0.01 * $(window).height());
-                bikeP1.css("left", 0.01 * $(window).width());*/
-                jeanP1.attr("width", 0.20 * $(window).width());
-                jeanP1.attr("height", 0.4 * $(window).height());
-                jeanP1.css("bottom", 0.01 * $(window).height());
-                jeanP1.css("right", 0.03 * $(window).width());
-
-                /*bikeP2.attr("width", 0.23 * $(window).width());
-                bikeP2.attr("height", 0.28 * $(window).height());
-                bikeP2.css("top", 0.01 * $(window).height());
-                bikeP2.css("right", 0.01 * $(window).width());*/
-                jeanP2.attr("width", 0.20 * $(window).width());
-                jeanP2.attr("height", 0.40 * $(window).height());
-                jeanP2.css("top", 0.01 * $(window).height());
-                jeanP2.css("left", 0.03 * $(window).width());
-
-                /*bikeP3.attr("width", 0.23 * $(window).width());
-                bikeP3.attr("height", 0.28 * $(window).height());
-                bikeP3.css("bottom", 0.01 * $(window).height());
-                bikeP3.css("left", 0.01 * $(window).width());*/
-                jeanP3.attr("width", 0.20 * $(window).width());
-                jeanP3.attr("height", 0.4 * $(window).height());
-                jeanP3.css("bottom", 0.01 * $(window).height());
-                jeanP3.css("right", 0.03 * $(window).width());
-
-                /*bikeP4.attr("width", 0.23 * $(window).width());
-                bikeP4.attr("height", 0.28 * $(window).height());
-                bikeP4.css("top", 0.01 * $(window).height());
-                bikeP4.css("right", 0.01 * $(window).width());*/
-                jeanP4.attr("width", 0.20 * $(window).width());
-                jeanP4.attr("height", 0.40 * $(window).height());
-                jeanP4.css("top", 0.01 * $(window).height());
-                jeanP4.css("left", 0.03 * $(window).width());
+                break;
         }
     }
 
@@ -298,10 +242,17 @@ class GameManager {
         this.drawLine(ctx, center, middle + 1.5 * headRadius, left, down, width);
         // RIGHT LEG
         this.drawLine(ctx, center, middle + 1.5 * headRadius, right, down, width);
-        // LEFT ARM
-        this.drawLine(ctx, center, middle, left, 3 * headRadius, width);
-        // RIGHT ARM
-        this.drawLine(ctx, center, middle, right, 3 * headRadius, width);
+        // ARMS
+        let armPos;
+        if (mood > 6)
+            armPos = 3;
+        else if (mood > 3 && mood <= 6) {
+            armPos = 5;
+        }
+        else
+            armPos = 6;
+        this.drawLine(ctx, center, middle, left, armPos * headRadius, width);
+        this.drawLine(ctx, center, middle, right, armPos * headRadius, width);
         // MOUTH
         this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width/2, mood);
         // EYES

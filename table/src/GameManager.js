@@ -451,11 +451,15 @@ class GameManager {
                 if (jaugeName === "bike") {
                     let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
                     $("#bike-p"+playerId).css("background-color", "rgb("+ redShade +", 0, 0)");
+                    if (delta !== 0) {
+                        $("#bike-p"+playerId).css("animation-name", "jaugeblinkred");
+                    }
                 }
             }
         }
         setTimeout(function () {
             $("div[class^=substract]").css("animation-name", "none");
+            $("div[id^=bike-p]").css("animation-name", "none");
         }, 6000);
     }
 

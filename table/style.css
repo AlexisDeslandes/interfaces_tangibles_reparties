@@ -546,7 +546,7 @@ div.main-container-board {
 @keyframes jaugeblinkred {
   from {
     box-shadow: 0 0 10px 0 red;
-    opacity: 0; }
+    opacity: 0.05; }
   to {
     box-shadow: 0 0 10px 5px red;
     opacity: 0.8; } }

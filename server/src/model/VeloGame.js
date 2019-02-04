@@ -36,7 +36,39 @@ module.exports = class VeloGame {
         }
     }
 
+    back() {
+        const descente = 1.15;
+        for (let i = 0; i < this.players.length; i++) {
+            const player = this.players[i];
+            switch (i) {
+                case 0:
+                    if (player.y + descente <= player.topMax) {
+                        player.y += descente;
+                    }
+                    break;
+                case 1:
+                    if (player.y - descente >= 0) {
+                        player.y -= descente;
+                    }
+                    break;
+                case 2:
+                    if (player.x - descente >= 0) {
+                        player.x -= descente;
+                    }
+                    break;
+                case 3:
+                    if (player.x + descente <= player.leftMax) {
+                        player.x += descente;
+                    }
+                    break;
+                default:
+                    console.log('error with back');
+                    break;
+            }
+        }
+    }
+
     makePlayerMoveSide(player, x) {
-        this.players[player-1].moveSide(x);
+        this.players[player - 1].moveSide(x);
     }
 }

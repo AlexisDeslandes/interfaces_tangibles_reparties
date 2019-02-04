@@ -214,13 +214,14 @@ module.exports = class Game {
         this.veloGame.setState(state);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
-            this.veloGame.players.forEach(player => player.back());
+            this.veloGame.back();
         }, 16)
     }
 
     moveSideRequest(player, x) {
         this.veloGame.makePlayerMoveSide(player, x);
     }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 };

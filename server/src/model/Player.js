@@ -15,12 +15,6 @@ module.exports = class Player {
         }
     }
 
-    back() {
-        if (this.y + 1.15 <= this.topMax) {
-            this.y += 1.15;
-        }
-    }
-
     moveSide(x) {
         if (this.left < this.x + x && this.leftMax > this.x + x) {
             this.x += x;

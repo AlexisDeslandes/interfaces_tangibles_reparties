@@ -295,13 +295,13 @@ class GameManager {
 
                 substractChickenP3.css("width", jeanWidth / 12);
                 substractChickenP3.css("height", jeanWidth / 12);
-                substractChickenP3.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP3.css("left", my + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP3.css("bottom", my + jeanWidth / 2);
+                substractChickenP3.css("left", my + jeanHeight / 3);
                 substractChickenP3.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP3.css("width", jeanWidth / 4);
                 substractMoodP3.css("height", jeanWidth / 4);
-                substractMoodP3.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
-                substractMoodP3.css("left", my + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP3.css("bottom", my + jeanHeight / 2 - jeanHeight / 8);
+                substractMoodP3.css("left", my + jeanWidth / 2 + jeanHeight / 8);
                 substractMoodP3.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
 
@@ -317,13 +317,13 @@ class GameManager {
 
                 substractChickenP4.css("width", jeanWidth / 12);
                 substractChickenP4.css("height", jeanWidth / 12);
-                substractChickenP4.css("top", my + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP4.css("right", my + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP4.css("top", my + jeanWidth / 2);
+                substractChickenP4.css("right", my + jeanHeight / 3);
                 substractChickenP4.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP4.css("width", jeanWidth / 4);
                 substractMoodP4.css("height", jeanWidth / 4);
-                substractMoodP4.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
-                substractMoodP4.css("right", my + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP4.css("top", my + jeanHeight / 2 - jeanHeight / 8);
+                substractMoodP4.css("right", my + jeanWidth / 2 + jeanHeight / 8);
                 substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 
                 

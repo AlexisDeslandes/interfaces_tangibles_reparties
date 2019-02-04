@@ -247,7 +247,6 @@ div.main-container-board {
   div[id^=substract-] {
     position: absolute;
     display: none;
-    //animation-name: jaugeblinkred;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
@@ -570,7 +569,9 @@ div.main-container-board {
 
 .start-game{
   width:400px;
-  margin: 30vh auto 0 auto;
+  margin-left: 50%;
+  margin-top: 25%;
+  @include transform(translate(-50%, -50%));
   text-align: center;
   padding: 20px 20px 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.16);

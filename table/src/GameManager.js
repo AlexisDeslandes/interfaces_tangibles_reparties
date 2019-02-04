@@ -136,7 +136,10 @@ class GameManager {
             $("#bike-p" + i).css("display", "block");
             $("#substract-chicken-p" + i).css("display", "block");
             $("#substract-mood-p" + i).css("display", "block");
+            $("#water-p" + i).css("display", "block");
+            $("#water-level-p" + i).css("display", "block");
         }
+
         const jeanP1 = $("#jean-p1");
         const jeanP2 = $("#jean-p2");
         const jeanP3 = $("#jean-p3");
@@ -156,6 +159,15 @@ class GameManager {
         const substractChickenP4 = $("#substract-chicken-p4");
         const substractMoodP4 = $("#substract-mood-p4");
 
+        const waterP1 = $("#water-p1");
+        const waterP2 = $("#water-p2");
+        const waterP3 = $("#water-p3");
+        const waterP4 = $("#water-p4");
+        const waterLevelP1 = $("#water-level-p1");
+        const waterLevelP2 = $("#water-level-p2");
+        const waterLevelP3 = $("#water-level-p3");
+        const waterLevelP4 = $("#water-level-p4");
+
         let jeanWidth, jeanHeight, mx, my;
 
         switch (nb) {
@@ -174,6 +186,9 @@ class GameManager {
                 bikeP1.css("height", jeanHeight);
                 bikeP1.css("bottom", my);
                 bikeP1.css("left", mx);
+
+                waterP1.css("left", 1.2*mx + jeanWidth);
+                waterP1.css("bottom", 8*my);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);

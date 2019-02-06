@@ -214,7 +214,7 @@ module.exports = class Game {
         this.veloGame.setState(state);
         setInterval(() => {
             this.veloGame.generateObstacles()
-        }, 2000);
+        }, 1000);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
             this.veloGame.back();

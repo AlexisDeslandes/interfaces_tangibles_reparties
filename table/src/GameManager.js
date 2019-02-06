@@ -130,6 +130,7 @@ class GameManager {
         this.obstacle = document.getElementById('obstacle');
         this.canvas = document.getElementById("gamer");
         this.contextGamer = this.canvas.getContext("2d");
+        this.speed = document.getElementById('speed');
 
     }
 
@@ -435,6 +436,7 @@ class GameManager {
         this.count = 0;
 
         const loop = () => {
+            this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
             this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
             for (let i = 0; i < this.players.length; i++) {
                 const player = this.players[i];
@@ -448,6 +450,9 @@ class GameManager {
                 this.contextGamer.drawImage(this.bike, player.x, player.y, 50, 100);
                 for (let obstacle of player.obstacles) {
                     this.contextGamer.drawImage(this.obstacle, obstacle.x, obstacle.y, 50, 50);
+                }
+                for (let speed of player.speed){
+                    this.contextGamer.drawImage(this.speed,speed.x,speed.y,3,107);
                 }
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
             }

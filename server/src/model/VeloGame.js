@@ -38,18 +38,28 @@ module.exports = class VeloGame {
 
     back() {
         const descente = 1.15;
+        const speedObstacle = 5;
+        const speed = 45;
         for (let i = 0; i < this.players.length; i++) {
             const player = this.players[i];
             let newObstacles = [];
+            let newSpeed = [];
+            this.generateSpeed(player);
             switch (i) {
                 case 0:
                     if (player.y + descente <= player.topMax) {
                         player.y += descente;
                     }
                     for (let obstacle of player.obstacles) {
-                        obstacle.y += descente;
+                        obstacle.y += speedObstacle;
                         if (obstacle.y < player.topMax) {
                             newObstacles.push(obstacle);
+                        }
+                    }
+                    for (let elem of player.speed) {
+                        elem.y += speed;
+                        if (elem.y < player.topMax) {
+                            newSpeed.push(elem);
                         }
                     }
                     break;
@@ -58,9 +68,15 @@ module.exports = class VeloGame {
                         player.y -= descente;
                     }
                     for (let obstacle of player.obstacles) {
-                        obstacle.y -= descente;
+                        obstacle.y -= speedObstacle;
                         if (obstacle.y > player.top) {
                             newObstacles.push(obstacle);
+                        }
+                    }
+                    for (let elem of player.speed) {
+                        elem.y -= speed;
+                        if (elem.y < player.top) {
+                            newSpeed.push(elem);
                         }
                     }
                     break;
@@ -69,9 +85,15 @@ module.exports = class VeloGame {
                         player.x -= descente;
                     }
                     for (let obstacle of player.obstacles) {
-                        obstacle.x -= descente;
+                        obstacle.x -= speedObstacle;
                         if (obstacle.x > player.left) {
                             newObstacles.push(obstacle);
+                        }
+                    }
+                    for (let elem of player.speed) {
+                        elem.x -= speed;
+                        if (elem.x < player.top) {
+                            newSpeed.push(elem);
                         }
                     }
                     break;
@@ -80,9 +102,15 @@ module.exports = class VeloGame {
                         player.x += descente;
                     }
                     for (let obstacle of player.obstacles) {
-                        obstacle.x += descente;
+                        obstacle.x += speedObstacle;
                         if (obstacle.x < player.leftMax) {
                             newObstacles.push(obstacle);
+                        }
+                    }
+                    for (let elem of player.speed) {
+                        elem.x += speed;
+                        if (elem.x < player.top) {
+                            newSpeed.push(elem);
                         }
                     }
                     break;
@@ -91,6 +119,7 @@ module.exports = class VeloGame {
                     break;
             }
             player.obstacles = newObstacles;
+            player.speed = newSpeed;
         }
     }
 
@@ -103,4 +132,7 @@ module.exports = class VeloGame {
             player.generateObstacle();
     }
 
+    generateSpeed(player) {
+        player.generateSpeed()
+    }
 }

@@ -8,8 +8,9 @@ module.exports = class Player {
         this.leftMax = -1;
         this.top = -1;
         this.topMax = -1;
-        this.obstacles = [new Obstacle(0,0)];
+        this.obstacles = [new Obstacle(0, 0)];
         this.obstacles = [];
+        this.speed = [];
         this.size = 50;
     }
 
@@ -26,6 +27,11 @@ module.exports = class Player {
     }
 
     generateObstacle() {
+        const random = this.generateRandom();
+        this.obstacles.push(new Obstacle(random.x, random.y));
+    }
+
+    generateRandom() {
         let x;
         let y;
         switch (this.id) {
@@ -49,6 +55,11 @@ module.exports = class Player {
                 console.log('Erreur generate obstacle');
                 break;
         }
-        this.obstacles.push(new Obstacle(x, y));
+        return {x: x, y: y};
+    }
+
+    generateSpeed() {
+        const random = this.generateRandom();
+        this.speed.push(random);
     }
 };

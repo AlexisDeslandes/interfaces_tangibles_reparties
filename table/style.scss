@@ -64,16 +64,29 @@ div.main-container-board {
     animation-timing-function: linear;
   }
 
-  #jean-p2, #bike-p2 {
+  #jean-p2, #bike-p2, #water-p2, #water-level-p2 {
     @include transform(rotate(180deg));
   }
 
-  #jean-p3, #bike-p3 {
+  #jean-p3, #bike-p3, #water-p3, #water-level-p3 {
     @include transform(rotate(90deg));
   }
 
-  #jean-p4, #bike-p4 {
+  #jean-p4, #bike-p4, #water-p4, #water-level-p4 {
     @include transform(rotate(270deg));
+  }
+
+  div[id^=water-level-p] {
+    background-color: #49e0ff;
+    height: 100px;
+    width: 41px;
+    z-index: -1;
+  }
+
+  div[id^=water-level-jauge-p] {
+    background-color: white;
+    width: 100%;
+    height: 0;
   }
 
   div.section {

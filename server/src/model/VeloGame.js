@@ -40,35 +40,67 @@ module.exports = class VeloGame {
         const descente = 1.15;
         for (let i = 0; i < this.players.length; i++) {
             const player = this.players[i];
+            let newObstacles = [];
             switch (i) {
                 case 0:
                     if (player.y + descente <= player.topMax) {
                         player.y += descente;
+                    }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.y += descente;
+                        if (obstacle.y < player.topMax) {
+                            newObstacles.push(obstacle);
+                        }
                     }
                     break;
                 case 1:
                     if (player.y - descente >= 0) {
                         player.y -= descente;
                     }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.y -= descente;
+                        if (obstacle.y > player.top) {
+                            newObstacles.push(obstacle);
+                        }
+                    }
                     break;
                 case 2:
                     if (player.x - descente >= 0) {
                         player.x -= descente;
+                    }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.x -= descente;
+                        if (obstacle.x > player.left) {
+                            newObstacles.push(obstacle);
+                        }
                     }
                     break;
                 case 3:
                     if (player.x + descente <= player.leftMax) {
                         player.x += descente;
                     }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.x += descente;
+                        if (obstacle.x < player.leftMax) {
+                            newObstacles.push(obstacle);
+                        }
+                    }
                     break;
                 default:
                     console.log('error with back');
                     break;
             }
+            player.obstacles = newObstacles;
         }
     }
 
     makePlayerMoveSide(player, x) {
         this.players[player - 1].moveSide(x);
     }
+
+    generateObstacles() {
+        for (let player of this.players)
+            player.generateObstacle();
+    }
+
 }

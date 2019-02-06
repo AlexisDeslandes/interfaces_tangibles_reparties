@@ -13,7 +13,7 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://192.168.1.15:4444');
+        this.socket = io.connect('http://192.168.43.242:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -125,6 +125,12 @@ class GameManager {
             this.players = data.players;
             //change = !change;
         })
+
+        this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
+        this.obstacle = document.getElementById('obstacle');
+        this.canvas = document.getElementById("gamer");
+        this.contextGamer = this.canvas.getContext("2d");
+
     }
 
     initCanvas(nb) {
@@ -171,7 +177,7 @@ class GameManager {
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanHeight / 4);
                 substractMoodP1.css("height", jeanHeight / 4);
-                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("bottom", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
@@ -186,9 +192,9 @@ class GameManager {
                 jeanP1.css("bottom", my);
                 jeanP1.css("right", mx);
 
-                bikeP1.css("width", jeanWidth*1.2);
-                bikeP1.css("height", jeanHeight*1.2);
-                bikeP1.css("bottom", -10*my);
+                bikeP1.css("width", jeanWidth * 1.2);
+                bikeP1.css("height", jeanHeight * 1.2);
+                bikeP1.css("bottom", -10 * my);
                 bikeP1.css("left", mx);
 
                 substractChickenP1.css("width", jeanWidth / 12);
@@ -198,7 +204,7 @@ class GameManager {
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanWidth / 4);
                 substractMoodP1.css("height", jeanWidth / 4);
-                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("bottom", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
@@ -207,9 +213,9 @@ class GameManager {
                 jeanP2.css("top", my);
                 jeanP2.css("left", mx);
 
-                bikeP2.css("width", jeanWidth*1.2);
-                bikeP2.css("height", jeanHeight*1.2);
-                bikeP2.css("top", -10*my);
+                bikeP2.css("width", jeanWidth * 1.2);
+                bikeP2.css("height", jeanHeight * 1.2);
+                bikeP2.css("top", -10 * my);
                 bikeP2.css("right", mx);
 
                 substractChickenP2.css("width", jeanWidth / 12);
@@ -219,7 +225,7 @@ class GameManager {
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP2.css("width", jeanWidth / 4);
                 substractMoodP2.css("height", jeanWidth / 4);
-                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("top", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
@@ -272,10 +278,10 @@ class GameManager {
         this.drawLine(ctx, center, middle, left, armPos * headRadius, width);
         this.drawLine(ctx, center, middle, right, armPos * headRadius, width);
         // MOUTH
-        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width/2, mood);
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width / 2, mood);
         // EYES
-        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width/2);
-        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width/2);
+        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width / 2);
+        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width / 2);
     }
 
     drawMouth(ctx, x, y, r, start, end, width, mood) {
@@ -341,8 +347,8 @@ class GameManager {
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
 
                 if (jaugeName === "bike") {
-                    let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
-                    $("#bike-p"+playerId).css("background-color", "rgb("+ redShade +", 0, 0)");
+                    let redShade = 255 - ((255 / 10) * jauges[playerId][jaugeName]);
+                    $("#bike-p" + playerId).css("background-color", "rgb(" + redShade + ", 0, 0)");
                 }
             }
         }
@@ -406,6 +412,7 @@ class GameManager {
         const halfSize = sizeRect / 2;
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(document.getElementById('fond'), 0, 0, width, height);
         this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
         this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
         this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
@@ -428,19 +435,20 @@ class GameManager {
         this.count = 0;
 
         const loop = () => {
-            const bike = document.getElementById(this.change ? 'bike' : 'bike2');
-            const canvas = document.getElementById("gamer");
-            const contextGamer = canvas.getContext("2d");
-            contextGamer.clearRect(0, 0, canvas.width, canvas.height);
+            this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
             for (let i = 0; i < this.players.length; i++) {
+                const player = this.players[i];
                 if (i === 1) {
-                    contextGamer.rotate(Math.PI);
+                    this.contextGamer.rotate(Math.PI);
                 } else if (i === 2) {
-                    contextGamer.rotate(90 * Math.PI / 180);
+                    this.contextGamer.rotate(90 * Math.PI / 180);
                 } else if (i === 3) {
-                    contextGamer.rotate(-90 * Math.PI / 180);
+                    this.contextGamer.rotate(-90 * Math.PI / 180);
                 }
-                contextGamer.drawImage(bike, this.players[i].x, this.players[i].y, 50, 100);
+                this.contextGamer.drawImage(this.bike, player.x, player.y, 50, 100);
+                for (let obstacle of player.obstacles) {
+                    this.contextGamer.drawImage(this.obstacle, obstacle.x, obstacle.y, 50, 50);
+                }
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
             }
             this.count = (this.count + 1) % 10;
@@ -554,7 +562,7 @@ class GameManager {
     }
 
     drawRect(ctx, leftMargin, topMargin, width, height) {
-        ctx.fillStyle = "orange";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
         ctx.fillRect(leftMargin, topMargin, width, height);
     }
 

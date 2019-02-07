@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="568" height="236" viewBox="0 0 568 236">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_29" data-name="Rectangle 29" width="34" height="347" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="player2-bike2" transform="translate(130 -2013)">
+    <g id="player1-bike" transform="translate(-2039 2688) rotate(-90)">
+      <g id="Groupe_14" data-name="Groupe 14" transform="translate(439 1909)">
+        <g id="Groupe_13" data-name="Groupe 13">
+          <g id="Groupe_10" data-name="Groupe 10">
+            <g id="Groupe_8" data-name="Groupe 8">
+              <g id="Rectangle_33" data-name="Rectangle 33" transform="translate(74 148)" fill="#707070" stroke="#000" stroke-width="6">
+                <rect width="89" height="361" stroke="none"/>
+                <rect x="3" y="3" width="83" height="355" fill="none"/>
+              </g>
+              <g id="Union_9" data-name="Union 9" transform="translate(0 450)">
+                <path id="Tracé_14" data-name="Tracé 14" d="M-1240.5,1.5h47v84h93v31h-233v-31h93V1.5Z" transform="translate(1335 0)"/>
+                <path id="Tracé_15" data-name="Tracé 15" d="M-1239,3V87h-93v28h230V87h-93V3h-44m-3-3h50V84h93v34h-236V84h93Z" transform="translate(1335 0)" fill="#707070"/>
+              </g>
+              <g id="Rectangle_37" data-name="Rectangle 37" transform="translate(93)" stroke="#707070" stroke-width="3">
+                <rect width="50" height="387" rx="25" stroke="none"/>
+                <rect x="1.5" y="1.5" width="47" height="384" rx="23.5" fill="none"/>
+              </g>
+            </g>
+          </g>
+          <g id="Groupe_11" data-name="Groupe 11" transform="translate(3 328)">
+            <g id="Rectangle_47" data-name="Rectangle 47" transform="translate(55)" fill="#707070" stroke="#000" stroke-width="2">
+              <rect width="17" height="118" stroke="none"/>
+              <rect x="1" y="1" width="15" height="116" fill="none"/>
+            </g>
+            <g id="Rectangle_48" data-name="Rectangle 48" transform="translate(0 89)" fill="#707070" stroke="#000" stroke-width="2">
+              <rect width="42" height="16" stroke="none"/>
+              <rect x="1" y="1" width="40" height="14" fill="none"/>
+            </g>
+            <g id="Tracé_1" data-name="Tracé 1" transform="translate(40 93)">
+              <path id="Tracé_16" data-name="Tracé 16" d="M1,1H15V7H1Z" fill="#707070"/>
+              <path id="Tracé_17" data-name="Tracé 17" d="M2,2V6H14V2H2M0,0H16V8H0Z" fill="#707070"/>
+            </g>
+          </g>
+          <g id="Groupe_12" data-name="Groupe 12" transform="translate(163 210)">
+            <g id="Rectangle_47-2" data-name="Rectangle 47" fill="#707070" stroke="#000" stroke-width="2">
+              <rect width="17" height="118" stroke="none"/>
+              <rect x="1" y="1" width="15" height="116" fill="none"/>
+            </g>
+            <g id="Rectangle_48-2" data-name="Rectangle 48" transform="translate(30 13)" fill="#707070" stroke="#000" stroke-width="2">
+              <rect width="42" height="16" stroke="none"/>
+              <rect x="1" y="1" width="40" height="14" fill="none"/>
+            </g>
+            <g id="Tracé_1-2" data-name="Tracé 1" transform="translate(16 17)">
+              <path id="Tracé_18" data-name="Tracé 18" d="M1,1H15V7H1Z" fill="#707070"/>
+              <path id="Tracé_19" data-name="Tracé 19" d="M14,6V2H2V6H14m2,2H0V0H16Z" fill="#707070"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="Grille_de_répétition_2" data-name="Grille de répétition 2" transform="translate(540 1942)" clip-path="url(#clip-path)">
+        <g id="Groupe_14-2" data-name="Groupe 14" transform="translate(0 338)">
+          <g id="Rectangle_54" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_15" data-name="Groupe 15" transform="translate(0 309)">
+          <g id="Rectangle_54-2" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_16" data-name="Groupe 16" transform="translate(0 280)">
+          <g id="Rectangle_54-3" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_17" data-name="Groupe 17" transform="translate(0 251)">
+          <g id="Rectangle_54-4" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_18" data-name="Groupe 18" transform="translate(0 222)">
+          <g id="Rectangle_54-5" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_19" data-name="Groupe 19" transform="translate(0 193)">
+          <g id="Rectangle_54-6" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_20" data-name="Groupe 20" transform="translate(0 164)">
+          <g id="Rectangle_54-7" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_21" data-name="Groupe 21" transform="translate(0 135)">
+          <g id="Rectangle_54-8" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_22" data-name="Groupe 22" transform="translate(0 106)">
+          <g id="Rectangle_54-9" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_23" data-name="Groupe 23" transform="translate(0 77)">
+          <g id="Rectangle_54-10" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_24" data-name="Groupe 24" transform="translate(0 48)">
+          <g id="Rectangle_54-11" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+        <g id="Groupe_25" data-name="Groupe 25" transform="translate(0 19)">
+          <g id="Rectangle_54-12" data-name="Rectangle 54" fill="#707070" stroke="#707070" stroke-width="1">
+            <rect width="34" height="9" stroke="none"/>
+            <rect x="0.5" y="0.5" width="33" height="8" fill="none"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

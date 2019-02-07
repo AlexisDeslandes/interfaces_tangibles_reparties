@@ -36,7 +36,124 @@ module.exports = class VeloGame {
         }
     }
 
+    back() {
+        let idToReturn = -1;
+        const descente = 1.15;
+        const speedObstacle = 5;
+        const speed = 45;
+        const newPlayers = [];
+        for (let i = 0; i < this.players.length; i++) {
+            const player = this.players[i];
+            let newObstacles = [];
+            let newSpeed = [];
+            this.generateSpeed(player);
+            switch (player.id) {
+                case 1:
+                    if (player.y + descente <= player.topMax) {
+                        player.y += descente;
+                    }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.y += speedObstacle;
+                        if (obstacle.y - 50 < player.topMax) {
+                            newObstacles.push(obstacle);
+                        }
+                    }
+                    if (player.isCollision()) {
+                        player.y += speedObstacle;
+                    }
+                    for (let elem of player.speed) {
+                        elem.y += speed;
+                        if (elem.y < player.topMax) {
+                            newSpeed.push(elem);
+                        }
+                    }
+                    break;
+                case 2:
+                    if (player.y - descente >= 0) {
+                        player.y -= descente;
+                    }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.y -= speedObstacle;
+                        if (obstacle.y > player.top) {
+                            newObstacles.push(obstacle);
+                        }
+                    }
+                    if (player.isCollision()) {
+                        player.y -= speedObstacle;
+                    }
+                    for (let elem of player.speed) {
+                        elem.y -= speed;
+                        if (elem.y > player.top) {
+                            newSpeed.push(elem);
+                        }
+                    }
+                    break;
+                case 3:
+                    if (player.x - descente >= 0) {
+                        player.x -= descente;
+                    }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.x -= speedObstacle;
+                        if (obstacle.x > player.left) {
+                            newObstacles.push(obstacle);
+                        }
+                    }
+                    if (player.isCollision()) {
+                        player.x -= speedObstacle;
+                    }
+                    for (let elem of player.speed) {
+                        elem.x -= speed;
+                        if (elem.x > player.left) {
+                            newSpeed.push(elem);
+                        }
+                    }
+                    break;
+                case 4:
+                    if (player.x + descente <= player.leftMax) {
+                        player.x += descente;
+                    }
+                    for (let obstacle of player.obstacles) {
+                        obstacle.x += speedObstacle;
+                        if (obstacle.x - 50 < player.leftMax) {
+                            newObstacles.push(obstacle);
+                        }
+                    }
+                    if (player.isCollision()) {
+                        player.x += speedObstacle;
+                    }
+                    for (let elem of player.speed) {
+                        elem.x += speed;
+                        if (elem.x < player.leftMax) {
+                            newSpeed.push(elem);
+                        }
+                    }
+                    break;
+                default:
+                    console.log('error with back');
+                    break;
+            }
+            player.obstacles = newObstacles;
+            player.speed = newSpeed;
+            if (player.isDead()) {
+                idToReturn = player.id;
+            } else {
+                newPlayers.push(player);
+            }
+        }
+        this.players = newPlayers;
+        return idToReturn;
+    }
+
     makePlayerMoveSide(player, x) {
-        this.players[player-1].moveSide(x);
+        this.players[player - 1].moveSide(x);
+    }
+
+    generateObstacles() {
+        for (let player of this.players)
+            player.generateObstacle();
+    }
+
+    generateSpeed(player) {
+        player.generateSpeed()
     }
 }

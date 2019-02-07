@@ -1,18 +1,33 @@
-<ion-content>
-  <ion-grid>
-    <img id="sabl" src="../../assets/imgs/sable.jpg" style="position: absolute;top: 0px;left: 0px; height: 100%">
-    <img id="sabl2" src="../../assets/imgs/sable.jpg" style="position: absolute;top: 20px;left: 0px; height: 100%">
-    <ion-row id="background2" class="nine-row">
-      <ion-col col-6>
-        <div id="slidr" class="slider visible">
-          <div id="slid" class="slide"></div>
+<ion-content no-bounce>
+    <ion-grid id="main">
+
+        <div class="invisible">
+            <img id="sable" src="../../assets/imgs/sable.jpg">
+            <img id="bikeImg" src="../../assets/imgs/bike.svg">
+            <img id="bikeImg2" src="../../assets/imgs/bike2.svg">
+            <img id="speedImg" src="../../assets/imgs/speed.svg">
         </div>
-      </ion-col>
-      <ion-col col-6>
-        <div id="slidr2" class="slider invisible">
-          <div id="slid2" class="slide"></div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+
+        <canvas id="sand" class="fond"></canvas>
+        <canvas id="bike" class="secondCanvas"></canvas>
+        <canvas id="speed" class="firstCanvas"></canvas>
+
+
+        <ion-row id="background2" class="nine-row">
+            <ion-col col-6>
+                <div id="slidr" class="slider visible">
+                    <div id="slid" class="slide"></div>
+                </div>
+            </ion-col>
+            <ion-col col-6>
+                <div id="slidr2" class="slider visible">
+                    <div id="slid2" class="slide"></div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid id="second" style="display: none;">
+        <h1>Vous avez perdu ! Vous aurez plus de chance la prochaine fois !</h1>
+    </ion-grid>
 </ion-content>

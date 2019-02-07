@@ -16,7 +16,7 @@ module.exports = class Game {
         this.jauges = {};
         this.adventureSteps = scenario;
         console.log("new game created : " + room);
-        this.puzzle = new PuzzleManager(10);
+        this.puzzle = new PuzzleManager(7);
         this.map = new MapManager();
     }
 
@@ -70,6 +70,7 @@ module.exports = class Game {
     tableIsReady() {
         if (this.players.length > 0) {
             this.nbPlayers = this.players.length;
+            console.log("Nombre de joueurs : " + this.nbPlayers);
             this.veloGame = new VeloGame(this.nbPlayers);
             this.nextStep();
         } else console.log("can't start a game with 0 players")
@@ -122,8 +123,6 @@ module.exports = class Game {
     consumeChickenWater() {
         for (let playerId in this.jauges) {
             this.jauges[playerId].water--;
-            this.jauges[playerId].water--;
-            this.jauges[playerId].chicken--;
             this.jauges[playerId].chicken--;
         }
     }
@@ -157,7 +156,7 @@ module.exports = class Game {
         return found;
     }
 
-    changeMap(id) {
+    changeMap(id){
         this.map.drawArc(id);
         this.map.sendArcs(this.tableSocket);
     }
@@ -212,8 +211,15 @@ module.exports = class Game {
     setPlayerData(state) {
         this.veloGame.setState(state);
         setInterval(() => {
+            this.veloGame.generateObstacles()
+        }, 1000);
+        setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
-            this.veloGame.players.forEach(player => player.back());
+            const idPlayerDead = -1;
+            this.veloGame.back();
+            if (idPlayerDead !== -1) {
+                this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
+            }
         }, 16)
     }
 
@@ -221,6 +227,9 @@ module.exports = class Game {
         this.veloGame.makePlayerMoveSide(player, x);
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    sendToPlayer(idPlayerDead, topic, object) {
+        this.players[idPlayerDead - 1].socket.emit(topic, object);
+    }
 };

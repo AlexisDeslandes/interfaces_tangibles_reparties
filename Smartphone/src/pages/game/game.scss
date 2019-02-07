@@ -1,31 +1,37 @@
 page-game {
-  ion-grid{
-    background-image: url("../../assets/imgs/sable.jpg");
+  ion-grid {
     height: 100%;
   }
 
-  h1{
+  canvas {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  h1 {
     text-align: center;
     color: #87870C;
     font-weight: bold;
     font-size: 40px;
   }
 
-  h3{
+  h3 {
     text-align: center;
     color: #87870C;
     font-weight: bold;
     font-size: 20px;
   }
 
-  h4{
+  h4 {
     text-align: center;
     color: #707070;
     font-weight: bold;
     font-size: 16px;
   }
 
-  .wrap-title{
+  .wrap-title {
     background-color: white;
     border: 3px #707070 solid;
     border-radius: 17px;
@@ -57,15 +63,7 @@ page-game {
   .nine-row {
     flex: 9;
     background-size: cover;
-    background: url("../../assets/imgs/bike.svg") no-repeat center center;
-    z-index: 2;
-  }
-
-  .nine-row-2 {
-    flex: 9;
-    background-size: cover;
-    background: url("../../assets/imgs/bike2.svg") no-repeat center center;
-    z-index: 2;
+    z-index: 10000;
   }
 
   .two-row {
@@ -82,5 +80,17 @@ page-game {
 
   .visible {
     display: block;
+  }
+
+  .firstCanvas {
+    z-index: 1000;
+  }
+
+  .secondCanvas {
+    z-index: 100;
+  }
+
+  .fond{
+    z-index: 10;
   }
 }

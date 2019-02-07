@@ -135,13 +135,11 @@ module.exports = class VeloGame {
             player.obstacles = newObstacles;
             player.speed = newSpeed;
             newPlayers.push(player);
-            /*
             if (player.isDead()) {
                 idToReturn = player.id;
             } else {
                 newPlayers.push(player);
             }
-            */
         }
         this.players = newPlayers;
         return idToReturn;

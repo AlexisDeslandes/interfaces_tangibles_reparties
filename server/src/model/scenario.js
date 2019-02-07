@@ -242,7 +242,7 @@ module.exports = [
                 "un peu perdu la notion des jours, mais vous essayez au mieux de garder une trace des jours et des heures " +
                 "qui passent."
         }],
-        time:"Février 1986 - Désert",
+        time:"Février 1986 - In-Salah",
         type:"dilemme",
         text:"Les paysages que vous traversez sont magnifiques et incroyables. Etant petit, vous avez effectué ce trajet plus " +
             "d'une fois en voiture avec vos parents. Cette fois vous êtes seul, et en vélo, le trajet prend une toute autre " +
@@ -251,7 +251,8 @@ module.exports = [
         choices: [
             {
                 text: "Faire une sieste",
-                result: "Vous vous sentez si bien dans cet oasis, vous vous reposez afin de mieux repartir.",
+                result: "Vous vous sentez si bien dans cet oasis, vous vous reposez afin de mieux repartir. Pour couronner le tout, " +
+                    "In-Salah n'est plus si loin et vous serez arrivés d'ici la tombée de la nuit!",
                 stats : [
                     {type : "energy", value : 10},
                     {type : "mood", value : 10}
@@ -260,7 +261,8 @@ module.exports = [
             {
                 text: "Manger des dates",
                 result: "Vous avez si faim, la simple vue de ces palmiers datiers vous fait saliver d'avance. Vous vous faites " +
-                    "un festin de ces dates qui n'attendaient que vous.",
+                    "un festin de ces dates qui n'attendaient que vous. Pour couronner le tout," +
+                    "In-Salah n'est plus si loin et vous serez arrivés d'ici la tombée de la nuit!",
                 stats : [
                     {type : "chicken", value : 10},
                     {type : "mood", value : 10},
@@ -269,12 +271,67 @@ module.exports = [
             {
                 text: "Boire de l'eau",
                 result: "Cet oasis tombe vraiment à pic, vous étiez assoiffé! Vous vous précipitez près de l'eau et buvez " +
-                    "autant que possible.",
+                    "autant que possible. Pour couronner le tout, In-Salah n'est plus si loin et vous serez arrivés d'ici " +
+                    "la tombée de la nuit!",
                 stats : [
                     {type : "water", value : 10},
                     {type : "mood", value : 10}
                 ]
             }
         ]
+    },
+    {
+        intro: [{
+            title:"En route pour Tessalit",
+            text:"Vous avez bien pris le temps de vous reposer à In-Salah. Il est maintenant temps pour vous de reprendre " +
+                "votre aventure! Vous êtes plus motivés que jamais, en effet vous avez déjà effectué plus de la moitié du trajet!"
+        }],
+        time:"Mars 1986 - Tessalit",
+        type:"dilemme",
+        text:"A votre arrivée à Tessalit, vous voyez une Peugeot 404 embourbée dans le sable. Ce sont deux touristes " +
+            "anglais qui sont en difficulté. Vous décidez de les aider, vous dites:",
+        choices: [
+            {
+                text: "Vous avez des problèmes j'ai l'mpression!",
+                result: "Vous parvenez à calmer les touristes et vous les aidez à se sortir de leurs ennuis. Ils vous " +
+                    "remercient chaleureusement, et vous partez chacun de votre côté. Cette interaction humaine vous " +
+                    "redonne le sourire.",
+                stats : [
+                    {type : "mood", value : 1}
+                ]
+            },
+            {
+                text: "Vous venez souvent par ici ?",
+                result: "Vous parvenez à calmer les touristes et vous les aidez à se sortir de leurs ennuis. Ils vous " +
+                    "remercient chaleureusement, et vous partez chacun de votre côté. Cette interaction humaine vous " +
+                    "redonne le sourire.",
+                stats : [
+                    {type : "mood", value : 1}
+                ]
+            }
+        ]
+    },
+    {
+        intro: [{
+            title:"Départ de Tessalit",
+            text:"Vous approchez de la fin de votre périple. Vous vous mettez en chemin pour la ville de Gao. Vous vous " +
+                "enfoncez dans le désert pendant plus de trois heures quand une tempête de sable se lève derrière vous. " +
+                "Elle vient vers vous! Vous devez à tout prix accélérer pour l'éviter..."
+        }],
+        time:"Mars 1986 - Désert",
+        type:"dilemme",
+        text:"JEU",
+        choices: [
+            {
+                text: "Suivant",
+                result: "",
+                stats : [
+                    {type : "energy", value : -1}
+                ]
+            },
+        ]
+    },
+    {
+        type : "minijeu"
     }
 ];

@@ -32,6 +32,7 @@ export class DilemmePage {
   showIntro = true;
   showContent = false;
   receivedPart = false;
+  received_img_count = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.data = navParams.get('step');
@@ -44,9 +45,9 @@ export class DilemmePage {
     }
     this.isReady = false;
 
-    this.socketManager.socket.on('ask-for-new-part', () => {
+    this.socketManager.socket.on('ask-for-new-part', (m) => {
       this.receivedPart = true;
-      console.log('received image :)')
+      this.received_img_count = m.count;
     });
 
   }

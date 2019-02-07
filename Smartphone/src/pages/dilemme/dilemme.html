@@ -49,7 +49,7 @@
             </ul>
             <div class="puzzle" *ngIf="receivedPart">
                 <hr>
-                <p>Vous avez reçu une image !</p>
+                <p style="font-size: 17px; padding: 10px 5px;" *ngIf="received_img_count >0">Vous avez reçu {{received_img_count}} image{{received_img_count > 1 ? 's' : ''}} !</p>
                 <button ion-button outline item-end icon-start (click)="openInventory()">
                     <ion-icon name="camera"></ion-icon>
                     Ouvrir l'album photo

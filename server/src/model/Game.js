@@ -216,8 +216,7 @@ module.exports = class Game {
         }, 1000);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
-            const idPlayerDead = -1;
-            this.veloGame.back();
+            const idPlayerDead = this.veloGame.back();
             if (idPlayerDead !== -1) {
                 this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
             }

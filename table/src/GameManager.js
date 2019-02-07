@@ -448,7 +448,7 @@ class GameManager {
                     this.contextGamer.drawImage(this.obstacle, obstacle.x, obstacle.y, 50, 50);
                 }
                 for (let speed of player.speed) {
-                    this.contextGamer.drawImage(this.speed, speed.x, speed.y, 3, 107);
+                    this.contextGamer.drawImage(this.speed, speed.x, speed.y, i <= 1 ? 3 : 107, i <= 1 ? 107 : 3);
                 }
 
             }
@@ -491,7 +491,7 @@ class GameManager {
                 "left": 0.5 * width - halfSize,
                 "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height - 100
+                "topMax": 0.5 * height - 50
             }
         }
     }
@@ -512,13 +512,13 @@ class GameManager {
                 "left": 0.5 * width - halfSize,
                 "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height - 100
+                "topMax": 0.5 * height - 50
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height - 100,
+                "leftMax": 0.5 * height - 50,
                 "top": 0.5 * height - halfSize,
                 "topMax": 0.5 * height - halfSize + sizeRect - 50
             }

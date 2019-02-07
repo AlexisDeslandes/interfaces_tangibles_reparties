@@ -83,7 +83,7 @@ module.exports = class VeloGame {
                     }
                     for (let elem of player.speed) {
                         elem.y -= speed;
-                        if (elem.y < player.top) {
+                        if (elem.y > player.top) {
                             newSpeed.push(elem);
                         }
                     }
@@ -103,7 +103,7 @@ module.exports = class VeloGame {
                     }
                     for (let elem of player.speed) {
                         elem.x -= speed;
-                        if (elem.x < player.top) {
+                        if (elem.x > player.left) {
                             newSpeed.push(elem);
                         }
                     }
@@ -123,7 +123,7 @@ module.exports = class VeloGame {
                     }
                     for (let elem of player.speed) {
                         elem.x += speed;
-                        if (elem.x < player.top) {
+                        if (elem.x < player.leftMax) {
                             newSpeed.push(elem);
                         }
                     }

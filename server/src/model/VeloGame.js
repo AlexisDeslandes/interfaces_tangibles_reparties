@@ -37,6 +37,7 @@ module.exports = class VeloGame {
     }
 
     back() {
+        let idToReturn = -1;
         const descente = 1.15;
         const speedObstacle = 5;
         const speed = 45;
@@ -57,7 +58,7 @@ module.exports = class VeloGame {
                             newObstacles.push(obstacle);
                         }
                     }
-                    if (player.isCollision()){
+                    if (player.isCollision()) {
                         player.y += speedObstacle;
                     }
                     for (let elem of player.speed) {
@@ -77,7 +78,7 @@ module.exports = class VeloGame {
                             newObstacles.push(obstacle);
                         }
                     }
-                    if (player.isCollision()){
+                    if (player.isCollision()) {
                         player.y -= speedObstacle;
                     }
                     for (let elem of player.speed) {
@@ -97,7 +98,7 @@ module.exports = class VeloGame {
                             newObstacles.push(obstacle);
                         }
                     }
-                    if (player.isCollision()){
+                    if (player.isCollision()) {
                         player.x -= speedObstacle;
                     }
                     for (let elem of player.speed) {
@@ -117,7 +118,7 @@ module.exports = class VeloGame {
                             newObstacles.push(obstacle);
                         }
                     }
-                    if (player.isCollision()){
+                    if (player.isCollision()) {
                         player.x += speedObstacle;
                     }
                     for (let elem of player.speed) {
@@ -134,14 +135,14 @@ module.exports = class VeloGame {
             player.obstacles = newObstacles;
             player.speed = newSpeed;
 
-            if (player.isDead()){
-                return player.id;
-            }else{
+            if (player.isDead()) {
+                idToReturn = player.id;
+            } else {
                 newPlayers.push(player);
             }
         }
         this.players = newPlayers;
-        return -1;
+        return idToReturn;
     }
 
     makePlayerMoveSide(player, x) {

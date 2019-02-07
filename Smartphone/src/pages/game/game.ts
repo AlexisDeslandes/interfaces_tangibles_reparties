@@ -37,17 +37,21 @@ export class GamePage {
     private speed: Speed;
     private speedImg: HTMLImageElement;
 
+    private animationToCancel = [];
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
+        const gyroscopeSubscribe = Gyroscope.watch({frequency: 16}).subscribe(value => {
+            this.socket.sendMoveSideRequest(value.y);
+        });
         this.socket.stateSubject.subscribe(data => {
             if (data['status'] === 'dead') {
+                gyroscopeSubscribe.unsubscribe();
+                this.animationToCancel.forEach(elem => cancelAnimationFrame(elem));
                 const grid = document.getElementById('main');
                 grid.style.display = 'none';
                 const grid2 = document.getElementById('second');
                 grid2.style.display = 'block';
             }
-        });
-        Gyroscope.watch({frequency: 16}).subscribe(value => {
-            this.socket.sendMoveSideRequest(value.y);
         });
     }
 
@@ -115,8 +119,8 @@ export class GamePage {
             draw();
         };
 
-        drawSandAndSpeed();
-        drawBike();
+        this.animationToCancel.push(requestAnimationFrame(drawSandAndSpeed));
+        this.animationToCancel.push(requestAnimationFrame(drawBike));
 
         const slider = document.getElementById("slidr");
         const slide = document.getElementById("slid");

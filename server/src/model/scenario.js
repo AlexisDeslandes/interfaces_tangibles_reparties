@@ -292,7 +292,7 @@ module.exports = [
             "anglais qui sont en difficulté. Vous décidez de les aider, vous dites:",
         choices: [
             {
-                text: "Vous avez des problèmes j'ai l'mpression!",
+                text: "Vous avez des problèmes je crois",
                 result: "Vous parvenez à calmer les touristes et vous les aidez à se sortir de leurs ennuis. Ils vous " +
                     "remercient chaleureusement, et vous partez chacun de votre côté. Cette interaction humaine vous " +
                     "redonne le sourire.",

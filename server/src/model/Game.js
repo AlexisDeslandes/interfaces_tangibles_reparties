@@ -123,8 +123,6 @@ module.exports = class Game {
     consumeChickenWater() {
         for (let playerId in this.jauges) {
             this.jauges[playerId].water--;
-            this.jauges[playerId].water--;
-            this.jauges[playerId].chicken--;
             this.jauges[playerId].chicken--;
         }
     }

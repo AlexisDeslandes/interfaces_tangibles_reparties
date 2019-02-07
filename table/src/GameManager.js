@@ -451,8 +451,8 @@ class GameManager {
                 for (let obstacle of player.obstacles) {
                     this.contextGamer.drawImage(this.obstacle, obstacle.x, obstacle.y, 50, 50);
                 }
-                for (let speed of player.speed){
-                    this.contextGamer.drawImage(this.speed,speed.x,speed.y,3,107);
+                for (let speed of player.speed) {
+                    this.contextGamer.drawImage(this.speed, speed.x, speed.y, 3, 107);
                 }
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
             }

@@ -15,79 +15,80 @@ import {GuidelinePage} from "../guideline/guideline";
 
 @IonicPage()
 @Component({
-  selector: 'page-dilemme',
-  templateUrl: 'dilemme.html',
+    selector: 'page-dilemme',
+    templateUrl: 'dilemme.html',
 })
 export class DilemmePage {
 
-  @ViewChild(Slides) slides: Slides;
+    @ViewChild(Slides) slides: Slides;
 
 
-  data;
-  hasAnswered = false;
-  choice = null;
-  result;
-  stats;
-  isReady;
-  slideOptions = {effect: 'flip'};
-  showIntro = true;
-  showContent = false;
-  receivedPart = false;
+    data;
+    hasAnswered = false;
+    choice = null;
+    result;
+    stats;
+    isReady;
+    slideOptions = {effect: 'flip'};
+    showIntro = true;
+    showContent = false;
+    receivedPart = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
-    this.data = navParams.get('step');
-    if (!this.data.hasOwnProperty('intro')) {
-      this.showIntro = false;
-      this.showContent = true;
-    } else {
-      this.showIntro = true;
-      this.showContent = false;
+    constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
+        this.data = navParams.get('step');
+        if (!this.data.hasOwnProperty('intro')) {
+            this.showIntro = false;
+            this.showContent = true;
+        } else {
+            this.showIntro = true;
+            this.showContent = false;
+        }
+        this.isReady = false;
+
+        this.socketManager.socket.on('ask-for-new-part', () => {
+            this.receivedPart = true;
+            console.log('received image :)')
+        });
+
     }
-    this.isReady = false;
 
-    this.socketManager.socket.on('ask-for-new-part', () => {
-      this.receivedPart = true;
-      console.log('received image :)')
-    });
+    nextIntro() {
 
-  }
+        this.slides.slideNext();
 
-  nextIntro() {
+    }
 
-    this.slides.slideNext();
+    endIntro() {
+        this.showIntro = false;
+        this.showContent = true;
+    }
 
-  }
-
-  endIntro() {
-    this.showIntro = false;
-    this.showContent = true;
-  }
-
-  openInventory(){
-    this.navCtrl.push(InventoryPage);
-  }
+    openInventory() {
+        this.navCtrl.push(InventoryPage);
+    }
 
 
-  answer() {
+    answer() {
 
-    this.hasAnswered = true;
-    this.result = this.data.choices[this.choice].result;
-    this.stats = this.data.choices[this.choice].stats;
+        this.hasAnswered = true;
+        this.result = this.data.choices[this.choice].result;
+        this.stats = this.data.choices[this.choice].stats;
 
-    this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
-    this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});
-  }
+        this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
+        this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});
+    }
 
-  ready() {
-    this.isReady = true;
-    this.socketManager.sendReady();
-  }
+    ready() {
+        this.isReady = true;
+        this.socketManager.sendReady();
+    }
 
-  next() {
-    this.socketManager.sendNext();
-  }
+    next() {
+        this.socketManager.sendNext();
+    }
 
-  goTo() {
-    this.navCtrl.push(GuidelinePage);
-  }
+    goTo() {
+        //this.navCtrl.push(GuidelinePage);
+        this.navCtrl.push(ReadyPage);
+    }
 }

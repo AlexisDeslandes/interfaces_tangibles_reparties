@@ -57,10 +57,8 @@ export class SocketManagerProvider {
     }
 
     sendReady() {
-
         this.socket.emit('ready', {room: this.room})
     }
-
 
     emit() {
         this.stateSubject.next(this.state)

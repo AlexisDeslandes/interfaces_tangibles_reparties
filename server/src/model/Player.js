@@ -14,9 +14,18 @@ module.exports = class Player {
         this.size = 50;
     }
 
+    isCollision() {
+        return this.obstacles.some(obstacle =>
+            this.x < obstacle.x + obstacle.size &&
+            this.x + obstacle.size > obstacle.x &&
+            this.y < obstacle.y + obstacle.size &&
+            this.size + this.y > obstacle.y
+        );
+    }
+
     move() {
-        if (this.y - this.size >= this.top) {
-            this.y -= this.size;
+        if (this.y - 1 >= this.top && !this.isCollision()) {
+            this.y -= 2;
         }
     }
 

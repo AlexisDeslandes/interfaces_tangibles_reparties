@@ -13,7 +13,7 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://192.168.43.242:4444');
+        this.socket = io.connect('http://10.188.26.122:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -436,25 +436,21 @@ class GameManager {
         this.count = 0;
 
         const loop = () => {
-            this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
             this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
             for (let i = 0; i < this.players.length; i++) {
+                let id = 'bike' + (i * 2 + 1).toString();
+                let id2 = 'bike' + (i * 2 + 2).toString();
+                this.bike = document.getElementById(this.change ? id : id2);
                 const player = this.players[i];
-                if (i === 1) {
-                    this.contextGamer.rotate(Math.PI);
-                } else if (i === 2) {
-                    this.contextGamer.rotate(90 * Math.PI / 180);
-                } else if (i === 3) {
-                    this.contextGamer.rotate(-90 * Math.PI / 180);
-                }
-                this.contextGamer.drawImage(this.bike, player.x, player.y, 50, 100);
+
+                this.contextGamer.drawImage(this.bike, player.x, player.y, i <= 1 ? 50 : 100, i <= 1 ? 100 : 50);
                 for (let obstacle of player.obstacles) {
                     this.contextGamer.drawImage(this.obstacle, obstacle.x, obstacle.y, 50, 50);
                 }
                 for (let speed of player.speed) {
                     this.contextGamer.drawImage(this.speed, speed.x, speed.y, 3, 107);
                 }
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
+
             }
             this.count = (this.count + 1) % 10;
             if (this.count === 0) {
@@ -545,13 +541,13 @@ class GameManager {
                 "left": 0.5 * width - halfSize,
                 "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height - 100
+                "topMax": 0.5 * height - 50
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height - 100,
+                "leftMax": 0.5 * height - 50,
                 "top": 0.5 * height - halfSize,
                 "topMax": 0.5 * height - halfSize + sizeRect - 50
             },

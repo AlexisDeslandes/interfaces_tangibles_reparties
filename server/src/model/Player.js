@@ -66,10 +66,10 @@ module.exports = class Player {
                 break;
             case 2:
                 x = Math.floor(Math.random() * (this.leftMax - this.left)) + this.left;
-                y = this.topMax - this.size;
+                y = this.topMax;
                 break;
             case 3:
-                x = this.leftMax - this.size;
+                x = this.leftMax;
                 y = Math.floor(Math.random() * (this.topMax - this.top)) + this.top;
                 break;
             case 4:

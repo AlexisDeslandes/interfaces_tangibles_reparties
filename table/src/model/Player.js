@@ -8,21 +8,22 @@ export class Player {
     attributeCoordinates(id) {
         const width = document.body.clientWidth;
         const height = document.body.clientHeight;
+        const ecart = height / 4;
         switch (id) {
             case 1:
                 this.x = (width / 2) - 25;
-                this.y = Math.round(0.75 * height - 100);
+                this.y = height - ecart - 100;
                 break;
             case 2:
                 this.x = (width / 2) - 25;
-                this.y = Math.round(0.25 * height + 100);
+                this.y = ecart;
                 break;
             case 3:
-                this.x = Math.round(0.25 * height + 100);
+                this.x = ecart;
                 this.y = (height / 2) - 25;
                 break;
             default:
-                this.x = Math.round(0.75 * height - 100);
+                this.x = width - ecart - 100;
                 this.y = (height / 2) - 25;
                 break;
         }

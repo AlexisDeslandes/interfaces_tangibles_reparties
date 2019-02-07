@@ -69,12 +69,18 @@ export class DilemmePage {
 
   answer() {
 
+    const statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie"};
+
     this.hasAnswered = true;
     this.result = this.data.choices[this.choice].result;
     this.stats = this.data.choices[this.choice].stats;
 
     this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
     this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});
+
+    for (let stat of this.stats) {
+      stat.type = statsNames[stat.type];
+    }
   }
 
   ready() {

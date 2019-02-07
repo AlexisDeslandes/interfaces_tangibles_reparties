@@ -15,8 +15,8 @@ class GameManager {
 
         this.change = true;
 
-        //this.socket = io.connect('http://10.212.102.44:4444');
         this.socket = io.connect('http://localhost:4444');
+        //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
 
@@ -161,6 +161,8 @@ class GameManager {
             $("#substract-mood-p" + i).css("display", "block");
             $("#water-p" + i).css("display", "block");
             $("#water-level-p" + i).css("display", "block");
+            $("#energy-p" + i).css("display", "block");
+            $("#energy-level-p" + i).css("display", "block");
         }
 
         const jeanP1 = $("#jean-p1");
@@ -191,6 +193,15 @@ class GameManager {
         const waterLevelP3 = $("#water-level-p3");
         const waterLevelP4 = $("#water-level-p4");
 
+        const energyP1 = $("#energy-p1");
+        const energyP2 = $("#energy-p2");
+        const energyP3 = $("#energy-p3");
+        const energyP4 = $("#energy-p4");
+        const energyLevelP1 = $("#energy-level-p1");
+        const energyLevelP2 = $("#energy-level-p2");
+        const energyLevelP3 = $("#energy-level-p3");
+        const energyLevelP4 = $("#energy-level-p4");
+
         let jeanWidth, jeanHeight, mx, my;
 
         switch (nb) {
@@ -210,8 +221,15 @@ class GameManager {
                 bikeP1.css("bottom", my);
                 bikeP1.css("left", mx);
 
-                waterP1.css("left", 1.2*mx + jeanWidth);
-                waterP1.css("bottom", 8*my);
+                waterP1.css("left", 1.2*mx + jeanWidth + 2);
+                waterP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("left", 1.2*mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 1.2*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 1.2*mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -240,6 +258,16 @@ class GameManager {
                 bikeP1.css("bottom", -8*my);
                 bikeP1.css("left", mx);
 
+                waterP1.css("left", 2*mx + jeanWidth + 2);
+                waterP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("left", 2*mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 2*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 2*mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8*my - 1);
+
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
                 substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
@@ -260,6 +288,16 @@ class GameManager {
                 bikeP2.css("height", jeanHeight);
                 bikeP2.css("top", -8*my);
                 bikeP2.css("right", mx);
+
+                waterP2.css("right", 2*mx + jeanWidth - 3);
+                waterP2.css("top", 8*my + 2);
+                waterLevelP2.css("right", 2*mx + jeanWidth - 2);
+                waterLevelP2.css("top", 8*my + 4);
+
+                energyP2.css("left", 2*mx + jeanWidth - 3);
+                energyP2.css("top", 8*my + 2);
+                energyLevelP2.css("left", 2*mx + jeanWidth);
+                energyLevelP2.css("top", 8*my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
@@ -287,7 +325,17 @@ class GameManager {
                 bikeP1.css("width", jeanWidth);
                 bikeP1.css("height", jeanHeight);
                 bikeP1.css("bottom", my);
-                bikeP1.css("left", mx);
+                bikeP1.css("left", 0.8*mx);
+
+                waterP1.css("left", 0.9*mx + jeanWidth + 2);
+                waterP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("left", 0.9*mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 0.9*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 0.9*mx + jeanWidth + 3);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -308,7 +356,17 @@ class GameManager {
                 bikeP2.css("width", jeanWidth);
                 bikeP2.css("height", jeanHeight);
                 bikeP2.css("top", my);
-                bikeP2.css("right", mx);
+                bikeP2.css("right", 0.8*mx);
+
+                waterP2.css("right", 0.9*mx + jeanWidth + 2);
+                waterP2.css("top", 8*my + 2);
+                waterLevelP2.css("right", 0.9*mx + jeanWidth + 2);
+                waterLevelP2.css("top", 8*my + 4);
+
+                energyP2.css("left", 0.9*mx + jeanWidth + 2);
+                energyP2.css("top", 8*my + 2);
+                energyLevelP2.css("left", 0.9*mx + jeanWidth + 3);
+                energyLevelP2.css("top", 8*my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
@@ -330,6 +388,16 @@ class GameManager {
                 bikeP3.css("height", jeanHeight);
                 bikeP3.css("top", my);
                 bikeP3.css("left", my);
+
+                waterP3.css("top", my + jeanHeight + 2);
+                waterP3.css("left", 8*my);
+                waterLevelP3.css("top", my + jeanHeight + 2);
+                waterLevelP3.css("left", 8*my + 1);
+
+                energyP3.css("bottom", my + jeanHeight + 2);
+                energyP3.css("left", 8*my);
+                energyLevelP3.css("bottom", my + jeanHeight + 2);
+                energyLevelP3.css("left", 8*my + 2);
 
                 substractChickenP3.css("width", jeanWidth / 12);
                 substractChickenP3.css("height", jeanWidth / 12);
@@ -353,6 +421,16 @@ class GameManager {
                 bikeP4.css("bottom", my);
                 bikeP4.css("right", my);
 
+                waterP4.css("bottom", my+ jeanHeight + 2);
+                waterP4.css("right", 8*my);
+                waterLevelP4.css("bottom", my + jeanHeight + 2);
+                waterLevelP4.css("right", 8*my + 1);
+
+                energyP4.css("top", my+ jeanHeight + 2);
+                energyP4.css("right", 8*my);
+                energyLevelP4.css("top", my + jeanHeight + 2);
+                energyLevelP4.css("right", 8*my + 2);
+
                 substractChickenP4.css("width", jeanWidth / 12);
                 substractChickenP4.css("height", jeanWidth / 12);
                 substractChickenP4.css("top", my + jeanWidth / 2);
@@ -363,8 +441,8 @@ class GameManager {
                 substractMoodP4.css("top", my + jeanHeight / 2 - jeanHeight / 8);
                 substractMoodP4.css("right", my + jeanWidth / 2 + jeanHeight / 8);
                 substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
-
-
+                
+                
                 break;
         }
     }
@@ -467,10 +545,6 @@ class GameManager {
 
     updateJauges(jauges) {
 
-        /*$("#water-blue-level-p1").css("height", $("#water-p1").height() * 0.9);
-         $("#water-blue-level-p1").css("width", $("#water-p1").width() * 0.47);
-         $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);*/
-
         for (let playerId in jauges) {
             const canvas = $("#jean-p" + playerId)[0];
             const ctx = canvas.getContext("2d");
@@ -485,6 +559,18 @@ class GameManager {
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkred");
                 else if (delta < 0)
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
+
+                if (jaugeName === "water") {
+                    let height = Math.max(0, (10 - jauges[playerId][jaugeName])*10 - 2);
+                    $("#water-level-jauge-p"+playerId).css("height", height+"%");
+                }
+
+                if (jaugeName === "energy") {
+                    let energy = jauges[playerId][jaugeName];
+                    let height = Math.max(0, (10 - energy)*10 - 2);
+                    $("#energy-level-jauge-p"+playerId).css("height", height+"%");
+                    $("#energy-level-p"+playerId).css("background-color", "rgb("+(10-energy)*25+","+energy*25+",0)");
+                }
 
                 if (jaugeName === "bike") {
                     let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
@@ -789,7 +875,6 @@ class GameManager {
         if (nbPlayer === 1) {
             $("#map").css("position", "relative");
         }
-
         this.mapWidget = new MapWidget(
             document.getElementById('app').getBoundingClientRect().left,
             document.getElementById('app').getBoundingClientRect().top,
@@ -798,7 +883,6 @@ class GameManager {
             this.socket, this.gameRoom);
         $('#app').append(this.mapWidget.domElem);
         this.mapWidget.addMap();
-
 
 
     }

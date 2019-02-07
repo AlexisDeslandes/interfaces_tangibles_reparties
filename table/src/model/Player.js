@@ -11,18 +11,18 @@ export class Player {
         switch (id) {
             case 1:
                 this.x = (width / 2) - 25;
-                this.y = height - 100;
+                this.y = Math.round(0.75 * height - 100);
                 break;
             case 2:
                 this.x = (width / 2) - 25;
-                this.y = 0;
+                this.y = Math.round(0.25 * height + 100);
                 break;
             case 3:
-                this.x = 0;
+                this.x = Math.round(0.25 * height + 100);
                 this.y = (height / 2) - 25;
                 break;
             default:
-                this.x = width - 100;
+                this.x = Math.round(0.75 * height - 100);
                 this.y = (height / 2) - 25;
                 break;
         }

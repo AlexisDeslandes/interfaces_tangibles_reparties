@@ -138,6 +138,8 @@ class GameManager {
             $("#substract-mood-p" + i).css("display", "block");
             $("#water-p" + i).css("display", "block");
             $("#water-level-p" + i).css("display", "block");
+            $("#energy-p" + i).css("display", "block");
+            $("#energy-level-p" + i).css("display", "block");
         }
 
         const jeanP1 = $("#jean-p1");
@@ -168,6 +170,15 @@ class GameManager {
         const waterLevelP3 = $("#water-level-p3");
         const waterLevelP4 = $("#water-level-p4");
 
+        const energyP1 = $("#energy-p1");
+        const energyP2 = $("#energy-p2");
+        const energyP3 = $("#energy-p3");
+        const energyP4 = $("#energy-p4");
+        const energyLevelP1 = $("#energy-level-p1");
+        const energyLevelP2 = $("#energy-level-p2");
+        const energyLevelP3 = $("#energy-level-p3");
+        const energyLevelP4 = $("#energy-level-p4");
+
         let jeanWidth, jeanHeight, mx, my;
 
         switch (nb) {
@@ -190,7 +201,12 @@ class GameManager {
                 waterP1.css("left", 1.2*mx + jeanWidth + 2);
                 waterP1.css("bottom", 8*my - 2);
                 waterLevelP1.css("left", 1.2*mx + jeanWidth + 2);
-                waterLevelP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 1.2*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 1.2*mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -222,7 +238,12 @@ class GameManager {
                 waterP1.css("left", 2*mx + jeanWidth + 2);
                 waterP1.css("bottom", 8*my - 2);
                 waterLevelP1.css("left", 2*mx + jeanWidth + 2);
-                waterLevelP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 2*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 2*mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -246,9 +267,14 @@ class GameManager {
                 bikeP2.css("right", mx);
 
                 waterP2.css("right", 2*mx + jeanWidth - 3);
-                waterP2.css("up", 8*my + 2);
+                waterP2.css("top", 8*my + 2);
                 waterLevelP2.css("right", 2*mx + jeanWidth - 2);
-                waterLevelP2.css("up", 8*my + 2);
+                waterLevelP2.css("top", 8*my + 4);
+
+                energyP2.css("left", 2*mx + jeanWidth - 3);
+                energyP2.css("top", 8*my + 2);
+                energyLevelP2.css("left", 2*mx + jeanWidth);
+                energyLevelP2.css("top", 8*my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
@@ -494,7 +520,15 @@ class GameManager {
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
 
                 if (jaugeName === "water") {
-                    $("#water-level-jauge-p"+playerId).css("height", (10 - jauges[playerId][jaugeName])*10+"%");
+                    let height = Math.max(0, (10 - jauges[playerId][jaugeName])*10 - 2);
+                    $("#water-level-jauge-p"+playerId).css("height", height+"%");
+                }
+
+                if (jaugeName === "energy") {
+                    let energy = jauges[playerId][jaugeName];
+                    let height = Math.max(0, (10 - energy)*10 - 2);
+                    $("#energy-level-jauge-p"+playerId).css("height", height+"%");
+                    $("#energy-level-p"+playerId).css("background-color", "rgb("+(10-energy)*25+","+energy*25+",0)");
                 }
 
                 if (jaugeName === "bike") {

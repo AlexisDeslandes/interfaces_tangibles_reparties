@@ -307,7 +307,12 @@ class GameManager {
                 waterP1.css("left", 0.9*mx + jeanWidth + 2);
                 waterP1.css("bottom", 8*my - 2);
                 waterLevelP1.css("left", 0.9*mx + jeanWidth + 2);
-                waterLevelP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 0.9*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 0.9*mx + jeanWidth + 3);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -333,7 +338,12 @@ class GameManager {
                 waterP2.css("right", 0.9*mx + jeanWidth + 2);
                 waterP2.css("top", 8*my + 2);
                 waterLevelP2.css("right", 0.9*mx + jeanWidth + 2);
-                waterLevelP2.css("top", 8*my + 2);
+                waterLevelP2.css("top", 8*my + 4);
+
+                energyP2.css("left", 0.9*mx + jeanWidth + 2);
+                energyP2.css("top", 8*my + 2);
+                energyLevelP2.css("left", 0.9*mx + jeanWidth + 3);
+                energyLevelP2.css("top", 8*my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
@@ -359,9 +369,12 @@ class GameManager {
                 waterP3.css("top", my + jeanHeight + 2);
                 waterP3.css("left", 8*my);
                 waterLevelP3.css("top", my + jeanHeight + 2);
-                waterLevelP3.css("left", 8*my + 2);
-                waterP3.css("transform", "rotate(90deg)");
-                waterLevelP3.css("transform", "rotate(90deg)");
+                waterLevelP3.css("left", 8*my + 1);
+
+                energyP3.css("bottom", my + jeanHeight + 2);
+                energyP3.css("left", 8*my);
+                energyLevelP3.css("bottom", my + jeanHeight + 2);
+                energyLevelP3.css("left", 8*my + 2);
 
                 substractChickenP3.css("width", jeanWidth / 12);
                 substractChickenP3.css("height", jeanWidth / 12);
@@ -388,7 +401,12 @@ class GameManager {
                 waterP4.css("bottom", my+ jeanHeight + 2);
                 waterP4.css("right", 8*my);
                 waterLevelP4.css("bottom", my + jeanHeight + 2);
-                waterLevelP4.css("right", 8*my + 2);
+                waterLevelP4.css("right", 8*my + 1);
+
+                energyP4.css("top", my+ jeanHeight + 2);
+                energyP4.css("right", 8*my);
+                energyLevelP4.css("top", my + jeanHeight + 2);
+                energyLevelP4.css("right", 8*my + 2);
 
                 substractChickenP4.css("width", jeanWidth / 12);
                 substractChickenP4.css("height", jeanWidth / 12);

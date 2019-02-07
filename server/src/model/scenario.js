@@ -332,6 +332,68 @@ module.exports = [
         ]
     },
     {
+        intro: [{
+            title:"En route vers Gao",
+            text:"Vous vous trouvez entre Tessalit et Gao, et vous vous lancez dans l'ascenssion d'une pente assez raide."
+        }],
+        time:"Mars 1986 - Gao",
+        type:"dilemme",
+        text:"Vous savez que vous y êtes presque, mais vous commencez à fatiguer séverement. Vous réflechissez aux deux " +
+            "possibilités qui s'offrent à vous.",
+        choices: [
+            {
+                text: "Faire demi-tour et contourner, quitte à prendre plus de temps",
+                result: "Vous décidez de contourner cette pente qui vous effraie quelque peu. Pas de chance, le chemin " +
+                    "qui permet de contourner et bien plus long qu'il n'en avait l'air... De plus la nuit est maintenant " +
+                    "en train de tomber.",
+                stats : [
+                    {type : "energy", value : -2},
+                    {type : "mood", value : -1},
+                ]
+            },
+            {
+                text: "Continuer de monter",
+                result: "Vous prenez sur vous et continuez à grimper. C'est épuisant mais vous ne lâchez rien, vous êtes " +
+                    "si proche du but!",
+                stats : [
+                    {type : "bike", value : -1},
+                    {type : "mood", value : 1}
+                ]
+            },
+        ]
+    },
+    {
+        intro: [{
+            title:"Gao",
+            text:"Vous êtes arrivés à Gao! Bonne nouvelle, c'est la dernière étape avant votre objectif: Tombouctou. Vous " +
+                "vous baladez un peu dans la ville, même si vous êtes à bout de force."
+        }],
+        time:"Avril 1986 - Gao",
+        type:"dilemme",
+        text:"Vous paraissez vraiment affaibli, et alors que vous vous apprêtiez à reprendre la route pour terminer votre " +
+            "aventure, vous tombez sur les touristes que vous aviez aidé à Tessalit. Ils vous disent: \"Vous avez des " +
+            "problèmes j'ai l'mpression!\". Vous riez, et vous êtes content de les revoir. Vous leur parlez alors de " +
+            "votre aventure, ils sont complètement épatés.",
+        choices: [
+            {
+                text: "Aller à Tombouctou",
+                result: "Vous arrivez enfin a Tombouctou...VOUS L'AVEZ FAIT! Trois long mois après votre départ, vous " +
+                    "avez réussi un exploit incroyable, vous êtes si fier! Bravo!",
+                stats : [
+                    {type : "mood", value : 10},
+                ]
+            },
+            {
+                text: "Abandonner",
+                result: "Vous restez à Gao, et renoncez à votre exploit. C'est dommage.",
+                stats : [
+                    {type : "mood", value : -10},
+                    {type : "energy", value : -10}
+                ]
+            },
+        ]
+    },
+    {
         type : "minijeu"
     }
 ];

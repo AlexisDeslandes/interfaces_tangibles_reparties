@@ -138,7 +138,14 @@ class GameManager {
         for (let i = 1; i <= nb; i++) {
             $("#jean-p" + i).css("display", "block");
             $("#bike-p" + i).css("display", "block");
+            $("#substract-chicken-p" + i).css("display", "block");
+            $("#substract-mood-p" + i).css("display", "block");
+            $("#water-p" + i).css("display", "block");
+            $("#water-level-p" + i).css("display", "block");
+            $("#energy-p" + i).css("display", "block");
+            $("#energy-level-p" + i).css("display", "block");
         }
+
         const jeanP1 = $("#jean-p1");
         const jeanP2 = $("#jean-p2");
         const jeanP3 = $("#jean-p3");
@@ -146,11 +153,35 @@ class GameManager {
 
         const bikeP1 = $("#bike-p1");
         const bikeP2 = $("#bike-p2");
+        const bikeP3 = $("#bike-p3");
+        const bikeP4 = $("#bike-p4");
 
         const substractChickenP1 = $("#substract-chicken-p1");
         const substractMoodP1 = $("#substract-mood-p1");
         const substractChickenP2 = $("#substract-chicken-p2");
         const substractMoodP2 = $("#substract-mood-p2");
+        const substractChickenP3 = $("#substract-chicken-p3");
+        const substractMoodP3 = $("#substract-mood-p3");
+        const substractChickenP4 = $("#substract-chicken-p4");
+        const substractMoodP4 = $("#substract-mood-p4");
+
+        const waterP1 = $("#water-p1");
+        const waterP2 = $("#water-p2");
+        const waterP3 = $("#water-p3");
+        const waterP4 = $("#water-p4");
+        const waterLevelP1 = $("#water-level-p1");
+        const waterLevelP2 = $("#water-level-p2");
+        const waterLevelP3 = $("#water-level-p3");
+        const waterLevelP4 = $("#water-level-p4");
+
+        const energyP1 = $("#energy-p1");
+        const energyP2 = $("#energy-p2");
+        const energyP3 = $("#energy-p3");
+        const energyP4 = $("#energy-p4");
+        const energyLevelP1 = $("#energy-level-p1");
+        const energyLevelP2 = $("#energy-level-p2");
+        const energyLevelP3 = $("#energy-level-p3");
+        const energyLevelP4 = $("#energy-level-p4");
 
         let jeanWidth, jeanHeight, mx, my;
 
@@ -170,6 +201,16 @@ class GameManager {
                 bikeP1.css("height", jeanHeight);
                 bikeP1.css("bottom", my);
                 bikeP1.css("left", mx);
+
+                waterP1.css("left", 1.2*mx + jeanWidth + 2);
+                waterP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("left", 1.2*mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 1.2*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 1.2*mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -193,10 +234,20 @@ class GameManager {
                 jeanP1.css("bottom", my);
                 jeanP1.css("right", mx);
 
-                bikeP1.css("width", jeanWidth * 1.2);
-                bikeP1.css("height", jeanHeight * 1.2);
-                bikeP1.css("bottom", -10 * my);
+                bikeP1.css("width", jeanWidth );
+                bikeP1.css("height", jeanHeight );
+                bikeP1.css("bottom", -8 * my);
                 bikeP1.css("left", mx);
+
+                waterP1.css("left", 2*mx + jeanWidth + 2);
+                waterP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("left", 2*mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 2*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 2*mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8*my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -214,15 +265,25 @@ class GameManager {
                 jeanP2.css("top", my);
                 jeanP2.css("left", mx);
 
-                bikeP2.css("width", jeanWidth * 1.2);
-                bikeP2.css("height", jeanHeight * 1.2);
-                bikeP2.css("top", -10 * my);
+                bikeP2.css("width", jeanWidth );
+                bikeP2.css("height", jeanHeight );
+                bikeP2.css("top", -8 * my);
                 bikeP2.css("right", mx);
+
+                waterP2.css("right", 2*mx + jeanWidth - 3);
+                waterP2.css("top", 8*my + 2);
+                waterLevelP2.css("right", 2*mx + jeanWidth - 2);
+                waterLevelP2.css("top", 8*my + 4);
+
+                energyP2.css("left", 2*mx + jeanWidth - 3);
+                energyP2.css("top", 8*my + 2);
+                energyLevelP2.css("left", 2*mx + jeanWidth);
+                energyLevelP2.css("top", 8*my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
-                substractChickenP2.css("top", 0.01 * $(window).height() + jeanHeight / 2 - jeanWidth / 10);
-                substractChickenP2.css("left", 0.03 * $(window).width() + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP2.css("top", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP2.css("left", mx + jeanWidth / 2 - jeanWidth / 24);
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP2.css("width", jeanWidth / 4);
                 substractMoodP2.css("height", jeanWidth / 4);
@@ -232,6 +293,137 @@ class GameManager {
                 break;
             case 3:
             case 4:
+                jeanWidth = 0.1 * $(window).width();
+                jeanHeight = 0.2 * $(window).height();
+                mx = 0.28 * $(window).width();
+                my = 0.01 * $(window).height();
+
+                jeanP1.attr("width", jeanWidth);
+                jeanP1.attr("height", jeanHeight);
+                jeanP1.css("bottom", my);
+                jeanP1.css("right", mx);
+
+                bikeP1.css("width", jeanWidth);
+                bikeP1.css("height", jeanHeight);
+                bikeP1.css("bottom", my);
+                bikeP1.css("left", 0.8*mx);
+
+                waterP1.css("left", 0.9*mx + jeanWidth + 2);
+                waterP1.css("bottom", 8*my - 2);
+                waterLevelP1.css("left", 0.9*mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8*my - 1);
+
+                energyP1.css("right", 0.9*mx + jeanWidth + 2);
+                energyP1.css("bottom", 8*my - 2);
+                energyLevelP1.css("right", 0.9*mx + jeanWidth + 3);
+                energyLevelP1.css("bottom", 8*my - 1);
+
+                substractChickenP1.css("width", jeanWidth / 12);
+                substractChickenP1.css("height", jeanWidth / 12);
+                substractChickenP1.css("bottom", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP1.css("right", mx + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP1.css("width", jeanWidth / 4);
+                substractMoodP1.css("height", jeanWidth / 4);
+                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+
+                jeanP2.attr("width", jeanWidth);
+                jeanP2.attr("height", jeanHeight);
+                jeanP2.css("top", my);
+                jeanP2.css("left", mx);
+
+                bikeP2.css("width", jeanWidth);
+                bikeP2.css("height", jeanHeight);
+                bikeP2.css("top", my);
+                bikeP2.css("right", 0.8*mx);
+
+                waterP2.css("right", 0.9*mx + jeanWidth + 2);
+                waterP2.css("top", 8*my + 2);
+                waterLevelP2.css("right", 0.9*mx + jeanWidth + 2);
+                waterLevelP2.css("top", 8*my + 4);
+
+                energyP2.css("left", 0.9*mx + jeanWidth + 2);
+                energyP2.css("top", 8*my + 2);
+                energyLevelP2.css("left", 0.9*mx + jeanWidth + 3);
+                energyLevelP2.css("top", 8*my + 4);
+
+                substractChickenP2.css("width", jeanWidth / 12);
+                substractChickenP2.css("height", jeanWidth / 12);
+                substractChickenP2.css("top", my + jeanHeight / 2 - jeanWidth / 10);
+                substractChickenP2.css("left", mx + jeanWidth / 2 - jeanWidth / 24);
+                substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP2.css("width", jeanWidth / 4);
+                substractMoodP2.css("height", jeanWidth / 4);
+                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
+                substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+
+                jeanP3.attr("width", jeanWidth);
+                jeanP3.attr("height", jeanHeight);
+                jeanP3.css("bottom", my);
+                jeanP3.css("left", my);
+
+                bikeP3.css("width", jeanWidth);
+                bikeP3.css("height", jeanHeight);
+                bikeP3.css("top", my);
+                bikeP3.css("left", my);
+
+                waterP3.css("top", my + jeanHeight + 2);
+                waterP3.css("left", 8*my);
+                waterLevelP3.css("top", my + jeanHeight + 2);
+                waterLevelP3.css("left", 8*my + 1);
+
+                energyP3.css("bottom", my + jeanHeight + 2);
+                energyP3.css("left", 8*my);
+                energyLevelP3.css("bottom", my + jeanHeight + 2);
+                energyLevelP3.css("left", 8*my + 2);
+
+                substractChickenP3.css("width", jeanWidth / 12);
+                substractChickenP3.css("height", jeanWidth / 12);
+                substractChickenP3.css("bottom", my + jeanWidth / 2);
+                substractChickenP3.css("left", my + jeanHeight / 3);
+                substractChickenP3.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP3.css("width", jeanWidth / 4);
+                substractMoodP3.css("height", jeanWidth / 4);
+                substractMoodP3.css("bottom", my + jeanHeight / 2 - jeanHeight / 8);
+                substractMoodP3.css("left", my + jeanWidth / 2 + jeanHeight / 8);
+                substractMoodP3.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+
+
+                jeanP4.attr("width", jeanWidth);
+                jeanP4.attr("height", jeanHeight);
+                jeanP4.css("top", my);
+                jeanP4.css("right", my);
+
+                bikeP4.css("width", jeanWidth);
+                bikeP4.css("height", jeanHeight);
+                bikeP4.css("bottom", my);
+                bikeP4.css("right", my);
+
+                waterP4.css("bottom", my+ jeanHeight + 2);
+                waterP4.css("right", 8*my);
+                waterLevelP4.css("bottom", my + jeanHeight + 2);
+                waterLevelP4.css("right", 8*my + 1);
+
+                energyP4.css("top", my+ jeanHeight + 2);
+                energyP4.css("right", 8*my);
+                energyLevelP4.css("top", my + jeanHeight + 2);
+                energyLevelP4.css("right", 8*my + 2);
+
+                substractChickenP4.css("width", jeanWidth / 12);
+                substractChickenP4.css("height", jeanWidth / 12);
+                substractChickenP4.css("top", my + jeanWidth / 2);
+                substractChickenP4.css("right", my + jeanHeight / 3);
+                substractChickenP4.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
+                substractMoodP4.css("width", jeanWidth / 4);
+                substractMoodP4.css("height", jeanWidth / 4);
+                substractMoodP4.css("top", my + jeanHeight / 2 - jeanHeight / 8);
+                substractMoodP4.css("right", my + jeanWidth / 2 + jeanHeight / 8);
+                substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
+
+
                 break;
         }
     }
@@ -250,7 +442,7 @@ class GameManager {
         $("#puzzle").hide();
     }
 
-    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood) {
+    drawJean(ctx, jeanWidth, jeanHeight, chicken, mood, nbPlayers) {
         const center = jeanWidth / 2;
         const left = jeanWidth / 2.5;
         const right = 2 * center - left;
@@ -258,7 +450,13 @@ class GameManager {
         const up = jeanHeight / 4;
         const down = 5.2 * jeanHeight / 6;
         const headRadius = jeanHeight / 8;
-        const width = chicken;
+        let width;
+        if (nbPlayers <= 2) {
+            width = chicken;
+        }
+        else {
+            width = 0.6*chicken;
+        }
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
         // BODY
@@ -328,15 +526,11 @@ class GameManager {
 
     updateJauges(jauges) {
 
-        /*$("#water-blue-level-p1").css("height", $("#water-p1").height() * 0.9);
-        $("#water-blue-level-p1").css("width", $("#water-p1").width() * 0.47);
-        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);*/
-
         for (let playerId in jauges) {
             const canvas = $("#jean-p" + playerId)[0];
             const ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"]);
+            this.drawJean(ctx, canvas.width, canvas.height, jauges[playerId]["chicken"], jauges[playerId]["mood"], Object.keys(jauges).length);
             for (let jaugeName in jauges[playerId]) {
                 let delta = this.jauges[playerId][jaugeName] - jauges[playerId][jaugeName];
                 if (delta !== 0) {
@@ -347,16 +541,30 @@ class GameManager {
                 else if (delta < 0)
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
 
+                if (jaugeName === "water") {
+                    let height = Math.max(0, (10 - jauges[playerId][jaugeName])*10 - 2);
+                    $("#water-level-jauge-p"+playerId).css("height", height+"%");
+                }
+
+                if (jaugeName === "energy") {
+                    let energy = jauges[playerId][jaugeName];
+                    let height = Math.max(0, (10 - energy)*10 - 2);
+                    $("#energy-level-jauge-p"+playerId).css("height", height+"%");
+                    $("#energy-level-p"+playerId).css("background-color", "rgb("+(10-energy)*25+","+energy*25+",0)");
+                }
+
                 if (jaugeName === "bike") {
-                    let redShade = 255 - ((255 / 10) * jauges[playerId][jaugeName]);
-                    $("#bike-p" + playerId).css("background-color", "rgb(" + redShade + ", 0, 0)");
+                    let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
+                    $("#bike-p"+playerId).css("background-color", "rgb("+ redShade +", 0, 0)");
+                    if (delta !== 0) {
+                        $("#bike-p"+playerId).css("animation-name", "jaugeblinkred");
+                    }
                 }
             }
         }
         setTimeout(function () {
             $("div[class^=substract]").css("animation-name", "none");
-            $(".substract-level").css("height", 0);
-            $("div[class^=level-outline-p]").css("animation-name", "none");
+            $("div[id^=bike-p]").css("animation-name", "none");
         }, 6000);
     }
 

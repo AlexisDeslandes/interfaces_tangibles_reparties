@@ -2,6 +2,8 @@ import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget'
 import RationWidget from './RationWidget/RationWidget';
+import StartButtonWidget from './Buttons/StartButtonWidget';
+import PlayButtonWidget from './Buttons/PlayButtonWidget';
 import {GameState} from "./model/GameState";
 
 
@@ -13,8 +15,8 @@ class GameManager {
 
         this.change = true;
 
+        //this.socket = io.connect('http://10.212.102.44:4444');
         this.socket = io.connect('http://localhost:4444');
-        //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
 
@@ -31,11 +33,21 @@ class GameManager {
         self.rationWidgetP3 = null;
         self.rationWidgetP4 = null;
 
+        this.hasInit = false;
+
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
         this.readyBtn = $("#ready-btn");
         this.nextBtn = $("#next-btn");
         this.closePuzzleBtn = $("#close-puzzle");
+
+        self.startWidget = new StartButtonWidget(
+            document.getElementById('start-btn').getBoundingClientRect().left,
+            document.getElementById('start-btn').getBoundingClientRect().top,
+            document.getElementById('start-btn').getBoundingClientRect().width,
+            document.getElementById('start-btn').getBoundingClientRect().height,
+            self.socket);
+        $('#widget').append(this.startWidget.domElem);
 
         this.startDiv.click(function () {
             self.start();
@@ -60,6 +72,17 @@ class GameManager {
             $("#connected_" + data.player).show();
         });
 
+        this.socket.on('init', data => {
+            console.log(data);
+            if(!this.hasInit) {
+                this.hasInit =true;
+                this.start(data);
+                this.startWidget = null;
+                // console.log("test");
+                // console.log(document.getElementById('ready-ctn').getBoundingClientRect().top);
+                // this.initReadyWidget();
+            }
+        });
 
         this.socket.on('ration-used', data => {
             self.updateJauges(data.jauges);
@@ -297,7 +320,7 @@ class GameManager {
                 substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
                 substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
-                
+
                 jeanP3.attr("width", jeanWidth);
                 jeanP3.attr("height", jeanHeight);
                 jeanP3.css("bottom", my);
@@ -340,8 +363,8 @@ class GameManager {
                 substractMoodP4.css("top", my + jeanHeight / 2 - jeanHeight / 8);
                 substractMoodP4.css("right", my + jeanWidth / 2 + jeanHeight / 8);
                 substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
-                
-                
+
+
                 break;
         }
     }
@@ -445,8 +468,8 @@ class GameManager {
     updateJauges(jauges) {
 
         /*$("#water-blue-level-p1").css("height", $("#water-p1").height() * 0.9);
-        $("#water-blue-level-p1").css("width", $("#water-p1").width() * 0.47);
-        $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);*/
+         $("#water-blue-level-p1").css("width", $("#water-p1").width() * 0.47);
+         $("#water-blue-level-p1").css("left", parseInt($("#water-blue-level-p1").css("left")) + $("#water-p1").width() * 0.3);*/
 
         for (let playerId in jauges) {
             const canvas = $("#jean-p" + playerId)[0];
@@ -487,6 +510,45 @@ class GameManager {
         this.socket.emit('next', {room: this.gameRoom})
     }
 
+    start(data) {
+        if(!this.hasInit) {
+            this.hasInit = true;
+            this.gameRoom = data.room;
+
+
+            let index = this.gameRoom.indexOf("room");
+            var roomId = this.gameRoom.substr(index + 1);
+
+
+            //this.socket.emit('get-puzzle', {room: data.room});
+
+
+            for (let i = 1; i < 5; i++) {
+                let code = this.gameRoom.substring(4) + "-" + i;
+                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + code + "'/>")
+            }
+
+
+            this.startDiv.remove();
+            this.connectDiv.show();
+            $('#ready-ctn').show();
+            //$("#header").hide();
+            this.initReadyWidget();
+
+        }
+
+
+    }
+    initReadyWidget() {
+        this.playWidget = new PlayButtonWidget(
+            document.getElementById('ready-ctn').getBoundingClientRect().left,
+            document.getElementById('ready-ctn').getBoundingClientRect().top,
+            document.getElementById('ready-ctn').getBoundingClientRect().width,
+            document.getElementById('ready-ctn').getBoundingClientRect().height,
+            this.socket, this.gameRoom);
+        $('#widget').append(this.playWidget.domElem);
+    };
+
     start() {
         this.socket.emit('init', {});
         this.socket.on('init', data => {
@@ -509,7 +571,8 @@ class GameManager {
             this.startDiv.remove();
             this.connectDiv.show();
             //$("#header").hide();
-
+            $('#ready-ctn').show();
+            this.initReadyWidget();
         });
 
     }
@@ -726,6 +789,7 @@ class GameManager {
         if (nbPlayer === 1) {
             $("#map").css("position", "relative");
         }
+
         this.mapWidget = new MapWidget(
             document.getElementById('app').getBoundingClientRect().left,
             document.getElementById('app').getBoundingClientRect().top,
@@ -734,6 +798,7 @@ class GameManager {
             this.socket, this.gameRoom);
         $('#app').append(this.mapWidget.domElem);
         this.mapWidget.addMap();
+
 
 
     }

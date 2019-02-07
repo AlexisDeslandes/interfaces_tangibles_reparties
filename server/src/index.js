@@ -171,7 +171,7 @@ io.on('connection', socket => {
             let game = getGameByRoomName(m.gameRoom);
             game.useRation(m);
         }
-    })
+    });
 
 
     /////////////////////////////////////////////////// GAME /////////////////////////////////////////////////////////////

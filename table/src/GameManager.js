@@ -77,7 +77,7 @@ class GameManager {
             if(!this.hasInit) {
                 this.hasInit =true;
                 this.start(data);
-                this.startWidget = null;
+                this.startWidget.deleteWidget();
                 // console.log("test");
                 // console.log(document.getElementById('ready-ctn').getBoundingClientRect().top);
                 // this.initReadyWidget();
@@ -127,6 +127,8 @@ class GameManager {
             if (self.init) {
                 self.showMap();
                 self.adaptTable(nbPlayers);
+                document.getElementById('widget').remove();
+                self.playWidget.deleteWidget();
                 self.initWidgets(nbPlayers);
                 self.init = false;
                 this.jauges = data.jauges;

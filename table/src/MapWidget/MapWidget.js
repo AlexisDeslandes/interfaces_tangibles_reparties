@@ -346,6 +346,10 @@ class MapWidget extends TUIOWidget {
 
     }
 
+    onTagDeletion(tuioTag){
+        this.map.arc([]);
+    }
+
     /**
      * Move MapWidget.
      *

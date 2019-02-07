@@ -94,13 +94,13 @@ module.exports = class MapManager {
         socket.emit('map-changed', this.arcs);
     }
 
-    drawArc(m){
+    drawArc(m, currentStep){
         if (m === 'A6') {
             this.arcs = [];
-        } else if (m === 'B5') {
+        } else if (m === 2) {
             this.arcs = [];
-            for(let i=0; i<this.cities.length;i++){
-                if(i < this.cities.length-1){
+            for(let i=0; i<currentStep;i++){
+                if(i < currentStep-1){
                     this.arcs.push({
                         origin: {latitude: this.cities[i].latitude, longitude: this.cities[i].longitude},
                         destination: {latitude: this.cities[i+1].latitude, longitude: this.cities[i+1].longitude}

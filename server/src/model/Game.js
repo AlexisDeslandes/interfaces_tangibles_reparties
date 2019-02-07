@@ -157,7 +157,7 @@ module.exports = class Game {
     }
 
     changeMap(id){
-        this.map.drawArc(id);
+        this.map.drawArc(id, this.currentStep);
         this.map.sendArcs(this.tableSocket);
     }
 

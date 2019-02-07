@@ -71,6 +71,7 @@ module.exports = class Game {
     tableIsReady() {
         if (this.players.length > 0) {
             this.nbPlayers = this.players.length;
+            console.log("Nombre de joueurs : " + this.nbPlayers);
             this.veloGame = new VeloGame(this.nbPlayers);
             this.nextStep();
         } else console.log("can't start a game with 0 players")

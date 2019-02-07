@@ -12,6 +12,7 @@ module.exports = class Player {
         this.obstacles = [];
         this.speed = [];
         this.size = 50;
+        this.dead = false;
     }
 
     isDead() {
@@ -90,8 +91,10 @@ module.exports = class Player {
     }
 
     generateObstacle() {
-        const random = this.generateRandom();
-        this.obstacles.push(new Obstacle(random.x, random.y));
+        if (!this.dead) {
+            const random = this.generateRandom();
+            this.obstacles.push(new Obstacle(random.x, random.y));
+        }
     }
 
     generateRandom() {

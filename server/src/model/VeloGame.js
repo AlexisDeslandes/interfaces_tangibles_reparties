@@ -40,6 +40,7 @@ module.exports = class VeloGame {
         const descente = 1.15;
         const speedObstacle = 5;
         const speed = 45;
+        const newPlayers = [];
         for (let i = 0; i < this.players.length; i++) {
             const player = this.players[i];
             let newObstacles = [];
@@ -132,7 +133,15 @@ module.exports = class VeloGame {
             }
             player.obstacles = newObstacles;
             player.speed = newSpeed;
+
+            if (player.isDead()){
+                return player.id;
+            }else{
+                newPlayers.push(player);
+            }
         }
+        this.players = newPlayers;
+        return -1;
     }
 
     makePlayerMoveSide(player, x) {

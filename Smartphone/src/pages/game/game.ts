@@ -38,6 +38,14 @@ export class GamePage {
     private speedImg: HTMLImageElement;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
+        this.socket.stateSubject.subscribe(data => {
+            if (data['status'] === 'dead') {
+                const grid = document.getElementById('main');
+                grid.style.display = 'none';
+                const grid2 = document.getElementById('second');
+                grid2.style.display = 'block';
+            }
+        });
         Gyroscope.watch({frequency: 16}).subscribe(value => {
             this.socket.sendMoveSideRequest(value.y);
         });

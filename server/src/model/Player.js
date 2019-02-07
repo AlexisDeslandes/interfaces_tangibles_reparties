@@ -14,6 +14,22 @@ module.exports = class Player {
         this.size = 50;
     }
 
+    isDead() {
+        switch (this.id) {
+            case 1:
+                return this.y >= this.topMax;
+            case 2:
+                return this.y <= this.top;
+            case 3:
+                return this.x <= this.left;
+            case 4:
+                return this.x >= this.leftMax;
+            default:
+                console.log('error dead');
+                return;
+        }
+    }
+
     isCollision() {
         return this.obstacles.some(obstacle =>
             this.x < obstacle.x + obstacle.size &&

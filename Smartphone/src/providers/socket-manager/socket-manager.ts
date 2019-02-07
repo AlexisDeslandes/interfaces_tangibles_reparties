@@ -44,6 +44,11 @@ export class SocketManagerProvider {
             this.emit()
         })
 
+        socket.on('dead', (data) => {
+            this.state = data;
+            this.emit();
+        })
+
     }
 
     join(room, player) {

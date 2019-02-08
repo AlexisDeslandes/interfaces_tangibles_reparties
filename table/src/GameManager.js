@@ -59,13 +59,13 @@ class GameManager {
         $('#widget').append(this.startWidget.domElem);
 
 
-        this.startDiv.click(function () {
-            self.start();
-        });
+        // this.startDiv.click(function () {
+        //     self.start();
+        // });
 
-        this.readyBtn.click(function () {
-            self.ready();
-        });
+        // this.readyBtn.click(function () {
+        //     self.ready();
+        // });
 
         this.nextBtn.click(function () {
             self.next();

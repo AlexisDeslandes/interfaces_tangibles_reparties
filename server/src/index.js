@@ -37,7 +37,7 @@ io.on('connection', socket => {
     socket.on('ready', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.playerIsReady(socket)
+            game.playerIsReady(socket);
         } else {
             console.log("requested game does not exists")
         }
@@ -123,6 +123,18 @@ io.on('connection', socket => {
         let game = getGameByRoomName(m.room);
         if (game) {
             game.nextStep();
+            game.getTrophies();
+
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+    socket.on("ask-for-trophies", m => {
+        console.log('received ask-for-trophies');
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            // game.getTrophies(m.step);
         } else {
             console.log("requested game does not exists")
         }

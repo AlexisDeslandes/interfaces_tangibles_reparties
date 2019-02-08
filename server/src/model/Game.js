@@ -115,6 +115,7 @@ module.exports = class Game {
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.map.refreshStep(this.currentStep);
             this.map.sendProgression(this.tableSocket);
+            this.map.getTrophies(this.currentStep, this.tableSocket);
             this.currentStep++;
         }
     }
@@ -188,6 +189,10 @@ module.exports = class Game {
                 console.log("Joueur "+m.player+" utilise son vélo");
             }
         }
+    }
+
+    getTrophies(){
+        this.map.getTrophies(this.currentStep, this.tableSocket);
     }
 
     //////////////////////////////////////////////// Game //////////////////////////////////////////////////////

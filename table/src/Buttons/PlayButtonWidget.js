@@ -57,8 +57,8 @@ class PlayButtonWidget extends TUIOWidget {
 
 
         this._domElem = elem;
-        console.log("PlayWidgetCreated");
-        console.log(x +' '+ y +' '+ width + ' ' + height);
+        // console.log("PlayWidgetCreated");
+        // console.log(x +' '+ y +' '+ width + ' ' + height);
     }
 
 
@@ -86,10 +86,10 @@ class PlayButtonWidget extends TUIOWidget {
      * @param {TUIOTouch} tuioTouch - A TUIOTouch instance.
      */
     onTouchCreation(tuioTouch) {
-        console.log("Playbuttons");
+        // console.log("Playbuttons");
 
         super.onTouchCreation(tuioTouch);
-        console.log(this.isTouched(tuioTouch.x, tuioTouch.y));
+        // console.log(this.isTouched(tuioTouch.x, tuioTouch.y));
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,
@@ -99,7 +99,7 @@ class PlayButtonWidget extends TUIOWidget {
                 },
             };
             this.ready();
-            console.log(tuioTouch.x +"    " +tuioTouch.y);
+            // console.log(tuioTouch.x +"    " +tuioTouch.y);
         }
 
 
@@ -159,31 +159,6 @@ class PlayButtonWidget extends TUIOWidget {
      */
     onTagCreation(tuioTag) {
         super.onTagCreation(tuioTag);
-        // console.log('On creation Tag');
-        // console.log(tuioTag);
-        // console.log(this.isTouched(tuioTag.x, tuioTag.y));
-        //
-        // console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
-        // console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
-        // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
-        // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
-        if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
-        }
-        //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
-        // const socket = io.connect('http://localhost:4444');
-        // socket.emit('message', tuioTag.x + '  ' + tuioTag.y);
-        // socket.emit('map', tuioTag.id);
-        // socket.on('map-changed', (m) => {
-        //     console.log("map changed");
-        //     document.getElementById('map').src = m.img;
-        // });
-
-
-        //}
-
-
-
 
     }
 
@@ -194,66 +169,7 @@ class PlayButtonWidget extends TUIOWidget {
      * @param {TUIOTag} tuioTag - A TUIOTag instance.
      */
     onTagUpdate(tuioTag) {
-        console.log('On Update Tag');
-        console.log(tuioTag);
-        console.log(this.isTouched(tuioTag.x, tuioTag.y));
-
-        console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
-        console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
-        console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
-        console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
-        if (typeof (this._lastTagsValues[tuioTag.id]) !== 'undefined') {
-
-
-            const lastTagValue = this._lastTagsValues[tuioTag.id];
-            const diffX = tuioTag.x - lastTagValue.x;
-            const diffY = tuioTag.y - lastTagValue.y;
-
-            let newX = this.x + diffX;
-            let newY = this.y + diffY;
-
-            if (newX < 0) {
-                newX = 0;
-            }
-
-            if (newX > (WINDOW_WIDTH - this.width)) {
-                newX = WINDOW_WIDTH - this.width;
-            }
-
-            if (newY < 0) {
-                newY = 0;
-            }
-
-            if (newY > (WINDOW_HEIGHT - this.height)) {
-                newY = WINDOW_HEIGHT - this.height;
-            }
-
-            // this.moveTo(newX, newY, radToDeg(tuioTag.angle));
-            this._lastTagsValues = {
-                ...this._lastTagsValues,
-                [tuioTag.id]: {
-                    x: tuioTag.x,
-                    y: tuioTag.y,
-                },
-            };
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
-
-            // const socket = io.connect('http://localhost:4444');
-            // socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);
-            // socket.emit('map', tuioTag.id);
-            // socket.on('map-changed', (m) => {
-            //     document.getElementById('map').src = m.img;
-            // });
-        }
-
-        if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
-        }
-
-
-
-
-    }
+     }
 
     /**
      * Move PlayButtonWidget.

@@ -1,10 +1,12 @@
 import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
-import MapWidget from './MapWidget/MapWidget'
+import MapWidget from './MapWidget/MapWidget';
+import ImageWidget from './ImageWidget/ImageWidget';
 import RationWidget from './RationWidget/RationWidget';
 import StartButtonWidget from './Buttons/StartButtonWidget';
 import PlayButtonWidget from './Buttons/PlayButtonWidget';
 import {GameState} from "./model/GameState";
+import Gallery from "./Buttons/Gallery";
 
 
 class GameManager {
@@ -15,7 +17,7 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.16:4444');
         //this.socket = io.connect('http://localhost:4444');
 
         this.jauges = {};
@@ -33,6 +35,13 @@ class GameManager {
         self.rationWidgetP3 = null;
         self.rationWidgetP4 = null;
 
+        self.trophyW1 = null;
+        self.trophyW2 = null;
+        self.trophyW3 = null;
+        self.trophyW4 = null;
+        self.trophyW5 = null;
+        self.trophyW6 = null;
+        self.trophyW7 = null;
         this.hasInit = false;
 
         this.connectDiv = $("#connect");
@@ -48,6 +57,7 @@ class GameManager {
             document.getElementById('start-btn').getBoundingClientRect().height,
             self.socket);
         $('#widget').append(this.startWidget.domElem);
+
 
         this.startDiv.click(function () {
             self.start();
@@ -71,6 +81,7 @@ class GameManager {
             $("#qr_" + data.player).hide();
             $("#connected_" + data.player).show();
         });
+
 
         this.socket.on('init', data => {
             console.log(data);
@@ -117,18 +128,34 @@ class GameManager {
             $('#puzzle-title').hide();
         });
 
+        // this.socket.on('new-trophy', (data) => {
+        //     console.log("new trophy received");
+        //     this.galleryWidget.addPicture(data);
+        //     // const left = document.getElementById('gallery').getBoundingClientRect().left;
+        //     // const top = document.getElementById('gallery').getBoundingClientRect().top;
+        //
+        //     // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
+        //     // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
+        //     //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
+        //     //     $('app').append(this.recompensesWidget[data.step].domElem);
+        //     //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+        //
+        //
+        //     // this.mapWidget.addTrophy;
+        // });
+
 
         this.socket.on('start', data => {
             let audio = new Audio('../res/sounds/netflix.mp3');
             audio.play();
             self.showMap();
             self.hidePuzzle();
+            self.playWidget.deleteWidget();
             let nbPlayers = Object.keys(data.jauges).length;
             if (self.init) {
                 self.showMap();
                 self.adaptTable(nbPlayers);
                 document.getElementById('widget').remove();
-                self.playWidget.deleteWidget();
                 self.initWidgets(nbPlayers);
                 self.init = false;
                 this.jauges = data.jauges;
@@ -596,6 +623,8 @@ class GameManager {
 
     next() {
         this.socket.emit('next', {room: this.gameRoom})
+        this.socket.emit('ask-for-trophies', {room: this.gameRoom})
+
     }
 
     start(data) {
@@ -835,6 +864,42 @@ class GameManager {
     }
 
     initWidgets(nbPlayer) {
+        this.socket.on('new-trophy', (data) => {
+            console.log("new trophy received");
+            this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+            this.recompensesWidget[data.step].hide();
+            this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+            this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);
+
+            // const left = document.getElementById('gallery').getBoundingClientRect().left;
+            // const top = document.getElementById('gallery').getBoundingClientRect().top;
+
+            // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
+            // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
+            //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
+            //     $('app').append(this.recompensesWidget[data.step].domElem);
+            //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+
+
+            // this.mapWidget.addTrophy;
+        });
+        this.playWidget.deleteWidget();
+        this.startWidget.deleteWidget();
+        this.recompensesWidget = [];
+        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
+        document.getElementById('gallery').style.left = document.getElementById('app').getBoundingClientRect().left;
+        document.getElementById('gallery').style.top = document.getElementById('app').getBoundingClientRect().top;
+
+        // const iew =  new ImageElementWidget(800, 500, 300, 300, 20, 1, "res/recompenses/1.jpg");
+        // $('app').append(iew.domElem);
+        // iew.addTo($('#app').get(0));
+        this.galleryWidget = new Gallery(
+            document.getElementById('gallery').getBoundingClientRect().left,
+            document.getElementById('gallery').getBoundingClientRect().top,
+            200,
+            200,
+        );
+
         if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
                 document.getElementById('ration-container-p1').getBoundingClientRect().left,

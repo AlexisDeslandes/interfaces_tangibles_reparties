@@ -21,9 +21,10 @@ import {SideguidelinePageModule} from "../pages/sideguideline/sideguideline.modu
 import {ReadyStepPage} from "../pages/ready-step/ready-step";
 import {GameoverPage} from "../pages/gameover/gameover";
 import {InventoryPage} from "../pages/inventory/inventory";
+import {Guideline3PageModule} from "../pages/guideline3/guideline3.module";
 
-const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
-//const config: SocketIoConfig = {url: 'http://192.168.1.7:4444', options: {}};
+//const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
+const config: SocketIoConfig = {url: 'http://192.168.1.7:4444', options: {}};
 
 
 @NgModule({
@@ -43,6 +44,7 @@ const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
         GuidelinePageModule,
         MoveguidelinePageModule,
         Guideline2PageModule,
+        Guideline3PageModule,
         SideguidelinePageModule,
         IonicModule.forRoot(MyApp),
         ComponentsModule,

@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Gyroscope} from "@ionic-native/gyroscope";
 import {Subscription} from "rxjs";
 import {ReadyPage} from "../ready/ready";
+import {Guideline3Page} from "../guideline3/guideline3";
 
 /**
  * Generated class for the SideguidelinePage page.
@@ -45,7 +46,7 @@ export class SideguidelinePage {
             if (this.indicationsCount == 4) {
                 clearInterval(this.loopInterval);
                 this.gyroscopePointer.unsubscribe();
-                this.navCtrl.push(ReadyPage)
+                this.navCtrl.push(Guideline3Page)
             }
         });
     }

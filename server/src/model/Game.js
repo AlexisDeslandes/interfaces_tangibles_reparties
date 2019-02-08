@@ -29,9 +29,9 @@ module.exports = class Game {
 
     showEndedPuzzleToAll(d) {
         this.players.forEach(p => {
-            p.socket.emit('puzzle-ended', {puzzle : d.puzzle})
+            p.socket.emit('puzzle-ended', {puzzle: d.puzzle})
         });
-        this.tableSocket.emit('puzzle-ended', {puzzle : d.puzzle})
+        this.tableSocket.emit('puzzle-ended', {puzzle: d.puzzle})
     }
 
 
@@ -156,7 +156,7 @@ module.exports = class Game {
         return found;
     }
 
-    changeMap(id){
+    changeMap(id) {
         this.map.drawArc(id);
         this.map.sendArcs(this.tableSocket);
     }
@@ -211,14 +211,19 @@ module.exports = class Game {
     setPlayerData(state) {
         this.veloGame.setState(state);
         setInterval(() => {
-            this.veloGame.generateObstacles()
+            setTimeout(() => {
+                this.veloGame.generateObstacles()
+            }, 5000);
         }, 1000);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
-            const idPlayerDead = this.veloGame.back();
-            if (idPlayerDead !== -1) {
-                this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
-            }
+            setTimeout(() => {
+                const idPlayerDead = this.veloGame.back();
+                if (idPlayerDead !== -1) {
+                    this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
+                }
+            }, 5000);
+
         }, 16)
     }
 

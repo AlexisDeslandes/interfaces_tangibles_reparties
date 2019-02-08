@@ -17,6 +17,7 @@ export class SocketManagerProvider {
     state = {};
     stateSubject = new Subject();
     puzzleEnded = false;
+    playerColor = "#a22b28";
 
     room = null;
     player: number;

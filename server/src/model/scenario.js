@@ -322,7 +322,7 @@ module.exports = [
             "possibilités qui s'offrent à vous.",
         choices: [
             {
-                text: "Faire demi-tour et contourner, quitte à prendre plus de temps",
+                text: "Faire demi-tour et contourner",
                 result: "Vous décidez de contourner cette pente qui vous effraie quelque peu. Pas de chance, le chemin " +
                     "qui permet de contourner et bien plus long qu'il n'en avait l'air... De plus la nuit est maintenant " +
                     "en train de tomber.",

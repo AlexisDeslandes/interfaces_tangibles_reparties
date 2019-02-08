@@ -313,26 +313,6 @@ module.exports = [
     },
     {
         intro: [{
-            title:"Départ de Tessalit",
-            text:"Vous approchez de la fin de votre périple. Vous vous mettez en chemin pour la ville de Gao. Vous vous " +
-                "enfoncez dans le désert pendant plus de trois heures quand une tempête de sable se lève derrière vous. " +
-                "Elle vient vers vous! Vous devez à tout prix accélérer pour l'éviter..."
-        }],
-        time:"Mars 1986 - Désert",
-        type:"dilemme",
-        text:"JEU",
-        choices: [
-            {
-                text: "Suivant",
-                result: "",
-                stats : [
-                    {type : "energy", value : -1}
-                ]
-            },
-        ]
-    },
-    {
-        intro: [{
             title:"En route vers Gao",
             text:"Vous vous trouvez entre Tessalit et Gao, et vous vous lancez dans l'ascenssion d'une pente assez raide."
         }],
@@ -376,9 +356,10 @@ module.exports = [
             "votre aventure, ils sont complètement épatés.",
         choices: [
             {
-                text: "Aller à Tombouctou",
-                result: "Vous arrivez enfin a Tombouctou...VOUS L'AVEZ FAIT! Trois long mois après votre départ, vous " +
-                    "avez réussi un exploit incroyable, vous êtes si fier! Bravo!",
+                text: "Partir pour Tombouctou",
+                result: "Vous êtes si proche de la fin que vos membres en tremblent. Vous vous" +
+                    "enfoncez dans le désert pendant plus de trois heures quand une tempête de sable se lève derrière vous." +
+                    "Elle vient vers vous! Vous devez à tout prix accélérer pour l'éviter...",
                 stats : [
                     {type : "mood", value : 10},
                 ]

@@ -19,7 +19,7 @@ export class ReadyStepPage {
   isReady;
   socket;
 
-  colors = ["", "#a22b28", "#393bb5", "#007207", "#b8b918"];
+  colors = ["", "#a22b28", "#393bb5", "#007207", "#bf9727"];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.isReady = false;

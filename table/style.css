@@ -344,7 +344,8 @@ div.main-container-board {
     -moz-transform: translateY(-50%) rotate(270deg);
     transform: translateY(-50%) rotate(270deg); }
   .connect b[id^=code_] {
-    position: absolute; }
+    position: absolute;
+    font-size: 1.5rem; }
   .connect #code_1 {
     bottom: 1%;
     left: 50%;

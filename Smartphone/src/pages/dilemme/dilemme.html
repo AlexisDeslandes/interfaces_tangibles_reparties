@@ -14,7 +14,7 @@
             <h1 *ngIf="t.hasOwnProperty('title')">{{t.title}}</h1>
             <p>{{t.text}}</p>
 
-            <button *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
+            <button id="ready-btn" *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
                 Continuer
                 <ion-icon name="arrow-forward"></ion-icon>
             </button>
@@ -33,7 +33,7 @@
             </ion-item>
 
             <div text-center *ngIf="choice != null">
-                <button ion-button round (click)="answer()" class="btn-ok">
+                <button id="chose-btn" ion-button [style.backgroundColor]="socketManager.playerColor" round (click)="answer()" class="btn-ok">
                     J'ai choisi
                 </button>
             </div>

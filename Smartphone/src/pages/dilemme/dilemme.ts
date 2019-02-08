@@ -55,6 +55,10 @@ export class DilemmePage {
 
   }
 
+  ionViewDidLoad() {
+      document.getElementById("ready-btn").style.backgroundColor = this.socketManager.playerColor;
+  }
+
   hide(i){
     this.closeBoxs[i] = false;
   }

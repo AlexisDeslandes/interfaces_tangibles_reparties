@@ -70,7 +70,8 @@ export class DilemmePage {
 
   answer() {
 
-    const statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie"};
+    const statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie",
+    "Couverture":"Couverture de survie", "Duvet": "Duvet"};
 
     this.hasAnswered = true;
     this.result = this.data.choices[this.choice].result;

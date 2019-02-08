@@ -43,7 +43,7 @@
 
     <div *ngIf="hasAnswered" text-center class="outro">
 
-        <ion-card padding class="result wsh story" *ngIf="closeBoxs[0]">
+        <ion-card [style.borderColor]="socketManager.playerColor" padding class="result wsh story" *ngIf="closeBoxs[0]">
 
             <span class="close"  (click)="hide(0)">
                 <ion-icon name="close"></ion-icon>
@@ -56,7 +56,7 @@
             <p>{{result}}</p>
         </ion-card>
 
-        <ion-card padding class="wsh"  *ngIf="closeBoxs[1]">
+        <ion-card [style.borderColor]="socketManager.playerColor" padding class="wsh"  *ngIf="closeBoxs[1]">
             <span class="close" (click)="hide(1)">
                 <ion-icon name="close"></ion-icon>
             </span>
@@ -68,7 +68,7 @@
             </ul>
         </ion-card>
 
-        <ion-card padding class="puzzle wsh" *ngIf="receivedPart && closeBoxs[2]">
+        <ion-card [style.borderColor]="socketManager.playerColor" padding class="puzzle wsh" *ngIf="receivedPart && closeBoxs[2]">
             <span class="close" (click)="hide(2)">
                 <ion-icon name="close"></ion-icon>
             </span>
@@ -82,7 +82,7 @@
             </button>
         </ion-card>
 
-        <ion-card padding *ngIf="jeanDidIt && closeBoxs[3]" class="jeanDidIt wsh" >
+        <ion-card [style.borderColor]="socketManager.playerColor" padding *ngIf="jeanDidIt && closeBoxs[3]" class="jeanDidIt wsh" >
             <span class="close" (click)="hide(3)">
                 <ion-icon name="close"></ion-icon>
             </span>

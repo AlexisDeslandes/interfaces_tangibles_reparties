@@ -29,13 +29,13 @@ export class SideguidelinePage {
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.gyroscopePointer = Gyroscope.watch({frequency: 200}).subscribe(value => {
             this.gyroscopeValueY = value.y;
-            if (this.gyroscopeValueY < -3 && !this.right) {
+            if (this.gyroscopeValueY < -1 && !this.right) {
                 clearInterval(this.loopInterval);
                 this.loopInterval2 = setInterval(this.triggerArrow2, 500);
                 this.setColorWhite(!this.right);
                 this.right = true;
                 this.indicationsCount++;
-            } else if (this.gyroscopeValueY > 3 && this.right) {
+            } else if (this.gyroscopeValueY > 1 && this.right) {
                 clearInterval(this.loopInterval2);
                 this.loopInterval = setInterval(this.triggerArrow, 500);
                 this.setColorWhite(!this.right);

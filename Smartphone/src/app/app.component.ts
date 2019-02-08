@@ -4,12 +4,13 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from "../pages/home/home";
 import {GamePage} from "../pages/game/game";
+import {GuidelinePage} from "../pages/guideline/guideline";
 
 @Component({
     templateUrl: 'app.html'
 })
 export class MyApp {
-    rootPage:any = HomePage;
+    rootPage:any = GuidelinePage;
     //rootPage: any = GamePage;
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

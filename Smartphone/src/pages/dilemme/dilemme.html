@@ -14,7 +14,7 @@
             <h1 *ngIf="t.hasOwnProperty('title')">{{t.title}}</h1>
             <p>{{t.text}}</p>
 
-            <button id="ready-btn" *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
+            <button [style.backgroundColor]="socketManager.playerColor" *ngIf="i === data.intro.length-1" ion-button round icon-end color="primary" (click)="endIntro()">
                 Continuer
                 <ion-icon name="arrow-forward"></ion-icon>
             </button>
@@ -93,7 +93,7 @@
             <p>{{jeanDidIt}}</p>
         </ion-card>
 
-        <button ion-button round *ngIf="!isReady" (click)="ready()">
+        <button [style.backgroundColor]="socketManager.playerColor" ion-button round *ngIf="!isReady" (click)="ready()">
             Prêt pour la suite ?
         </button>
 

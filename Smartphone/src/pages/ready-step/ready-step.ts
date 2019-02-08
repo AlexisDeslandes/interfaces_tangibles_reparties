@@ -25,10 +25,6 @@ export class ReadyStepPage {
     socketManager.playerColor = this.colors[socketManager.player];
   }
 
-  ionViewDidLoad() {
-      document.getElementById("ready-button").style.backgroundColor = this.colors[this.socketManager.player];
-  }
-
   ready(){
     this.socketManager.sendReady();
     this.isReady = true;

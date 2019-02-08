@@ -13,7 +13,6 @@ module.exports = class Game {
         this.tableSocket = tableSocket;
         this.currentStep = 0;
         this.readyCount = 0;
-        this.temperature = 35;
         this.jauges = {};
         this.adventureSteps = scenario;
         console.log("new game created : " + room);
@@ -21,23 +20,23 @@ module.exports = class Game {
         this.map = new MapManager();
     }
 
-    showPuzzleToAll() {
+    showPuzzleToAll(m) {
         this.players.forEach(p => {
-            this.puzzle.sendPuzzle(p.socket)
+            this.puzzle.sendPuzzle(p.socket, m)
         });
-        this.puzzle .sendPuzzle(this.tableSocket)
+        this.puzzle.sendPuzzle(this.tableSocket, m)
     }
 
-    showEndedPuzzleToAll() {
+    showEndedPuzzleToAll(d) {
         this.players.forEach(p => {
-            p.socket.emit('puzzle-ended')
+            p.socket.emit('puzzle-ended', {puzzle: d.puzzle})
         });
-        this.tableSocket.emit('puzzle-ended')
+        this.tableSocket.emit('puzzle-ended', {puzzle: d.puzzle})
     }
 
 
-    givePuzzle(socket) {
-        this.puzzle.sendPuzzle(socket);
+    givePuzzle(socket, m) {
+        this.puzzle.sendPuzzle(socket, m);
     }
 
     givePuzzlePart(socket) {
@@ -45,17 +44,17 @@ module.exports = class Game {
     }
 
 
-    sendPuzzleParts(socket){
+    sendPuzzleParts(socket) {
         this.puzzle.sendPuzzleParts(socket);
     }
 
     playerPuzzleUpdate(socket, d) {
         let res = this.puzzle.playerPuzzleUpdate(socket, d);
         if (res === 'ok') {
-            this.showPuzzleToAll();
+            this.showPuzzleToAll(d);
         } else if (res === 'end') {
-            this.showEndedPuzzleToAll();
-        }
+            this.showEndedPuzzleToAll(d);
+        } //else if (res === 'fail') --> notify table
     }
 
     playerIsReady(socket) {
@@ -71,6 +70,7 @@ module.exports = class Game {
     tableIsReady() {
         if (this.players.length > 0) {
             this.nbPlayers = this.players.length;
+            console.log("Nombre de joueurs : " + this.nbPlayers);
             this.veloGame = new VeloGame(this.nbPlayers);
             this.nextStep();
         } else console.log("can't start a game with 0 players")
@@ -115,7 +115,6 @@ module.exports = class Game {
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.map.refreshStep(this.currentStep);
             this.map.sendProgression(this.tableSocket);
-            this.map.getTrophies(this.currentStep, this.tableSocket);
             this.currentStep++;
         }
     }
@@ -167,26 +166,26 @@ module.exports = class Game {
             if (m.id === 'B3') {
                 this.jauges[m.player].water += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur "+m.player+" utilise de l'eau");
+                console.log("Joueur " + m.player + " utilise de l'eau");
             } else if (m.id === 5) {
                 this.jauges[m.player].energy += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur "+m.player+" utilise de l'énergie");
+                console.log("Joueur " + m.player + " utilise de l'énergie");
 
             } else if (m.id === 6) {
                 this.jauges[m.player].chicken += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur "+m.player+" utilise du poulet");
+                console.log("Joueur " + m.player + " utilise du poulet");
 
             } else if (m.id === 'B4') {
                 this.jauges[m.player].mood += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur "+m.player+" utilise de l'ectasy");
+                console.log("Joueur " + m.player + " utilise de l'ectasy");
 
             } else if (m.id === 8) {
                 this.jauges[m.player].bike += 1;
                 this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur "+m.player+" utilise son vélo");
+                console.log("Joueur " + m.player + " utilise son vélo");
             }
         }
     }
@@ -216,8 +215,19 @@ module.exports = class Game {
     setPlayerData(state) {
         this.veloGame.setState(state);
         setInterval(() => {
+            setTimeout(() => {
+                this.veloGame.generateObstacles()
+            }, 5000);
+        }, 1000);
+        setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
-            this.veloGame.players.forEach(player => player.back());
+            setTimeout(() => {
+                const idPlayerDead = this.veloGame.back();
+                if (idPlayerDead !== -1) {
+                    this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
+                }
+            }, 5000);
+
         }, 16)
     }
 
@@ -225,6 +235,9 @@ module.exports = class Game {
         this.veloGame.makePlayerMoveSide(player, x);
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    sendToPlayer(idPlayerDead, topic, object) {
+        this.players[idPlayerDead - 1].socket.emit(topic, object);
+    }
 };

@@ -43,14 +43,6 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('ask-for-new-part', m => {
-        let game = getGameByRoomName(m.room);
-        if (game) {
-            game.givePuzzlePart(socket)
-        } else {
-            console.log("requested game does not exists")
-        }
-    });
 
     socket.on('updateStats', m => {
         let game = getGameByRoomName(m.room);
@@ -82,6 +74,17 @@ io.on('connection', socket => {
         }
     });
 
+    //ok
+    socket.on('ask-for-new-part', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.givePuzzlePart(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+
     socket.on('put-part-of-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
@@ -91,10 +94,11 @@ io.on('connection', socket => {
         }
     });
 
+
     socket.on('get-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.givePuzzle(socket)
+            game.givePuzzle(socket, m)
         } else {
             console.log("requested game does not exists")
         }
@@ -112,7 +116,7 @@ io.on('connection', socket => {
     socket.on('show-puzzle-on-table', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.showPuzzleToAll();
+            game.showPuzzleToAll(m);
         } else {
             console.log("requested game does not exists")
         }
@@ -144,13 +148,13 @@ io.on('connection', socket => {
         console.log(m)
     });
 
-    socket.on("isTouched", m =>{
+    socket.on("isTouched", m => {
         console.log(m);
         console.log("Mon message");
-        console.log("tuioTag.x >= this._x = " +(m.tag_x >= m.x)+ "   " + m.tag_x +">="+m.x);
-        console.log("tuioTag.x <= this._x + this._width = " +(m.tag_x <= m.x + m._width)+ "   " + m.tag_x+"<="+ m.x +"+"+ m._width);
-        console.log("tuioTag.y >= this._y  = " +(m.tag_y >= m.y) + "   " + m.tag_y +">="+m.y);
-        console.log("tuioTag.y <= this._y + this._height = " +(m.tag_y <= m.y + m._height)+ "   " + m.tag_y +"<=" +m.y +"+"+ m._height);
+        console.log("tuioTag.x >= this._x = " + (m.tag_x >= m.x) + "   " + m.tag_x + ">=" + m.x);
+        console.log("tuioTag.x <= this._x + this._width = " + (m.tag_x <= m.x + m._width) + "   " + m.tag_x + "<=" + m.x + "+" + m._width);
+        console.log("tuioTag.y >= this._y  = " + (m.tag_y >= m.y) + "   " + m.tag_y + ">=" + m.y);
+        console.log("tuioTag.y <= this._y + this._height = " + (m.tag_y <= m.y + m._height) + "   " + m.tag_y + "<=" + m.y + "+" + m._height);
     });
 
     socket.on("answer", m => {
@@ -173,7 +177,7 @@ io.on('connection', socket => {
             console.log("requested game does not exists")
         }
 
-        console.log("Map tag received: "+ m);
+        console.log("Map tag received: " + m);
 
     });
 

@@ -1,26 +1,25 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import {InventoryPage} from "../pages/inventory/inventory";
+import {Component} from '@angular/core';
+import {Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from "../pages/home/home";
-import {ReadyPage} from "../pages/ready/ready";
+import {GamePage} from "../pages/game/game";
+import {GuidelinePage} from "../pages/guideline/guideline";
+
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
-  //rootPage:any = InventoryPage;
-  //rootPage:any = GuidelinePage;
+    //rootPage:any = GuidelinePage;
+    rootPage: any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is accessToGuideline and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+        platform.ready().then(() => {
+            // Okay, so the platform is accessToGuideline and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            statusBar.styleDefault();
+            splashScreen.hide();
+        });
+    }
 }
 

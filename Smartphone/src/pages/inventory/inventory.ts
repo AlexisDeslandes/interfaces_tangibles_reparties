@@ -24,12 +24,15 @@ export class InventoryPage {
     selectedPiece;
     targetsOn;
     showResult;
+    selectPuzzle;
+
+    currentPuzzleName;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public socketManager: SocketManagerProvider) {
 
-        this.showResult = socketManager.puzzleEnded;
 
+        this.currentPuzzleName = null;
         this.showPuzzle = false;
         this.puzzle = [];
         this.ownedPieces = [];
@@ -43,34 +46,43 @@ export class InventoryPage {
         });
 
         this.socketManager.socket.on('get-puzzle', data => {
-            this.puzzle = data.puzzle;
+            this.puzzle = data.puzzle.parts;
+            this.currentPuzzleName = data.puzzle.name;
             this.showPuzzle = true;
         });
 
         this.socketManager.socket.on('puzzle-ended', data => {
             console.log("puzzle ended");
+            this.currentPuzzleName = data.puzzle;
             this.showPuzzle = false;
             this.showResult = true;
             this.socketManager.puzzleEnded = true;
         });
     }
 
-    selectPiece(i) {
+    selectPiece(i, p) {
         if (this.selectedPiece === i) {
             this.selectedPiece = null;
+            this.selectPuzzle = null;
             this.targetsOn = false;
         } else {
             this.selectedPiece = i;
+            this.selectPuzzle = p;
             this.targetsOn = true;
         }
     }
 
     pickTarget(o, i) {
+
         let id = '#piece' + i;
         if (this.selectedPiece) {
+            console.log('selected piece',this.selectedPiece)
             this.socketManager.socket.emit('put-part-of-puzzle', {
+                sourcePuzzle: this.selectPuzzle,
+                targetPuzzle : this.currentPuzzleName,
                 room: this.socketManager.room,
                 source: this.selectedPiece,
+                puzzle:this.currentPuzzleName,
                 target: o
             });
             if (!o.shown) {
@@ -103,19 +115,27 @@ export class InventoryPage {
 
     removeFromOwned(o) {
         for (let i in this.ownedPieces) {
-            let p = this.ownedPieces[i];
-            if (p.picture === o.picture) {
+            let p = this.ownedPieces[i].piece;
+            let z = this.ownedPieces[i].puzzle;
+            if (p.picture === o.picture && z === this.currentPuzzleName) {
                 this.ownedPieces.splice(parseInt(i), 1)
             }
         }
     }
 
-    askForImage() {
-        this.socketManager.socket.emit('get-puzzle-part', {room: this.socketManager.room});
+
+    getPuzzle2() {
+        this.socketManager.socket.emit('show-puzzle-on-table', {
+            room: this.socketManager.room,
+            puzzle: 'puzzle2'
+        });
     }
 
-    getPuzzle() {
-        this.socketManager.socket.emit('show-puzzle-on-table', {room: this.socketManager.room});
+    getPuzzle1() {
+        this.socketManager.socket.emit('show-puzzle-on-table', {
+            room: this.socketManager.room,
+            puzzle: 'puzzle1'
+        });
     }
 
     goHome() {

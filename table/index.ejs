@@ -111,11 +111,25 @@
     <div id="puzzle-result">
         <h1> Féliciations </h1>
         <h2>Vous avez completé le puzzle !</h2>
-        <img class="slide-in-fwd-center" style="width:80%" src="res/puzzle1/full.jpg"/>
+        <img class="slide-in-fwd-center" id="result-img" style="width:80%" src="res/puzzle1/full.jpg"/>
     </div>
 </div>
 
-<canvas id="trueGame" style="display: none;position: absolute;z-index: 1000;left: 0;top: 0;"></canvas>
+<div style="display:none;">
+    <img id="bike1" src="../res/bike2.svg" width="50">
+    <img id="bike2" src="../res/bayke.svg" width="50">
+    <img id="bike3" src="../res/player1-bike.svg" width="50">
+    <img id="bike4" src="../res/player1-bike2.svg" width="50">
+    <img id="bike5" src="../res/player2-bike.svg" width="50">
+    <img id="bike6" src="../res/player2-bike2.svg" width="50">
+    <img id="bike7" src="../res/player3-bike.svg" width="50">
+    <img id="bike8" src="../res/player3-bike2.svg" width="50">
+    <img id="obstacle" src="../res/stone.svg" width="50" height="50">
+    <img id="fond" src="../res/fond.jpg">
+    <img id="speed" src="../res/speed.svg" width="3" height="107">
+</div>
+
+<canvas id="trueGame" style="display: none;position: absolute;z-index: 1000;left: 0;top: 0"></canvas>
 
 <canvas id="gamer" style="display: none;position: absolute;z-index: 1001;left: 0;top: 0;"></canvas>
 

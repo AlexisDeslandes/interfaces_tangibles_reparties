@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ReadyPage} from "../ready/ready";
 
 /**
  * Generated class for the Guideline3Page page.
@@ -22,4 +23,7 @@ export class Guideline3Page {
     console.log('ionViewDidLoad Guideline3Page');
   }
 
+    goToReady() {
+        this.navCtrl.push(ReadyPage)
+    }
 }

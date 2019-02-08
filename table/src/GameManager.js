@@ -17,15 +17,12 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://192.168.1.16:4444');
-        //this.socket = io.connect('http://localhost:4444');
-
+        //this.socket = io.connect('http://192.168.1.20:4444');
+        this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
-
         this.socket.on("askTableDataGame", (data) => {
             this.showGame(data.playersCount);
         });
-
 
         let self = this;
         self.init = true;
@@ -106,9 +103,10 @@ class GameManager {
                 audio.play();
                 let ctn = $('#puzzle-parent');
                 ctn.empty();
-                data.puzzle.forEach(p => {
+                let puzzleName = data.puzzle.name
+                data.puzzle.parts.forEach(p => {
                     let img;
-                    if (p.shown) img = "<img src='../res/puzzle1/" + p.picture + "' class='slide-in-fwd-center'/>";
+                    if (p.shown) img = "<img src='../res/"+puzzleName+"/" + p.picture + "' class='slide-in-fwd-center'/>";
                     else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
@@ -121,10 +119,17 @@ class GameManager {
             }
         });
 
-        this.socket.on('puzzle-ended', () => {
+        this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
-            $('#puzzle-result').show();
+            console.log('puzzle-ended',m)
+            if(m.puzzle === 'puzzle1')
+
+            $('#result-img').attr('src', 'res/puzzle1/full.jpg');
+            else
+                $('#result-img').attr('src', 'res/puzzle2/full.jpg');
+
+            $('#puzzle-result').show()
             $('#puzzle-title').hide();
         });
 
@@ -180,6 +185,13 @@ class GameManager {
             this.players = data.players;
             //change = !change;
         })
+
+        this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
+        this.obstacle = document.getElementById('obstacle');
+        this.canvas = document.getElementById("gamer");
+        this.contextGamer = this.canvas.getContext("2d");
+        this.speed = document.getElementById('speed');
+
     }
 
     initCanvas(nb) {
@@ -250,15 +262,15 @@ class GameManager {
                 bikeP1.css("bottom", my);
                 bikeP1.css("left", mx);
 
-                waterP1.css("left", 1.2*mx + jeanWidth + 2);
-                waterP1.css("bottom", 8*my - 2);
-                waterLevelP1.css("left", 1.2*mx + jeanWidth + 2);
-                waterLevelP1.css("bottom", 8*my - 1);
+                waterP1.css("left", 1.2 * mx + jeanWidth + 2);
+                waterP1.css("bottom", 8 * my - 2);
+                waterLevelP1.css("left", 1.2 * mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8 * my - 1);
 
-                energyP1.css("right", 1.2*mx + jeanWidth + 2);
-                energyP1.css("bottom", 8*my - 2);
-                energyLevelP1.css("right", 1.2*mx + jeanWidth + 5);
-                energyLevelP1.css("bottom", 8*my - 1);
+                energyP1.css("right", 1.2 * mx + jeanWidth + 2);
+                energyP1.css("bottom", 8 * my - 2);
+                energyLevelP1.css("right", 1.2 * mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8 * my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -267,7 +279,7 @@ class GameManager {
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanHeight / 4);
                 substractMoodP1.css("height", jeanHeight / 4);
-                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("bottom", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
@@ -284,18 +296,18 @@ class GameManager {
 
                 bikeP1.css("width", jeanWidth);
                 bikeP1.css("height", jeanHeight);
-                bikeP1.css("bottom", -8*my);
+                bikeP1.css("bottom", -8 * my);
                 bikeP1.css("left", mx);
 
-                waterP1.css("left", 2*mx + jeanWidth + 2);
-                waterP1.css("bottom", 8*my - 2);
-                waterLevelP1.css("left", 2*mx + jeanWidth + 2);
-                waterLevelP1.css("bottom", 8*my - 1);
+                waterP1.css("left", 2 * mx + jeanWidth + 2);
+                waterP1.css("bottom", 8 * my - 2);
+                waterLevelP1.css("left", 2 * mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8 * my - 1);
 
-                energyP1.css("right", 2*mx + jeanWidth + 2);
-                energyP1.css("bottom", 8*my - 2);
-                energyLevelP1.css("right", 2*mx + jeanWidth + 5);
-                energyLevelP1.css("bottom", 8*my - 1);
+                energyP1.css("right", 2 * mx + jeanWidth + 2);
+                energyP1.css("bottom", 8 * my - 2);
+                energyLevelP1.css("right", 2 * mx + jeanWidth + 5);
+                energyLevelP1.css("bottom", 8 * my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -304,7 +316,7 @@ class GameManager {
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanWidth / 4);
                 substractMoodP1.css("height", jeanWidth / 4);
-                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("bottom", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
@@ -315,18 +327,18 @@ class GameManager {
 
                 bikeP2.css("width", jeanWidth);
                 bikeP2.css("height", jeanHeight);
-                bikeP2.css("top", -8*my);
+                bikeP2.css("top", -8 * my);
                 bikeP2.css("right", mx);
 
-                waterP2.css("right", 2*mx + jeanWidth - 3);
-                waterP2.css("top", 8*my + 2);
-                waterLevelP2.css("right", 2*mx + jeanWidth - 2);
-                waterLevelP2.css("top", 8*my + 4);
+                waterP2.css("right", 2 * mx + jeanWidth - 3);
+                waterP2.css("top", 8 * my + 2);
+                waterLevelP2.css("right", 2 * mx + jeanWidth - 2);
+                waterLevelP2.css("top", 8 * my + 4);
 
-                energyP2.css("left", 2*mx + jeanWidth - 3);
-                energyP2.css("top", 8*my + 2);
-                energyLevelP2.css("left", 2*mx + jeanWidth);
-                energyLevelP2.css("top", 8*my + 4);
+                energyP2.css("left", 2 * mx + jeanWidth - 3);
+                energyP2.css("top", 8 * my + 2);
+                energyLevelP2.css("left", 2 * mx + jeanWidth);
+                energyLevelP2.css("top", 8 * my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
@@ -335,7 +347,7 @@ class GameManager {
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP2.css("width", jeanWidth / 4);
                 substractMoodP2.css("height", jeanWidth / 4);
-                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("top", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
                 break;
@@ -354,17 +366,17 @@ class GameManager {
                 bikeP1.css("width", jeanWidth);
                 bikeP1.css("height", jeanHeight);
                 bikeP1.css("bottom", my);
-                bikeP1.css("left", 0.8*mx);
+                bikeP1.css("left", 0.8 * mx);
 
-                waterP1.css("left", 0.9*mx + jeanWidth + 2);
-                waterP1.css("bottom", 8*my - 2);
-                waterLevelP1.css("left", 0.9*mx + jeanWidth + 2);
-                waterLevelP1.css("bottom", 8*my - 1);
+                waterP1.css("left", 0.9 * mx + jeanWidth + 2);
+                waterP1.css("bottom", 8 * my - 2);
+                waterLevelP1.css("left", 0.9 * mx + jeanWidth + 2);
+                waterLevelP1.css("bottom", 8 * my - 1);
 
-                energyP1.css("right", 0.9*mx + jeanWidth + 2);
-                energyP1.css("bottom", 8*my - 2);
-                energyLevelP1.css("right", 0.9*mx + jeanWidth + 3);
-                energyLevelP1.css("bottom", 8*my - 1);
+                energyP1.css("right", 0.9 * mx + jeanWidth + 2);
+                energyP1.css("bottom", 8 * my - 2);
+                energyLevelP1.css("right", 0.9 * mx + jeanWidth + 3);
+                energyLevelP1.css("bottom", 8 * my - 1);
 
                 substractChickenP1.css("width", jeanWidth / 12);
                 substractChickenP1.css("height", jeanWidth / 12);
@@ -373,7 +385,7 @@ class GameManager {
                 substractChickenP1.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP1.css("width", jeanWidth / 4);
                 substractMoodP1.css("height", jeanWidth / 4);
-                substractMoodP1.css("bottom", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP1.css("bottom", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP1.css("right", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP1.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
@@ -385,17 +397,17 @@ class GameManager {
                 bikeP2.css("width", jeanWidth);
                 bikeP2.css("height", jeanHeight);
                 bikeP2.css("top", my);
-                bikeP2.css("right", 0.8*mx);
+                bikeP2.css("right", 0.8 * mx);
 
-                waterP2.css("right", 0.9*mx + jeanWidth + 2);
-                waterP2.css("top", 8*my + 2);
-                waterLevelP2.css("right", 0.9*mx + jeanWidth + 2);
-                waterLevelP2.css("top", 8*my + 4);
+                waterP2.css("right", 0.9 * mx + jeanWidth + 2);
+                waterP2.css("top", 8 * my + 2);
+                waterLevelP2.css("right", 0.9 * mx + jeanWidth + 2);
+                waterLevelP2.css("top", 8 * my + 4);
 
-                energyP2.css("left", 0.9*mx + jeanWidth + 2);
-                energyP2.css("top", 8*my + 2);
-                energyLevelP2.css("left", 0.9*mx + jeanWidth + 3);
-                energyLevelP2.css("top", 8*my + 4);
+                energyP2.css("left", 0.9 * mx + jeanWidth + 2);
+                energyP2.css("top", 8 * my + 2);
+                energyLevelP2.css("left", 0.9 * mx + jeanWidth + 3);
+                energyLevelP2.css("top", 8 * my + 4);
 
                 substractChickenP2.css("width", jeanWidth / 12);
                 substractChickenP2.css("height", jeanWidth / 12);
@@ -404,7 +416,7 @@ class GameManager {
                 substractChickenP2.css("border-radius", jeanWidth / 12 + "px " + jeanWidth / 12 + "px");
                 substractMoodP2.css("width", jeanWidth / 4);
                 substractMoodP2.css("height", jeanWidth / 4);
-                substractMoodP2.css("top", my + 3*jeanHeight/4 - jeanHeight/8);
+                substractMoodP2.css("top", my + 3 * jeanHeight / 4 - jeanHeight / 8);
                 substractMoodP2.css("left", mx + jeanWidth / 2 - jeanHeight / 8);
                 substractMoodP2.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
 
@@ -419,14 +431,14 @@ class GameManager {
                 bikeP3.css("left", my);
 
                 waterP3.css("top", my + jeanHeight + 2);
-                waterP3.css("left", 8*my);
+                waterP3.css("left", 8 * my);
                 waterLevelP3.css("top", my + jeanHeight + 2);
-                waterLevelP3.css("left", 8*my + 1);
+                waterLevelP3.css("left", 8 * my + 1);
 
                 energyP3.css("bottom", my + jeanHeight + 2);
-                energyP3.css("left", 8*my);
+                energyP3.css("left", 8 * my);
                 energyLevelP3.css("bottom", my + jeanHeight + 2);
-                energyLevelP3.css("left", 8*my + 2);
+                energyLevelP3.css("left", 8 * my + 2);
 
                 substractChickenP3.css("width", jeanWidth / 12);
                 substractChickenP3.css("height", jeanWidth / 12);
@@ -450,15 +462,15 @@ class GameManager {
                 bikeP4.css("bottom", my);
                 bikeP4.css("right", my);
 
-                waterP4.css("bottom", my+ jeanHeight + 2);
-                waterP4.css("right", 8*my);
+                waterP4.css("bottom", my + jeanHeight + 2);
+                waterP4.css("right", 8 * my);
                 waterLevelP4.css("bottom", my + jeanHeight + 2);
-                waterLevelP4.css("right", 8*my + 1);
+                waterLevelP4.css("right", 8 * my + 1);
 
-                energyP4.css("top", my+ jeanHeight + 2);
-                energyP4.css("right", 8*my);
+                energyP4.css("top", my + jeanHeight + 2);
+                energyP4.css("right", 8 * my);
                 energyLevelP4.css("top", my + jeanHeight + 2);
-                energyLevelP4.css("right", 8*my + 2);
+                energyLevelP4.css("right", 8 * my + 3);
 
                 substractChickenP4.css("width", jeanWidth / 12);
                 substractChickenP4.css("height", jeanWidth / 12);
@@ -470,8 +482,8 @@ class GameManager {
                 substractMoodP4.css("top", my + jeanHeight / 2 - jeanHeight / 8);
                 substractMoodP4.css("right", my + jeanWidth / 2 + jeanHeight / 8);
                 substractMoodP4.css("border-radius", jeanWidth / 4 + "px " + jeanWidth / 4 + "px");
-                
-                
+
+
                 break;
         }
     }
@@ -479,7 +491,7 @@ class GameManager {
 
     showPuzzleToAll() {
         $("#puzzle").toggle();
-        this.socket.emit('show-puzzle-on-table', {room: this.gameRoom})
+        this.socket.emit('show-puzzle-on-table', {room: this.gameRoom, puzzle: 'puzzle1'})
     }
 
     showPuzzle() {
@@ -503,7 +515,7 @@ class GameManager {
             width = chicken;
         }
         else {
-            width = 0.6*chicken;
+            width = 0.6 * chicken;
         }
         // HEAD
         this.drawCircle(ctx, center, up, headRadius, width);
@@ -525,10 +537,10 @@ class GameManager {
         this.drawLine(ctx, center, middle, left, armPos * headRadius, width);
         this.drawLine(ctx, center, middle, right, armPos * headRadius, width);
         // MOUTH
-        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width/2, mood);
+        this.drawMouth(ctx, center, up + headRadius / 8, headRadius / 2, 0, Math.PI, width / 2, mood);
         // EYES
-        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width/2);
-        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width/2);
+        this.fillCircle(ctx, center - headRadius / 3, up - headRadius / 5, width / 2);
+        this.fillCircle(ctx, center + headRadius / 3, up - headRadius / 5, width / 2);
     }
 
     drawMouth(ctx, x, y, r, start, end, width, mood) {
@@ -590,22 +602,22 @@ class GameManager {
                     $("#substract-" + jaugeName + "-p" + playerId).css("animation-name", "jaugeblinkgreen");
 
                 if (jaugeName === "water") {
-                    let height = Math.max(0, (10 - jauges[playerId][jaugeName])*10 - 2);
-                    $("#water-level-jauge-p"+playerId).css("height", height+"%");
+                    let height = Math.max(0, (10 - jauges[playerId][jaugeName]) * 10 - 2);
+                    $("#water-level-jauge-p" + playerId).css("height", height + "%");
                 }
 
                 if (jaugeName === "energy") {
                     let energy = jauges[playerId][jaugeName];
-                    let height = Math.max(0, (10 - energy)*10 - 2);
-                    $("#energy-level-jauge-p"+playerId).css("height", height+"%");
-                    $("#energy-level-p"+playerId).css("background-color", "rgb("+(10-energy)*25+","+energy*25+",0)");
+                    let height = Math.max(0, (10 - energy) * 10 - 2);
+                    $("#energy-level-jauge-p" + playerId).css("height", height + "%");
+                    $("#energy-level-p" + playerId).css("background-color", "rgb(" + (10 - energy) * 25 + "," + energy * 25 + ",0)");
                 }
 
                 if (jaugeName === "bike") {
-                    let redShade = 255-((255/10)*jauges[playerId][jaugeName]);
-                    $("#bike-p"+playerId).css("background-color", "rgb("+ redShade +", 0, 0)");
+                    let redShade = 255 - ((255 / 10) * jauges[playerId][jaugeName]);
+                    $("#bike-p" + playerId).css("background-color", "rgb(" + redShade + ", 0, 0)");
                     if (delta !== 0) {
-                        $("#bike-p"+playerId).css("animation-name", "jaugeblinkred");
+                        $("#bike-p" + playerId).css("animation-name", "jaugeblinkred");
                     }
                 }
             }
@@ -711,6 +723,7 @@ class GameManager {
         const halfSize = sizeRect / 2;
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(document.getElementById('fond'), 0, 0, width, height);
         this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
         this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
         this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
@@ -733,20 +746,19 @@ class GameManager {
         this.count = 0;
 
         const loop = () => {
-            const bike = document.getElementById(this.change ? 'bike' : 'bike2');
-            const canvas = document.getElementById("gamer");
-            const contextGamer = canvas.getContext("2d");
-            contextGamer.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < this.players.length; i++) {
-                if (i === 1) {
-                    contextGamer.rotate(Math.PI);
-                } else if (i === 2) {
-                    contextGamer.rotate(90 * Math.PI / 180);
-                } else if (i === 3) {
-                    contextGamer.rotate(-90 * Math.PI / 180);
+            this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            for (let player of this.players) {
+                let i = player.id;
+                let id = 'bike' + (2 * i - 1).toString();
+                let id2 = 'bike' + (2 * i).toString();
+                this.bike = document.getElementById(this.change ? id : id2);
+                this.contextGamer.drawImage(this.bike, player.x, player.y, i <= 2 ? 50 : 100, i <= 2 ? 100 : 50);
+                for (let obstacle of player.obstacles) {
+                    this.contextGamer.drawImage(this.obstacle, obstacle.x, obstacle.y, 50, 50);
                 }
-                contextGamer.drawImage(bike, this.players[i].x, this.players[i].y, 50, 100);
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                for (let speed of player.speed) {
+                    this.contextGamer.drawImage(this.speed, speed.x, speed.y, i <= 2 ? 3 : 107, i <= 2 ? 107 : 3);
+                }
             }
             this.count = (this.count + 1) % 10;
             if (this.count === 0) {
@@ -787,7 +799,7 @@ class GameManager {
                 "left": 0.5 * width - halfSize,
                 "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height - 100
+                "topMax": 0.5 * height - 50
             }
         }
     }
@@ -808,13 +820,13 @@ class GameManager {
                 "left": 0.5 * width - halfSize,
                 "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height - 100
+                "topMax": 0.5 * height - 50
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height - 100,
+                "leftMax": 0.5 * height - 50,
                 "top": 0.5 * height - halfSize,
                 "topMax": 0.5 * height - halfSize + sizeRect - 50
             }
@@ -837,13 +849,13 @@ class GameManager {
                 "left": 0.5 * width - halfSize,
                 "leftMax": 0.5 * width - halfSize + sizeRect - 50,
                 "top": 0,
-                "topMax": 0.5 * height - 100
+                "topMax": 0.5 * height - 50
             },
             "player3": {
                 "x": this.gameState.players[2].x,
                 "y": this.gameState.players[2].y,
                 "left": 0,
-                "leftMax": 0.5 * height - 100,
+                "leftMax": 0.5 * height - 50,
                 "top": 0.5 * height - halfSize,
                 "topMax": 0.5 * height - halfSize + sizeRect - 50
             },
@@ -859,7 +871,7 @@ class GameManager {
     }
 
     drawRect(ctx, leftMargin, topMargin, width, height) {
-        ctx.fillStyle = "orange";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
         ctx.fillRect(leftMargin, topMargin, width, height);
     }
 

@@ -4,6 +4,7 @@ import {SocketManagerProvider} from "../../providers/socket-manager/socket-manag
 import {Subscription} from "rxjs/Rx";
 import {ReadyPage} from "../ready/ready";
 import {InventoryPage} from "../inventory/inventory";
+import {GuidelinePage} from "../guideline/guideline";
 
 /**
  * Generated class for the DilemmePage page.
@@ -28,10 +29,13 @@ export class DilemmePage {
   result;
   stats;
   isReady;
+  jeanDidIt = null;
   slideOptions = {effect: 'flip'};
   showIntro = true;
   showContent = false;
   receivedPart = false;
+  received_img_count = 0;
+  closeBoxs = [true,true,true,true];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.data = navParams.get('step');
@@ -44,12 +48,17 @@ export class DilemmePage {
     }
     this.isReady = false;
 
-    this.socketManager.socket.on('ask-for-new-part', () => {
+    this.socketManager.socket.on('ask-for-new-part', (m) => {
       this.receivedPart = true;
-      console.log('received image :)')
+      this.received_img_count = m.count;
     });
 
   }
+
+  hide(i){
+    this.closeBoxs[i] = false;
+  }
+
 
   nextIntro() {
 
@@ -69,11 +78,14 @@ export class DilemmePage {
 
   answer() {
 
-    const statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie"};
+    const statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie",
+    "Couverture":"Couverture de survie", "Duvet": "Duvet"};
 
     this.hasAnswered = true;
+
     this.result = this.data.choices[this.choice].result;
     this.stats = this.data.choices[this.choice].stats;
+    this.jeanDidIt = this.data.jeanDidIt;
 
     this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
     this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});
@@ -93,6 +105,6 @@ export class DilemmePage {
   }
 
   goTo() {
-    this.navCtrl.push(ReadyPage);
+    this.navCtrl.push(GuidelinePage);
   }
 }

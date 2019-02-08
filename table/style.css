@@ -218,7 +218,7 @@ div.main-container-board {
       -moz-transform: translateY(-50%);
       transform: translateY(-50%); }
     div.main-container-board div.short-edge div.ration-zone-p4 {
-      background-color: #b8b918;
+      background-color: #bf9727;
       top: 50%;
       left: 86%;
       -webkit-transform: translateY(-50%);
@@ -314,7 +314,7 @@ div.main-container-board {
   .connect #connected_3 {
     background-color: #007207; }
   .connect #connected_4 {
-    background-color: #b8b918; }
+    background-color: #bf9727; }
   .connect #qr_1, .connect #connected_1 {
     left: 50%;
     bottom: 5%;

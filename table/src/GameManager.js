@@ -418,7 +418,7 @@ class GameManager {
                 energyP4.css("top", my + jeanHeight + 2);
                 energyP4.css("right", 8 * my);
                 energyLevelP4.css("top", my + jeanHeight + 2);
-                energyLevelP4.css("right", 8 * my + 2);
+                energyLevelP4.css("right", 8 * my + 3);
 
                 substractChickenP4.css("width", jeanWidth / 12);
                 substractChickenP4.css("height", jeanWidth / 12);

@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
-import {ReadyPage} from "../ready/ready";
 import {MoveguidelinePage} from "../moveguideline/moveguideline";
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 import {Subscription} from "rxjs";
 import {DilemmePage} from "../dilemme/dilemme";
-import {GamePage} from "../game/game";
 import {ReadyStepPage} from "../ready-step/ready-step";
 import {GameoverPage} from "../gameover/gameover";
 import {GuidelinePage} from "../guideline/guideline";
+import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 
 @Component({
     selector: 'page-home',
@@ -23,7 +22,7 @@ export class HomePage {
 
 
     constructor(public navCtrl: NavController, public socketManager: SocketManagerProvider,
-                public toastController: ToastController) {
+                public toastController: ToastController, private scanner: BarcodeScanner) {
 
 
         this.status = "Connexion au serveur en cours...";
@@ -67,6 +66,10 @@ export class HomePage {
 
 
     startQR() {
+        this.scanner.scan().then(data => {
+            this.code = data.text;
+            this.connectWithCode()
+        })
     }
 
     go() {

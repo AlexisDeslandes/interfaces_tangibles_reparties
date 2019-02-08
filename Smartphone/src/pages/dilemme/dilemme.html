@@ -7,7 +7,7 @@
 
 <ion-content padding>
 
-  <button (click)="goTo()">GOTO</button>
+    <button (click)="goTo()">GOTO</button>
 
     <ion-slides pager *ngIf="showIntro" class="intro">
         <ion-slide *ngFor="let t of data.intro; let i = index">
@@ -42,25 +42,62 @@
     </div>
 
     <div *ngIf="hasAnswered" text-center class="outro">
-        <ion-card padding class="cardd">
-            <p class="result">{{result}}</p>
+
+        <ion-card padding class="result wsh story" *ngIf="closeBoxs[0]">
+
+            <span class="close"  (click)="hide(0)">
+                <ion-icon name="close"></ion-icon>
+            </span>
+
+            <span class="icn">
+
+                <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/open-book-38-626892.png"/>
+            </span>
+            <p>{{result}}</p>
+        </ion-card>
+
+        <ion-card padding class="wsh"  *ngIf="closeBoxs[1]">
+            <span class="close" (click)="hide(1)">
+                <ion-icon name="close"></ion-icon>
+            </span>
+            <span class="icn">
+                <img src="http://www.iconsalot.com/asset/icons/freepik/lifestyle-icons/128/backpack-icon.png"/>
+            </span>
             <ul class="stats">
                 <li *ngFor="let s of stats"> {{s.type}} {{s.value > 0 ? '+'+s.value : s.value}}</li>
             </ul>
-            <div class="puzzle" *ngIf="receivedPart">
-                <hr>
-                <p style="font-size: 17px; padding: 10px 5px;" *ngIf="received_img_count >0">Vous avez reçu {{received_img_count}} image{{received_img_count > 1 ? 's' : ''}} !</p>
-                <button ion-button outline item-end icon-start (click)="openInventory()">
-                    <ion-icon name="camera"></ion-icon>
-                    Ouvrir l'album photo
-                </button>
-            </div>
         </ion-card>
+
+        <ion-card padding class="puzzle wsh" *ngIf="receivedPart && closeBoxs[2]">
+            <span class="close" (click)="hide(2)">
+                <ion-icon name="close"></ion-icon>
+            </span>
+            <span class="icn">
+                <img src="https://image.flaticon.com/icons/png/128/116/116392.png"/>
+            </span>
+            <p style="font-size: 17px" *ngIf="received_img_count >0">Vous avez reçu {{received_img_count}} image{{received_img_count > 1 ? 's' : ''}} !</p>
+            <button ion-button outline item-end icon-start (click)="openInventory()">
+                <ion-icon name="camera"></ion-icon>
+                Ouvrir l'album photo
+            </button>
+        </ion-card>
+
+        <ion-card padding *ngIf="jeanDidIt && closeBoxs[3]" class="jeanDidIt wsh" >
+            <span class="close" (click)="hide(3)">
+                <ion-icon name="close"></ion-icon>
+            </span>
+            <span class="icn">
+                <img src="https://www.shareicon.net/data/256x256/2015/08/12/84040_bicycle_512x512.png"/>
+            </span>
+
+            <p>{{jeanDidIt}}</p>
+        </ion-card>
+
         <button ion-button round *ngIf="!isReady" (click)="ready()">
             Prêt pour la suite ?
         </button>
 
-        <div text-center *ngIf="isReady" class="rdy">
+        <div text-center *ngIf="isReady" class="rdy" style="margin-top: 30px;">
             <ion-item-divider></ion-item-divider>
             <br>
             <p>En attente des autres joueurs</p>

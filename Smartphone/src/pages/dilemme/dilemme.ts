@@ -29,11 +29,13 @@ export class DilemmePage {
   result;
   stats;
   isReady;
+  jeanDidIt = null;
   slideOptions = {effect: 'flip'};
   showIntro = true;
   showContent = false;
   receivedPart = false;
   received_img_count = 0;
+  closeBoxs = [true,true,true,true];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.data = navParams.get('step');
@@ -52,6 +54,11 @@ export class DilemmePage {
     });
 
   }
+
+  hide(i){
+    this.closeBoxs[i] = false;
+  }
+
 
   nextIntro() {
 
@@ -75,8 +82,10 @@ export class DilemmePage {
     "Couverture":"Couverture de survie", "Duvet": "Duvet"};
 
     this.hasAnswered = true;
+
     this.result = this.data.choices[this.choice].result;
     this.stats = this.data.choices[this.choice].stats;
+    this.jeanDidIt = this.data.jeanDidIt;
 
     this.socketManager.socket.emit('updateStats', {room: this.socketManager.room, stats: this.stats});
     this.socketManager.socket.emit('ask-for-new-part', {room: this.socketManager.room, stats: this.stats});

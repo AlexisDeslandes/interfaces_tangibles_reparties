@@ -23,9 +23,9 @@
 
 
 .content {
-  .date-txt{
+  .date-txt {
     font-weight: 500;
-    padding-top:5px;
+    padding-top: 5px;
     padding-bottom: 20px;
     font-size: 20px;
   }
@@ -41,23 +41,59 @@
   }
 }
 
+.icn{
+  font-size: 25px;
+  text-align: center;
+
+
+  img{
+    height:24px;
+    width:auto;
+    margin: 0 auto;
+    margin-bottom: 9px;
+  }
+}
+
+.wsh {
+  margin: 40px 0;
+  width:100%;
+  padding:15px 10px;
+  border: 0.7px solid #0053ab;
+  border-radius: 3px;
+  box-shadow: 0 10px 6px -6px rgba(119, 119, 119,0.3);
+  p {
+    line-height: 24px;
+    font-size: 18px;
+    text-align: center;
+  }
+  position: relative;
+
+  .close{
+    position: absolute;
+    right:0px;
+    top:0px;
+    height:30px;
+    width: 30px;
+    padding-top: 3px;
+    font-size: 19px;
+    background-color: #d6d6d6;
+    border-radius: 50%;
+    border-top-right-radius: 3px;
+  }
+}
+
 .outro {
 
-  .result{
-    line-height:21px;
-    font-size:18px;
-    text-align: justify;
+
+  ul {
+    padding-left: unset;
+    margin:unset;
   }
 
-  ul{
-    border-top:1px solid #dedede;
-    padding-left:unset;
-    padding-top:20px;
-  }
-
-  li{
-    font-size:17px;
+  li {
+    font-size: 17px;
     list-style: none;
+    padding: 3px 0;
   }
 
   .rdy {
@@ -76,7 +112,22 @@
 
 }
 
-
-.puzzle{
-
+.slide-out-bck-center {
+  -webkit-animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
+
+@keyframes slide-out-bck-center {
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateZ(-1100px);
+    transform: translateZ(-1100px);
+    opacity: 0;
+    display: none;
+  }
+}
+

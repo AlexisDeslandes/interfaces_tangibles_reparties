@@ -18,6 +18,7 @@ module.exports = [
         text: "Le jour du départ approche. A la sortie du Carrefour d'Alger, tous vos sacs sont" +
             " pleins à craquer. Il ne reste que peu de place dans votre sacoche pour un seul objet." +
             "Que choisissez-vous d'emporter : ",
+        jeanDidIt:"Jean Naud a choisi une couverture de survie.",
         choices: [
             {
                 text: "Un parasol",
@@ -59,6 +60,7 @@ module.exports = [
         time: "Janvier 1986 - Blida",
         text: "À l'approche d'une villa qui vous semble familière, vous remarquez un jeune Algérien " +
             " d'une dizaine d'années qui vous fixe du regard. Que choisissez-vous de faire ?",
+        jeanDidIt:"Jean Naud est allé visiter sa maison d'enfance.",
         choices: [
             {
                 text: "Dire bonjour",
@@ -96,6 +98,7 @@ module.exports = [
         ],
         type: 'dilemme',
         time: 'Janvier 1986 - Tamesguida',
+        jeanDidIt:"Jean Naud a pris la route en terre.",
         text: 'A peine avez-vous quitté la ville que la route se sépare en deux. A gauche, une route en terre. ' +
             'A droite, un chemin caillouteux qui semble avoir été emprunté plus d\'une fois. Le choix n\'est pas évident, ' +
             'quelle route décidez-vous de suivre ?',
@@ -138,6 +141,7 @@ module.exports = [
         ],
         time: 'Janvier 1986 - Médéa',
         type: 'dilemme',
+        jeanDidIt:"Jean Naud a attendu que les camions passent.",
         text: "Vous être parvenu à gravir une bonne moitié de la côte, mais les camions ne cessent de défiler sur la " +
             "route, tout en vous enfumant de plus en plus. Il serait peut-être raisonnable d'attendre que le traffic " +
             "se calme un peu...",
@@ -172,6 +176,7 @@ module.exports = [
         }],
         time:"Janvier 1986 - Médéa",
         type:"dilemme",
+        jeanDidIt:"Jean Naud a choisi de regarder le coucher de soleil.",
         text:"Demain, vous partez pour In Salah, c'est une gigantesque traversée qui vous attend... Vous établissez votre " +
             "campement pour la nuit.",
         choices: [
@@ -200,6 +205,7 @@ module.exports = [
         }],
         time:"Janvier 1986 - Médéa",
         type:"dilemme",
+        jeanDidIt:"Jean Naud a dégonflé les pneus de son vélo.",
         text:"Vous rangez toutes vos affaire et vous préparez à partir. Vous prenez juste le temps de faire une petite modification " +
             "sur votre vélo avant de quitter Médéa.",
         choices: [
@@ -288,6 +294,7 @@ module.exports = [
         }],
         time:"Mars 1986 - Tessalit",
         type:"dilemme",
+        jeanDidIt:"Jean Naud a dit « Vous avez des problèmes je crois !» aux touristes anglais.",
         text:"A votre arrivée à Tessalit, vous voyez une Peugeot 404 embourbée dans le sable. Ce sont deux touristes " +
             "anglais qui sont en difficulté. Vous décidez de les aider, vous dites:",
         choices: [

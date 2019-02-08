@@ -23,7 +23,7 @@ import {GameoverPage} from "../pages/gameover/gameover";
 import {InventoryPage} from "../pages/inventory/inventory";
 
 const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
-//const config: SocketIoConfig = {url: 'http://10.188.26.122:4444', options: {}};
+//const config: SocketIoConfig = {url: 'http://192.168.1.7:4444', options: {}};
 
 
 @NgModule({

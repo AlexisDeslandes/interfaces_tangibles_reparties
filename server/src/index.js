@@ -43,14 +43,6 @@ io.on('connection', socket => {
         }
     });
 
-    socket.on('ask-for-new-part', m => {
-        let game = getGameByRoomName(m.room);
-        if (game) {
-            game.givePuzzlePart(socket)
-        } else {
-            console.log("requested game does not exists")
-        }
-    });
 
     socket.on('updateStats', m => {
         let game = getGameByRoomName(m.room);
@@ -82,6 +74,17 @@ io.on('connection', socket => {
         }
     });
 
+    //ok
+    socket.on('ask-for-new-part', m => {
+        let game = getGameByRoomName(m.room);
+        if (game) {
+            game.givePuzzlePart(socket)
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
+
     socket.on('put-part-of-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
@@ -91,10 +94,11 @@ io.on('connection', socket => {
         }
     });
 
+
     socket.on('get-puzzle', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.givePuzzle(socket)
+            game.givePuzzle(socket, m)
         } else {
             console.log("requested game does not exists")
         }
@@ -112,7 +116,7 @@ io.on('connection', socket => {
     socket.on('show-puzzle-on-table', m => {
         let game = getGameByRoomName(m.room);
         if (game) {
-            game.showPuzzleToAll();
+            game.showPuzzleToAll(m);
         } else {
             console.log("requested game does not exists")
         }

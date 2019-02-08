@@ -1,6 +1,6 @@
 const scenario = require('./scenario');
 const VeloGame = require('./VeloGame');
-const PuzzleManager = require('../model/PuzzleManager');
+const PuzzleManager = require('./puzzle/PuzzleManager');
 const MapManager = require('../model/MapManager');
 
 
@@ -13,7 +13,6 @@ module.exports = class Game {
         this.tableSocket = tableSocket;
         this.currentStep = 0;
         this.readyCount = 0;
-        this.temperature = 35;
         this.jauges = {};
         this.adventureSteps = scenario;
         console.log("new game created : " + room);
@@ -21,23 +20,23 @@ module.exports = class Game {
         this.map = new MapManager();
     }
 
-    showPuzzleToAll() {
+    showPuzzleToAll(m) {
         this.players.forEach(p => {
-            this.puzzle.sendPuzzle(p.socket)
+            this.puzzle.sendPuzzle(p.socket, m)
         });
-        this.puzzle.sendPuzzle(this.tableSocket)
+        this.puzzle.sendPuzzle(this.tableSocket, m)
     }
 
-    showEndedPuzzleToAll() {
+    showEndedPuzzleToAll(d) {
         this.players.forEach(p => {
-            p.socket.emit('puzzle-ended')
+            p.socket.emit('puzzle-ended', {puzzle : d.puzzle})
         });
-        this.tableSocket.emit('puzzle-ended')
+        this.tableSocket.emit('puzzle-ended', {puzzle : d.puzzle})
     }
 
 
-    givePuzzle(socket) {
-        this.puzzle.sendPuzzle(socket);
+    givePuzzle(socket, m) {
+        this.puzzle.sendPuzzle(socket, m);
     }
 
     givePuzzlePart(socket) {
@@ -52,10 +51,10 @@ module.exports = class Game {
     playerPuzzleUpdate(socket, d) {
         let res = this.puzzle.playerPuzzleUpdate(socket, d);
         if (res === 'ok') {
-            this.showPuzzleToAll();
+            this.showPuzzleToAll(d);
         } else if (res === 'end') {
-            this.showEndedPuzzleToAll();
-        }
+            this.showEndedPuzzleToAll(d);
+        } //else if (res === 'fail') --> notify table
     }
 
     playerIsReady(socket) {
@@ -157,7 +156,7 @@ module.exports = class Game {
         return found;
     }
 
-    changeMap(id) {
+    changeMap(id){
         this.map.drawArc(id);
         this.map.sendArcs(this.tableSocket);
     }

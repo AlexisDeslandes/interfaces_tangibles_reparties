@@ -13,8 +13,8 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://10.188.26.122:4444');
-        //this.socket = io.connect('http://localhost:4444');
+        //this.socket = io.connect('http://10.188.26.122:4444');
+            this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
             this.showGame(data.playersCount);
@@ -69,9 +69,10 @@ class GameManager {
                 audio.play();
                 let ctn = $('#puzzle-parent');
                 ctn.empty();
-                data.puzzle.forEach(p => {
+                let puzzleName = data.puzzle.name
+                data.puzzle.parts.forEach(p => {
                     let img;
-                    if (p.shown) img = "<img src='../res/puzzle1/" + p.picture + "' class='slide-in-fwd-center'/>";
+                    if (p.shown) img = "<img src='../res/"+puzzleName+"/" + p.picture + "' class='slide-in-fwd-center'/>";
                     else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
@@ -84,10 +85,17 @@ class GameManager {
             }
         });
 
-        this.socket.on('puzzle-ended', () => {
+        this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
-            $('#puzzle-result').show();
+            console.log('puzzle-ended',m)
+            if(m.puzzle === 'puzzle1')
+
+            $('#result-img').attr('src', 'res/puzzle1/full.jpg');
+            else
+                $('#result-img').attr('src', 'res/puzzle2/full.jpg');
+
+            $('#puzzle-result').show()
             $('#puzzle-title').hide();
         });
 
@@ -431,7 +439,7 @@ class GameManager {
 
     showPuzzleToAll() {
         $("#puzzle").toggle();
-        this.socket.emit('show-puzzle-on-table', {room: this.gameRoom})
+        this.socket.emit('show-puzzle-on-table', {room: this.gameRoom, puzzle: 'puzzle1'})
     }
 
     showPuzzle() {

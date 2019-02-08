@@ -4,7 +4,6 @@ import {SocketManagerProvider} from "../../providers/socket-manager/socket-manag
 import {Subscription} from "rxjs/Rx";
 import {ReadyPage} from "../ready/ready";
 import {InventoryPage} from "../inventory/inventory";
-import {GuidelinePage} from "../guideline/guideline";
 
 /**
  * Generated class for the DilemmePage page.
@@ -15,60 +14,61 @@ import {GuidelinePage} from "../guideline/guideline";
 
 @IonicPage()
 @Component({
-    selector: 'page-dilemme',
-    templateUrl: 'dilemme.html',
+  selector: 'page-dilemme',
+  templateUrl: 'dilemme.html',
 })
 export class DilemmePage {
 
-    @ViewChild(Slides) slides: Slides;
+  @ViewChild(Slides) slides: Slides;
 
 
-    data;
-    hasAnswered = false;
-    choice = null;
-    result;
-    stats;
-    isReady;
-    slideOptions = {effect: 'flip'};
-    showIntro = true;
-    showContent = false;
-    receivedPart = false;
+  data;
+  hasAnswered = false;
+  choice = null;
+  result;
+  stats;
+  isReady;
+  slideOptions = {effect: 'flip'};
+  showIntro = true;
+  showContent = false;
+  receivedPart = false;
+  received_img_count = 0;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
-        this.data = navParams.get('step');
-        if (!this.data.hasOwnProperty('intro')) {
-            this.showIntro = false;
-            this.showContent = true;
-        } else {
-            this.showIntro = true;
-            this.showContent = false;
-        }
-        this.isReady = false;
-
-        this.socketManager.socket.on('ask-for-new-part', () => {
-            this.receivedPart = true;
-            console.log('received image :)')
-        });
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
+    this.data = navParams.get('step');
+    if (!this.data.hasOwnProperty('intro')) {
+      this.showIntro = false;
+      this.showContent = true;
+    } else {
+      this.showIntro = true;
+      this.showContent = false;
     }
+    this.isReady = false;
 
-    nextIntro() {
+    this.socketManager.socket.on('ask-for-new-part', (m) => {
+      this.receivedPart = true;
+      this.received_img_count = m.count;
+    });
 
-        this.slides.slideNext();
+  }
 
-    }
+  nextIntro() {
 
-    endIntro() {
-        this.showIntro = false;
-        this.showContent = true;
-    }
+    this.slides.slideNext();
 
-    openInventory() {
-        this.navCtrl.push(InventoryPage);
-    }
+  }
+
+  endIntro() {
+    this.showIntro = false;
+    this.showContent = true;
+  }
+
+  openInventory(){
+    this.navCtrl.push(InventoryPage);
+  }
 
 
-    answer() {
+  answer() {
 
     const statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie"};
 
@@ -84,17 +84,16 @@ export class DilemmePage {
     }
   }
 
-    ready() {
-        this.isReady = true;
-        this.socketManager.sendReady();
-    }
+  ready() {
+    this.isReady = true;
+    this.socketManager.sendReady();
+  }
 
-    next() {
-        this.socketManager.sendNext();
-    }
+  next() {
+    this.socketManager.sendNext();
+  }
 
-    goTo() {
-        //this.navCtrl.push(GuidelinePage);
-        this.navCtrl.push(ReadyPage);
-    }
+  goTo() {
+    this.navCtrl.push(ReadyPage);
+  }
 }

@@ -1,7 +1,8 @@
 import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget';
-import ImageWidget from './ImageWidget/ImageWidget';
+// import ImageWidget from './ImageWidget/ImageWidget';
+import ImageElementWidget from './ImageElementWidget/ImageElementWidget';
 import RationWidget from './RationWidget/RationWidget';
 import StartButtonWidget from './Buttons/StartButtonWidget';
 import PlayButtonWidget from './Buttons/PlayButtonWidget';
@@ -18,7 +19,7 @@ class GameManager {
         this.change = true;
 
         //this.socket = io.connect('http://192.168.1.20:4444');
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.6:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
             this.showGame(data.playersCount);
@@ -103,11 +104,11 @@ class GameManager {
                 audio.play();
                 let ctn = $('#puzzle-parent');
                 ctn.empty();
-                let puzzleName = data.puzzle.name
+                let puzzleName = data.puzzle.name;
                 data.puzzle.parts.forEach(p => {
                     let img;
                     if (p.shown) img = "<img src='../res/"+puzzleName+"/" + p.picture + "' class='slide-in-fwd-center'/>";
-                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>";
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
                         img +
@@ -122,14 +123,14 @@ class GameManager {
         this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
-            console.log('puzzle-ended',m)
+            console.log('puzzle-ended',m);
             if(m.puzzle === 'puzzle1')
 
             $('#result-img').attr('src', 'res/puzzle1/full.jpg');
             else
                 $('#result-img').attr('src', 'res/puzzle2/full.jpg');
 
-            $('#puzzle-result').show()
+            $('#puzzle-result').show();
             $('#puzzle-title').hide();
         });
 
@@ -184,7 +185,7 @@ class GameManager {
         this.socket.on("stateGame", (data) => {
             this.players = data.players;
             //change = !change;
-        })
+        });
 
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
         this.obstacle = document.getElementById('obstacle');
@@ -634,7 +635,7 @@ class GameManager {
     }
 
     next() {
-        this.socket.emit('next', {room: this.gameRoom})
+        this.socket.emit('next', {room: this.gameRoom});
         this.socket.emit('ask-for-trophies', {room: this.gameRoom})
 
     }
@@ -876,9 +877,12 @@ class GameManager {
     }
 
     initWidgets(nbPlayer) {
+        // this.trophyW1 = new ImageWidget(384, 287, 300, 300, 'res/recompenses/5.jpg', 10);
+        // this.trophyW1.addTo($('#trophies').get(0));
         this.socket.on('new-trophy', (data) => {
             console.log("new trophy received");
-            this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+            // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+            this.recompensesWidget[data.step] = new ImageElementWidget(384, 287, 300, 300, data.step*10, 1, data.img);
             this.recompensesWidget[data.step].hide();
             this.recompensesWidget[data.step].addTo($('#trophies').get(0));
             this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);

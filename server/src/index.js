@@ -13,8 +13,6 @@ let playersPerGame = 4;
 let games = [];
 
 io.on('connection', socket => {
-
-
     socket.on('init', m => {
         let room = "game" + roomsCount;
         games.push(new Game(room, playersPerGame, socket));
@@ -208,7 +206,7 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
-    })
+    });
 
     socket.on("gamePreparation", data => {
         let game = getGameByRoomName(data.room);
@@ -217,7 +215,7 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
-    })
+    });
 
     socket.on('moveSideRequest', data => {
         let game = getGameByRoomName(data.room);

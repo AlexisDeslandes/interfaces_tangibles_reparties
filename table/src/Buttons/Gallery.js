@@ -7,9 +7,9 @@ import $ from 'jquery/dist/jquery.min';
 
 import TUIOWidget from 'tuiomanager/core/TUIOWidget';
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from 'tuiomanager/core/constants';
-// import ImageElementWidget from "../ImageElementWidget/ImageElementWidget";
+import ImageElementWidget from "../ImageElementWidget/ImageElementWidget";
 import { radToDeg } from 'tuiomanager/core/helpers';
-import ImageWidget from '../ImageWidget/ImageWidget';
+// import ImageWidget from '../ImageWidget/ImageWidget';
 
 /**
  * Main class to manage Gallery.
@@ -71,7 +71,8 @@ class Gallery extends TUIOWidget {
     addPicture(data){
         // const left = document.getElementById('gallery').getBoundingClientRect().left;
         // const top = document.getElementById('gallery').getBoundingClientRect().top;
-        this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+        // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+        this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.step*10, 1, data.img,);
         this.recompensesWidget[data.step].hide();
         // $('trophies').append(this.recompensesWidget[data.step].domElem);
         this.recompensesWidget[data.step].addTo($('#trophies').get(0));

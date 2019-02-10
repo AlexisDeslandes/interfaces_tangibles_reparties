@@ -51,7 +51,7 @@ div.main-container-board {
   margin-right: auto;
   margin-left: auto;
 
-  canvas[id^=jean-p], canvas[id^=bike-p], div[id^=bike-p],
+  img[id^=img-jean-p], canvas[id^=bike-p], div[id^=bike-p],
   img[id^=water-p], div[id^=water-level-p], img[id^=energy-p], div[id^=energy-level-p] {
     display: none;
     position: absolute;
@@ -65,15 +65,15 @@ div.main-container-board {
     animation-timing-function: linear;
   }
 
-  #jean-p2, #bike-p2, #water-p2, #water-level-p2, #energy-p2, #energy-level-p2 {
+  #img-jean-p2, #bike-p2, #water-p2, #water-level-p2, #energy-p2, #energy-level-p2 {
     @include transform(rotate(180deg));
   }
 
-  #jean-p3, #bike-p3, #water-p3, #water-level-p3, #energy-p3, #energy-level-p3 {
+  #img-jean-p3, #bike-p3, #water-p3, #water-level-p3, #energy-p3, #energy-level-p3 {
     @include transform(rotate(90deg));
   }
 
-  #jean-p4, #bike-p4, #water-p4, #water-level-p4, #energy-p4, #energy-level-p4 {
+  #img-jean-p4, #bike-p4, #water-p4, #water-level-p4, #energy-p4, #energy-level-p4 {
     @include transform(rotate(270deg));
   }
 
@@ -127,32 +127,6 @@ div.main-container-board {
 
   img.picto {
     position: absolute;
-  }
-
-
-  div.substract-level {
-    position: absolute;
-    background-color: white;
-    width: 100%;
-    animation-name: substract;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    height: 0;
-  }
-
-  div[id^=substract-] {
-    position: absolute;
-    display: none;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    background-color: red;
-    opacity: 0;
-  }
-
-  div[id^=substract-mood-p] {
-    background-color: transparent;
   }
 
 

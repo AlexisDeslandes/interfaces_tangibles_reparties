@@ -24,7 +24,7 @@ div.main-container-board {
   display: none;
   margin-right: auto;
   margin-left: auto; }
-  div.main-container-board canvas[id^=jean-p], div.main-container-board canvas[id^=bike-p], div.main-container-board div[id^=bike-p],
+  div.main-container-board img[id^=img-jean-p], div.main-container-board canvas[id^=bike-p], div.main-container-board div[id^=bike-p],
   div.main-container-board img[id^=water-p], div.main-container-board div[id^=water-level-p], div.main-container-board img[id^=energy-p], div.main-container-board div[id^=energy-level-p] {
     display: none;
     position: absolute; }
@@ -35,17 +35,17 @@ div.main-container-board {
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear; }
-  div.main-container-board #jean-p2, div.main-container-board #bike-p2, div.main-container-board #water-p2, div.main-container-board #water-level-p2, div.main-container-board #energy-p2, div.main-container-board #energy-level-p2 {
+  div.main-container-board #img-jean-p2, div.main-container-board #bike-p2, div.main-container-board #water-p2, div.main-container-board #water-level-p2, div.main-container-board #energy-p2, div.main-container-board #energy-level-p2 {
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     transform: rotate(180deg); }
-  div.main-container-board #jean-p3, div.main-container-board #bike-p3, div.main-container-board #water-p3, div.main-container-board #water-level-p3, div.main-container-board #energy-p3, div.main-container-board #energy-level-p3 {
+  div.main-container-board #img-jean-p3, div.main-container-board #bike-p3, div.main-container-board #water-p3, div.main-container-board #water-level-p3, div.main-container-board #energy-p3, div.main-container-board #energy-level-p3 {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     transform: rotate(90deg); }
-  div.main-container-board #jean-p4, div.main-container-board #bike-p4, div.main-container-board #water-p4, div.main-container-board #water-level-p4, div.main-container-board #energy-p4, div.main-container-board #energy-level-p4 {
+  div.main-container-board #img-jean-p4, div.main-container-board #bike-p4, div.main-container-board #water-p4, div.main-container-board #water-level-p4, div.main-container-board #energy-p4, div.main-container-board #energy-level-p4 {
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
@@ -82,25 +82,6 @@ div.main-container-board {
     width: 24.5%; }
   div.main-container-board img.picto {
     position: absolute; }
-  div.main-container-board div.substract-level {
-    position: absolute;
-    background-color: white;
-    width: 100%;
-    animation-name: substract;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    height: 0; }
-  div.main-container-board div[id^=substract-] {
-    position: absolute;
-    display: none;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    background-color: red;
-    opacity: 0; }
-  div.main-container-board div[id^=substract-mood-p] {
-    background-color: transparent; }
   div.main-container-board img.smartphone-picto {
     animation-duration: 1s;
     animation-iteration-count: infinite;

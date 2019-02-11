@@ -14,6 +14,8 @@ module.exports = class Game {
         this.currentStep = 0;
         this.readyCount = 0;
         this.jauges = {};
+        this.chickenUsed = ["", 0, 0, 0, 0];
+        this.waterUsed = ["", 0, 0, 0, 0];
         this.adventureSteps = scenario;
         console.log("new game created : " + room);
         this.puzzle = new PuzzleManager(7);
@@ -164,28 +166,21 @@ module.exports = class Game {
     useRation(m) {
         if (typeof this.jauges[m.player] !== 'undefined') {
             if (m.id === 'B3') {
-                this.jauges[m.player].water += 1;
-                this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur " + m.player + " utilise de l'eau");
-            } else if (m.id === 5) {
-                this.jauges[m.player].energy += 1;
-                this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur " + m.player + " utilise de l'énergie");
-
+                if (this.waterUsed[m.player] < 3) {
+                    this.jauges[m.player].water += 2;
+                    this.jauges[m.player].water = Math.min(10, this.jauges[m.player].water);
+                    this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                    this.waterUsed[m.player]++;
+                    console.log("Joueur " + m.player + " utilise de l'eau");
+                }
             } else if (m.id === 6) {
-                this.jauges[m.player].chicken += 1;
-                this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur " + m.player + " utilise du poulet");
-
-            } else if (m.id === 'B4') {
-                this.jauges[m.player].mood += 1;
-                this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur " + m.player + " utilise de l'ectasy");
-
-            } else if (m.id === 8) {
-                this.jauges[m.player].bike += 1;
-                this.tableSocket.emit("ration-used", {jauges: this.jauges});
-                console.log("Joueur " + m.player + " utilise son vélo");
+                if (this.chickenUsed[m.player] < 3) {
+                    this.jauges[m.player].chicken += 2;
+                    this.jauges[m.player].chicken = Math.min(10, this.jauges[m.player].chicken);
+                    this.tableSocket.emit("ration-used", {jauges: this.jauges});
+                    this.chickenUsed[m.player]++;
+                    console.log("Joueur " + m.player + " utilise du poulet");
+                }
             }
         }
     }

@@ -44,12 +44,13 @@ export class GamePage {
             this.socket.sendMoveSideRequest(value.y);
         });
         this.socket.stateSubject.subscribe(data => {
-            if (data['status'] === 'dead') {
+            if (data['status'] === 'dead' || data['status'] === "win") {
                 gyroscopeSubscribe.unsubscribe();
                 this.animationToCancel.forEach(elem => cancelAnimationFrame(elem));
                 const grid = document.getElementById('main');
                 grid.style.display = 'none';
-                const grid2 = document.getElementById('second');
+                let id = data['status'] === 'dead' ? 'second' : 'third';
+                const grid2 = document.getElementById(id);
                 grid2.style.display = 'block';
             }
         });

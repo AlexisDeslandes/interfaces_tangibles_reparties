@@ -10,6 +10,14 @@ module.exports = class VeloGame {
         }
     }
 
+    isOnlyOneLeft(){
+        return this.players.length === 1;
+    }
+
+    getPlayerLeft(){
+        return this.players[0].id;
+    }
+
     leaveGame(playerId){
         this.players[playerId-1].empty();
         this.peopleJoined--;

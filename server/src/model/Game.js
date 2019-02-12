@@ -220,11 +220,15 @@ module.exports = class Game {
 
     setPlayerData(state) {
         this.veloGame.setState(state);
-        setInterval(() => {
-            setTimeout(() => {
-                this.veloGame.generateObstacles()
-            }, 5000);
-        }, 2000);
+        let seconds = 8000;
+        const generate = () => {
+            if (seconds > 500) {
+                seconds -= 500;
+            }
+            this.veloGame.generateObstacles();
+            setTimeout(generate, seconds);
+        };
+        setTimeout(generate, seconds);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
             setTimeout(() => {
@@ -232,8 +236,10 @@ module.exports = class Game {
                 if (idPlayerDead !== -1) {
                     this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
                 }
+                if (this.veloGame.isOnlyOneLeft()) {
+                    this.sendToPlayer(this.veloGame.getPlayerLeft(), "win", {})
+                }
             }, 5000);
-
         }, 16)
     }
 
@@ -260,13 +266,13 @@ module.exports = class Game {
         const emptyGame = this.veloGame.leaveGame(player);
         if (emptyGame) {
             clearInterval(this.mainInterval);
-            this.tableSocket.emit('clean',{});
+            this.tableSocket.emit('clean', {});
         }
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    sendToPlayer(idPlayerDead, topic, object) {
-        this.players[idPlayerDead - 1].socket.emit(topic, object);
+    sendToPlayer(idPlayer, topic, object) {
+        this.players[idPlayer - 1].socket.emit(topic, object);
     }
 };

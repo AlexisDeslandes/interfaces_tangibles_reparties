@@ -221,26 +221,33 @@ module.exports = class Game {
     setPlayerData(state) {
         this.veloGame.setState(state);
         let seconds = 8000;
+        let tickToWin = 25;
+
         const generate = () => {
-            if (seconds > 500) {
-                seconds -= 500;
+            if (--tickToWin > 0 && this.veloGame.areSurvivantsPresent()) {
+                if (seconds > 1000) {
+                    seconds -= 500;
+                }
+                if (tickToWin % 5 === 0) {
+                    this.tableSocket.emit('nextAudio', {})
+                }
+                this.veloGame.generateObstacles();
+                setTimeout(generate, seconds);
+            } else {
+                const playersAlive = this.veloGame.getPlayersAlive();
+                playersAlive.forEach(player => this.sendToPlayer(player, "win", {status: 'win'}));
+                this.tableSocket.emit('clearCanvas', {});
+                clearInterval(this.mainInterval);
             }
-            this.veloGame.generateObstacles();
-            setTimeout(generate, seconds);
         };
         setTimeout(generate, seconds);
-        setInterval(() => {
+        this.mainInterval = setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
-            setTimeout(() => {
-                const idPlayerDead = this.veloGame.back(true);
-                if (idPlayerDead !== -1) {
-                    this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
-                }
-                if (this.veloGame.isOnlyOneLeft()) {
-                    this.sendToPlayer(this.veloGame.getPlayerLeft(), "win", {})
-                }
-            }, 5000);
-        }, 16)
+            const idPlayerDead = this.veloGame.back(true);
+            if (idPlayerDead !== -1) {
+                this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
+            }
+        }, 16);
     }
 
     setGuidelinePlayerData(data) {
@@ -273,6 +280,7 @@ module.exports = class Game {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     sendToPlayer(idPlayer, topic, object) {
+        console.log(topic);
         this.players[idPlayer - 1].socket.emit(topic, object);
     }
 };

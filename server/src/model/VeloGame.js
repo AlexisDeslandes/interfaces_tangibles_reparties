@@ -10,18 +10,13 @@ module.exports = class VeloGame {
         }
     }
 
-    isOnlyOneLeft(){
-        return this.players.length === 1;
+    areSurvivantsPresent(){
+        return this.players.length > 0;
     }
 
-    getPlayerLeft(){
-        return this.players[0].id;
-    }
-
-    leaveGame(playerId){
-        this.players[playerId-1].empty();
+    leaveGame(playerId) {
+        this.players[playerId - 1].empty();
         this.peopleJoined--;
-        console.log(this.peopleJoined);
         return this.peopleJoined === 0;
     }
 
@@ -56,7 +51,7 @@ module.exports = class VeloGame {
 
     back(provokeDeath) {
         let idToReturn = -1;
-        const descente = 1.15;
+        const descente = 1;
         const speedObstacle = 3;
         const speed = 45;
         const newPlayers = [];
@@ -190,5 +185,9 @@ module.exports = class VeloGame {
 
     generateSpeed(player) {
         player.generateSpeed()
+    }
+
+    getPlayersAlive() {
+        return this.players.map(player => player.id);
     }
 }

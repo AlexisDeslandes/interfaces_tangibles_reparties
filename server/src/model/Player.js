@@ -65,23 +65,23 @@ module.exports = class Player {
     move() {
         switch (this.id) {
             case 1:
-                if (this.y - 2 >= this.top && !this.isCollision()) {
-                    this.y -= 2;
+                if (this.y - 1.2 >= this.top && !this.isCollision()) {
+                    this.y -= 1.2;
                 }
                 break;
             case 2:
-                if (this.y + 2 <= this.topMax && !this.isCollision()) {
-                    this.y += 2;
+                if (this.y + 1.2 <= this.topMax && !this.isCollision()) {
+                    this.y += 1.2;
                 }
                 break;
             case 3:
-                if (this.x + 2 <= this.leftMax && !this.isCollision()) {
-                    this.x += 2;
+                if (this.x + 1.2 <= this.leftMax && !this.isCollision()) {
+                    this.x += 1.2;
                 }
                 break;
             default:
-                if (this.x - 2 >= this.left && !this.isCollision()) {
-                    this.x -= 2;
+                if (this.x - 1.2 >= this.left && !this.isCollision()) {
+                    this.x -= 1.2;
                 }
                 break;
         }

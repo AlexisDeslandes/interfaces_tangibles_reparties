@@ -9,6 +9,8 @@ class GameManager {
 
     constructor() {
 
+        const runSound = ['../res/sounds/valid.wav', '../res/sounds/valid.wav', '../res/sounds/valid.wav', '../res/sounds/valid.wav', '../res/sounds/valid.wav'];
+
         this.isClean = false;
 
         this.players = [];
@@ -26,6 +28,20 @@ class GameManager {
         this.socket.on('clean', () => {
             console.log("It's cleaning");
             this.isClean = true;
+        });
+
+        this.socket.on('clearCanvas', () => {
+            console.log("It's cleaning");
+            document.getElementById('trueGame').style.display = "none";
+            document.getElementById('gamer').style.display = "none";
+            this.isClean = true;
+        });
+
+        let idAudio = 0;
+
+        this.socket.on('nextAudio', () => {
+            const audio = new Audio(runSound[idAudio++]);
+            audio.play();
         });
 
         let self = this;
@@ -640,8 +656,6 @@ class GameManager {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(document.getElementById('fond'), 0, 0, width, height);
 
-        //todo const sand = new Sand(height, (width / 2) - halfSize, (width / 2) - halfSize + (height / 2));
-
         this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
         this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
         this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
@@ -656,8 +670,15 @@ class GameManager {
                     ? this.generateState3(width, height, halfSize, sizeRect)
                     : this.generateState4(width, height, halfSize, sizeRect);
         console.log("Game state - " + gameState);
+        let soundLoop;
         switch (gameState) {
             case 'game':
+                this.audio = new Audio('../res/sounds/tempete.mp3');
+                this.audio.play();
+                soundLoop = setInterval(() => {
+                    this.audio = new Audio('../res/sounds/tempete.mp3');
+                    this.audio.play();
+                }, 24000);
                 this.socket.emit('gamePreparation', {
                     room: this.gameRoom,
                     state: state
@@ -700,6 +721,11 @@ class GameManager {
             }
             looping = requestAnimationFrame(loop);
             if (this.isClean) {
+                if (this.audio) {
+                    this.audio.pause();
+                    this.audio.currentTime = 0;
+                }
+                clearInterval(soundLoop);
                 this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 cancelAnimationFrame(looping);
             }

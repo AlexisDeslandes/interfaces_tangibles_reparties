@@ -52,6 +52,11 @@ export class SocketManagerProvider {
             this.emit();
         })
 
+        socket.on('win',data=>{
+            this.state = data;
+            this.emit();
+        })
+
     }
 
     join(room, player) {

@@ -656,10 +656,10 @@ class GameManager {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(document.getElementById('fond'), 0, 0, width, height);
 
-        this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
-        this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
-        this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
-        this.drawRect(ctx, width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect);   //joueur 4
+        this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2), 2);   //joueur 2
+        this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect, 3);  //joueur 3
+        this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2), 1);    //joueur 1
+        this.drawRect(ctx, width - (height / 2), (height / 2) - halfSize, (height / 2), sizeRect, 4);   //joueur 4
 
         this.gameState = new GameState(nbPlayer);
         const state = nbPlayer === 1
@@ -678,7 +678,7 @@ class GameManager {
                 soundLoop = setInterval(() => {
                     this.audio = new Audio('../res/sounds/tempete.mp3');
                     this.audio.play();
-                }, 24000);
+                }, 23000);
                 this.socket.emit('gamePreparation', {
                     room: this.gameRoom,
                     state: state
@@ -833,13 +833,37 @@ class GameManager {
         }
     }
 
-    drawRect(ctx, leftMargin, topMargin, width, height) {
+    drawRect(ctx, leftMargin, topMargin, width, height, id) {
         ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
         ctx.fillRect(leftMargin, topMargin, width, height);
         ctx.fillStyle = "#000000";
         ctx.lineWidth = "5";
         ctx.rect(leftMargin, topMargin, width, height);
         ctx.stroke();
+        const death = document.getElementById('death');
+        switch (id) {
+            case 1:
+                for (let i = leftMargin; i < width + leftMargin; i += 50) {
+                    ctx.drawImage(death, i, 2 * height - 50, 50, 50);
+                }
+                break;
+            case 2:
+                for (let i = leftMargin; i < width + leftMargin; i += 50) {
+                    ctx.drawImage(death, i, topMargin, 50, 50);
+                }
+                break;
+            case 3:
+                for (let i = topMargin; i < topMargin + height; i += 50) {
+                    ctx.drawImage(death, 0, i, 50, 50);
+                }
+                break;
+            default:
+                for (let i = topMargin; i < topMargin + height; i += 50) {
+                    ctx.drawImage(death, leftMargin + width - 50, i, 50, 50);
+                }
+                break;
+        }
+
     }
 
     initWidgets(nbPlayer) {

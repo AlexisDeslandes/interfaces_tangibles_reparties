@@ -132,13 +132,14 @@ export class GamePage {
         slide.style.height = width + "px";
         slide2.style.width = width + "px";
         slide2.style.height = width + "px";
-        slide.ontouchmove = (e) => this.onSlideMove(e, width, goalY, startY);
-
+        slide2.style.top = goalY + "px";
+        slide.ontouchmove = (e) => this.onSlideMove(e, width, goalY, startY, "slid", "slid2");
+        slide2.ontouchmove = (e) => this.onSlideMove(e, width, goalY, startY, "slid2", "slid");
     }
 
-    onSlideMove(e, width, goalY, startY) {
+    onSlideMove(e, width, goalY, startY, id, id2) {
         const touches = e.touches;
-        if (touches.length === 2 && touches[0].target.id == "slid" && touches[1].target.id == "slid2") {
+        if (touches.length === 2 && touches[0].target.id == id && touches[1].target.id == id2) {
             let left = touches[0];
             let right = touches[1];
             const yLeft = left.clientY - width / 2;

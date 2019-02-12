@@ -810,6 +810,10 @@ class GameManager {
     drawRect(ctx, leftMargin, topMargin, width, height) {
         ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
         ctx.fillRect(leftMargin, topMargin, width, height);
+        ctx.fillStyle = "#000000";
+        ctx.lineWidth = "5";
+        ctx.rect(leftMargin, topMargin, width, height);
+        ctx.stroke();
     }
 
     initWidgets(nbPlayer) {

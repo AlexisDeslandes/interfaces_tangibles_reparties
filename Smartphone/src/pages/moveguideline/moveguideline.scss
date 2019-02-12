@@ -1,12 +1,21 @@
 page-moveguideline {
-  ion-grid{
-    background-image: url("../../assets/imgs/sable.jpg");
+  ion-grid {
     height: 100%;
+  }
+
+  ion-col{
+    height: 100%;
+  }
+
+  canvas {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   h1{
     text-align: center;
-    color: #488aff;
     font-weight: bold;
     font-size: 40px;
   }
@@ -20,12 +29,22 @@ page-moveguideline {
 
   h4{
     text-align: center;
-    color: #707070;
+    color: red;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 24px;
   }
 
-  .wrap-title{
+  .bottom-div{
+    top: 70%;
+    position: absolute;
+    flex-direction: column;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wrap-title {
     background-color: white;
     border: 3px #707070 solid;
     border-radius: 17px;
@@ -40,9 +59,11 @@ page-moveguideline {
     height: 40%;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.5);
+    z-index: 10000 !important;
   }
 
   .slide {
+    z-index: 1000000 !important;
     position: absolute;
     border-radius: 100%;
     background-color: #707070;
@@ -57,15 +78,7 @@ page-moveguideline {
   .nine-row {
     flex: 9;
     background-size: cover;
-    background: url("../assets/imgs/bike.svg") no-repeat center center;
-    z-index: 2;
-  }
-
-  .nine-row-2 {
-    flex: 9;
-    background-size: cover;
-    background: url("../assets/imgs/bike2.svg") no-repeat center center;
-    z-index: 2;
+    height: 100%;
   }
 
   .two-row {
@@ -82,5 +95,17 @@ page-moveguideline {
 
   .visible {
     display: block;
+  }
+
+  .firstCanvas {
+    z-index: 1000;
+  }
+
+  .secondCanvas {
+    z-index: 100;
+  }
+
+  .fond{
+    z-index: 10;
   }
 }

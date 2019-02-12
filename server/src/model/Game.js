@@ -18,6 +18,8 @@ module.exports = class Game {
         console.log("new game created : " + room);
         this.puzzle = new PuzzleManager(7);
         this.map = new MapManager();
+
+        this.obstaclesLoop = new Map();
     }
 
     showPuzzleToAll(m) {
@@ -197,10 +199,18 @@ module.exports = class Game {
         if (isGameReady) {
             this.sendToAllPlayers("veloReady", {status: "veloReady"});
             setTimeout(() => {
-                this.tableSocket.emit("askTableDataGame", {playersCount: this.players.length})
+                this.tableSocket.emit("askTableDataGame", {playersCount: this.players.length, state: "game"})
             }, 5000)
         } else {
             this.sendToAllPlayers("playerJoinedVelo", {status: "playerJoinedVelo", playerId: playerId})
+        }
+    }
+
+    joinGuideline1() {
+        const isGameReady = this.veloGame.playerJoin();
+        if (isGameReady) {
+            this.tableSocket.emit("askTableDataGame", {playersCount: this.players.length, state: "guideline1"});
+            this.sendToAllPlayers("guideline1", {status: "guideline1"});
         }
     }
 
@@ -214,11 +224,11 @@ module.exports = class Game {
             setTimeout(() => {
                 this.veloGame.generateObstacles()
             }, 5000);
-        }, 1000);
+        }, 2000);
         setInterval(() => {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
             setTimeout(() => {
-                const idPlayerDead = this.veloGame.back();
+                const idPlayerDead = this.veloGame.back(true);
                 if (idPlayerDead !== -1) {
                     this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
                 }
@@ -227,8 +237,31 @@ module.exports = class Game {
         }, 16)
     }
 
+    setGuidelinePlayerData(data) {
+        this.veloGame.setState(data);
+        this.mainInterval = setInterval(() => {
+            this.tableSocket.emit('stateGame', this.veloGame.getState());
+            this.veloGame.back(false);
+        }, 16)
+    }
+
     moveSideRequest(player, x) {
         this.veloGame.makePlayerMoveSide(player, x);
+    }
+
+    activateObstacle(player) {
+        this.obstaclesLoop.set(player, setInterval(() => {
+            this.veloGame.generateObstaclesFor(player)
+        }, 2000));
+    }
+
+    leaveGame(player) {
+        clearInterval(this.obstaclesLoop.get(player));
+        const emptyGame = this.veloGame.leaveGame(player);
+        if (emptyGame) {
+            clearInterval(this.mainInterval);
+            this.tableSocket.emit('clean',{});
+        }
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Gyroscope} from "@ionic-native/gyroscope";
 import {Subscription} from "rxjs";
-import {ReadyPage} from "../ready/ready";
 import {Guideline3Page} from "../guideline3/guideline3";
+import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 
 /**
  * Generated class for the SideguidelinePage page.
@@ -24,29 +24,23 @@ export class SideguidelinePage {
     gyroscopeValueY: any = "";
     private loopInterval: number;
     private loopInterval2: number;
-    private indicationsCount: number = 0;
     private gyroscopePointer: Subscription;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
-        this.gyroscopePointer = Gyroscope.watch({frequency: 200}).subscribe(value => {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
+        this.socket.activateObstacle();
+        this.gyroscopePointer = Gyroscope.watch({frequency: 16}).subscribe(value => {
+            this.socket.sendMoveSideRequest(value.y);
             this.gyroscopeValueY = value.y;
             if (this.gyroscopeValueY < -1 && !this.right) {
                 clearInterval(this.loopInterval);
                 this.loopInterval2 = setInterval(this.triggerArrow2, 500);
                 this.setColorWhite(!this.right);
                 this.right = true;
-                this.indicationsCount++;
             } else if (this.gyroscopeValueY > 1 && this.right) {
                 clearInterval(this.loopInterval2);
                 this.loopInterval = setInterval(this.triggerArrow, 500);
                 this.setColorWhite(!this.right);
                 this.right = false;
-                this.indicationsCount++;
-            }
-            if (this.indicationsCount == 4) {
-                clearInterval(this.loopInterval);
-                this.gyroscopePointer.unsubscribe();
-                this.navCtrl.push(Guideline3Page)
             }
         });
     }
@@ -93,6 +87,14 @@ export class SideguidelinePage {
         const arrow2: HTMLImageElement = <HTMLImageElement>document.getElementById("fleche" + id1);
         arrow.src = url;
         arrow2.src = url;
+    }
+
+    nextStep() {
+        clearInterval(this.loopInterval);
+        clearInterval(this.loopInterval2);
+        this.gyroscopePointer.unsubscribe();
+        this.socket.leaveGame();
+        this.navCtrl.push(Guideline3Page);
     }
 
 }

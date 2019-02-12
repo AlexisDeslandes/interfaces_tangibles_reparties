@@ -9,15 +9,23 @@ class GameManager {
 
     constructor() {
 
+        this.isClean = false;
+
         this.players = [];
 
         this.change = true;
 
-        this.socket = io.connect('http://192.168.1.20:4444');
+        this.socket = io.connect('http://10.188.26.122:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
-            this.showGame(data.playersCount);
+            this.isClean = false;
+            this.showGame(data.playersCount, data.state);
+        });
+
+        this.socket.on('clean', () => {
+            console.log("It's cleaning");
+            this.isClean = true;
         });
 
         let self = this;
@@ -72,7 +80,7 @@ class GameManager {
                 let puzzleName = data.puzzle.name
                 data.puzzle.parts.forEach(p => {
                     let img;
-                    if (p.shown) img = "<img src='../res/"+puzzleName+"/" + p.picture + "' class='slide-in-fwd-center'/>";
+                    if (p.shown) img = "<img src='../res/" + puzzleName + "/" + p.picture + "' class='slide-in-fwd-center'/>";
                     else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
@@ -88,10 +96,10 @@ class GameManager {
         this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
-            console.log('puzzle-ended',m)
-            if(m.puzzle === 'puzzle1')
+            console.log('puzzle-ended', m)
+            if (m.puzzle === 'puzzle1')
 
-            $('#result-img').attr('src', 'res/puzzle1/full.jpg');
+                $('#result-img').attr('src', 'res/puzzle1/full.jpg');
             else
                 $('#result-img').attr('src', 'res/puzzle2/full.jpg');
 
@@ -139,6 +147,7 @@ class GameManager {
         this.canvas = document.getElementById("gamer");
         this.contextGamer = this.canvas.getContext("2d");
         this.speed = document.getElementById('speed');
+        this.sand = document.getElementById('sandImg');
 
     }
 
@@ -612,7 +621,7 @@ class GameManager {
 
     }
 
-    showGame(nbPlayer) {
+    showGame(nbPlayer, gameState) {
         const width = document.body.clientWidth;
         const height = document.body.clientHeight;
         const canvas = document.getElementById("trueGame");
@@ -630,6 +639,9 @@ class GameManager {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(document.getElementById('fond'), 0, 0, width, height);
+
+        //todo const sand = new Sand(height, (width / 2) - halfSize, (width / 2) - halfSize + (height / 2));
+
         this.drawRect(ctx, (width / 2) - halfSize, 0, sizeRect, (height / 2));   //joueur 2
         this.drawRect(ctx, 0, (height / 2) - halfSize, (height / 2), sizeRect);  //joueur 3
         this.drawRect(ctx, (width / 2) - halfSize, 0.5 * height, sizeRect, (height / 2));    //joueur 1
@@ -643,13 +655,29 @@ class GameManager {
                 : nbPlayer === 3
                     ? this.generateState3(width, height, halfSize, sizeRect)
                     : this.generateState4(width, height, halfSize, sizeRect);
+        console.log("Game state - " + gameState);
+        switch (gameState) {
+            case 'game':
+                this.socket.emit('gamePreparation', {
+                    room: this.gameRoom,
+                    state: state
+                });
+                break;
+            case 'guideline1':
+                this.socket.emit('guidelinePreparation', {
+                    room: this.gameRoom,
+                    state: state
+                });
+                break;
+            default:
+                console.log('issue with game preparation.');
+                break;
+        }
 
-        this.socket.emit('gamePreparation', {
-            room: this.gameRoom,
-            state: state
-        });
 
         this.count = 0;
+
+        let looping = null;
 
         const loop = () => {
             this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -670,10 +698,13 @@ class GameManager {
             if (this.count === 0) {
                 this.change = !this.change;
             }
-            requestAnimationFrame(loop)
+            looping = requestAnimationFrame(loop);
+            if (this.isClean) {
+                this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                cancelAnimationFrame(looping);
+            }
         };
-
-        requestAnimationFrame(loop);
+        loop();
     }
 
     generateState1(width, height, halfSize, sizeRect) {

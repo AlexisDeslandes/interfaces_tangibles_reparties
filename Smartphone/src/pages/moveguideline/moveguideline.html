@@ -1,20 +1,32 @@
 <ion-content>
-  <ion-grid>
-    <img id="sable" src="../assets/imgs/sable.jpg" style="position: absolute;top: 0px;left: 0px; height: 100%">
-    <img id="sable2" src="../assets/imgs/sable.jpg" style="position: absolute;top: 20px;left: 0px; height: 100%">
-    <ion-row id="background" class="nine-row">
-      <ion-col col-6>
-        <div id="slider" class="slider visible">
-          <div id="slide" class="slide"></div>
-          <img *ngFor="let i of [0,1,2,3]" id="arrow{{i}}" src="../assets/imgs/fleche.svg">
+
+    <div class="invisible">
+        <img id="sable2" src="../../assets/imgs/sable.jpg">
+        <img id="bikeImag" src="../../assets/imgs/bike.svg">
+        <img id="bikeImag2" src="../../assets/imgs/bike2.svg">
+        <img id="speedImg2" src="../../assets/imgs/speed.svg">
+    </div>
+
+    <canvas id="sand2" class="fond"></canvas>
+    <canvas id="bike2" class="secondCanvas"></canvas>
+    <canvas id="speed2" class="firstCanvas"></canvas>
+
+    <ion-row id="backgrnd" class="nine-row">
+        <ion-col col-6>
+            <div id="sliderr" class="slider visible">
+                <div id="slidd" class="slide"></div>
+                <img *ngFor="let i of [0,1,2,3]" id="arrows{{i}}" src="../assets/imgs/fleche.svg">
+            </div>
+        </ion-col>
+        <ion-col col-6>
+            <div id="sliderr2" class="slider visible">
+                <div id="slidd2" class="slide"></div>
+                <img *ngFor="let i of [0,1,2,3]" id="arrows-{{i}}" src="../assets/imgs/fleche.svg">
+            </div>
+        </ion-col>
+        <div class="bottom-div">
+            <h4>{{indications}}</h4>
+            <button color="danger" ion-button="" (click)="nextStep()">J'ai compris</button>
         </div>
-      </ion-col>
-      <ion-col col-6>
-        <div id="slider2" class="slider invisible">
-          <div id="slide2" class="slide"></div>
-          <img *ngFor="let i of [0,1,2,3]" id="arrow-{{i}}" src="../assets/imgs/fleche.svg">
-        </div>
-      </ion-col>
     </ion-row>
-  </ion-grid>
 </ion-content>

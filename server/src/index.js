@@ -175,7 +175,7 @@ io.on('connection', socket => {
             let game = getGameByRoomName(m.gameRoom);
             game.useRation(m);
         }
-    })
+    });
 
 
     /////////////////////////////////////////////////// GAME /////////////////////////////////////////////////////////////
@@ -189,6 +189,15 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('guideline1', data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.joinGuideline1(data.state);
+        } else {
+            console.log("requested game does not exists")
+        }
+    });
+
     socket.on("moveRequest", m => {
         let game = getGameByRoomName(m.room);
         if (game) {
@@ -196,7 +205,7 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
-    })
+    });
 
     socket.on("gamePreparation", data => {
         let game = getGameByRoomName(data.room);
@@ -205,7 +214,7 @@ io.on('connection', socket => {
         } else {
             console.log("requested game does not exists")
         }
-    })
+    });
 
     socket.on('moveSideRequest', data => {
         let game = getGameByRoomName(data.room);
@@ -213,6 +222,33 @@ io.on('connection', socket => {
             game.moveSideRequest(data.player, data.y);
         } else {
             console.log("requested game does not exists")
+        }
+    });
+
+    socket.on('guidelinePreparation', data => {
+        let game = getGameByRoomName(data.room);
+        if (game) {
+            game.setGuidelinePlayerData(data.state);
+        } else {
+            console.log('game introuvable');
+        }
+    });
+
+    socket.on('obstacle', data => {
+        let game = getGameByRoomName(data.room);
+        if (game){
+            game.activateObstacle(data.player);
+        }else{
+            console.log('error : game introuvable');
+        }
+    });
+
+    socket.on('leaveGame', data => {
+        let game = getGameByRoomName(data.room);
+        if (game){
+            game.leaveGame(data.player);
+        }else{
+            console.log('error : game introuvable');
         }
     })
 

@@ -8,11 +8,17 @@ module.exports = class Player {
         this.leftMax = -1;
         this.top = -1;
         this.topMax = -1;
-        this.obstacles = [new Obstacle(0, 0)];
+        this.obstacles = [];
         this.obstacles = [];
         this.speed = [];
         this.size = 50;
         this.dead = false;
+    }
+
+    empty(){
+        this.x = this.y = -100;
+        this.obstacles = [];
+        this.speed = [];
     }
 
     isDead() {
@@ -25,6 +31,22 @@ module.exports = class Player {
                 return this.x <= this.left;
             case 4:
                 return this.x >= this.leftMax;
+            default:
+                console.log('error dead');
+                return;
+        }
+    }
+
+    isOutOfMap() {
+        switch (this.id) {
+            case 1:
+                return this.y >= this.topMax + this.size;
+            case 2:
+                return this.y + this.size <= this.top;
+            case 3:
+                return this.x + this.size <= this.left;
+            case 4:
+                return this.x >= this.leftMax + this.size;
             default:
                 console.log('error dead');
                 return;

@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Socket} from "ngx-socket-io";
 import {Subject} from "rxjs";
-import {App, NavController} from "ionic-angular";
-import {DilemmePage} from "../../pages/dilemme/dilemme";
-import {GamePage} from "../../pages/game/game";
 
 /*
   Generated class for the SocketManagerProvider provider.
@@ -43,9 +40,14 @@ export class SocketManagerProvider {
         socket.on("veloReady", (data) => {
             this.state = data;
             this.emit()
-        })
+        });
 
         socket.on('dead', (data) => {
+            this.state = data;
+            this.emit();
+        });
+
+        socket.on('guideline1', data => {
             this.state = data;
             this.emit();
         })
@@ -82,7 +84,15 @@ export class SocketManagerProvider {
         this.socket.emit("moveSideRequest", {room: this.room, player: this.player, y: y * 10})
     }
 
-    getNbPlayers() {
-        this.socket.emit('nbPlayer', {room: this.room})
+    sendGuideline1Ready() {
+        this.socket.emit('guideline1', {room: this.room, player: this.player});
+    }
+
+    activateObstacle() {
+        this.socket.emit('obstacle', {room: this.room, player: this.player});
+    }
+
+    leaveGame() {
+        this.socket.emit('leaveGame', {room: this.room, player: this.player});
     }
 }

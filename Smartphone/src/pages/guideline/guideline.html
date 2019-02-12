@@ -10,11 +10,11 @@
                 <h3>Etape 1 : Avancer dans le jeux</h3>
                 <h4>Maintenant la pédale de gauche enfoncée puis faites de même avec la pédale de droite. Alterner entre
                     haut et bas.</h4>
-                <h4></h4>
             </div>
         </ion-row>
         <ion-row>
-            <button color="dark" ion-button="" (click)="goToMoveguidelinePage()">Suite</button>
+            <button *ngIf="!joined" color="dark" ion-button="" (click)="goToMoveguidelinePage()">Suite</button>
+            <h4 *ngIf="joined">En attente des autres joueurs...</h4>
         </ion-row>
     </ion-grid>
 </ion-content>

@@ -10,6 +10,13 @@ module.exports = class VeloGame {
         }
     }
 
+    leaveGame(playerId){
+        this.players[playerId-1].empty();
+        this.peopleJoined--;
+        console.log(this.peopleJoined);
+        return this.peopleJoined === 0;
+    }
+
     playerJoin() {
         return ++this.peopleJoined === this.nbPeople;
     }
@@ -39,7 +46,7 @@ module.exports = class VeloGame {
         }
     }
 
-    back() {
+    back(provokeDeath) {
         let idToReturn = -1;
         const descente = 1.15;
         const speedObstacle = 3;
@@ -134,8 +141,26 @@ module.exports = class VeloGame {
             } else {
                 newPlayers.push(player);
             }
+            if (player.isOutOfMap() && !provokeDeath) {
+                switch (player.id) {
+                    case 1:
+                        player.y = player.topMax - player.size;
+                        break;
+                    case 2:
+                        player.y = player.top;
+                        break;
+                    case 3:
+                        player.x = player.left;
+                        break;
+                    default:
+                        player.x = player.leftMax - player.size;
+                        break;
+                }
+            }
         }
-        this.players = newPlayers;
+        if (provokeDeath) {
+            this.players = newPlayers;
+        }
         return idToReturn;
     }
 
@@ -149,6 +174,10 @@ module.exports = class VeloGame {
     generateObstacles() {
         for (let player of this.players)
             player.generateObstacle();
+    }
+
+    generateObstaclesFor(player) {
+        this.players[player - 1].generateObstacle();
     }
 
     generateSpeed(player) {

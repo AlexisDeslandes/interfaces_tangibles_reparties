@@ -220,7 +220,7 @@ class GameManager {
                 my = 0.01 * $(window).height();
 
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 8*my);
+                jeanP1.css("bottom", 8 * my);
                 jeanP1.css("right", mx);
 
                 bikeP1.css("width", jeanWidth);
@@ -246,8 +246,8 @@ class GameManager {
                 my = 0.01 * $(window).height();
 
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 8*my);
-                jeanP1.css("right", 2*mx);
+                jeanP1.css("bottom", 8 * my);
+                jeanP1.css("right", 2 * mx);
 
                 bikeP1.css("width", jeanWidth);
                 bikeP1.css("height", jeanHeight);
@@ -265,8 +265,8 @@ class GameManager {
                 energyLevelP1.css("bottom", 8 * my - 1);
 
                 jeanP2.attr("height", jeanHeight);
-                jeanP2.css("top", 8*my);
-                jeanP2.css("left", 2*mx);
+                jeanP2.css("top", 8 * my);
+                jeanP2.css("left", 2 * mx);
 
                 bikeP2.css("width", jeanWidth);
                 bikeP2.css("height", jeanHeight);
@@ -292,7 +292,7 @@ class GameManager {
                 my = 0.01 * $(window).height();
 
                 jeanP1.attr("height", jeanHeight);
-                jeanP1.css("bottom", 2*my);
+                jeanP1.css("bottom", 2 * my);
                 jeanP1.css("right", mx);
 
                 bikeP1.css("width", jeanWidth);
@@ -312,7 +312,7 @@ class GameManager {
 
 
                 jeanP2.attr("height", jeanHeight);
-                jeanP2.css("top", 2*my);
+                jeanP2.css("top", 2 * my);
                 jeanP2.css("left", mx);
 
                 bikeP2.css("width", jeanWidth);
@@ -331,8 +331,8 @@ class GameManager {
                 energyLevelP2.css("top", 8 * my + 4);
 
                 jeanP3.attr("height", jeanHeight);
-                jeanP3.css("bottom", 3*my);
-                jeanP3.css("left", 8*my);
+                jeanP3.css("bottom", 3 * my);
+                jeanP3.css("left", 8 * my);
 
                 bikeP3.css("width", jeanWidth);
                 bikeP3.css("height", jeanHeight);
@@ -350,8 +350,8 @@ class GameManager {
                 energyLevelP3.css("left", 8 * my + 2);
 
                 jeanP4.attr("height", jeanHeight);
-                jeanP4.css("top", 3*my);
-                jeanP4.css("right", 8*my);
+                jeanP4.css("top", 3 * my);
+                jeanP4.css("right", 8 * my);
 
                 bikeP4.css("width", jeanWidth);
                 bikeP4.css("height", jeanHeight);
@@ -502,10 +502,10 @@ class GameManager {
                     }
                 }
             }
-            let mood = Math.ceil(jauges[playerId]["mood"]/2);
-            let chicken = Math.ceil(jauges[playerId]["chicken"]/2);
-            $("#img-jean-p"+playerId).attr("src", "res/jean/player-"+playerId+"-mood-"+mood
-                +"-chicken-"+chicken+".png");
+            let mood = Math.ceil(jauges[playerId]["mood"] / 2);
+            let chicken = Math.ceil(jauges[playerId]["chicken"] / 2);
+            $("#img-jean-p" + playerId).attr("src", "res/jean/player-" + playerId + "-mood-" + mood
+                + "-chicken-" + chicken + ".png");
         }
         setTimeout(function () {
             $("div[id^=bike-p]").css("animation-name", "none");
@@ -634,6 +634,8 @@ class GameManager {
             if (this.isClean) {
                 if (this.audio) {
                     this.audio.pause();
+                    this.audio = new Audio('../res/sounds/applause.mp3');
+                    this.audio.play();
                     this.audio.currentTime = 0;
                 }
                 clearInterval(soundLoop);

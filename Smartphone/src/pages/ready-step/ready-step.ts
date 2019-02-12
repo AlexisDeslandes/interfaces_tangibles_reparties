@@ -17,19 +17,12 @@ import {SocketManagerProvider} from "../../providers/socket-manager/socket-manag
 export class ReadyStepPage {
 
   isReady;
-  socket;
 
   colors = ["", "#a22b28", "#393bb5", "#007207", "#bf9727"];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
     this.isReady = false;
-    this.socket = socketManager;
     socketManager.playerColor = this.colors[socketManager.player];
-  }
-
-  ionViewDidLoad() {
-      document.getElementById("ready-button").style.backgroundColor = this.colors[this.socket.player];
-      console.log(this.socket.playerColor);
   }
 
   ready(){

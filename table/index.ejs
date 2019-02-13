@@ -138,6 +138,10 @@
 <div class="header" id="header">
 
 </div>
+<div id="widget">
+</div>
+
+<div id="trophies"></div>
 
 <div class="start-game" id="start-btn">
     <div class="reversed-title">
@@ -159,7 +163,7 @@
         <div class="connected-block" id="connected_4"><span class="player-connected">Joueur 4</span></div>
     </div>
 
-    <div class="ready">
+    <div id="ready-ctn" class="ready">
         <button id="ready-btn"></button>
     </div>
 </div>
@@ -211,7 +215,12 @@
             <img class="picto picto-p3 smartphone-picto" src="res/smartphone.svg" height="20%"/>
         </div>
         <div class="inner-section center-section" id="section-5">
-            <div id="app" style="width: 100%; height: 100%;"></div>
+            <div id="app" style="width: 100%; height: 100%;">
+                <div id="gallery" style="position: absolute; z-index: 500">
+                    <img id="gallery-img" src="res/gallery.png"/>
+                </div>
+            </div>
+
         </div>
         <div class="inner-section short-edge" id="section-6">
             <div id="ration-container-p4" class="ration-zone ration-zone-p4"></div>

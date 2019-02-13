@@ -119,6 +119,7 @@ module.exports = class Game {
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.map.refreshStep(this.currentStep);
             this.map.sendProgression(this.tableSocket);
+            this.map.getTrophies(this.currentStep, this.tableSocket);
             this.currentStep++;
         }
     }
@@ -160,8 +161,8 @@ module.exports = class Game {
         return found;
     }
 
-    changeMap(id) {
-        this.map.drawArc(id);
+    changeMap(id){
+        this.map.drawArc(id, this.currentStep);
         this.map.sendArcs(this.tableSocket);
     }
 
@@ -185,6 +186,39 @@ module.exports = class Game {
                 }
             }
         }
+    }
+
+    // useRation(m) {
+    //     if (typeof this.jauges[m.player] !== 'undefined') {
+    //         if (m.id === 'E0') {
+    //             this.jauges[m.player].water += 1;
+    //             this.tableSocket.emit("ration-used", {jauges: this.jauges});
+    //             console.log("Joueur " + m.player + " utilise de l'eau");
+    //         } else if (m.id === 'E1') {
+    //             this.jauges[m.player].energy += 1;
+    //             this.tableSocket.emit("ration-used", {jauges: this.jauges});
+    //             console.log("Joueur " + m.player + " utilise de l'énergie");
+    //
+    //         } else if (m.id === 'E2') {
+    //             this.jauges[m.player].chicken += 1;
+    //             this.tableSocket.emit("ration-used", {jauges: this.jauges});
+    //             console.log("Joueur " + m.player + " utilise du poulet");
+    //
+    //         } else if (m.id === 'E3') {
+    //             this.jauges[m.player].mood += 1;
+    //             this.tableSocket.emit("ration-used", {jauges: this.jauges});
+    //             console.log("Joueur " + m.player + " utilise de l'ectasy");
+    //
+    //         } else if (m.id === 'E7') {
+    //             this.jauges[m.player].bike += 1;
+    //             this.tableSocket.emit("ration-used", {jauges: this.jauges});
+    //             console.log("Joueur " + m.player + " utilise son vélo");
+    //         }
+    //     }
+    // }
+
+    getTrophies(){
+        this.map.getTrophies(this.currentStep, this.tableSocket);
     }
 
     //////////////////////////////////////////////// Game //////////////////////////////////////////////////////

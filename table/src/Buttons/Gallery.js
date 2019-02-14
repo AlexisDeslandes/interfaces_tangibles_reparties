@@ -9,6 +9,7 @@ import TUIOWidget from 'tuiomanager/core/TUIOWidget';
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from 'tuiomanager/core/constants';
 import ImageElementWidget from "../ImageElementWidget/ImageElementWidget";
 import { radToDeg } from 'tuiomanager/core/helpers';
+import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.min.js'
 // import ImageWidget from '../ImageWidget/ImageWidget';
 
 /**
@@ -45,6 +46,8 @@ class Gallery extends TUIOWidget {
         this.trophyW6 = null;
         this.trophyW7 = null;
 
+        this.newTrophy = null;
+        this.unseenTrophies = 0;
         this.visible =false;
         this.recompensesWidget = [];
         this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
@@ -55,10 +58,40 @@ class Gallery extends TUIOWidget {
         //     .css('width', `100%`)
         //     .css('height', `100%`));
         this._domElem = elem;
+
+        // this.glide = new Glide('#map-container', {
+        //     startAt: 0,
+        //     perView: 3
+        // })
+        // this.glide.mount();
+
+
         // console.log("Gallery Widget Created");
         // console.log(x +' '+ y +' '+ width + ' ' + height);
     }
 
+    notifyBadge(){
+        var newDiv = document.createElement("div");
+        newDiv.id = "badge-container";
+        newDiv.innerHTML = '<canvas id="badge" width="100" height="100" style="position: fixed;border:1px solid #d3d3d3; z-index: 500"></canvas>';
+        newDiv.style = ('position: fixed; width: 100px; height: 100px;  z-index: 3000; left: '+ `${this.x +10}px`+'; top: '+ `${this.y}px` +';');
+        document.getElementById("gallery").appendChild(newDiv);
+        var c = document.getElementById("badge");
+        var context = c.getContext("2d");
+        context.beginPath();
+        context.fillStyle = "red";
+        context.strokeStyle = "black";
+        context.font = "900 1rem Roboto";
+        context.lineWidth = 10;
+        context.arc(80, 20, 20, 0, 2 * Math.PI, false);
+        context.fill();
+        context.beginPath();
+        context.fillStyle = "white";
+        context.fillText(`+${this.unseenTrophies}`, 70, 25);
+        context.fill();
+        c.style = ('position: relative');
+
+    }
 
     hide(){
         this._domElem.hide();
@@ -72,7 +105,7 @@ class Gallery extends TUIOWidget {
         // const left = document.getElementById('gallery').getBoundingClientRect().left;
         // const top = document.getElementById('gallery').getBoundingClientRect().top;
         // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
-        this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.step*10, 1, data.img,);
+        this.recompensesWidget[data.step] = new ImageWidget(300, 287, 300, 300, data.step*10, 1, data.img,);
         this.recompensesWidget[data.step].hide();
         // $('trophies').append(this.recompensesWidget[data.step].domElem);
         this.recompensesWidget[data.step].addTo($('#trophies').get(0));
@@ -84,6 +117,8 @@ class Gallery extends TUIOWidget {
         // this.recompensesWidget[data.step].hide();
         // $('trophies').append(this.recompensesWidget[data.step].domElem);
         // this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+        this.unseenTrophies++;
+        this.notifyBadge();
         this.recompensesWidget[step] = data;
     }
 
@@ -119,8 +154,13 @@ class Gallery extends TUIOWidget {
             }
             else{
                 for(let i=0; i<this.recompensesWidget.length;i++){
-                    if(this.recompensesWidget[i] !== null)
-                    this.recompensesWidget[i].show();
+                    if(this.recompensesWidget[i] !== null){
+                        this.recompensesWidget[i].show();
+                        this.unseenTrophies = 0;
+                        if(document.getElementById('badge'))
+                        document.getElementById('badge').remove();
+
+                    }
                 }
             }
             this.visible=!this.visible;

@@ -132,7 +132,7 @@ class GameManager {
                 data.puzzle.parts.forEach(p => {
                     let img;
                     if (p.shown) img = "<img src='../res/" + puzzleName + "/" + p.picture + "' class='slide-in-fwd-center'/>";
-                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>";
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
                         img +
@@ -880,7 +880,7 @@ class GameManager {
         this.socket.on('new-trophy', (data) => {
             console.log("new trophy received");
             // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
-            this.recompensesWidget[data.step] = new ImageElementWidget(384, 287, 300, 300, data.step*10, 1, data.img);
+            this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
             this.recompensesWidget[data.step].hide();
             this.recompensesWidget[data.step].addTo($('#trophies').get(0));
             this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);
@@ -910,8 +910,8 @@ class GameManager {
         this.galleryWidget = new Gallery(
             document.getElementById('gallery').getBoundingClientRect().left,
             document.getElementById('gallery').getBoundingClientRect().top,
-            200,
-            200,
+            100,
+            100,
         );
 
         if (nbPlayer >= 1) {

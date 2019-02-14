@@ -170,7 +170,7 @@ io.on('connection', socket => {
         if (game) {
 
 
-            game.changeMap(m.id);
+            // game.changeMap(m.id);
         } else {
             console.log("requested game does not exists")
         }

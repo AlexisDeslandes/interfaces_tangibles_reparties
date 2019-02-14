@@ -120,6 +120,7 @@ module.exports = class Game {
             this.map.refreshStep(this.currentStep);
             this.map.sendProgression(this.tableSocket);
             this.map.getTrophies(this.currentStep, this.tableSocket);
+            this.changeMap();
             this.currentStep++;
         }
     }
@@ -161,8 +162,9 @@ module.exports = class Game {
         return found;
     }
 
-    changeMap(id){
-        this.map.drawArc(id, this.currentStep);
+    changeMap(){
+        this.map.drawArc(this.currentStep);
+        // this.map.drawArc(id, this.currentStep);
         this.map.sendArcs(this.tableSocket);
     }
 

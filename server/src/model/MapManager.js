@@ -106,7 +106,7 @@ module.exports = class MapManager {
         console.log(n);
         let tmp = this.progression;
         for(let i=0;i<tmp.length; i++){
-           if( i!==n){
+            if( i!==n){
                 tmp[i].fillKey = 'grey';
                 tmp[i].radius = 5;
                 // this.cities[i].fillKey: 'grey';
@@ -134,25 +134,38 @@ module.exports = class MapManager {
         socket.emit('map-changed', this.arcs);
     }
 
-    drawArc(m, currentStep){
-        if (m === '8B') {
-            this.arcs = [];
-        } else if (m === 'BA') {
-            this.arcs = [];
-            for(let i=0; i<currentStep;i++){
-                if(i < currentStep-1){
-                    this.arcs.push({
-                        origin: {latitude: this.cities[i].latitude, longitude: this.cities[i].longitude},
-                        destination: {latitude: this.cities[i+1].latitude, longitude: this.cities[i+1].longitude}
-                    });
-                }
+    drawArc(currentStep){
+        this.arcs = [];
+        for(let i=0; i<currentStep;i++){
+            if(i < currentStep){
+                this.arcs.push({
+                    origin: {latitude: this.cities[i].latitude, longitude: this.cities[i].longitude},
+                    destination: {latitude: this.cities[i+1].latitude, longitude: this.cities[i+1].longitude}
+                });
             }
-        } else if (m === 3) {
-
         }
-        console.log(m);
-        console.log(this.arcs);
+
     }
+
+    // drawArc(m, currentStep){
+    //     if (m === '8B') {
+    //         this.arcs = [];
+    //     } else if (m === 2) {
+    //         this.arcs = [];
+    //         for(let i=0; i<currentStep;i++){
+    //             if(i < currentStep-1){
+    //                 this.arcs.push({
+    //                     origin: {latitude: this.cities[i].latitude, longitude: this.cities[i].longitude},
+    //                     destination: {latitude: this.cities[i+1].latitude, longitude: this.cities[i+1].longitude}
+    //                 });
+    //             }
+    //         }
+    //     } else if (m === 3) {
+    //
+    //     }
+    //     console.log(m);
+    //     console.log(this.arcs);
+    // }
 
     getTrophies(n, socket){
         socket.emit('new-trophy', {img: this.cities[n].image, step: n});

@@ -41,8 +41,8 @@ class ImageWidget extends TUIOWidget {
         this._domElem.css('height', `${height}px`);
         this._domElem.css('position', 'absolute');
         this._domElem.css('transform', `rotate(${initialRotation}deg)`);
-        this._domElem.css('left', `${x -100}px`);
-        this._domElem.css('top', `${y-100}px`);
+        this._domElem.css('left', `${x}px`);
+        this._domElem.css('top', `${y}px`);
         this._domElem.css('z-index', `5000`);
     }
 

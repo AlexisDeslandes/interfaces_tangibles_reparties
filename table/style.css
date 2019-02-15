@@ -7,7 +7,7 @@ img, div {
   -ms-user-select: none; }
 
 body {
-  overflow-y: hidden;
+  overflow: hidden;
   background-color: #f5f5dc94; }
 
 div {
@@ -74,7 +74,7 @@ div.main-container-board {
     top: 25%;
     height: 49.5%; }
   div.main-container-board div.third-section {
-    top: 74.5%;
+    top: 75%;
     height: 25%; }
   div.main-container-board div.inner-section {
     display: inline-block;
@@ -154,7 +154,7 @@ div.main-container-board {
       background-color: #393bb5;
       bottom: 72%; }
   div.main-container-board div.short-edge {
-    width: 24.5%;
+    width: 25%;
     position: relative;
     overflow: hidden; }
     div.main-container-board div.short-edge img.picto-p3 {

@@ -11,7 +11,7 @@
 
     <div text-center *ngIf="!isReady" class="bl">
         <p>Es-tu prêt à continuer ?</p>
-        <button id="ready-button" ion-button round (click)="ready()" (keyup.enter)="ready()">
+        <button [style.backgroundColor]="socketManager.playerColor" id="ready-button" ion-button round (click)="ready()" (keyup.enter)="ready()">
             Je suis prêt
         </button>
     </div>

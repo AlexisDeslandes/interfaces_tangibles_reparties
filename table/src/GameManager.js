@@ -17,8 +17,8 @@ class GameManager {
 
         this.change = true;
 
-        this.socket = io.connect('http://10.188.26.122:4444');
-        //this.socket = io.connect('http://localhost:4444');
+        //this.socket = io.connect('http://10.188.26.122:4444');
+        this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
             this.isClean = false;
@@ -138,6 +138,20 @@ class GameManager {
                 this.jauges = data.jauges;
                 self.initCanvas(nbPlayers);
             }
+
+            const intro = data.step["intro"];
+
+            let msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
+            window.speechSynthesis.speak(msg1);
+
+            msg1.onend = function() {
+
+                if (intro.length > 1) {
+                    let msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+                    window.speechSynthesis.speak(msg2);
+                }
+            };
+
 
             $(".smartphone-picto").css("display", "block");
 

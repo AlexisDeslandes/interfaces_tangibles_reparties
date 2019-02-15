@@ -18,6 +18,7 @@ img, div {
 
 body {
   overflow-y: hidden;
+  background-color: #f5f5dc94;
 }
 
 div {
@@ -269,7 +270,8 @@ div.main-container-board {
 
   div.center-section {
     width: 49.5%;
-    border: 1px solid $secondary;
+    border: none;
+    box-shadow: 0 0 20px 3px;
   }
 
 }
@@ -289,6 +291,7 @@ div.main-container-board {
 }
 
 .start-game{
+  background-color: white;
   width:400px;
   margin-left: 50%;
   margin-top: 25%;

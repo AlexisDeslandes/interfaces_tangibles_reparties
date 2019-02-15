@@ -550,7 +550,7 @@ class GameManager {
 
             for (let i = 1; i < 5; i++) {
                 let code = this.gameRoom.substring(4) + "-" + i;
-                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + code + "'/>")
+                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&bgcolor=F9F9EA&data=" + code + "'/>")
             }
 
 

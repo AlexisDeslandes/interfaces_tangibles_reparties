@@ -17,6 +17,8 @@ class GameManager {
 
         this.change = true;
 
+        this.dead = [];
+
         //this.socket = io.connect('http://10.188.26.122:4444');
         this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
@@ -119,10 +121,18 @@ class GameManager {
             else
                 $('#result-img').attr('src', 'res/puzzle2/full.jpg');
 
-            $('#puzzle-result').show()
+            $('#puzzle-result').show();
             $('#puzzle-title').hide();
         });
 
+        this.socket.on('dead', data => {
+            this.dead.push(data.playerId);
+            $("#img-jean-p"+data.playerId).css("opacity", "0.2");
+            $("#water-level-p"+data.playerId).css("opacity", "0.2");
+            $("#energy-level-p"+data.playerId).css("opacity", "0.2");
+            $("#bike-p"+data.playerId).css("opacity", "0.2");
+            $("#smartphone-picto-p"+data.playerId).css("opacity", "0");
+        });
 
         this.socket.on('start', data => {
             let audio = new Audio('../res/sounds/netflix.mp3');
@@ -151,7 +161,6 @@ class GameManager {
                     window.speechSynthesis.speak(msg2);
                 }
             };
-
 
             $(".smartphone-picto").css("display", "block");
 
@@ -513,8 +522,8 @@ class GameManager {
                     }
                 }
             }
-            let mood = Math.ceil(jauges[playerId]["mood"] / 2);
-            let chicken = Math.ceil(jauges[playerId]["chicken"] / 2);
+            let mood = Math.min(10, Math.max(1, Math.ceil(jauges[playerId]["mood"] / 2)));
+            let chicken = Math.min(10, Math.max(1, Math.ceil(jauges[playerId]["chicken"] / 2)));
             $("#img-jean-p" + playerId).attr("src", "res/jean/player-" + playerId + "-mood-" + mood
                 + "-chicken-" + chicken + ".png");
         }

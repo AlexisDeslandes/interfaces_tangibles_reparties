@@ -58,6 +58,10 @@ io.on('connection', socket => {
                     playerJauge[stat.type] = Math.min(parseInt(playerJauge[stat.type]) + stat.value, 10);
                     if (playerJauge[stat.type] <= 0) {
                         socket.emit('dead', {"jauge": stat.type});
+                        game.tableSocket.emit("dead", {"playerId": playerId});
+                        if (!game.dead.includes(playerId)) {
+                            game.dead.push(playerId);
+                        }
                     }
                 }
             }

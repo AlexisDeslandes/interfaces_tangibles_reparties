@@ -27,6 +27,7 @@ export class DilemmePage {
   data;
   hasAnswered = false;
   choice = null;
+  deadJauge = null;
   result;
   stats;
   isReady;
@@ -55,7 +56,7 @@ export class DilemmePage {
     });
 
     this.socketManager.socket.on('dead', (m) => {
-      this.navCtrl.push(GameoverPage, {jauge: m.jauge});
+      this.deadJauge = m.jauge;
     });
 
   }
@@ -106,7 +107,14 @@ export class DilemmePage {
   }
 
   next() {
-    this.socketManager.sendNext();
+    if (this.deadJauge !== null) // GAMEOVER
+    {
+      this.navCtrl.push(GameoverPage, {jauge: this.deadJauge, playerColor: this.socketManager.playerColor});
+    }
+    else
+    {
+      this.socketManager.sendNext();
+    }
   }
 
   goTo() {

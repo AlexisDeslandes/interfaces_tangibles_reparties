@@ -9,6 +9,7 @@ module.exports = class Game {
         this.players = [];
         this.gameState = "init";
         this.nbPlayers = nbPlayers;
+        this.dead = [];
         this.room = room;
         this.tableSocket = tableSocket;
         this.currentStep = 0;
@@ -103,6 +104,7 @@ module.exports = class Game {
     }
 
     nextStep() {
+        this.nbPlayers = this.players.length - this.dead.length;
         this.readyCount = 0;
         if (this.currentStep === this.adventureSteps.length) {
             console.log(this.room + " is over");
@@ -134,7 +136,8 @@ module.exports = class Game {
 
     sendToAllPlayers(topic, param) {
         this.players.forEach(p => {
-            p.socket.emit(topic, param)
+            if (!this.dead.includes(p.name))
+                p.socket.emit(topic, param)
         })
     }
 

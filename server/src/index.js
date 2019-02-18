@@ -55,14 +55,7 @@ io.on('connection', socket => {
             for (let stat of stats) {
 
                 if (playerJauge.hasOwnProperty(stat.type)) {
-                    playerJauge[stat.type] = Math.min(parseInt(playerJauge[stat.type]) + stat.value, 10);
-                    if (playerJauge[stat.type] <= 0) {
-                        socket.emit('dead', {"jauge": stat.type});
-                        game.tableSocket.emit("dead", {"playerId": playerId});
-                        if (!game.dead.includes(playerId)) {
-                            game.dead.push(playerId);
-                        }
-                    }
+                    playerJauge[stat.type] = Math.max(0, Math.min(parseInt(playerJauge[stat.type]) + stat.value, 10));
                 }
             }
 

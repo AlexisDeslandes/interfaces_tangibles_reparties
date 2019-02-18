@@ -104,6 +104,23 @@ module.exports = class Game {
     }
 
     nextStep() {
+
+        for (let playerId in this.jauges)
+        {
+            let playerJauge = this.jauges[playerId];
+            for (let stat in playerJauge)
+            {
+                if (playerJauge[stat] <= 0) {
+                    this.sendToPlayer(playerId, "dead", {"jauge": stat});
+                    this.tableSocket.emit("dead", {"playerId": playerId});
+                    if (!this.dead.includes(playerId)) {
+                        this.dead.push(playerId);
+                    }
+                }
+            }
+        }
+
+
         this.nbPlayers = this.players.length - this.dead.length;
         if (this.nbPlayers === 0) {
             this.tableSocket.emit("gameover");
@@ -156,7 +173,6 @@ module.exports = class Game {
         });
         return player;
     }
-
 
     alreadyInGame(id) {
         let found = false;

@@ -165,12 +165,9 @@ class GameManager {
         });
         this.gameRoom = null;
 
-        //let change = true;
-
         this.socket.on("stateGame", (data) => {
             this.players = data.players;
-            //change = !change;
-        })
+        });
 
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
         this.obstacle = document.getElementById('obstacle');

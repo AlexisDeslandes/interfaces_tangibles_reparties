@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 
 /**
  * Generated class for the GameoverPage page.
@@ -16,7 +17,12 @@ import {HomePage} from "../home/home";
 })
 export class GameoverPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  jauge;
+  statsNames = {"chicken":"Faim", "water":"Soif", "mood":"Humeur", "bike":"Usure du vélo", "energy":"Energie",
+        "Couverture":"Couverture de survie", "Duvet": "Duvet"};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public socketManager: SocketManagerProvider) {
+    this.jauge = this.statsNames[this.navParams.get("jauge")];
   }
 
 

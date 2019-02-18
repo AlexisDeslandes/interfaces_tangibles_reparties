@@ -32,6 +32,10 @@ class GameManager {
             this.isClean = true;
         });
 
+        this.socket.on('gameover', () => {
+            location.reload();
+        });
+
         this.socket.on('clearCanvas', () => {
             console.log("It's cleaning");
             document.getElementById('trueGame').style.display = "none";

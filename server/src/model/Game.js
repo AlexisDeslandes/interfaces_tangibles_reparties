@@ -105,23 +105,28 @@ module.exports = class Game {
 
     nextStep() {
         this.nbPlayers = this.players.length - this.dead.length;
-        this.readyCount = 0;
-        if (this.currentStep === this.adventureSteps.length) {
-            console.log(this.room + " is over");
-            this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
-            this.sendToAllPlayers("start", {status: 'gameover'});
-        } else {
-            this.gameState = "start";
-            this.consumeChickenWater();
-            this.tableSocket.emit("start", {
-                status: 'start',
-                step: this.adventureSteps[this.currentStep],
-                jauges: this.jauges
-            });
-            this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
-            this.map.refreshStep(this.currentStep);
-            this.map.sendProgression(this.tableSocket);
-            this.currentStep++;
+        if (this.nbPlayers === 0) {
+            this.tableSocket.emit("gameover");
+        }
+        else {
+            this.readyCount = 0;
+            if (this.currentStep === this.adventureSteps.length) {
+                console.log(this.room + " is over");
+                this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
+                this.sendToAllPlayers("start", {status: 'gameover'});
+            } else {
+                this.gameState = "start";
+                this.consumeChickenWater();
+                this.tableSocket.emit("start", {
+                    status: 'start',
+                    step: this.adventureSteps[this.currentStep],
+                    jauges: this.jauges
+                });
+                this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
+                this.map.refreshStep(this.currentStep);
+                this.map.sendProgression(this.tableSocket);
+                this.currentStep++;
+            }
         }
     }
 

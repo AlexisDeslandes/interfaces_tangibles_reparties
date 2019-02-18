@@ -127,11 +127,6 @@ class GameManager {
 
         this.socket.on('dead', data => {
             this.dead.push(data.playerId);
-            $("#img-jean-p"+data.playerId).css("opacity", "0.2");
-            $("#water-level-p"+data.playerId).css("opacity", "0.2");
-            $("#energy-level-p"+data.playerId).css("opacity", "0.2");
-            $("#bike-p"+data.playerId).css("opacity", "0.2");
-            $("#smartphone-picto-p"+data.playerId).css("opacity", "0");
         });
 
         this.socket.on('start', data => {
@@ -170,6 +165,13 @@ class GameManager {
 
 
             self.updateJauges(data.jauges);
+            for (let player of this.dead) {
+                $("#img-jean-p"+player).css("opacity", "0.2");
+                $("#water-level-p"+player).css("opacity", "0.2");
+                $("#energy-level-p"+player).css("opacity", "0.2");
+                $("#bike-p"+player).css("opacity", "0.2");
+                $("#smartphone-picto-p"+player).css("opacity", "0");
+            }
 
         });
         this.gameRoom = null;

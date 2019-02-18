@@ -134,6 +134,10 @@ class GameManager {
         });
 
         this.socket.on('start', data => {
+
+            if (data.status === "gameover")
+                location.reload();
+
             let audio = new Audio('../res/sounds/netflix.mp3');
             audio.play();
             self.showMap();

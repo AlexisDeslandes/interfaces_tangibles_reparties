@@ -41,7 +41,7 @@ module.exports = [
                     {type: 'Duvet', value: 1}]
             },
         ],
-    },
+    },/*
     {
         intro: [
             {
@@ -385,5 +385,5 @@ module.exports = [
                 ]
             },
         ]
-    }
+    }*/
 ];

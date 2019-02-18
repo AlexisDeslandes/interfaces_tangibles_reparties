@@ -8,6 +8,7 @@ import {ReadyStepPage} from "../ready-step/ready-step";
 import {GameoverPage} from "../gameover/gameover";
 import {GuidelinePage} from "../guideline/guideline";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
+import {FinishPage} from "../finish/finish";
 
 @Component({
     selector: 'page-home',
@@ -32,7 +33,7 @@ export class HomePage {
                 this.status = data['message'];
                 this.navCtrl.push(ReadyStepPage);
             } else if (data['status'] === 'gameover') {
-                this.navCtrl.push(GameoverPage, data);
+                this.navCtrl.push(FinishPage, {playerColor: socketManager.playerColor});
             } else if (data['status'] === 'start') {
                 this.go();
                 switch (data['step'].type) {

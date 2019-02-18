@@ -23,9 +23,10 @@ import {GameoverPage} from "../pages/gameover/gameover";
 import {InventoryPage} from "../pages/inventory/inventory";
 import {Guideline3PageModule} from "../pages/guideline3/guideline3.module";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
+import {FinishPage} from "../pages/finish/finish";
 
-//const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
-const config: SocketIoConfig = {url: 'http://10.212.102.44:4444', options: {}};
+const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
+//const config: SocketIoConfig = {url: 'http://10.212.102.44:4444', options: {}};
 
 
 @NgModule({
@@ -36,6 +37,7 @@ const config: SocketIoConfig = {url: 'http://10.212.102.44:4444', options: {}};
         ReadyStepPage,
         GameoverPage,
         InventoryPage,
+        FinishPage
     ],
     imports: [
         SocketIoModule.forRoot(config),
@@ -60,6 +62,7 @@ const config: SocketIoConfig = {url: 'http://10.212.102.44:4444', options: {}};
         ReadyStepPage,
         GameoverPage,
         InventoryPage,
+        FinishPage
     ],
     providers: [
         StatusBar,

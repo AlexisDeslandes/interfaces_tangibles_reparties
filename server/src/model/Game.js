@@ -233,7 +233,10 @@ module.exports = class Game {
                 setTimeout(generate, seconds);
             } else {
                 const playersAlive = this.veloGame.getPlayersAlive();
-                playersAlive.forEach(player => this.sendToPlayer(player, "win", {status: 'win'}));
+                playersAlive.forEach(player => {
+                    this.sendToPlayer(player, "win", {status: 'win'});
+                    this.jauges[player].mood += 2;
+                });
                 this.tableSocket.emit('clearCanvas', {});
                 clearInterval(this.mainInterval);
             }
@@ -243,6 +246,8 @@ module.exports = class Game {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
             const idPlayerDead = this.veloGame.back(true);
             if (idPlayerDead !== -1) {
+                this.jauges[idPlayerDead].bike -= 2;
+                this.jauges[idPlayerDead].mood -= 2;
                 this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
             }
         }, 16);
@@ -278,7 +283,6 @@ module.exports = class Game {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     sendToPlayer(idPlayer, topic, object) {
-        console.log(topic);
         this.players[idPlayer - 1].socket.emit(topic, object);
     }
 };

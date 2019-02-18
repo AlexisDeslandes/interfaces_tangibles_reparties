@@ -24,8 +24,8 @@ import {InventoryPage} from "../pages/inventory/inventory";
 import {Guideline3PageModule} from "../pages/guideline3/guideline3.module";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 
-const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
-//const config: SocketIoConfig = {url: 'http://10.188.26.122:4444', options: {}};
+//const config: SocketIoConfig = {url: 'http://localhost:4444', options: {}};
+const config: SocketIoConfig = {url: 'http://10.212.102.44:4444', options: {}};
 
 
 @NgModule({

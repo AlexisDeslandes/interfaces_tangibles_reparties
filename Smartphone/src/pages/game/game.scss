@@ -10,20 +10,20 @@ page-game {
     top: 0;
   }
 
-  h1{
+  h1 {
     text-align: center;
     font-weight: bold;
     font-size: 40px;
   }
 
-  h3{
+  h3 {
     text-align: center;
     color: black;
     font-weight: bold;
     font-size: 20px;
   }
 
-  h4{
+  h4 {
     text-align: center;
     color: #707070;
     font-weight: bold;
@@ -51,6 +51,14 @@ page-game {
     position: absolute;
     border-radius: 100%;
     background-color: #707070;
+  }
+
+  .wrap-center {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
 
   ion-col {
@@ -89,7 +97,7 @@ page-game {
     z-index: 100;
   }
 
-  .fond{
+  .fond {
     z-index: 10;
   }
 }

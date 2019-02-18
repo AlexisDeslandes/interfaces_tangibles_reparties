@@ -5,6 +5,7 @@ page-guideline {
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: column;
   }
 
   ion-item{
@@ -19,10 +20,6 @@ page-guideline {
 
   button{
     background-color: green;
-  }
-
-  ion-row{
-    flex-direction: column;
   }
 
   ion-grid{

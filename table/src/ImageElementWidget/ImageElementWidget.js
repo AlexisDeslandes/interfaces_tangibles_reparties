@@ -6,7 +6,7 @@
 
 import TUIOWidget from 'tuiomanager/core/TUIOWidget';
 import TUIOManager from 'tuiomanager/core/TUIOManager';
-import ElementWidget from 'tuiomanager/widgets/ElementWidget/ImageElementWidget/ImageElementWidget';
+import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
 import { radToDeg } from 'tuiomanager/core/helpers';
 import Point from 'tuiomanager/src/utils/Point';
 
@@ -37,7 +37,7 @@ class ImageElementWidget extends ElementWidget {
         this._domElem.css('width', `${this.width}px`);
         this._domElem.css('height', `${this.height}px`);
         this._domElem.css('position', 'absolute');
-        this._domElem.css('z-index', `${this.zIndex}`);
+        this._domElem.css('z-index', `9999999`);
         this._domElem.css('left', `${x}px`);
         this._domElem.css('top', `${y}px`);
         this._domElem.css('transform', `rotate(${initialRotation}deg)`);

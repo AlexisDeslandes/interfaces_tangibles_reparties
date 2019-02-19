@@ -3,6 +3,7 @@ import io from 'socket.io-client/dist/socket.io';
 import MapWidget from './MapWidget/MapWidget';
 // import ImageWidget from './ImageWidget/ImageWidget';
 import ImageElementWidget from './ImageElementWidget/ImageElementWidget';
+import VideoElementWidget from './VideoElementWidget/VideoElementWidget';
 import RationWidget from './RationWidget/RationWidget';
 import StartButtonWidget from './Buttons/StartButtonWidget';
 import PlayButtonWidget from './Buttons/PlayButtonWidget';
@@ -22,7 +23,7 @@ class GameManager {
 
         this.change = true;
 
-        //this.socket = io.connect('http://192.168.1.20:4444');
+        // this.socket = io.connect('http://192.168.1.11:4444');
         this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -57,13 +58,7 @@ class GameManager {
         self.rationWidgetP3 = null;
         self.rationWidgetP4 = null;
 
-        self.trophyW1 = null;
-        self.trophyW2 = null;
-        self.trophyW3 = null;
-        self.trophyW4 = null;
-        self.trophyW5 = null;
-        self.trophyW6 = null;
-        self.trophyW7 = null;
+
         this.hasInit = false;
 
         this.connectDiv = $("#connect");
@@ -877,42 +872,7 @@ class GameManager {
     initWidgets(nbPlayer) {
         // this.trophyW1 = new ImageWidget(384, 287, 300, 300, 'res/recompenses/5.jpg', 10);
         // this.trophyW1.addTo($('#trophies').get(0));
-        this.socket.on('new-trophy', (data) => {
-            console.log("new trophy received");
-            // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
-            this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
-            this.recompensesWidget[data.step].hide();
-            this.recompensesWidget[data.step].addTo($('#trophies').get(0));
-            this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);
 
-            // const left = document.getElementById('gallery').getBoundingClientRect().left;
-            // const top = document.getElementById('gallery').getBoundingClientRect().top;
-
-            // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
-            // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
-            //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
-            //     $('app').append(this.recompensesWidget[data.step].domElem);
-            //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
-
-
-            // this.mapWidget.addTrophy;
-        });
-        this.playWidget.deleteWidget();
-        this.startWidget.deleteWidget();
-        this.recompensesWidget = [];
-        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
-        document.getElementById('gallery').style.left = document.getElementById('app').getBoundingClientRect().left;
-        document.getElementById('gallery').style.top = document.getElementById('app').getBoundingClientRect().top;
-
-        // const iew =  new ImageElementWidget(800, 500, 300, 300, 20, 1, "res/recompenses/1.jpg");
-        // $('app').append(iew.domElem);
-        // iew.addTo($('#app').get(0));
-        this.galleryWidget = new Gallery(
-            document.getElementById('gallery').getBoundingClientRect().left,
-            document.getElementById('gallery').getBoundingClientRect().top,
-            100,
-            100,
-        );
 
         if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
@@ -964,7 +924,55 @@ class GameManager {
             this.socket, this.gameRoom);
         $('#app').append(this.mapWidget.domElem);
         this.mapWidget.addMap();
+        self.trophyW1 = null;
+        self.trophyW2 = null;
+        self.trophyW3 = null;
+        self.trophyW4 = null;
+        self.trophyW5 = null;
+        self.trophyW6 = null;
+        self.trophyW7 = null;
+        this.socket.on('new-trophy', (data) => {
+            console.log("new trophy received");
+            console.log(data);
+            // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+            if(data.step === 0 || data.step === 1 || data.step === 2|| data.step === 4|| data.step === 9){
+                this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
+            }
+            else {
+                this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);
+            }
+            this.recompensesWidget[data.step].hide();
+            this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+            this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);
 
+            // const left = document.getElementById('gallery').getBoundingClientRect().left;
+            // const top = document.getElementById('gallery').getBoundingClientRect().top;
+
+            // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
+            // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
+            //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
+            //     $('app').append(this.recompensesWidget[data.step].domElem);
+            //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+
+
+            // this.mapWidget.addTrophy;
+        });
+        this.playWidget.deleteWidget();
+        this.startWidget.deleteWidget();
+        this.recompensesWidget = [];
+        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
+        document.getElementById('gallery').style.left = document.getElementById('app').getBoundingClientRect().left;
+        document.getElementById('gallery').style.top = document.getElementById('app').getBoundingClientRect().top;
+
+        // const iew =  new ImageElementWidget(800, 500, 300, 300, 20, 1, "res/recompenses/1.jpg");
+        // $('app').append(iew.domElem);
+        // iew.addTo($('#app').get(0));
+        this.galleryWidget = new Gallery(
+            document.getElementById('gallery').getBoundingClientRect().left,
+            document.getElementById('gallery').getBoundingClientRect().top,
+            100,
+            100,
+        );
 
     }
 

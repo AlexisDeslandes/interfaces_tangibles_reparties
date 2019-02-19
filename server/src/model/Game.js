@@ -118,7 +118,7 @@ module.exports = class Game {
             });
             this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
             this.map.refreshStep(this.currentStep);
-            this.map.sendProgression(this.tableSocket);
+            this.map.sendProgression(this.tableSocket, this.currentStep);
             this.map.getTrophies(this.currentStep, this.tableSocket);
             this.changeMap();
             this.currentStep++;

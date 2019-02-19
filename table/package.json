@@ -13,6 +13,7 @@
   "private": true,
   "license": "AtelierIHM",
   "dependencies": {
+    "circletype": "^2.3.0",
     "datamaps": "^0.5.9",
     "jquery": "3.1.1",
     "local-ipv4-address": "0.0.2",

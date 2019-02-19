@@ -9,7 +9,6 @@ import TUIOWidget from 'tuiomanager/core/TUIOWidget';
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from 'tuiomanager/core/constants';
 import ImageElementWidget from "../ImageElementWidget/ImageElementWidget";
 import { radToDeg } from 'tuiomanager/core/helpers';
-import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.min.js'
 // import ImageWidget from '../ImageWidget/ImageWidget';
 
 /**
@@ -73,10 +72,11 @@ class Gallery extends TUIOWidget {
     notifyBadge(){
         var newDiv = document.createElement("div");
         newDiv.id = "badge-container";
-        newDiv.innerHTML = '<canvas id="badge" width="100" height="100" style="position: fixed;border:1px solid #d3d3d3; z-index: 500"></canvas>';
+        newDiv.innerHTML = '<canvas  id="badge" width="100" height="100" style="position: fixed; z-index: 500"></canvas>';
         newDiv.style = ('position: fixed; width: 100px; height: 100px;  z-index: 3000; left: '+ `${this.x +10}px`+'; top: '+ `${this.y}px` +';');
         document.getElementById("gallery").appendChild(newDiv);
         var c = document.getElementById("badge");
+        c.className += "rotateLabels";
         var context = c.getContext("2d");
         context.beginPath();
         context.fillStyle = "red";

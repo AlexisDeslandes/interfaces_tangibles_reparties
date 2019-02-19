@@ -12,7 +12,7 @@ module.exports = class MapManager {
                 significance: 'Step 1',
                 latitude: 36.731088,
                 longitude: 3.087776,
-                image: "res/recompenses/1.jpg"
+                image: "res/recompenses/0.mp4"
             }, {
                 name: 'Bilda',
                 fillKey: 'blue',
@@ -20,7 +20,7 @@ module.exports = class MapManager {
                 significance: 'Step 2',
                 latitude: 36.4701645,
                 longitude: 2.8287985,
-                image: "res/recompenses/2.jpg"
+                image: "res/recompenses/1.mp4"
 
             },{
                 name: 'Tamesguida',
@@ -29,7 +29,7 @@ module.exports = class MapManager {
                 significance: 'Step 3',
                 latitude: 36.4701645,
                 longitude: 2.8287985,
-                image: "res/recompenses/3.jpg"
+                image: "res/recompenses/2.mp4"
 
             },{
                 name: 'Médéa',
@@ -46,7 +46,7 @@ module.exports = class MapManager {
                 significance: 'Step 5',
                 latitude: 36.262344,
                 longitude: 2.766957,
-                image: "res/recompenses/5.jpg"
+                image: "res/recompenses/4.mp4"
             },{
                 name: 'Médéa',
                 fillKey: 'blue',
@@ -86,7 +86,7 @@ module.exports = class MapManager {
                 significance: 'Step 10',
                 latitude: 16.7719091,
                 longitude: -3.0087272,
-                image: "res/recompenses/10.jpg"
+                image: "res/recompenses/1.mp4"
             },
         ];
         this.arcs =[];
@@ -127,8 +127,8 @@ module.exports = class MapManager {
 
     }
 
-    sendProgression(socket) {
-        socket.emit('map-progressed', this.progression);
+    sendProgression(socket, currentStep) {
+        socket.emit('map-progressed', {progress: this.progression, step: currentStep});
     }
     sendArcs(socket) {
         socket.emit('map-changed', this.arcs);

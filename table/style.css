@@ -7,7 +7,8 @@ img, div {
   -ms-user-select: none; }
 
 body {
-  overflow-y: hidden; }
+  overflow: hidden;
+  background-color: #f5f5dc94; }
 
 div {
   box-sizing: content-box; }
@@ -73,7 +74,7 @@ div.main-container-board {
     top: 25%;
     height: 49.5%; }
   div.main-container-board div.third-section {
-    top: 74.5%;
+    top: 75%;
     height: 25%; }
   div.main-container-board div.inner-section {
     display: inline-block;
@@ -153,7 +154,7 @@ div.main-container-board {
       background-color: #393bb5;
       bottom: 72%; }
   div.main-container-board div.short-edge {
-    width: 24.5%;
+    width: 25%;
     position: relative;
     overflow: hidden; }
     div.main-container-board div.short-edge img.picto-p3 {
@@ -208,7 +209,8 @@ div.main-container-board {
       transform: translateY(-50%); }
   div.main-container-board div.center-section {
     width: 49.5%;
-    border: 1px solid #000; }
+    border: none;
+    box-shadow: 0 0 20px 3px; }
 
 .jumbotron {
   padding: 40px 0; }
@@ -225,6 +227,7 @@ div.main-container-board {
   border-top: 1px solid #cccccc; }
 
 .start-game {
+  background-color: white;
   width: 400px;
   margin-left: 50%;
   margin-top: 25%;

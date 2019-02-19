@@ -9,6 +9,7 @@ module.exports = class Game {
         this.players = [];
         this.gameState = "init";
         this.nbPlayers = nbPlayers;
+        this.dead = [];
         this.room = room;
         this.tableSocket = tableSocket;
         this.currentStep = 0;
@@ -103,26 +104,48 @@ module.exports = class Game {
     }
 
     nextStep() {
-        this.readyCount = 0;
-        if (this.currentStep === this.adventureSteps.length) {
-            console.log(this.room + " is over");
-            this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
-            this.sendToAllPlayers("start", {status: 'gameover'});
-        } else {
-            this.gameState = "start";
-            this.consumeChickenWater();
-            this.tableSocket.emit("start", {
-                status: 'start',
-                step: this.adventureSteps[this.currentStep],
-                jauges: this.jauges
-            });
-            this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
-            this.map.refreshStep(this.currentStep);
-            this.map.sendProgression(this.tableSocket, this.currentStep);
-            this.map.getTrophies(this.currentStep, this.tableSocket);
-            this.changeMap();
-            this.currentStep++;
+
+        for (let playerId in this.jauges)
+        {
+            let playerJauge = this.jauges[playerId];
+            for (let stat in playerJauge)
+            {
+                if (playerJauge[stat] <= 0) {
+                    this.sendToPlayer(playerId, "dead", {"jauge": stat});
+                    this.tableSocket.emit("dead", {"playerId": playerId});
+                    if (!this.dead.includes(playerId)) {
+                        this.dead.push(playerId);
+                    }
+                }
+            }
         }
+
+
+        this.nbPlayers = this.players.length - this.dead.length;
+        if (this.nbPlayers === 0) {
+            this.tableSocket.emit("gameover");
+        }
+        else {
+            this.readyCount = 0;
+            if (this.currentStep === this.adventureSteps.length) {
+                console.log(this.room + " is over");
+                this.tableSocket.emit("start", {status: 'gameover', jauges: this.jauges});
+                this.sendToAllPlayers("start", {status: 'gameover'});
+            } else {
+                this.gameState = "start";
+                this.consumeChickenWater();
+                this.tableSocket.emit("start", {
+                    status: 'start',
+                    step: this.adventureSteps[this.currentStep],
+                    jauges: this.jauges
+                });
+                this.sendToAllPlayers("start", {status: 'start', step: this.adventureSteps[this.currentStep]});
+                this.map.refreshStep(this.currentStep);
+                this.map.sendProgression(this.tableSocket);
+                this.map.getTrophies(this.currentStep, this.tableSocket);
+                this.currentStep++;
+            }
+            }
     }
 
 
@@ -136,7 +159,8 @@ module.exports = class Game {
 
     sendToAllPlayers(topic, param) {
         this.players.forEach(p => {
-            p.socket.emit(topic, param)
+            if (!this.dead.includes(p.name))
+                p.socket.emit(topic, param)
         })
     }
 
@@ -150,7 +174,6 @@ module.exports = class Game {
         });
         return player;
     }
-
 
     alreadyInGame(id) {
         let found = false;
@@ -266,7 +289,10 @@ module.exports = class Game {
                 setTimeout(generate, seconds);
             } else {
                 const playersAlive = this.veloGame.getPlayersAlive();
-                playersAlive.forEach(player => this.sendToPlayer(player, "win", {status: 'win'}));
+                playersAlive.forEach(player => {
+                    this.sendToPlayer(player, "win", {status: 'win'});
+                    this.jauges[player].mood += 2;
+                });
                 this.tableSocket.emit('clearCanvas', {});
                 clearInterval(this.mainInterval);
             }
@@ -276,6 +302,8 @@ module.exports = class Game {
             this.tableSocket.emit('stateGame', this.veloGame.getState());
             const idPlayerDead = this.veloGame.back(true);
             if (idPlayerDead !== -1) {
+                this.jauges[idPlayerDead].bike -= 2;
+                this.jauges[idPlayerDead].mood -= 2;
                 this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
             }
         }, 16);
@@ -311,7 +339,6 @@ module.exports = class Game {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     sendToPlayer(idPlayer, topic, object) {
-        console.log(topic);
         this.players[idPlayer - 1].socket.emit(topic, object);
     }
 };

@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
-import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 
 /**
- * Generated class for the GameoverPage page.
+ * Generated class for the FinishPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,23 +11,20 @@ import {SocketManagerProvider} from "../../providers/socket-manager/socket-manag
 
 @IonicPage()
 @Component({
-    selector: 'page-gameover',
-    templateUrl: 'gameover.html',
+    selector: 'page-finish',
+    templateUrl: 'finish.html',
 })
-export class GameoverPage {
+export class FinishPage {
 
-    jauge;
     playerColor;
-    statsNames = {
-        "chicken": "Faim", "water": "Soif", "mood": "Humeur", "bike": "Usure du vélo", "energy": "Energie",
-        "Couverture": "Couverture de survie", "Duvet": "Duvet"
-    };
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
-        this.jauge = this.statsNames[this.navParams.get("jauge")];
         this.playerColor = this.navParams.get("playerColor");
     }
 
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad FinishPage');
+    }
 
     goHome() {
         this.navCtrl.push(HomePage, {})

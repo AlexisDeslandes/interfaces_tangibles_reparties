@@ -5,6 +5,7 @@ import {Subscription} from "rxjs/Rx";
 import {ReadyPage} from "../ready/ready";
 import {InventoryPage} from "../inventory/inventory";
 import {GuidelinePage} from "../guideline/guideline";
+import {GameoverPage} from "../gameover/gameover";
 
 /**
  * Generated class for the DilemmePage page.
@@ -51,6 +52,10 @@ export class DilemmePage {
     this.socketManager.socket.on('ask-for-new-part', (m) => {
       this.receivedPart = true;
       this.received_img_count = m.count;
+    });
+
+    this.socketManager.socket.on('dead', (m) => {
+        this.navCtrl.push(GameoverPage, {jauge: m.jauge, playerColor: this.socketManager.playerColor});
     });
 
   }
@@ -101,7 +106,7 @@ export class DilemmePage {
   }
 
   next() {
-    this.socketManager.sendNext();
+      this.socketManager.sendNext();
   }
 
   goTo() {

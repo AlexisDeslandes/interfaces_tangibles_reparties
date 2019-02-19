@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {Guideline2Page} from "../guideline2/guideline2";
 import {SocketManagerProvider} from "../../providers/socket-manager/socket-manager";
 import {Gyroscope} from "@ionic-native/gyroscope";
-import {ReadyPage} from "../ready/ready";
 import {Sand} from "../../class/Sand";
 import {Speed} from "../../class/Speed";
 
@@ -38,6 +36,7 @@ export class GamePage {
     private speedImg: HTMLImageElement;
 
     private animationToCancel = [];
+    private clic: boolean = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
         const gyroscopeSubscribe = Gyroscope.watch({frequency: 16}).subscribe(value => {
@@ -157,5 +156,10 @@ export class GamePage {
 
     private sendMoveRequest() {
         this.socket.sendMoveRequest();
+    }
+
+    nextStep(){
+        this.socket.sendNext();
+        this.clic = true;
     }
 }

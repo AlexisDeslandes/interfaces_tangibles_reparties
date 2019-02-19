@@ -23,7 +23,9 @@ class GameManager {
 
         this.change = true;
 
-        // this.socket = io.connect('http://192.168.1.11:4444');
+        this.dead = [];
+
+        //this.socket = io.connect('http://10.188.26.122:4444');
         this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -34,6 +36,10 @@ class GameManager {
         this.socket.on('clean', () => {
             console.log("It's cleaning");
             this.isClean = true;
+        });
+
+        this.socket.on('gameover', () => {
+            location.reload();
         });
 
         this.socket.on('clearCanvas', () => {
@@ -127,7 +133,7 @@ class GameManager {
                 data.puzzle.parts.forEach(p => {
                     let img;
                     if (p.shown) img = "<img src='../res/" + puzzleName + "/" + p.picture + "' class='slide-in-fwd-center'/>";
-                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>";
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
                         img +
@@ -153,24 +159,15 @@ class GameManager {
             $('#puzzle-title').hide();
         });
 
-        // this.socket.on('new-trophy', (data) => {
-        //     console.log("new trophy received");
-        //     this.galleryWidget.addPicture(data);
-        //     // const left = document.getElementById('gallery').getBoundingClientRect().left;
-        //     // const top = document.getElementById('gallery').getBoundingClientRect().top;
-        //
-        //     // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
-        //     // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
-        //     //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
-        //     //     $('app').append(this.recompensesWidget[data.step].domElem);
-        //     //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
-        //
-        //
-        //     // this.mapWidget.addTrophy;
-        // });
-
+        this.socket.on('dead', data => {
+            this.dead.push(data.playerId);
+        });
 
         this.socket.on('start', data => {
+
+            if (data.status === "gameover")
+                location.reload();
+
             let audio = new Audio('../res/sounds/netflix.mp3');
             audio.play();
             self.showMap();
@@ -187,6 +184,19 @@ class GameManager {
                 self.initCanvas(nbPlayers);
             }
 
+            const intro = data.step["intro"];
+
+            let msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
+            window.speechSynthesis.speak(msg1);
+
+            msg1.onend = function() {
+
+                if (intro.length > 1) {
+                    let msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+                    window.speechSynthesis.speak(msg2);
+                }
+            };
+
             $(".smartphone-picto").css("display", "block");
 
             setTimeout(function () {
@@ -195,15 +205,19 @@ class GameManager {
 
 
             self.updateJauges(data.jauges);
+            for (let player of this.dead) {
+                $("#img-jean-p"+player).css("opacity", "0.2");
+                $("#water-level-p"+player).css("opacity", "0.2");
+                $("#energy-level-p"+player).css("opacity", "0.2");
+                $("#bike-p"+player).css("opacity", "0.2");
+                $("#smartphone-picto-p"+player).css("opacity", "0");
+            }
 
         });
         this.gameRoom = null;
 
-        //let change = true;
-
         this.socket.on("stateGame", (data) => {
             this.players = data.players;
-            //change = !change;
         });
 
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
@@ -550,8 +564,8 @@ class GameManager {
                     }
                 }
             }
-            let mood = Math.ceil(jauges[playerId]["mood"] / 2);
-            let chicken = Math.ceil(jauges[playerId]["chicken"] / 2);
+            let mood = Math.min(10, Math.max(1, Math.ceil(jauges[playerId]["mood"] / 2)));
+            let chicken = Math.min(10, Math.max(1, Math.ceil(jauges[playerId]["chicken"] / 2)));
             $("#img-jean-p" + playerId).attr("src", "res/jean/player-" + playerId + "-mood-" + mood
                 + "-chicken-" + chicken + ".png");
         }
@@ -625,7 +639,7 @@ class GameManager {
 
             for (let i = 1; i < 5; i++) {
                 let code = this.gameRoom.substring(4) + "-" + i;
-                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + code + "'/>")
+                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&bgcolor=F9F9EA&data=" + code + "'/>")
             }
 
 

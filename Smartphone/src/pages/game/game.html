@@ -34,20 +34,43 @@
             </div>
         </ion-row>
         <ion-row>
-            <div>
-                <h4>Les conséquences vont être lourdes ...</h4>
+            <div class="wrap-center">
+                <div>
+                    <h4>Vous arrivez à vous habriter de la tempête in-extremis. Mais votre vélo a subi un mauvais coup.</h4>
+                    <h4>Usure du vélo : -2</h4>
+                    <h4>Humeur : -2</h4>
+                </div>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div class="wrap-center">
+                <div>
+                    <button [disabled]="clic" ion-button="" (click)="nextStep()">Suite</button>
+                    <h4 *ngIf="clic">En attente des autres joueurs ...</h4>
+                </div>
             </div>
         </ion-row>
     </ion-grid>
     <ion-grid id="third" style="display: none;">
         <ion-row>
             <div>
-                <h1>Vous survivez à la tempête.</h1>
+                <h1>La tempête est derrière vous.</h1>
             </div>
         </ion-row>
         <ion-row>
-            <div>
-                <h4>Vous pouvez repartir fièrement de cette épopée.</h4>
+            <div class="wrap-center">
+                <div>
+                    <h4>Vous êtes très heureux d'y avoir échappé en un seul morceau.</h4>
+                    <h4>Humeur : +2</h4>
+                </div>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div class="wrap-center">
+                <div>
+                    <button [disabled]="clic" ion-button="" (click)="nextStep()">Suite</button>
+                    <h4 *ngIf="clic">En attente des autres joueurs ...</h4>
+                </div>
             </div>
         </ion-row>
     </ion-grid>

@@ -121,23 +121,20 @@ module.exports = class PuzzleManager {
         this.puzzles.forEach(pz => {
             if (!pz.finished) {
 
-                let b = Math.random() > 0.3;
+                let b = Math.random() > 0.4;
                 if (b) {
-                    img_count++;
 
-                    let p = pz.parts[this.getRandomInt(0, pz.parts.length - 1)];
-
-                    let counter = 0;
-                    while ((p.shown || p.player !== null) && counter < pz.parts.length*10) {
-                        p = pz.parts[this.getRandomInt(0, pz.parts.length - 1)];
-                        counter++
+                    for(let p of pz.parts){
+                        if(!p.shown && !p.player){
+                            p.player = socket.id;
+                            console.log('new ' + pz.name + ' part for ', socket.id);
+                            img_count++;
+                            break;
+                        }
                     }
 
-                    if (!p.shown && !p.player) {
-                        p.player = socket.id;
-                        console.log('new ' + pz.name + ' part for ', socket.id);
-                    }
-
+                } else {
+                    console.log('no piece for '+socket.id)
                 }
             }
         });

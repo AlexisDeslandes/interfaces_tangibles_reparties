@@ -25,7 +25,7 @@ module.exports = [
                 result: "Vous tentez d'emporter un parasol. Malheureusement, vous ne parvenez pas à le faire rentrer" +
                     "dans votre sacoche...",
                 stats: [
-                    {type: 'mood', value: -10},
+                    {type: 'mood', value: -1},
                 ]
             },
             {
@@ -41,7 +41,7 @@ module.exports = [
                     {type: 'Duvet', value: 1}]
             },
         ],
-    },/*
+    },
     {
         intro: [
             {
@@ -112,7 +112,7 @@ module.exports = [
                     "Heureusement, vous avez trouvé un petit coin sympa pour vous reposer, et vous êtes bien trop fatigué " +
                     "pour penser aux menaces éventuelles.",
                 stats: [
-                    {type: 'mood', value: -1},
+                    {type: 'mood', value: -2},
                     {type: 'energy', value: 1}
                 ]
             },
@@ -162,7 +162,7 @@ module.exports = [
                     "vous peinez à gravir la montée... Vous êtes cependant persuadé que vous avez fait le bon choix, car vous " +
                     "auriez eu beaucoup de mal à reprendre la montée après une pause...",
                 stats: [
-                    {type: 'mood', value: -1},
+                    {type: 'mood', value: -2},
                     {type: 'energy', value: -2}
                 ]
             }
@@ -340,7 +340,7 @@ module.exports = [
                     "en train de tomber.",
                 stats: [
                     {type: "energy", value: -2},
-                    {type: "mood", value: -1},
+                    {type: "mood", value: -3},
                 ]
             },
             {
@@ -385,5 +385,5 @@ module.exports = [
                 ]
             },
         ]
-    }*/
+    }
 ];

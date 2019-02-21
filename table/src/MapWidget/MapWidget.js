@@ -242,6 +242,8 @@ class MapWidget extends TUIOWidget {
         // }
     }
 
+    getSound() { return this.sound; }
+
     /**
      * MapWidget's domElem.
      *
@@ -256,16 +258,19 @@ class MapWidget extends TUIOWidget {
      * @param {TUIOTouch} tuioTouch - A TUIOTouch instance.
      */
     onTouchCreation(tuioTouch) {
-//     super.onTouchCreation(tuioTouch);
-//     if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
-//         this._lastTouchesValues = {
-//             ...this._lastTouchesValues,
-//             [tuioTouch.id]: {
-//                 x: tuioTouch.x,
-//                 y: tuioTouch.y,
-//             },
-//         };
-//     }
+        super.onTouchCreation(tuioTouch);
+        if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
+
+            this.socket.emit("sound", {gameRoom: this.gameRoom});
+
+            this._lastTouchesValues = {
+                ...this._lastTouchesValues,
+                [tuioTouch.id]: {
+                    x: tuioTouch.x,
+                    y: tuioTouch.y,
+                },
+            };
+        }
     }
 
     /**
@@ -275,39 +280,39 @@ class MapWidget extends TUIOWidget {
      * @param {TUIOTouch} tuioTouch - A TUIOTouch instance.
      */
     onTouchUpdate(tuioTouch) {
-//     if (typeof (this._lastTouchesValues[tuioTouch.id]) !== 'undefined') {
-//         /* const lastTouchValue = this._lastTouchesValues[tuioTouch.id];
-//          const diffX = tuioTouch.x - lastTouchValue.x;
-//          const diffY = tuioTouch.y - lastTouchValue.y;
-//
-//          let newX = this.x + diffX;
-//          let newY = this.y + diffY;
-//
-//          if (newX < 0) {
-//          newX = 0;
-//          }
-//
-//          if (newX > (WINDOW_WIDTH - this.width)) {
-//          newX = WINDOW_WIDTH - this.width;
-//          }
-//
-//          if (newY < 0) {
-//          newY = 0;
-//          }
-//
-//          if (newY > (WINDOW_HEIGHT - this.height)) {
-//          newY = WINDOW_HEIGHT - this.height;
-//          }
-//
-//          this.moveTo(newX, newY);
-//          this._lastTouchesValues = {
-//          ...this._lastTouchesValues,
-//          [tuioTouch.id]: {
-//          x: tuioTouch.x,
-//          y: tuioTouch.y,
-//          },
-//          }; */
-//     }
+        if (typeof (this._lastTouchesValues[tuioTouch.id]) !== 'undefined') {
+            /* const lastTouchValue = this._lastTouchesValues[tuioTouch.id];
+             const diffX = tuioTouch.x - lastTouchValue.x;
+             const diffY = tuioTouch.y - lastTouchValue.y;
+
+             let newX = this.x + diffX;
+             let newY = this.y + diffY;
+
+             if (newX < 0) {
+             newX = 0;
+             }
+
+             if (newX > (WINDOW_WIDTH - this.width)) {
+             newX = WINDOW_WIDTH - this.width;
+             }
+
+             if (newY < 0) {
+             newY = 0;
+             }
+
+             if (newY > (WINDOW_HEIGHT - this.height)) {
+             newY = WINDOW_HEIGHT - this.height;
+             }
+
+             this.moveTo(newX, newY);
+             this._lastTouchesValues = {
+             ...this._lastTouchesValues,
+             [tuioTouch.id]: {
+             x: tuioTouch.x,
+             y: tuioTouch.y,
+             },
+             }; */
+        }
     }
 
     /**
@@ -414,9 +419,9 @@ class MapWidget extends TUIOWidget {
 
     }
 
-    onTagDeletion(tuioTag){
-        this.map.arc([]);
-    }
+    // onTagDeletion(tuioTag){
+    //     this.map.arc([]);
+    // }
 
     /**
      * Move MapWidget.

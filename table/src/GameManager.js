@@ -17,6 +17,7 @@ class GameManager {
     constructor() {
         const runSound = [new SpeechSynthesisUtterance('La tempête est là, éviter les rochers sur votre passage !'),
             new SpeechSynthesisUtterance('Elle est de plus en plus rapide !'),
+            new SpeechSynthesisUtterance('La tempête fait rage.'),
             new SpeechSynthesisUtterance('Vous appercevez au loin une crevasse.'),
             new SpeechSynthesisUtterance('Vous êtes proche de la crevasse !'),
             new SpeechSynthesisUtterance("Plus qu'un petit effort !")];
@@ -28,7 +29,7 @@ class GameManager {
         this.msg1 = null;
         // this.msg2 = null;
 
-        this.socket = io.connect('http://192.168.1.16:4444');
+        this.socket = io.connect('http://10.188.26.122:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -110,8 +111,8 @@ class GameManager {
 
         this.socket.on('init', data => {
             console.log(data);
-            if(!this.hasInit) {
-                this.hasInit =true;
+            if (!this.hasInit) {
+                this.hasInit = true;
                 this.start(data);
                 this.startWidget.deleteWidget();
                 // console.log("test");
@@ -152,8 +153,8 @@ class GameManager {
         this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
-            console.log('puzzle-ended',m);
-            if(m.puzzle === 'puzzle1')
+            console.log('puzzle-ended', m);
+            if (m.puzzle === 'puzzle1')
 
                 $('#result-img').attr('src', 'res/puzzle1/full.jpg');
             else
@@ -188,15 +189,15 @@ class GameManager {
                 self.initCanvas(nbPlayers);
             }
 
-            try{
-            const intro = data.step["intro"];
+            try {
+                const intro = data.step["intro"];
 
-            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
-            // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+                this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
+                // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
 
-            // this.msg1.lang = 'fr-FR';
-            window.speechSynthesis.speak(this.msg1);
-            }catch(e) {
+                // this.msg1.lang = 'fr-FR';
+                window.speechSynthesis.speak(this.msg1);
+            } catch (e) {
 
             }
 
@@ -605,7 +606,7 @@ class GameManager {
     }
 
     start(data) {
-        if(!this.hasInit) {
+        if (!this.hasInit) {
             this.hasInit = true;
             this.gameRoom = data.room;
 
@@ -633,6 +634,7 @@ class GameManager {
 
 
     }
+
     initReadyWidget() {
         this.playWidget = new PlayButtonWidget(
             document.getElementById('ready-ctn').getBoundingClientRect().left,
@@ -968,8 +970,8 @@ class GameManager {
             console.log("new trophy received");
             console.log(data);
             // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
-            if(data.step === 0 || data.step === 1 || data.step === 2|| data.step === 4|| data.step === 9){
-                this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
+            if (data.step === 0 || data.step === 1 || data.step === 2 || data.step === 4 || data.step === 9) {
+                this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);
             }
             else {
                 this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);
@@ -993,7 +995,7 @@ class GameManager {
         this.playWidget.deleteWidget();
         this.startWidget.deleteWidget();
         this.recompensesWidget = [];
-        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
+        this.recompensesWidget.push(this.trophyW1, this.trophyW2, this.trophyW3, this.trophyW4, this.trophyW5, this.trophyW6, this.trophyW7);
         document.getElementById('gallery').style.left = document.getElementById('app').getBoundingClientRect().left;
         document.getElementById('gallery').style.top = document.getElementById('app').getBoundingClientRect().top;
 

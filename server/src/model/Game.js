@@ -280,6 +280,7 @@ module.exports = class Game {
         this.veloGame.setState(state);
         let seconds = 8000;
         let tickToWin = 25;
+        this.tableSocket.emit('nextAudio', {});
 
         const generate = () => {
             if (--tickToWin > 0 && this.veloGame.areSurvivantsPresent()) {

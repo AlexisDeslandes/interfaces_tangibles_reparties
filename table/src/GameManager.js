@@ -158,11 +158,13 @@ class GameManager {
             const intro = data.step["intro"];
 
             this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
+            this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
 
             this.msg1.onend = function() {
 
                 if (intro.length > 1) {
+                    this.msg2.lang = 'fr-FR';
                     this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
                     window.speechSynthesis.speak(this.msg2);
                 }

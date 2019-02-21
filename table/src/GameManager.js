@@ -132,7 +132,7 @@ class GameManager {
             $('#puzzle-title').hide();
         });
 
-        this.socket.on('dead', data => {
+        this.socket.on('death', data => {
             this.dead.push(data.playerId);
         });
 

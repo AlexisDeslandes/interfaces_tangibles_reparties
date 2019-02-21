@@ -116,11 +116,12 @@ module.exports = class Game {
             for (let stat in playerJauge)
             {
                 if (playerJauge[stat] <= 0) {
-                    this.sendToPlayer(playerId, "dead", {"jauge": stat});
-                    this.tableSocket.emit("dead", {"playerId": playerId});
                     if (!this.dead.includes(playerId)) {
                         this.dead.push(playerId);
+                        this.sendToPlayer(playerId, "death", {"jauge": stat});
+                        this.tableSocket.emit("death", {"playerId": playerId});
                     }
+                    break;
                 }
             }
         }
@@ -309,6 +310,7 @@ module.exports = class Game {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     sendToPlayer(idPlayer, topic, object) {
+        console.log(topic);
         this.players[idPlayer - 1].socket.emit(topic, object);
     }
 };

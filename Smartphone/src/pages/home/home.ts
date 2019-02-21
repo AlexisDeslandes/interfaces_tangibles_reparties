@@ -26,6 +26,12 @@ export class HomePage {
                 public toastController: ToastController, private scanner: BarcodeScanner) {
 
 
+        this.socketManager.socket.on('death', (m) => {
+            console.log("DEAD");
+            this.navCtrl.push(GameoverPage, {jauge: m.jauge, playerColor: this.socketManager.playerColor});
+        });
+
+
         this.status = "Connexion au serveur en cours...";
 
         this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {

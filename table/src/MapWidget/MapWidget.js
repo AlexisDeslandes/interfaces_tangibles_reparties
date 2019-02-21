@@ -128,9 +128,7 @@ class MapWidget extends TUIOWidget {
             this.map.arc(m);
         });
         console.log("MAAAAAAAAPPPPPP");
-        console.log( "x= "+ this._x+ "  y= "+this._y+ " width = "+this._width+" height = "+ this._height);
-        console.log(this.itineraire);
-        console.log(this.itineraire[1]);
+
     }
 
 
@@ -179,6 +177,9 @@ class MapWidget extends TUIOWidget {
             d3.selectAll('.rotateLabels').remove();
             this.cities = [];
         }
+        while(document.getElementById('flagCities')){
+            document.getElementById('flagCities').remove();
+        }
         console.log("-------------------------------");
         this.map.bubbles(tmp.concat(m.progress), {
             popupOnHover: true,
@@ -200,6 +201,7 @@ class MapWidget extends TUIOWidget {
                     let test = document.createElement('div');
                     let flag = document.createElement('IMG');
                     flag.setAttribute('src', 'res/flag-checkered.svg');
+                    flag.setAttribute('id', 'flagCities');
                     flag.style.left = `${tab[i].getBoundingClientRect().left}px`;
                     flag.style.top = `${tab[i].getBoundingClientRect().top -40}px`;
                     flag.style.width = "40px";

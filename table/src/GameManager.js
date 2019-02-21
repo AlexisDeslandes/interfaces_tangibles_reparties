@@ -28,7 +28,7 @@ class GameManager {
         this.msg1 = null;
         this.msg2 = null;
 
-        this.socket = io.connect('http://192.168.199.1:4444');
+        this.socket = io.connect('http://192.168.1.16:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -136,7 +136,7 @@ class GameManager {
                 data.puzzle.parts.forEach(p => {
                     let img;
                     if (p.shown) img = "<img src='../res/" + puzzleName + "/" + p.picture + "' class='slide-in-fwd-center'/>";
-                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>";
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
                         img +

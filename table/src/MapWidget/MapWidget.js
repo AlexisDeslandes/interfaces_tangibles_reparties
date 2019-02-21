@@ -191,7 +191,7 @@ class MapWidget extends TUIOWidget {
         console.log(d3.selectAll('.rotateLabels')[0]);
         console.log("---------------------------------");
         for (let i = 0; i < tab.length; i++) {
-            if(this.cities.indexOf(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name) === -1){
+            if(this.cities.indexOf(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name) > -1){
                 let city = JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name;
                 console.log("test");
                 console.log(d3.selectAll('.datamaps-bubble')[0][i]);
@@ -259,6 +259,7 @@ class MapWidget extends TUIOWidget {
      */
     onTouchCreation(tuioTouch) {
         super.onTouchCreation(tuioTouch);
+        console.log(tuioTouch);
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
 
             console.log("touched");

@@ -1,8 +1,15 @@
 import $ from 'jquery/dist/jquery.min';
 import io from 'socket.io-client/dist/socket.io';
-import MapWidget from './MapWidget/MapWidget'
+import MapWidget from './MapWidget/MapWidget';
+// import ImageWidget from './ImageWidget/ImageWidget';
+import ImageElementWidget from './ImageElementWidget/ImageElementWidget';
+import VideoElementWidget from './VideoElementWidget/VideoElementWidget';
+import VideoWidget from 'tuiomanager/widgets/ElementWidget/VideoElementWidget/VideoElementWidget';
 import RationWidget from './RationWidget/RationWidget';
+import StartButtonWidget from './Buttons/StartButtonWidget';
+import PlayButtonWidget from './Buttons/PlayButtonWidget';
 import {GameState} from "./model/GameState";
+import Gallery from "./Buttons/Gallery";
 
 
 class GameManager {
@@ -19,10 +26,10 @@ class GameManager {
         this.change = true;
         this.dead = [];
         this.msg1 = null;
-        this.msg2 = null;
+        // this.msg2 = null;
 
-        //this.socket = io.connect('http://192.168.1.11:4444');
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.1.16:4444');
+        //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
             this.isClean = false;
@@ -59,19 +66,31 @@ class GameManager {
         self.rationWidgetP3 = null;
         self.rationWidgetP4 = null;
 
+
+        this.hasInit = false;
+
         this.connectDiv = $("#connect");
         this.startDiv = $("#start-btn");
         this.readyBtn = $("#ready-btn");
         this.nextBtn = $("#next-btn");
         this.closePuzzleBtn = $("#close-puzzle");
 
-        this.startDiv.click(function () {
-            self.start();
-        });
+        self.startWidget = new StartButtonWidget(
+            document.getElementById('start-btn').getBoundingClientRect().left,
+            document.getElementById('start-btn').getBoundingClientRect().top,
+            document.getElementById('start-btn').getBoundingClientRect().width,
+            document.getElementById('start-btn').getBoundingClientRect().height,
+            self.socket);
+        $('#widget').append(this.startWidget.domElem);
 
-        this.readyBtn.click(function () {
-            self.ready();
-        });
+
+        // this.startDiv.click(function () {
+        //     self.start();
+        // });
+
+        // this.readyBtn.click(function () {
+        //     self.ready();
+        // });
 
         this.nextBtn.click(function () {
             self.next();
@@ -88,6 +107,19 @@ class GameManager {
             $("#connected_" + data.player).show();
         });
 
+
+        this.socket.on('init', data => {
+            console.log(data);
+            if(!this.hasInit) {
+                this.hasInit =true;
+                this.start(data);
+                this.startWidget.deleteWidget();
+                // console.log("test");
+                // console.log(document.getElementById('ready-ctn').getBoundingClientRect().top);
+                // this.initReadyWidget();
+            }
+        });
+
         this.socket.on('ration-used', data => {
             let audio = new Audio('../res/sounds/valid.wav');
             audio.play();
@@ -101,11 +133,11 @@ class GameManager {
                 audio.play();
                 let ctn = $('#puzzle-parent');
                 ctn.empty();
-                let puzzleName = data.puzzle.name
+                let puzzleName = data.puzzle.name;
                 data.puzzle.parts.forEach(p => {
                     let img;
                     if (p.shown) img = "<img src='../res/" + puzzleName + "/" + p.picture + "' class='slide-in-fwd-center'/>";
-                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>"
+                    else img = "<img src='../res/puzzle1/hidden2.png' style='padding-top: 2px' class='slide-in-fwd-center'/>";
                     ctn.append(
                         "<div class='puzzle-child' id='" + p.picture + "'>" +
                         img +
@@ -120,8 +152,8 @@ class GameManager {
         this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
-            console.log('puzzle-ended', m)
-            if (m.puzzle === 'puzzle1')
+            console.log('puzzle-ended',m);
+            if(m.puzzle === 'puzzle1')
 
                 $('#result-img').attr('src', 'res/puzzle1/full.jpg');
             else
@@ -144,10 +176,12 @@ class GameManager {
             audio.play();
             self.showMap();
             self.hidePuzzle();
+            self.playWidget.deleteWidget();
             let nbPlayers = Object.keys(data.jauges).length;
             if (self.init) {
                 self.showMap();
                 self.adaptTable(nbPlayers);
+                document.getElementById('widget').remove();
                 self.initWidgets(nbPlayers);
                 self.init = false;
                 this.jauges = data.jauges;
@@ -156,18 +190,20 @@ class GameManager {
 
             const intro = data.step["intro"];
 
-            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
-            this.msg1.lang = 'fr-FR';
+            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"] + intro[1]["text"]);
+            // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+
+            // this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
 
-            this.msg1.onend = function () {
-
-                if (intro.length > 1) {
-                    this.msg2.lang = 'fr-FR';
-                    this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
-                    window.speechSynthesis.speak(this.msg2);
-                }
-            };
+            // this.msg1.onend = function () {
+            //
+            //     // if (intro.length > 1) {
+            //     //     // this.msg2.lang = 'fr-FR';
+            //     //     // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+            //     //     window.speechSynthesis.speak(this.msg2);
+            //     // }
+            // };
 
             $(".smartphone-picto").css("display", "block");
 
@@ -194,8 +230,9 @@ class GameManager {
 
         this.socket.on("sound", (data) => {
             console.log("sound");
+            console.log(data.volume);
             this.msg1.volume = data.volume;
-            this.msg2.volume = data.volume;
+            // this.msg2.volume = data.volume;
         });
 
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
@@ -558,8 +595,49 @@ class GameManager {
     }
 
     next() {
-        this.socket.emit('next', {room: this.gameRoom})
+        this.socket.emit('next', {room: this.gameRoom});
+        this.socket.emit('ask-for-trophies', {room: this.gameRoom})
+
     }
+
+    start(data) {
+        if(!this.hasInit) {
+            this.hasInit = true;
+            this.gameRoom = data.room;
+
+
+            let index = this.gameRoom.indexOf("room");
+            var roomId = this.gameRoom.substr(index + 1);
+
+
+            //this.socket.emit('get-puzzle', {room: data.room});
+
+
+            for (let i = 1; i < 5; i++) {
+                let code = this.gameRoom.substring(4) + "-" + i;
+                $('#code-list').append("<b id='code_" + i + "'>" + code + "</b><img class='qr_code' id='qr_" + i + "' src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + code + "'/>")
+            }
+
+
+            this.startDiv.remove();
+            this.connectDiv.show();
+            $('#ready-ctn').show();
+            //$("#header").hide();
+            this.initReadyWidget();
+
+        }
+
+
+    }
+    initReadyWidget() {
+        this.playWidget = new PlayButtonWidget(
+            document.getElementById('ready-ctn').getBoundingClientRect().left,
+            document.getElementById('ready-ctn').getBoundingClientRect().top,
+            document.getElementById('ready-ctn').getBoundingClientRect().width,
+            document.getElementById('ready-ctn').getBoundingClientRect().height,
+            this.socket, this.gameRoom);
+        $('#widget').append(this.playWidget.domElem);
+    };
 
     start() {
         this.socket.emit('init', {});
@@ -583,7 +661,8 @@ class GameManager {
             this.startDiv.remove();
             this.connectDiv.show();
             //$("#header").hide();
-
+            $('#ready-ctn').show();
+            this.initReadyWidget();
         });
 
     }
@@ -820,6 +899,10 @@ class GameManager {
     }
 
     initWidgets(nbPlayer) {
+        // this.trophyW1 = new ImageWidget(384, 287, 300, 300, 'res/recompenses/5.jpg', 10);
+        // this.trophyW1.addTo($('#trophies').get(0));
+
+
         if (nbPlayer >= 1) {
             const rationWidgetP1 = new RationWidget('ration-p1', '1', this.gameRoom,
                 document.getElementById('ration-container-p1').getBoundingClientRect().left,
@@ -870,7 +953,55 @@ class GameManager {
             this.socket, this.gameRoom);
         $('#app').append(this.mapWidget.domElem);
         this.mapWidget.addMap();
+        self.trophyW1 = null;
+        self.trophyW2 = null;
+        self.trophyW3 = null;
+        self.trophyW4 = null;
+        self.trophyW5 = null;
+        self.trophyW6 = null;
+        self.trophyW7 = null;
+        this.socket.on('new-trophy', (data) => {
+            console.log("new trophy received");
+            console.log(data);
+            // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
+            if(data.step === 0 || data.step === 1 || data.step === 2|| data.step === 4|| data.step === 9){
+                this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
+            }
+            else {
+                this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);
+            }
+            this.recompensesWidget[data.step].hide();
+            this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+            this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);
 
+            // const left = document.getElementById('gallery').getBoundingClientRect().left;
+            // const top = document.getElementById('gallery').getBoundingClientRect().top;
+
+            // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
+            // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
+            //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
+            //     $('app').append(this.recompensesWidget[data.step].domElem);
+            //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
+
+
+            // this.mapWidget.addTrophy;
+        });
+        this.playWidget.deleteWidget();
+        this.startWidget.deleteWidget();
+        this.recompensesWidget = [];
+        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
+        document.getElementById('gallery').style.left = document.getElementById('app').getBoundingClientRect().left;
+        document.getElementById('gallery').style.top = document.getElementById('app').getBoundingClientRect().top;
+
+        // const iew =  new ImageElementWidget(800, 500, 300, 300, 20, 1, "res/recompenses/1.jpg");
+        // $('app').append(iew.domElem);
+        // iew.addTo($('#app').get(0));
+        this.galleryWidget = new Gallery(
+            document.getElementById('gallery').getBoundingClientRect().left,
+            document.getElementById('gallery').getBoundingClientRect().top,
+            100,
+            100,
+        );
 
     }
 

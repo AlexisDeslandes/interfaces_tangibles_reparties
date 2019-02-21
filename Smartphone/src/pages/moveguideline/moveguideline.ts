@@ -38,7 +38,7 @@ export class MoveguidelinePage {
     private speedImg: HTMLImageElement;
 
     private animationToCancel = [];
-    indications: string = 'Maintenez appuyez la pédale de gauche et droite tout en alternant de haut en bas pour avancer.';
+    indications: string = 'Maintenez les pouces sur les pédales tout en alternant de haut en bas pour avancer.';
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private socket: SocketManagerProvider) {
 

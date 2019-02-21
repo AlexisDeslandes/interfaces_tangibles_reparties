@@ -121,6 +121,8 @@ class GameManager {
         });
 
         this.socket.on('ration-used', data => {
+            let audio = new Audio('../res/sounds/valid.wav');
+            audio.play();
             self.updateJauges(data.jauges);
         });
 
@@ -161,7 +163,7 @@ class GameManager {
             $('#puzzle-title').hide();
         });
 
-        this.socket.on('dead', data => {
+        this.socket.on('death', data => {
             this.dead.push(data.playerId);
         });
 

@@ -69,14 +69,14 @@
         </ion-card>
 
         <ion-card [style.borderColor]="socketManager.playerColor" padding class="puzzle wsh"
-                  *ngIf="receivedPart && closeBoxs[2]">
+                  *ngIf="receivedPart && closeBoxs[2] && received_img_count >0">
             <span class="close" (click)="hide(2)">
                 <ion-icon name="close"></ion-icon>
             </span>
             <span class="icn">
                 <img src="https://image.flaticon.com/icons/png/128/116/116392.png"/>
             </span>
-            <p style="font-size: 17px" *ngIf="received_img_count >0">Vous avez reçu {{received_img_count}}
+            <p style="font-size: 17px" >Vous avez reçu {{received_img_count}}
                 image{{received_img_count > 1 ? 's' : ''}} !</p>
             <button ion-button outline item-end icon-start (click)="openInventory()">
                 <ion-icon name="camera"></ion-icon>

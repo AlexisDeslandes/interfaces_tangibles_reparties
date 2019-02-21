@@ -188,13 +188,17 @@ class GameManager {
                 self.initCanvas(nbPlayers);
             }
 
+            try{
             const intro = data.step["intro"];
 
-            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"] + intro[1]["text"]);
+            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
             // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
 
             // this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
+            }catch(e) {
+
+            }
 
             // this.msg1.onend = function () {
             //

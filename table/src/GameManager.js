@@ -26,7 +26,7 @@ class GameManager {
         this.change = true;
         this.dead = [];
         this.msg1 = null;
-        this.msg2 = null;
+        // this.msg2 = null;
 
         this.socket = io.connect('http://192.168.1.16:4444');
         //this.socket = io.connect('http://localhost:4444');
@@ -188,20 +188,20 @@ class GameManager {
 
             const intro = data.step["intro"];
 
-            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
-            this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"] + intro[1]["text"]);
+            // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
 
             // this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
 
-            this.msg1.onend = function () {
-
-                if (intro.length > 1) {
-                    // this.msg2.lang = 'fr-FR';
-                    // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
-                    window.speechSynthesis.speak(this.msg2);
-                }
-            };
+            // this.msg1.onend = function () {
+            //
+            //     // if (intro.length > 1) {
+            //     //     // this.msg2.lang = 'fr-FR';
+            //     //     // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+            //     //     window.speechSynthesis.speak(this.msg2);
+            //     // }
+            // };
 
             $(".smartphone-picto").css("display", "block");
 
@@ -230,7 +230,7 @@ class GameManager {
             console.log("sound");
             console.log(data.volume);
             this.msg1.volume = data.volume;
-            this.msg2.volume = data.volume;
+            // this.msg2.volume = data.volume;
         });
 
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
@@ -963,7 +963,7 @@ class GameManager {
             console.log(data);
             // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
             if(data.step === 0 || data.step === 1 || data.step === 2|| data.step === 4|| data.step === 9){
-                this.recompensesWidget[data.step] = new VideoWidget(300, 287, 300, 300, data.step*10, 1, data.img);
+                this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
             }
             else {
                 this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);

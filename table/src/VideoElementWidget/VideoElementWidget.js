@@ -33,7 +33,6 @@ class VideoElementWidget extends ElementWidget {
         this._domElem.append(
             $('<video>')
                 .attr('src', src)
-                .attr('type', "video/mp4")
                 .css('width', '100%')
                 .css('position', 'absolute'),
             $('<div>')
@@ -68,14 +67,6 @@ class VideoElementWidget extends ElementWidget {
         this.canPlayPause = true;
     } // constructor
 
-
-    hide(){
-        this._domElem.hide();
-    }
-
-    show(){
-        this._domElem.show();
-    }
 
     /**
      * Call after a TUIOTouch creation.
@@ -160,6 +151,13 @@ class VideoElementWidget extends ElementWidget {
         }
     }
 
+    hide(){
+        this._domElem.hide();
+    }
+
+    show(){
+        this._domElem.show();
+    }
     /**
      * Change the state to play or pause (depending of the state before) of the video
      *
@@ -204,4 +202,3 @@ class VideoElementWidget extends ElementWidget {
 } // class ImageElementWidget
 
 export default VideoElementWidget;
-

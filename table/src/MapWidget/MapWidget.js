@@ -371,14 +371,14 @@ class MapWidget extends TUIOWidget {
      * @param {TUIOTag} tuioTag - A TUIOTag instance.
      */
     onTagUpdate(tuioTag) {
-        console.log('On Update Tag');
-        console.log(tuioTag);
-        console.log(this.isTouched(tuioTag.x, tuioTag.y));
-
-        console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
-        console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
-        console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
-        console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
+        // console.log('On Update Tag');
+        // console.log(tuioTag);
+        // console.log(this.isTouched(tuioTag.x, tuioTag.y));
+        //
+        // console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
+        // console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
+        // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
+        // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (typeof (this._lastTagsValues[tuioTag.id]) !== 'undefined') {
 
 
@@ -423,9 +423,9 @@ class MapWidget extends TUIOWidget {
             // });
         }
 
-        if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
-        }
+        // if (this.isTouched(tuioTag.x, tuioTag.y)) {
+        //     this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+        // }
 
 
 

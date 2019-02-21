@@ -193,7 +193,12 @@ class MapWidget extends TUIOWidget {
         super.onTouchCreation(tuioTouch);
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
 
-            this.socket.emit("sound", {gameRoom: this.gameRoom});
+            console.log("touched");
+            if (tuioTouch.id === "A9")
+            {
+                console.log("pion mute");
+                this.socket.emit("sound", {gameRoom: this.gameRoom});
+            }
 
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,

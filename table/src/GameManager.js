@@ -26,7 +26,7 @@ class GameManager {
         this.msg1 = null;
         this.msg2 = null;
 
-        this.socket = io.connect('http://192.168.1.11:4444');
+        this.socket = io.connect('http://192.168.1.16:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -125,6 +125,8 @@ class GameManager {
         });
 
         this.socket.on('ration-used', data => {
+            let audio = new Audio('../res/sounds/valid.wav');
+            audio.play();
             self.updateJauges(data.jauges);
         });
 
@@ -165,7 +167,7 @@ class GameManager {
             $('#puzzle-title').hide();
         });
 
-        this.socket.on('dead', data => {
+        this.socket.on('death', data => {
             this.dead.push(data.playerId);
         });
 

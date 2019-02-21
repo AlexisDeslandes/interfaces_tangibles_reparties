@@ -54,10 +54,6 @@ export class DilemmePage {
       this.received_img_count = m.count;
     });
 
-    this.socketManager.socket.on('dead', (m) => {
-        this.navCtrl.push(GameoverPage, {jauge: m.jauge, playerColor: this.socketManager.playerColor});
-    });
-
   }
 
   hide(i){

@@ -26,6 +26,12 @@ export class HomePage {
                 public toastController: ToastController, private scanner: BarcodeScanner) {
 
 
+        this.socketManager.socket.on('death', (m) => {
+            console.log("DEAD");
+            this.navCtrl.push(GameoverPage, {jauge: m.jauge, playerColor: this.socketManager.playerColor});
+        });
+
+
         this.status = "Connexion au serveur en cours...";
 
         this.socketSubscription = this.socketManager.stateSubject.subscribe(data => {
@@ -41,10 +47,8 @@ export class HomePage {
                         this.navCtrl.push(DilemmePage, data);
                         break;
                     case 'minijeu':
-                        if (this.socketManager.player == 1) {
-                            this.navCtrl.push(GuidelinePage, data);
-                            break;
-                        }
+                        this.navCtrl.push(GuidelinePage, data);
+                        break;
                 }
             }
         })

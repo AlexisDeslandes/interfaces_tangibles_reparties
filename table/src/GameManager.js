@@ -13,21 +13,20 @@ import Gallery from "./Buttons/Gallery";
 class GameManager {
 
     constructor() {
-
-        const runSound = ['../res/sounds/valid.wav', '../res/sounds/valid.wav', '../res/sounds/valid.wav', '../res/sounds/valid.wav', '../res/sounds/valid.wav'];
+        const runSound = [new SpeechSynthesisUtterance('La tempête est là, éviter les rochers sur votre passage !'),
+            new SpeechSynthesisUtterance('Elle est de plus en plus rapide !'),
+            new SpeechSynthesisUtterance('Vous appercevez au loin une crevasse.'),
+            new SpeechSynthesisUtterance('Vous êtes proche de la crevasse !'),
+            new SpeechSynthesisUtterance("Plus qu'un petit effort !")];
 
         this.isClean = false;
-
         this.players = [];
-
         this.change = true;
-
         this.dead = [];
-
         this.msg1 = null;
         this.msg2 = null;
 
-        this.socket = io.connect('http://192.168.199.1:4444');
+        this.socket = io.connect('http://192.168.1.11:4444');
         //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
@@ -54,8 +53,7 @@ class GameManager {
         let idAudio = 0;
 
         this.socket.on('nextAudio', () => {
-            const audio = new Audio(runSound[idAudio++]);
-            audio.play();
+            window.speechSynthesis.speak(runSound[idAudio++]);
         });
 
         let self = this;
@@ -198,7 +196,7 @@ class GameManager {
             this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
 
-            this.msg1.onend = function() {
+            this.msg1.onend = function () {
 
                 if (intro.length > 1) {
                     this.msg2.lang = 'fr-FR';
@@ -216,11 +214,11 @@ class GameManager {
 
             self.updateJauges(data.jauges);
             for (let player of this.dead) {
-                $("#img-jean-p"+player).css("opacity", "0.2");
-                $("#water-level-p"+player).css("opacity", "0.2");
-                $("#energy-level-p"+player).css("opacity", "0.2");
-                $("#bike-p"+player).css("opacity", "0.2");
-                $("#smartphone-picto-p"+player).css("opacity", "0");
+                $("#img-jean-p" + player).css("opacity", "0.2");
+                $("#water-level-p" + player).css("opacity", "0.2");
+                $("#energy-level-p" + player).css("opacity", "0.2");
+                $("#bike-p" + player).css("opacity", "0.2");
+                $("#smartphone-picto-p" + player).css("opacity", "0");
             }
 
         });

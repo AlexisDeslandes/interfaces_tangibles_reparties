@@ -28,8 +28,8 @@ class GameManager {
         this.msg1 = null;
         this.msg2 = null;
 
-        //this.socket = io.connect('http://10.188.26.122:4444');
-        this.socket = io.connect('http://localhost:4444');
+        this.socket = io.connect('http://192.168.199.1:4444');
+        //this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
         this.socket.on("askTableDataGame", (data) => {
             this.isClean = false;
@@ -190,11 +190,13 @@ class GameManager {
             const intro = data.step["intro"];
 
             this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
+            this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
 
             this.msg1.onend = function() {
 
                 if (intro.length > 1) {
+                    this.msg2.lang = 'fr-FR';
                     this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
                     window.speechSynthesis.speak(this.msg2);
                 }

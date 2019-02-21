@@ -191,7 +191,7 @@ class MapWidget extends TUIOWidget {
         console.log(d3.selectAll('.rotateLabels')[0]);
         console.log("---------------------------------");
         for (let i = 0; i < tab.length; i++) {
-            if(this.cities.indexOf(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name) > -1){
+            if(this.cities.indexOf(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name) === -1){
                 let city = JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name;
                 console.log("test");
                 console.log(d3.selectAll('.datamaps-bubble')[0][i]);
@@ -262,12 +262,12 @@ class MapWidget extends TUIOWidget {
         console.log(tuioTouch);
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
 
-            console.log("touched");
-            if (tuioTouch.id === "A9")
-            {
-                console.log("pion mute");
-                this.socket.emit("sound", {gameRoom: this.gameRoom});
-            }
+            // console.log("touched");
+            // if (tuioTouch._id === 'A9')
+            // {
+            //     console.log("pion mute");
+            //     this.socket.emit("sound", {gameRoom: this.gameRoom});
+            // }
 
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,
@@ -338,7 +338,14 @@ class MapWidget extends TUIOWidget {
         // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
         // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+            // this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+            console.log("touched");
+            if (tuioTag._id === 'A9')
+            {
+                console.log("pion mute");
+                this.socket.emit("sound", {gameRoom: this.gameRoom});
+            }
+
         }
         //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
         // const socket = io.connect('http://localhost:4444');
@@ -406,7 +413,7 @@ class MapWidget extends TUIOWidget {
                     y: tuioTag.y,
                 },
             };
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+            // this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
 
             // const socket = io.connect('http://localhost:4444');
             // socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);

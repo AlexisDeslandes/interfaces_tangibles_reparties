@@ -191,7 +191,7 @@ io.on('connection', socket => {
         console.log("sound");
         let game = getGameByRoomName(m.gameRoom);
         if (game) {
-            game.sound();
+            game.soundSwitch();
             game.tableSocket.emit("sound", {volume: game.sound});
         }
     });

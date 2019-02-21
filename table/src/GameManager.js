@@ -4,6 +4,7 @@ import MapWidget from './MapWidget/MapWidget';
 // import ImageWidget from './ImageWidget/ImageWidget';
 import ImageElementWidget from './ImageElementWidget/ImageElementWidget';
 import VideoElementWidget from './VideoElementWidget/VideoElementWidget';
+import VideoWidget from 'tuiomanager/widgets/ElementWidget/VideoElementWidget/VideoElementWidget';
 import RationWidget from './RationWidget/RationWidget';
 import StartButtonWidget from './Buttons/StartButtonWidget';
 import PlayButtonWidget from './Buttons/PlayButtonWidget';
@@ -188,14 +189,16 @@ class GameManager {
             const intro = data.step["intro"];
 
             this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
-            this.msg1.lang = 'fr-FR';
+            this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+
+            // this.msg1.lang = 'fr-FR';
             window.speechSynthesis.speak(this.msg1);
 
             this.msg1.onend = function () {
 
                 if (intro.length > 1) {
-                    this.msg2.lang = 'fr-FR';
-                    this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+                    // this.msg2.lang = 'fr-FR';
+                    // this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
                     window.speechSynthesis.speak(this.msg2);
                 }
             };
@@ -225,6 +228,7 @@ class GameManager {
 
         this.socket.on("sound", (data) => {
             console.log("sound");
+            console.log(data.volume);
             this.msg1.volume = data.volume;
             this.msg2.volume = data.volume;
         });
@@ -959,7 +963,7 @@ class GameManager {
             console.log(data);
             // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
             if(data.step === 0 || data.step === 1 || data.step === 2|| data.step === 4|| data.step === 9){
-                this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step*10, 1, data.img);
+                this.recompensesWidget[data.step] = new VideoWidget(300, 287, 300, 300, data.step*10, 1, data.img);
             }
             else {
                 this.recompensesWidget[data.step] = new ImageElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);

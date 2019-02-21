@@ -26,7 +26,7 @@ module.exports = class Game {
         this.obstaclesLoop = new Map();
     }
 
-    sound() {
+    soundSwitch() {
         this.sound = 1 - this.sound;
     }
 
@@ -206,7 +206,7 @@ module.exports = class Game {
                     this.waterUsed[m.player]++;
                     console.log("Joueur " + m.player + " utilise de l'eau");
                 }
-            } else if (m.id === A6) {
+            } else if (m.id === 'A6') {
                 if (this.chickenUsed[m.player] < 3) {
                     this.jauges[m.player].chicken += 4;
                     this.jauges[m.player].chicken = Math.min(10, this.jauges[m.player].chicken);

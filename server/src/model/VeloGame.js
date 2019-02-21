@@ -10,18 +10,20 @@ module.exports = class VeloGame {
         }
     }
 
-    areSurvivantsPresent(){
+    areSurvivantsPresent() {
         return this.players.length > 0;
     }
 
     leaveGame(playerId) {
         this.players[playerId - 1].empty();
+        console.log(this.players[playerId - 1]);
         this.peopleJoined--;
-        return this.peopleJoined === 0;
+        console.log('number of player : ' + this.peopleJoined);
+        return this.players.every(player => player.x === -1 || player.x === -100);
     }
 
     playerJoin() {
-        return ++this.peopleJoined === this.nbPeople;
+        return ++this.peopleJoined === this.nbPeople && this.players.every(player => player.x === -1 || player.x === -100);
     }
 
     makePlayerMove(playerId) {

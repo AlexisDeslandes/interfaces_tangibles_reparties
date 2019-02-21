@@ -259,7 +259,7 @@ module.exports = class Game {
             } else {
                 const playersAlive = this.veloGame.getPlayersAlive();
                 playersAlive.forEach(player => {
-                    this.sendToPlayer(player, "win", {status: 'win'});
+                    this.sendToPlayerGame(player, "win", {status: 'win'});
                     this.jauges[player].mood += 2;
                 });
                 this.tableSocket.emit('clearCanvas', {});
@@ -273,7 +273,7 @@ module.exports = class Game {
             if (idPlayerDead !== -1) {
                 this.jauges[idPlayerDead].bike -= 2;
                 this.jauges[idPlayerDead].mood -= 2;
-                this.sendToPlayer(idPlayerDead, 'dead', {status: 'dead'});
+                this.sendToPlayerGame(idPlayerDead, 'dead', {status: 'dead'});
             }
         }, 16);
     }
@@ -298,7 +298,10 @@ module.exports = class Game {
 
     leaveGame(player) {
         clearInterval(this.obstaclesLoop.get(player));
+        console.log('Is leaving game');
+        console.log(player);
         const emptyGame = this.veloGame.leaveGame(player);
+        console.log(emptyGame);
         if (emptyGame) {
             clearInterval(this.mainInterval);
             this.tableSocket.emit('clean', {});
@@ -310,5 +313,10 @@ module.exports = class Game {
     sendToPlayer(idPlayer, topic, object) {
         console.log(topic);
         this.players[idPlayer - 1].socket.emit(topic, object);
+    }
+
+    sendToPlayerGame(idPlayer, topic, object) {
+        console.log(topic);
+        this.players.find(player => player.name == idPlayer).socket.emit(topic, object);
     }
 };

@@ -9,7 +9,6 @@ module.exports = class Player {
         this.top = -1;
         this.topMax = -1;
         this.obstacles = [];
-        this.obstacles = [];
         this.speed = [];
         this.size = 50;
         this.dead = false;

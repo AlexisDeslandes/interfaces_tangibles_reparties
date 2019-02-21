@@ -245,18 +245,18 @@ io.on('connection', socket => {
 
     socket.on('obstacle', data => {
         let game = getGameByRoomName(data.room);
-        if (game){
+        if (game) {
             game.activateObstacle(data.player);
-        }else{
+        } else {
             console.log('error : game introuvable');
         }
     });
 
     socket.on('leaveGame', data => {
         let game = getGameByRoomName(data.room);
-        if (game){
+        if (game) {
             game.leaveGame(data.player);
-        }else{
+        } else {
             console.log('error : game introuvable');
         }
     })

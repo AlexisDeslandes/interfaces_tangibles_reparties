@@ -174,6 +174,8 @@ class MapWidget extends TUIOWidget {
         });
     }
 
+    getSound() { return this.sound; }
+
     /**
      * MapWidget's domElem.
      *
@@ -190,6 +192,9 @@ class MapWidget extends TUIOWidget {
     onTouchCreation(tuioTouch) {
         super.onTouchCreation(tuioTouch);
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
+
+            this.socket.emit("sound", {gameRoom: this.gameRoom});
+
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,
                 [tuioTouch.id]: {

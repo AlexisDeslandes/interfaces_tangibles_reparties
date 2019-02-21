@@ -19,6 +19,9 @@ class GameManager {
 
         this.dead = [];
 
+        this.msg1 = null;
+        this.msg2 = null;
+
         //this.socket = io.connect('http://10.188.26.122:4444');
         this.socket = io.connect('http://localhost:4444');
         this.jauges = {};
@@ -154,14 +157,14 @@ class GameManager {
 
             const intro = data.step["intro"];
 
-            let msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
-            window.speechSynthesis.speak(msg1);
+            this.msg1 = new SpeechSynthesisUtterance(intro[0]["text"]);
+            window.speechSynthesis.speak(this.msg1);
 
-            msg1.onend = function() {
+            this.msg1.onend = function() {
 
                 if (intro.length > 1) {
-                    let msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
-                    window.speechSynthesis.speak(msg2);
+                    this.msg2 = new SpeechSynthesisUtterance(intro[1]["text"]);
+                    window.speechSynthesis.speak(this.msg2);
                 }
             };
 
@@ -186,6 +189,12 @@ class GameManager {
 
         this.socket.on("stateGame", (data) => {
             this.players = data.players;
+        });
+
+        this.socket.on("sound", (data) => {
+            console.log("sound");
+            this.msg1.volume = data.volume;
+            this.msg2.volume = data.volume;
         });
 
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');

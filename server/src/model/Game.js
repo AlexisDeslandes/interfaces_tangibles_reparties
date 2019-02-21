@@ -6,6 +6,7 @@ const MapManager = require('../model/MapManager');
 
 module.exports = class Game {
     constructor(room, nbPlayers, tableSocket) {
+        this.sound = 1;
         this.players = [];
         this.gameState = "init";
         this.nbPlayers = nbPlayers;
@@ -23,6 +24,10 @@ module.exports = class Game {
         this.map = new MapManager();
 
         this.obstaclesLoop = new Map();
+    }
+
+    sound() {
+        this.sound = 1 - this.sound;
     }
 
     showPuzzleToAll(m) {

@@ -177,6 +177,15 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on("sound", (m) => {
+        console.log("sound");
+        let game = getGameByRoomName(m.gameRoom);
+        if (game) {
+            game.sound();
+            game.tableSocket.emit("sound", {volume: game.sound});
+        }
+    });
+
 
     /////////////////////////////////////////////////// GAME /////////////////////////////////////////////////////////////
 

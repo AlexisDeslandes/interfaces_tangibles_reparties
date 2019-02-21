@@ -110,11 +110,9 @@ module.exports = class Game {
 
     nextStep() {
 
-        for (let playerId in this.jauges)
-        {
+        for (let playerId in this.jauges) {
             let playerJauge = this.jauges[playerId];
-            for (let stat in playerJauge)
-            {
+            for (let stat in playerJauge) {
                 if (playerJauge[stat] <= 0) {
                     if (!this.dead.includes(playerId)) {
                         this.dead.push(playerId);

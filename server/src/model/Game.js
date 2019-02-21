@@ -26,7 +26,7 @@ module.exports = class Game {
         this.obstaclesLoop = new Map();
     }
 
-    sound() {
+    soundSwitch() {
         this.sound = 1 - this.sound;
     }
 
@@ -149,7 +149,7 @@ module.exports = class Game {
                 this.map.getTrophies(this.currentStep, this.tableSocket);
                 this.currentStep++;
             }
-        }
+            }
     }
 
 
@@ -249,7 +249,6 @@ module.exports = class Game {
     getTrophies(){
         this.map.getTrophies(this.currentStep, this.tableSocket);
     }
-
 
     //////////////////////////////////////////////// Game //////////////////////////////////////////////////////
 

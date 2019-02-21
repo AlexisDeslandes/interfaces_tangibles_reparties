@@ -10,6 +10,9 @@ import TUIOWidget from 'tuiomanager/core/TUIOWidget';
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from 'tuiomanager/core/constants';
 import { radToDeg } from 'tuiomanager/core/helpers';
 import Datamap from "datamaps/dist/datamaps.world.min";
+import ElementWidget from 'tuiomanager/widgets/ElementWidget/ElementWidget';
+import CircleType from 'circletype/dist/circletype.min';
+
 
 /**
  * Main class to manage MapWidget.
@@ -32,12 +35,14 @@ class MapWidget extends TUIOWidget {
      * @param {number} height - MapWidget's height.
      */
     constructor(x, y, width, height, socket, gameRoom) {
-        // alert(x +' '+ y +' '+ width + ' ' + height);
+        // alert(x +' '+ y +' '+ width + ' ' + height);Y
 
         super(x, y, width, height);
         this.map = null;
         this.socket = socket;
         this.gameRoom = gameRoom;
+        this.labelsInit =false;
+        this.cities = [];
         this._lastTouchesValues = {};
         this._lastTagsValues = {};
         let elem = $('<div id="map-container"></div>')
@@ -129,6 +134,7 @@ class MapWidget extends TUIOWidget {
     }
 
 
+
     hide(){
         this._domElem.hide();
     }
@@ -146,7 +152,7 @@ class MapWidget extends TUIOWidget {
                 var projection = d3.geo.equirectangular()
                     .center([5, 27])
                     .rotate([0, 0])
-                    .scale(1400)
+                    .scale(1200)
                     .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
                 var path = d3.geo.path()
                     .projection(projection);
@@ -165,13 +171,75 @@ class MapWidget extends TUIOWidget {
 
     }
 
-    updateMap(m){
+    updateMap(m) {
+        console.log("UpdatedM");
         let tmp = [];
-        this.map.bubbles(tmp.concat(m), {
-            popupTemplate: function() {
+        if(d3.selectAll('.rotateLabels')[0]) {
+            console.log(d3.selectAll('.rotateLabels')[0]);
+            d3.selectAll('.rotateLabels').remove();
+            this.cities = [];
+        }
+        console.log("-------------------------------");
+        this.map.bubbles(tmp.concat(m.progress), {
+            popupOnHover: true,
+            popupTemplate: function () {
                 return '<div class="hoverinfo">Hello';
             }
         });
+        // if(true){
+        let tab = d3.selectAll('.datamaps-bubble')[0];
+        console.log(d3.selectAll('.rotateLabels')[0]);
+        console.log("---------------------------------");
+        for (let i = 0; i < tab.length; i++) {
+            if(this.cities.indexOf(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name) === -1){
+                let city = JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name;
+                console.log("test");
+                console.log(d3.selectAll('.datamaps-bubble')[0][i]);
+                var newDiv = document.createElement("div");
+                if(city==="Alger" || city=== "Tombouctou") {
+                    let test = document.createElement('div');
+                    let flag = document.createElement('IMG');
+                    flag.setAttribute('src', 'res/flag-checkered.svg');
+                    flag.style.left = `${tab[i].getBoundingClientRect().left}px`;
+                    flag.style.top = `${tab[i].getBoundingClientRect().top -40}px`;
+                    flag.style.width = "40px";
+                    flag.style.height = "40px";
+                    flag.style.position = "fixed";
+                    if (city === "Alger") {
+                        test.innerHTML = '<p id="bubble-step'+i.toString()+'" style="font-size: 1.25rem; font-weight: 900">Alger &nbsp Alger &nbsp Alger &nbsp</p>';
+                        test.style = ('left: ' + `${tab[i].getBoundingClientRect().left+(0.015*this.width)}px` + '; top: ' + `${tab[i].getBoundingClientRect().top-(0.1*this.width)}px` + '; position: fixed; z-index: 999;'+ `${(m.step === i)?"font-size: 1.3rem; color: blue":"font-size: 1.25rem; color: black"}`+   '');
+                    }else{
+                        test.innerHTML ='<p id="bubble-step'+i.toString()+'" style="font-size: 1.25rem; font-weight: 900">Tombouctou  &nbsp Tombouctou &nbsp</p>';
+                        test.style = ('left: ' + `${tab[i].getBoundingClientRect().left-(0.07*this.width)}px` + '; top: ' + `${tab[i].getBoundingClientRect().top-(0.15*this.height)}px` + '; position: fixed; z-index: 999;'+ `${(m.step === i)?"font-size: 1.4rem; color: blue":"font-size: 1.1rem; color: black"}`+   '');
+                    }
+                    test.classList.add("rotateLabels");
+                    newDiv.appendChild(test);
+                    newDiv.appendChild(flag);
+                }
+                else{
+                    var newContent = document.createTextNode(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name+"    \t "+ JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name +"   \t");
+                    newDiv.classList.add("rotateLabels");
+                    newDiv.style = ('left: ' + `${i%2===0?tab[i].getBoundingClientRect().left+(0.0*this.width):tab[i].getBoundingClientRect().left-(0.0*this.width)}px` + '; top: ' + `${tab[i].getBoundingClientRect().top - 40}px` + '; position: fixed; z-index: 999; '+ `${(m.step === i)?"font-size: 1.4rem; color: blue":"font-size: 1.1rem; color: black"}`+   '');
+                    if(city==="Bilda"){
+                        newDiv.style = ('left: ' + `${i%2===0?tab[i].getBoundingClientRect().left+(0.05*this.width):tab[i].getBoundingClientRect().left-(0.066*this.width)}px` + '; top: ' + `${tab[i].getBoundingClientRect().top-(0.04*this.width)}px` + '; position: fixed; z-index: 999; '+ `${(m.step === i)?"font-size: 1.4rem; color: blue":"font-size: 1.1rem; color: black"}`+   '');
+                    }else if(city==="Tamesguida"){
+                        newDiv.style = ('left: ' + `${i%2===0?tab[i].getBoundingClientRect().left+(0.05*this.width):tab[i].getBoundingClientRect().left-(0.05*this.width)}px` + '; top: ' + `${tab[i].getBoundingClientRect().top+(0.01*this.width)}px` + '; position: fixed; z-index: 999; '+ `${(m.step === i)?"font-size: 1.4rem; color: blue":"font-size: 1.1rem; color: black"}`+   '');
+                    }else if(city==="Médéa"){
+                        newDiv.style = ('left: ' + `${i%2===0?tab[i].getBoundingClientRect().left+(0.05*this.width):tab[i].getBoundingClientRect().left-(0.05*this.width)}px` + '; top: ' + `${tab[i].getBoundingClientRect().top+(0.025*this.width)}px` + '; position: fixed; z-index: 999; '+ `${(m.step === i)?"font-size: 1.4rem; color: blue":"font-size: 1.1rem; color: black"}`+   '');
+                    }
+                    newDiv.appendChild(newContent);
+                    newDiv.id = "bubble-step"+i.toString();
+
+                }
+                // (m.step === i)?('font-size: 1.3rem; color: blue'):('font-size: 1.3rem; color: black');
+                document.getElementById("map-container").appendChild(newDiv);
+                const circleType = new CircleType(document.getElementById("bubble-step"+i.toString()));
+                // circleType.forceWidth(true);
+                this.cities.push(JSON.parse(d3.selectAll('.datamaps-bubble')[0][i].attributes[4].value).name);
+                console.log(this.cities);
+            }
+        }
+        // }
     }
 
     getSound() { return this.sound; }
@@ -191,14 +259,15 @@ class MapWidget extends TUIOWidget {
      */
     onTouchCreation(tuioTouch) {
         super.onTouchCreation(tuioTouch);
+        console.log(tuioTouch);
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
 
-            console.log("touched");
-            if (tuioTouch.id === "A9")
-            {
-                console.log("pion mute");
-                this.socket.emit("sound", {gameRoom: this.gameRoom});
-            }
+            // console.log("touched");
+            // if (tuioTouch._id === 'A9')
+            // {
+            //     console.log("pion mute");
+            //     this.socket.emit("sound", {gameRoom: this.gameRoom});
+            // }
 
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,
@@ -269,7 +338,14 @@ class MapWidget extends TUIOWidget {
         // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
         // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+            // this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+            console.log("touched");
+            if (tuioTag._id === 'A9')
+            {
+                console.log("pion mute");
+                this.socket.emit("sound", {gameRoom: this.gameRoom});
+            }
+
         }
         //if (tuioTag.x >= this._x && tuioTag.x <= this._x + this._width && tuioTag.y >= this._y && tuioTag.y <= this._y + this._height) {
         // const socket = io.connect('http://localhost:4444');
@@ -295,14 +371,14 @@ class MapWidget extends TUIOWidget {
      * @param {TUIOTag} tuioTag - A TUIOTag instance.
      */
     onTagUpdate(tuioTag) {
-        console.log('On Update Tag');
-        console.log(tuioTag);
-        console.log(this.isTouched(tuioTag.x, tuioTag.y));
-
-        console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
-        console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
-        console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
-        console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
+        // console.log('On Update Tag');
+        // console.log(tuioTag);
+        // console.log(this.isTouched(tuioTag.x, tuioTag.y));
+        //
+        // console.log("tuioTag.x >= this._x = " +(tuioTag.x >= this._x)+ "   " + tuioTag.x +">="+this._x);
+        // console.log("tuioTag.x <= this._x + this._width = " +(tuioTag.x <= this._x + this._width)+ "   " + tuioTag.x+"<="+ this._x +"+"+ this._width);
+        // console.log("tuioTag.y >= this._y  = " +(tuioTag.y >= this._y) + "   " + tuioTag.y +">="+this._y);
+        // console.log("tuioTag.y <= this._y + this._height = " +(tuioTag.y <= this._y + this._height)+ "   " + tuioTag.y +"<=" +(this._y ) +"+"+ this._height);
         if (typeof (this._lastTagsValues[tuioTag.id]) !== 'undefined') {
 
 
@@ -337,7 +413,7 @@ class MapWidget extends TUIOWidget {
                     y: tuioTag.y,
                 },
             };
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+            // this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
 
             // const socket = io.connect('http://localhost:4444');
             // socket.emit('message', 'update '+tuioTag.x + '  ' + tuioTag.y);
@@ -347,14 +423,18 @@ class MapWidget extends TUIOWidget {
             // });
         }
 
-        if (this.isTouched(tuioTag.x, tuioTag.y)) {
-            this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
-        }
+        // if (this.isTouched(tuioTag.x, tuioTag.y)) {
+        //     this.socket.emit('map', {id: tuioTag.id, gameRoom: this.gameRoom});
+        // }
 
 
 
 
     }
+
+    // onTagDeletion(tuioTag){
+    //     this.map.arc([]);
+    // }
 
     /**
      * Move MapWidget.

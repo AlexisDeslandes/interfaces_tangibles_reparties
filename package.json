@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "changeIP" : "python script-lancement.py",
+    "build-server":"cd server && npm install",
+    "build-table": "cd table && npm install",
+    "build-smartphone" : "cd smartphone && npm install && ionic integrations enable cordova --add",
+    "build" : "npm run-script changeIP && npm run build-server && npm run build-table && npm run build-smartphone",
+    "runServer" : "cd server && npm start",
+    "runTable" : "cd table && npm start",
+    "deployApk" : "cd Smartphone && ionic cordova build android && cd ../ && npm run changeApkDirectory",
+    "changeApkDirectory" : "python script-fin.py"
+  }
+}

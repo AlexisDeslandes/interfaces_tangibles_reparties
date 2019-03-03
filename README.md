@@ -17,7 +17,7 @@ L'APK (fichier android pour installer une application) est trouvable dans le dos
 # Déploiement
 
 Une fois les étapes précédentes terminées, veuillez lancer “Surface2TUIO” puis “TIUOClient” sur la table tactile.
-Les id des tags utilisés pour les rations sont ‘A6’ et ‘B3’.
+Les id des tags utilisés pour les rations sont "A6" et "B3".
 
 # Vidéo
 

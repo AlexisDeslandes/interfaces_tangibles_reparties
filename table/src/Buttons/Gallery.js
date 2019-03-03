@@ -6,9 +6,10 @@
 import $ from 'jquery/dist/jquery.min';
 
 import TUIOWidget from 'tuiomanager/core/TUIOWidget';
-import { WINDOW_WIDTH, WINDOW_HEIGHT } from 'tuiomanager/core/constants';
+import {WINDOW_WIDTH, WINDOW_HEIGHT} from 'tuiomanager/core/constants';
 import ImageElementWidget from "../ImageElementWidget/ImageElementWidget";
-import { radToDeg } from 'tuiomanager/core/helpers';
+import {radToDeg} from 'tuiomanager/core/helpers';
+
 // import ImageWidget from '../ImageWidget/ImageWidget';
 
 /**
@@ -50,9 +51,9 @@ class Gallery extends TUIOWidget {
 
         this.newTrophy = null;
         this.unseenTrophies = 0;
-        this.visible =false;
+        this.visible = false;
         this.recompensesWidget = [];
-        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7, this.trophyW8, this.trophyW9, this.trophyW10);
+        this.recompensesWidget.push(this.trophyW1, this.trophyW2, this.trophyW3, this.trophyW4, this.trophyW5, this.trophyW6, this.trophyW7, this.trophyW8, this.trophyW9, this.trophyW10);
         let elem = $('gallery-img');
         // elem.append($('<img>')
         //     .attr('src', 'res/gallery.png')
@@ -72,11 +73,11 @@ class Gallery extends TUIOWidget {
         // console.log(x +' '+ y +' '+ width + ' ' + height);
     }
 
-    notifyBadge(){
+    notifyBadge() {
         var newDiv = document.createElement("div");
         newDiv.id = "badge-container";
         newDiv.innerHTML = '<canvas  id="badge" width="100" height="100" style="position: fixed; z-index: 500"></canvas>';
-        newDiv.style = ('position: fixed; width: 100px; height: 100px;  z-index: 3000; left: '+ `${this.x +10}px`+'; top: '+ `${this.y}px` +';');
+        newDiv.style = ('position: fixed; width: 100px; height: 100px;  z-index: 3000; left: ' + `${this.x + 10}px` + '; top: ' + `${this.y}px` + ';');
         document.getElementById("gallery").appendChild(newDiv);
         var c = document.getElementById("badge");
         c.className += "rotateLabels";
@@ -96,24 +97,25 @@ class Gallery extends TUIOWidget {
 
     }
 
-    hide(){
+    hide() {
         this._domElem.hide();
     }
 
-    show(){
+    show() {
         this._domElem.show();
     }
 
-    addPicture(data){
+    addPicture(data) {
         // const left = document.getElementById('gallery').getBoundingClientRect().left;
         // const top = document.getElementById('gallery').getBoundingClientRect().top;
         // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
-        this.recompensesWidget[data.step] = new ImageWidget(300, 287, 300, 300, data.step*10, 1, data.img,);
+        this.recompensesWidget[data.step] = new ImageWidget(300, 287, 300, 300, data.step * 10, 1, data.img,);
         this.recompensesWidget[data.step].hide();
         // $('trophies').append(this.recompensesWidget[data.step].domElem);
         this.recompensesWidget[data.step].addTo($('#trophies').get(0));
     }
-    addImage(data, step){
+
+    addImage(data, step) {
         // const left = document.getElementById('gallery').getBoundingClientRect().left;
         // const top = document.getElementById('gallery').getBoundingClientRect().top;
         // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
@@ -130,7 +132,9 @@ class Gallery extends TUIOWidget {
      *
      * @returns {JQuery Object} Gallery's domElem.
      */
-    get domElem() { return this._domElem; }
+    get domElem() {
+        return this._domElem;
+    }
 
     /**
      * Call after a TUIOTouch creation.
@@ -144,29 +148,29 @@ class Gallery extends TUIOWidget {
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,
-                [tuioTouch.id];: {
-                    tuioTouch.x,
-                    y;: tuioTouch.y,
+                [tuioTouch.id]: {
+                    x: tuioTouch.x,
+                    y: tuioTouch.y,
                 },
-        }
-            if(this.visible){
-                for(let i=0; i<this.recompensesWidget.length;i++){
-                    if(this.recompensesWidget[i] !== null)
+            }
+            if (this.visible) {
+                for (let i = 0; i < this.recompensesWidget.length; i++) {
+                    if (this.recompensesWidget[i] !== null)
                         this.recompensesWidget[i].hide();
                 }
             }
-            else{
-                for(let i=0; i<this.recompensesWidget.length;i++){
-                    if(this.recompensesWidget[i] !== null){
+            else {
+                for (let i = 0; i < this.recompensesWidget.length; i++) {
+                    if (this.recompensesWidget[i] !== null) {
                         this.recompensesWidget[i].show();
                         this.unseenTrophies = 0;
-                        if(document.getElementById('badge'))
-                        document.getElementById('badge').remove();
+                        if (document.getElementById('badge'))
+                            document.getElementById('badge').remove();
 
                     }
                 }
             }
-            this.visible=!this.visible;
+            this.visible = !this.visible;
             // console.log(tuioTouch.x +"    " +tuioTouch.y);
         }
 
@@ -194,8 +198,6 @@ class Gallery extends TUIOWidget {
     onTagCreation(tuioTag) {
 
 
-
-
     }
 
     /**
@@ -205,7 +207,6 @@ class Gallery extends TUIOWidget {
      * @param {TUIOTag} tuioTag - A TUIOTag instance.
      */
     onTagUpdate(tuioTag) {
-
 
 
     }

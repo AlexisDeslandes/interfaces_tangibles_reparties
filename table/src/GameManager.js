@@ -35,30 +35,25 @@ class GameManager {
         this.socket.on("askTableDataGame", (data) => {
             this.isClean = false;
             this.showGame(data.playersCount, data.state);
-        });
-
+    })
         this.socket.on('clean', () => {
             console.log("It's cleaning");
             this.isClean = true;
-        });
-
+    })
         this.socket.on('gameover', () => {
             location.reload();
-        });
-
+    })
         this.socket.on('clearCanvas', () => {
             console.log("It's cleaning");
             document.getElementById('trueGame').style.display = "none";
             document.getElementById('gamer').style.display = "none";
             this.isClean = true;
-        });
-
+    })
         let idAudio = 0;
 
         this.socket.on('nextAudio', () => {
             window.speechSynthesis.speak(runSound[idAudio++]);
-        });
-
+    })
         let self = this;
         self.init = true;
 
@@ -106,9 +101,7 @@ class GameManager {
             audio.play();
             $("#qr_" + data.player).hide();
             $("#connected_" + data.player).show();
-        });
-
-
+    })
         this.socket.on('init', data => {
             console.log(data);
             if (!this.hasInit) {
@@ -119,17 +112,14 @@ class GameManager {
                 // console.log(document.getElementById('ready-ctn').getBoundingClientRect().top);
                 // this.initReadyWidget();
             }
-        });
-
+    })
         this.socket.on('ration-used', data => {
             let audio = new Audio('../res/sounds/valid.wav');
             audio.play();
             self.updateJauges(data.jauges);
-        });
-
-
+    })
         this.socket.on('get-puzzle', data => {
-            if (data.hasOwnProperty('puzzle')) {
+            if (data.hasOwnProperty('puzzle');) {
                 let audio = new Audio('../res/sounds/valid.wav');
                 audio.play();
                 let ctn = $('#puzzle-parent');
@@ -145,11 +135,10 @@ class GameManager {
                         "" +
                         "</div>"
                     );
-                });
-                this.showPuzzle();
+        })
+            this.showPuzzle();
             }
-        });
-
+    })
         this.socket.on('puzzle-ended', (m) => {
             console.log("puzzle ended");
             $('#puzzle-parent').hide();
@@ -162,15 +151,13 @@ class GameManager {
 
             $('#puzzle-result').show();
             $('#puzzle-title').hide();
-        });
-
+    })
         this.socket.on('death', data => {
             this.dead.push(data.playerId);
-        });
-
+    })
         this.socket.on('start', data => {
 
-            if (data.status === "gameover")
+            if (data.status === "gameover";)
                 location.reload();
 
             let audio = new Audio('../res/sounds/netflix.mp3');
@@ -226,20 +213,18 @@ class GameManager {
                 $("#smartphone-picto-p" + player).css("opacity", "0");
             }
 
-        });
+    })
         this.gameRoom = null;
 
         this.socket.on("stateGame", (data) => {
             this.players = data.players;
-        });
-
+    })
         this.socket.on("sound", (data) => {
             console.log("sound");
             console.log(data.volume);
             this.msg1.volume = data.volume;
             // this.msg2.volume = data.volume;
-        });
-
+    })
         this.bike = document.getElementById(this.change ? 'bike' : 'bike2');
         this.obstacle = document.getElementById('obstacle');
         this.canvas = document.getElementById("gamer");
@@ -669,8 +654,7 @@ class GameManager {
             //$("#header").hide();
             $('#ready-ctn').show();
             this.initReadyWidget();
-        });
-
+    })
     }
 
     showGame(nbPlayer, gameState) {
@@ -714,13 +698,16 @@ class GameManager {
                 soundLoop = setInterval(() => {
                     this.audio = new Audio('../res/sounds/tempete.mp3');
                     this.audio.play();
-                }, 23000);
-                this.socket.emit('gamePreparation', {
+        }
+    ,
+        23000;
+    )
+        this.socket.emit('gamePreparation', {
                     room: this.gameRoom,
                     state: state
                 });
                 break;
-            case 'guideline1':
+            case 'guideline1';:
                 this.socket.emit('guidelinePreparation', {
                     room: this.gameRoom,
                     state: state
@@ -736,7 +723,7 @@ class GameManager {
 
         let looping = null;
 
-        const loop = () => {
+        const loop = () =;> {
             this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
             for (let player of this.players) {
                 let i = player.id;
@@ -767,7 +754,7 @@ class GameManager {
                 this.contextGamer.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 cancelAnimationFrame(looping);
             }
-        };
+        }
         loop();
     }
 
@@ -966,10 +953,12 @@ class GameManager {
         self.trophyW5 = null;
         self.trophyW6 = null;
         self.trophyW7 = null;
+        self.trophyW8 = null;
+        self.trophyW9 = null;
+        self.trophyW10 = null;
         this.socket.on('new-trophy', (data) => {
             console.log("new trophy received");
             console.log(data);
-            // this.recompensesWidget[data.step] = new ImageWidget(384, 287, 300, 300, data.img, data.step*10);
             if (data.step === 0 || data.step === 1 || data.step === 2 || data.step === 4 || data.step === 9) {
                 this.recompensesWidget[data.step] = new VideoElementWidget(300, 287, 300, 300, data.step * 10, 1, data.img);
             }
@@ -980,18 +969,7 @@ class GameManager {
             this.recompensesWidget[data.step].addTo($('#trophies').get(0));
             this.galleryWidget.addImage(this.recompensesWidget[data.step], data.step);
 
-            // const left = document.getElementById('gallery').getBoundingClientRect().left;
-            // const top = document.getElementById('gallery').getBoundingClientRect().top;
-
-            // const left = document.getElementById('gallery-img').getBoundingClientRect().left;
-            // const top = document.getElementById('gallery-img').getBoundingClientRect().top;
-            //     this.recompensesWidget[data.step] = new ImageElementWidget(left, top+200, 300, 300, data.step*10, 1, data.img);
-            //     $('app').append(this.recompensesWidget[data.step].domElem);
-            //     this.recompensesWidget[data.step].addTo($('#trophies').get(0));
-
-
-            // this.mapWidget.addTrophy;
-        });
+    })
         this.playWidget.deleteWidget();
         this.startWidget.deleteWidget();
         this.recompensesWidget = [];

@@ -44,12 +44,15 @@ class Gallery extends TUIOWidget {
         this.trophyW5 = null;
         this.trophyW6 = null;
         this.trophyW7 = null;
+        this.trophyW8 = null;
+        this.trophyW9 = null;
+        this.trophyW10 = null;
 
         this.newTrophy = null;
         this.unseenTrophies = 0;
         this.visible =false;
         this.recompensesWidget = [];
-        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7);
+        this.recompensesWidget.push(this.trophyW1,this.trophyW2,this.trophyW3,this.trophyW4,this.trophyW5,this.trophyW6,this.trophyW7, this.trophyW8, this.trophyW9, this.trophyW10);
         let elem = $('gallery-img');
         // elem.append($('<img>')
         //     .attr('src', 'res/gallery.png')
@@ -141,11 +144,11 @@ class Gallery extends TUIOWidget {
         if (this.isTouched(tuioTouch.x, tuioTouch.y)) {
             this._lastTouchesValues = {
                 ...this._lastTouchesValues,
-                [tuioTouch.id]: {
-                    x: tuioTouch.x,
-                    y: tuioTouch.y,
+                [tuioTouch.id];: {
+                    tuioTouch.x,
+                    y;: tuioTouch.y,
                 },
-            };
+        }
             if(this.visible){
                 for(let i=0; i<this.recompensesWidget.length;i++){
                     if(this.recompensesWidget[i] !== null)
